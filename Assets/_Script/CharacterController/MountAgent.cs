@@ -8,8 +8,11 @@ public class MountAgent : MonoBehaviour
 {
 	public GameObject mountModel;
 	public NVRHand ridingHand;
-	public float speed;
+	public float joustSpeed;
+	public float paradeSpeed;
 	public float velocityThreshold;
+
+	float actualSpeed;
 
 	bool _freeze = true;
 	bool _mountFreeze;
@@ -40,6 +43,7 @@ public class MountAgent : MonoBehaviour
 		_deltaBuffer = new Vector3[10];
 
 		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangeHandler;
+		GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
 	}
 	
 	void FixedUpdate()
@@ -61,7 +65,7 @@ public class MountAgent : MonoBehaviour
 		{
 			if(Mathf.Abs(velocity.y) >= velocityThreshold)
 			{
-				_rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+				_rb.AddForce(transform.forward * actualSpeed, ForceMode.Impulse);
 			}
 		}
 	}
@@ -76,10 +80,12 @@ public class MountAgent : MonoBehaviour
 				
 			case Phases.Parade:
 				_freeze = false;
+				actualSpeed = paradeSpeed;
 			break;
 				
 			case Phases.Joust:
 				_freeze = false;
+				actualSpeed = joustSpeed;
 			break;	
 				
 			case Phases.Intermission:

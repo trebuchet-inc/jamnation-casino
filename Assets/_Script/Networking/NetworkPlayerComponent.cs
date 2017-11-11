@@ -17,8 +17,16 @@ public class NetworkPlayerComponent : MonoBehaviour
 
 	int lerpSpeed = 20;
 
+	bool _initialized;
+
 	void Start()
 	{
+		Initialize();
+	}
+
+	void Initialize()
+	{
+		_initialized = true;
 		_playerParts = new GameObject[3];
 		_hands = new NVRVirtualHand[2];
 		_dataBuffer = new List<NetworkPlayerData>();
@@ -67,6 +75,7 @@ public class NetworkPlayerComponent : MonoBehaviour
 
 	public void ReceiveData(NetworkPlayerData data)
 	{
+		if(!_initialized) Initialize();
 		_lastData = data;
 		_dataBuffer.Add(data);
 	}
