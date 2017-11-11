@@ -29,6 +29,8 @@ public class NetworkPlayerComponent : MonoBehaviour
 	{
 		if(_lastData == null) return;
 
+		//Gestion du dernier package
+
 		for(int i = 0; i < playerParts.Length; i++)
 		{
 			if(playerParts[i] != null)
@@ -43,6 +45,8 @@ public class NetworkPlayerComponent : MonoBehaviour
 		}
 
 		if(_dataBuffer.Count <= 0) return;
+
+		//Gestion du buffer
 
 		_dataBuffer.Clear();
 	}

@@ -44,6 +44,7 @@ public class NetworkManager : Photon.PunBehaviour
     {
         int id = _roomCreator ? 0 : 1;
         NetworkPlayerManager.Instance.personalID = id;
+        NetworkPlayerManager.Instance.SetLocalPlayer();
         NetworkPlayerManager.Instance.photonView.RPC("SpawnNetworkPlayer", PhotonTargets.OthersBuffered, Vector3.zero, Quaternion.identity, id);
     }
     

@@ -35,6 +35,7 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
 	public int personalID;
 	public GameObject playerPrefab;
 	public List<NetworkPlayerComponent> players;
+	public Transform[] startingPos;
 
 	void Awake()
     {
@@ -68,6 +69,12 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
 		return null;
 	}
 
+	public void SetLocalPlayer()
+	{
+		NVRPlayer.Instance.transform.position = startingPos[personalID].position;
+		NVRPlayer.Instance.transform.rotation = startingPos[personalID].rotation;
+	}
+
 	[PunRPC]
     void UpdateNetworkPlayer(byte[] data, int id)
     {
@@ -84,7 +91,7 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
 	[PunRPC]
     void SpawnNetworkPlayer(Vector3 pos, Quaternion rot, int id)
     {
-        GameObject _newPlayer = Instantiate(playerPrefab, pos, rot) ;
+        GameObject _newPlayer = Instantiate(playerPrefab, startingPos[id].position, startingPos[id].rotation) ;
         NetworkPlayerComponent _networkPlayer = _newPlayer.GetComponent<NetworkPlayerComponent>();
 
 		_networkPlayer.id = id;
