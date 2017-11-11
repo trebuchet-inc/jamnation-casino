@@ -1,6 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+[Serializable]
+public class AimCameraSpeadsheet
+{
+	public int cameraId;
+	public Transform[] targets;
+}
 
 public class CameraManager : MonoBehaviour {
 	[HideInInspector]
@@ -8,10 +16,23 @@ public class CameraManager : MonoBehaviour {
 	public CameraController activeCamera;
 	public Transform cameraTransform;
 	public float rotationIntensity;
+	public float translationIntensity;
+	public AimCameraSpeadsheet[] aimCameraTargets;
 
 	// Use this for initialization
-	void Start () {
+
+	void Awake()
+	{
 		cameras = FindObjectsOfType<CameraController>();
+		foreach(CameraController c in cameras)
+		{
+			Destroy(c.transform.parent.GetComponent<Camera>());
+		}
+		
+	}
+
+	void Start () {
+		
 		InitializeCameras();
 		CameraSwitch(1);
 		
