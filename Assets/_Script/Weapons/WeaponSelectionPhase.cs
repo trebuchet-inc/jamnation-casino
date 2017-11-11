@@ -8,7 +8,7 @@ public class WeaponSelectionPhase : GamePhase
 	public GameObject[] weaponsPool;
 	public List<GameObject> weaponsAvailable;
 
-	public Transform[] weaponChoiceAnchors;
+	public WeaponChoice[] weaponChoiceAnchors;
 
 	public event Action<string> OnWeaponChosen;
 
@@ -44,10 +44,10 @@ public class WeaponSelectionPhase : GamePhase
 
 	private void PresentWeaponChoice()
 	{
-		var weapons = GetWeaponsAvailable();
-		for (var i = 0; i < weapons.Count; i++)
+		for (int i = 0; i < weaponsAvailable.Count; i++)
 		{
-			GameObject newWeapon = Instantiate(weapons[i], weaponChoiceAnchors[i].position, Quaternion.identity);
+			weaponChoiceAnchors[i].weaponPresented = weaponsAvailable[i];
+			weaponChoiceAnchors[i].SetWeaponChoice();
 		}
 	}
 

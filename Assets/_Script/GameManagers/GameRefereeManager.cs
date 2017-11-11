@@ -15,7 +15,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 	public static GameRefereeManager Instance;
 
 	private GamePhase currentPhaseScript;
-	private WeaponSelectionPhase _weaponSelection;
+	public WeaponSelectionPhase weaponSelection;
 	
 	public Phases currentPhase;
 
@@ -27,6 +27,16 @@ public class GameRefereeManager : Photon.MonoBehaviour
 	private void Awake()
 	{
 		Instance = this;
+	}
+
+	private void Start()
+	{
+		GetReferences();
+	}
+
+	private void GetReferences()
+	{
+		weaponSelection = GetComponent<WeaponSelectionPhase>();
 	}
 
 	public void NewGame()
@@ -58,8 +68,8 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		switch (phase) // DO GENERAL SHIT
 		{
 			case Phases.WeaponSelection:
-				currentPhaseScript = _weaponSelection;
-				_weaponSelection.StartPhase();
+				currentPhaseScript = weaponSelection;
+				weaponSelection.StartPhase();
 			break;
 				
 			case Phases.Parade:
