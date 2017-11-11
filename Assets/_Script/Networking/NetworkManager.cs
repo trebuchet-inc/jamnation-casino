@@ -46,6 +46,11 @@ public class NetworkManager : Photon.PunBehaviour
         NetworkPlayerManager.Instance.personalID = id;
         NetworkPlayerManager.Instance.SetLocalPlayer();
         NetworkPlayerManager.Instance.photonView.RPC("SpawnNetworkPlayer", PhotonTargets.OthersBuffered, Vector3.zero, Quaternion.identity, id);
+
+        if (id >= 1)
+        {
+            GameRefereeManager.Instance.NewGame();
+        }
     }
     
     public override void OnLeftRoom()
