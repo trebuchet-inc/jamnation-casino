@@ -119,6 +119,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 837622959}
     m_Modifications:
+    - target: {fileID: 114603950807123796, guid: 4a613e622bd66c54aa53977ca2fd41a8,
+        type: 2}
+      propertyPath: fakeWeaponsAvailable.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4696136805477298, guid: 4a613e622bd66c54aa53977ca2fd41a8, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -191,6 +196,24 @@ Prefab:
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114603950807123796, guid: 4a613e622bd66c54aa53977ca2fd41a8,
+        type: 2}
+      propertyPath: fakeWeaponsAvailable.Array.data[0]
+      value: 
+      objectReference: {fileID: 1948157478241122, guid: 053be41f4b7073349be10ed0af6479d5,
+        type: 2}
+    - target: {fileID: 114603950807123796, guid: 4a613e622bd66c54aa53977ca2fd41a8,
+        type: 2}
+      propertyPath: fakeWeaponsAvailable.Array.data[1]
+      value: 
+      objectReference: {fileID: 1305307412271338, guid: 227ad26decf8f204aa66aa74c687b47e,
+        type: 2}
+    - target: {fileID: 114603950807123796, guid: 4a613e622bd66c54aa53977ca2fd41a8,
+        type: 2}
+      propertyPath: fakeWeaponsAvailable.Array.data[2]
+      value: 
+      objectReference: {fileID: 1498106507905710, guid: 800cd92c558dbd84fb80e86d6636443c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a613e622bd66c54aa53977ca2fd41a8, type: 2}
   m_IsPrefabParent: 0
