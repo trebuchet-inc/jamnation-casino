@@ -47,4 +47,6 @@ MonoBehaviour:
   - SpawnNetworkPlayer
   - TaggedPlayer
   - UpdateNetworkPlayer
+  - ReceiveWeaponChosen
+  - ReceiveNewGame
   DisableAutoOpenWizard: 1
