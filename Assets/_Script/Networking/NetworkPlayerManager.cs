@@ -11,9 +11,6 @@ public class NetworkPlayerData
 {
 	public SerializableVector3[] positions;
 	public SerializableQuaternion[] rotations;
-	public bool[] beginInterraction;
-	public bool[] endInterraction;
-	public string objectName;
 
 	public NetworkPlayerData (Vector3[] pos, Quaternion[] rot)
 	{
