@@ -22,6 +22,7 @@ public class NetworkPlayerComponent : MonoBehaviour
 	void Start()
 	{
 		Initialize();
+		
 	}
 
 	void Initialize()

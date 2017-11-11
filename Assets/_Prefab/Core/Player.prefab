@@ -208,7 +208,7 @@ MonoBehaviour:
   mountModel: {fileID: 0}
   ridingHand: {fileID: 114990343425754572}
   joustSpeed: 1
-  paradeSpeed: 0.5
+  paradeSpeed: 0.2
   velocityThreshold: 0.5
 --- !u!114 &114406418270998420
 MonoBehaviour:
