@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using NewtonVR;
 
 public class WeaponSelectionPhase : GamePhase
 {
@@ -65,7 +66,7 @@ public class WeaponSelectionPhase : GamePhase
 		
 		if(OnWeaponChosen != null) OnWeaponChosen.Invoke(weaponName);
 		
-		photonView.RPC("ReceiveWeaponChosen", PhotonTargets.Others, weaponName);
+		photonView.RPC("ReceiveWeaponChosen", PhotonTargets.Others, weaponName, NetworkPlayerManager.Instance.personalID);
 		
 		if (CheckIfPhaseComplete())
 		{
@@ -74,10 +75,10 @@ public class WeaponSelectionPhase : GamePhase
 	}
 
 	[PunRPC]
-	public void ReceiveWeaponChosen(string weaponName)
+	public void ReceiveWeaponChosen(string weaponName, int id)
 	{
 		isEnemyWeaponChosen = true;
-		SetEnemyWeapon(weaponName);
+		SetEnemyWeapon(weaponName, id);
 
 		if (CheckIfPhaseComplete())
 		{
@@ -85,15 +86,19 @@ public class WeaponSelectionPhase : GamePhase
 		}
 	}
 
-	private void SetEnemyWeapon(string weaponName)
+	private void SetEnemyWeapon(string weaponName, int id)
 	{
-		foreach (var weapon in weaponsPool)
+		foreach (GameObject weapon in weaponsPool)
 		{
 			if (weapon.name == weaponName)
 			{
 				enemyCurrentWeapon = weapon;
 			}
 		}
+
+		NVRHand hand = (NVRHand)NetworkPlayerManager.Instance.GetNetworkPlayerHand(id, Handedness.Right);
+		Weapon _weapon = Instantiate(enemyCurrentWeapon, hand.transform.position, hand.transform.rotation).GetComponent<Weapon>();
+		_weapon.Initialize(hand);
 	}
 	
 	protected override bool CheckIfPhaseComplete()

@@ -181,6 +181,16 @@ Prefab:
       propertyPath: otherWeaponChoiceAnchors.Array.data[2]
       value: 
       objectReference: {fileID: 2136181721}
+    - target: {fileID: 114379541795905742, guid: 4a613e622bd66c54aa53977ca2fd41a8,
+        type: 2}
+      propertyPath: paradeTargets.Array.data[0]
+      value: 
+      objectReference: {fileID: 877923584}
+    - target: {fileID: 114379541795905742, guid: 4a613e622bd66c54aa53977ca2fd41a8,
+        type: 2}
+      propertyPath: paradeTargets.Array.data[1]
+      value: 
+      objectReference: {fileID: 727585049}
     - target: {fileID: 114587958213924488, guid: 4a613e622bd66c54aa53977ca2fd41a8,
         type: 2}
       propertyPath: viewIdField
@@ -368,6 +378,23 @@ Prefab:
       propertyPath: mountModel
       value: 
       objectReference: {fileID: 1836402539}
+    - target: {fileID: 114406418270998420, guid: 7cbf2fb37c9d2f947a1b3102ff873f8b,
+        type: 2}
+      propertyPath: OverrideAll
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114406418270998420, guid: 7cbf2fb37c9d2f947a1b3102ff873f8b,
+        type: 2}
+      propertyPath: OverrideAllLeftHand
+      value: 
+      objectReference: {fileID: 1775271051327278, guid: 68f10d3e373522b4d81bce4e320569d0,
+        type: 2}
+    - target: {fileID: 114406418270998420, guid: 7cbf2fb37c9d2f947a1b3102ff873f8b,
+        type: 2}
+      propertyPath: OverrideAllRightHand
+      value: 
+      objectReference: {fileID: 1434103586239978, guid: 9605adbfdd2d2d04fbdf0b2084efa195,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cbf2fb37c9d2f947a1b3102ff873f8b, type: 2}
   m_IsPrefabParent: 0
@@ -540,12 +567,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1202382043767620, guid: 3b695249def6f9540a07d3ed668ba296, type: 2}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 65032194400084866, guid: 3b695249def6f9540a07d3ed668ba296, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3b695249def6f9540a07d3ed668ba296, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &837622957
@@ -863,27 +885,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f3ff41d7ff4a934a9485a27f146229e, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1446228938 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1198966640547310, guid: 4a613e622bd66c54aa53977ca2fd41a8,
-    type: 2}
-  m_PrefabInternal: {fileID: 18316969}
---- !u!114 &1446228939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1446228938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b032d3d529649e148a2b29d9549ee7e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isReady: 0
-  isEnemyReady: 0
-  paradeTargets:
-  - {fileID: 877923584}
-  - {fileID: 727585049}
 --- !u!1 &1481234714
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,6 +967,23 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1424305373}
   m_Script: {fileID: 11500000, guid: 33058469dfd9d984abef31cfad9e7363, type: 3}
+--- !u!1 &1691373318 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1367763556675730, guid: 7cbf2fb37c9d2f947a1b3102ff873f8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 212172085}
+--- !u!114 &1691373319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1691373318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445503b6f10d0194f9e87122de838539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeapon: {fileID: 0}
 --- !u!1 &1836402539 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1431068673357208, guid: 3b695249def6f9540a07d3ed668ba296,

@@ -1,0 +1,180 @@
+fileFormatVersion: 2
+guid: 5d75465d9829ad74f92abd414e6d043e
+timeCreated: 1510439096
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: fleau
+    100004: fleau_maillon_01
+    100006: fleau_maillon_02
+    100008: fleau_maillon_03
+    100010: fleau_maillon_04
+    100012: fleau_maillon_05
+    100014: fleau_maillon_06
+    100016: fleau_maillon_07
+    100018: fleau_maillon_08
+    100020: fleau_maillon_09
+    100022: fleau_maillon_10
+    100024: fleau_maillon_11
+    100026: fleau_maillon_12
+    100028: fleau_manche
+    100030: fleau_masse
+    100032: grp_geometries
+    100034: grp_joints
+    100036: jnt_fleau_maillons_00
+    100038: jnt_fleau_maillons_01
+    100040: jnt_fleau_maillons_02
+    100042: jnt_fleau_manche
+    100044: jnt_fleau_masse
+    400000: //RootNode
+    400002: fleau
+    400004: fleau_maillon_01
+    400006: fleau_maillon_02
+    400008: fleau_maillon_03
+    400010: fleau_maillon_04
+    400012: fleau_maillon_05
+    400014: fleau_maillon_06
+    400016: fleau_maillon_07
+    400018: fleau_maillon_08
+    400020: fleau_maillon_09
+    400022: fleau_maillon_10
+    400024: fleau_maillon_11
+    400026: fleau_maillon_12
+    400028: fleau_manche
+    400030: fleau_masse
+    400032: grp_geometries
+    400034: grp_joints
+    400036: jnt_fleau_maillons_00
+    400038: jnt_fleau_maillons_01
+    400040: jnt_fleau_maillons_02
+    400042: jnt_fleau_manche
+    400044: jnt_fleau_masse
+    4300000: fleau_maillon_01
+    4300002: fleau_maillon_02
+    4300004: fleau_maillon_03
+    4300006: fleau_maillon_04
+    4300008: fleau_maillon_05
+    4300010: fleau_maillon_06
+    4300012: fleau_maillon_07
+    4300014: fleau_maillon_08
+    4300016: fleau_maillon_09
+    4300018: fleau_maillon_10
+    4300020: fleau_maillon_11
+    4300022: fleau_maillon_12
+    4300024: fleau_masse
+    4300026: fleau_manche
+    9500000: //RootNode
+    13700000: fleau_maillon_01
+    13700002: fleau_maillon_02
+    13700004: fleau_maillon_03
+    13700006: fleau_maillon_04
+    13700008: fleau_maillon_05
+    13700010: fleau_maillon_06
+    13700012: fleau_maillon_07
+    13700014: fleau_maillon_08
+    13700016: fleau_maillon_09
+    13700018: fleau_maillon_10
+    13700020: fleau_maillon_11
+    13700022: fleau_maillon_12
+    13700024: fleau_manche
+    13700026: fleau_masse
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fleau_Low_WIP_blinn1
+    second: {fileID: 2100000, guid: 70cf12d8567547b4c97264c57784b27c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fleau_Low_WIP_blinn2
+    second: {fileID: 2100000, guid: c6b14d4a7982bdd4c8ff310bd29ce0da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fleau_Low_WIP_blinn3
+    second: {fileID: 2100000, guid: d5481213806da2c49bf7122b809aa801, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 266305b64613d0149b90d448141abb88, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
