@@ -5,8 +5,5 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     
-
     int lerpSpeed = 20;
-
-	
 }

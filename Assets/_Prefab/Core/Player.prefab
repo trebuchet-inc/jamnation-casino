@@ -207,7 +207,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mountModel: {fileID: 0}
   ridingHand: {fileID: 114990343425754572}
-  speed: 1
+  joustSpeed: 1
+  paradeSpeed: 0.5
   velocityThreshold: 0.5
 --- !u!114 &114406418270998420
 MonoBehaviour:
