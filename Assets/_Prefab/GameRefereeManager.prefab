@@ -84,7 +84,10 @@ MonoBehaviour:
   - {fileID: 1498106507905710, guid: 800cd92c558dbd84fb80e86d6636443c, type: 2}
   - {fileID: 1305307412271338, guid: 227ad26decf8f204aa66aa74c687b47e, type: 2}
   weaponsAvailable: []
-  weaponChoiceAnchors: []
+  weaponChoiceAnchors:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   currentWeapon: {fileID: 0}
   enemyCurrentWeapon: {fileID: 0}
   isWeaponChosen: 0
@@ -100,4 +103,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16c0e9ccf873374ab358d872d6345d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSelection: {fileID: 0}
   currentPhase: 0
