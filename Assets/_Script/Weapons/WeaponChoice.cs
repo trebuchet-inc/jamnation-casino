@@ -9,6 +9,7 @@ public class WeaponChoice : MonoBehaviour
 
 	public void SetWeaponChoice()
 	{
+		print("spawnWeapon");
 		Instantiate(weaponPresented, transform.position, Quaternion.identity);
 	}
 
