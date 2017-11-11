@@ -42,6 +42,8 @@ sysinfo.txt
 
 # Wwise
 *.akd
+/Assets/WwiseSettings.xml
+/Assets/WwiseSettings.xml.meta
 WwiseUnityIntegration_Mac_Src\.zip
 WwiseUnityIntegration_Windows_Src\.zip
 *.validationcache

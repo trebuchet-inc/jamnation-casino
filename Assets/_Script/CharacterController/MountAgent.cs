@@ -23,7 +23,6 @@ public class MountAgent : MonoBehaviour
 		if(ridingHand.Rigidbody == null)return;
 
 		_timer += Time.deltaTime;
-		print(ridingHand.Rigidbody.velocity.y);
 		
 		if(_timer >= delay && ridingHand.Rigidbody.velocity.y >= velocityThreshold)
 		{
