@@ -39,18 +39,18 @@ public class NetworkObjectManager : Photon.MonoBehaviour
 		return -1;
 	}
 	
-	[PunRPC]
-    void ReceiveBeginInteraction(byte[] data, bool rightHand, int objectId, int playerId)
-    {
-		if(objectId < 0) Debug.LogError("invalid object ID");
+	//[PunRPC]
+    // void ReceiveBeginInteraction(byte[] data, bool rightHand, int objectId, int playerId)
+    // {
+	// 	if(objectId < 0) Debug.LogError("invalid object ID");
 
-		SerializableTransform t = (SerializableTransform)SerializationToolkit.ByteArrayToObject(data);
-		GameObject hand = NetworkPlayerManager.Instance.GetNetworkPlayerHand(playerId, rightHand);
+	// 	SerializableTransform t = (SerializableTransform)SerializationToolkit.ByteArrayToObject(data);
+	// 	GameObject hand = NetworkPlayerManager.Instance.GetNetworkPlayerHand(playerId, rightHand);
 		
-        nvrPool[objectId].transform.position = hand.transform.position + t.position.Deserialize();
-		nvrPool[objectId].transform.rotation = t.rotation.Deserialize();
-		nvrPool[objectId].BeginInteraction(hand.GetComponent<NVRHand>());
-    }
+    //     nvrPool[objectId].transform.position = hand.transform.position + t.position.Deserialize();
+	// 	nvrPool[objectId].transform.rotation = t.rotation.Deserialize();
+	// 	nvrPool[objectId].BeginInteraction(hand.GetComponent<NVRHand>());
+    // }
 
 	[PunRPC]
     void ReceiveEndInteraction(byte[] data, int objectId)
