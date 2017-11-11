@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NewtonVR;
 
+
 public class MountAgent : MonoBehaviour 
 {
 	public NVRHand ridingHand;
@@ -12,6 +13,8 @@ public class MountAgent : MonoBehaviour
 
 	float _timer = 0;
 	Rigidbody _rb;
+
+	//public
 
 	void Start () 
 	{
@@ -30,4 +33,6 @@ public class MountAgent : MonoBehaviour
 			_timer = 0;
 		}
 	}
+
+	
 }

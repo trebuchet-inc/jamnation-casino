@@ -44,7 +44,8 @@ public class GameRefereeManager : Photon.MonoBehaviour
 	{
 		if(OnNewGame != null) OnNewGame.Invoke();
 		
-		photonView.RPC("ReceiveNewGame", PhotonTargets.All);
+		photonView.RPC("ReceiveNewGame", PhotonTargets.Others);
+		ReceiveNewGame();
 	}
 
 	[PunRPC]
@@ -66,7 +67,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		currentPhase = phase;
 		if(OnPhaseChanged != null) OnPhaseChanged.Invoke(phase);
 		
-		switch (phase) // DO GENERAL SHIT
+		switch (phase)  //DO GENERAL SHIT
 		{
 			case Phases.WeaponSelection:
 				currentPhaseScript = weaponSelectionPhase;
