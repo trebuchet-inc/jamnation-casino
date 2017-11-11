@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33629270806663586}
   - component: {fileID: 23580167239899020}
   - component: {fileID: 65032194400084866}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: BasicBox
-  m_TagString: Untagged
+  m_TagString: Mount
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4789186575708592}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Mount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
