@@ -67,7 +67,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		currentPhase = phase;
 		if(OnPhaseChanged != null) OnPhaseChanged.Invoke(phase);
 		
-		switch (phase) // DO GENERAL SHIT
+		switch (phase)  //DO GENERAL SHIT
 		{
 			case Phases.WeaponSelection:
 				currentPhaseScript = weaponSelectionPhase;
