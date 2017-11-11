@@ -282,12 +282,12 @@ MonoBehaviour:
     type: 2}
   EditorPlayspaceOverride: 0
   EditorPlayspaceDefault: {x: 2, y: 1.5}
-  OverrideAll: 0
-  OverrideAllLeftHand: {fileID: 56742944, guid: 55e83fd42960be248a3e117078f3da8b,
+  OverrideAll: 1
+  OverrideAllLeftHand: {fileID: 1775271051327278, guid: 68f10d3e373522b4d81bce4e320569d0,
     type: 2}
   OverrideAllLeftHandPhysicalColliders: {fileID: 54487328, guid: 7c3b57f429838f14a8a2c2c179e9e9e9,
     type: 2}
-  OverrideAllRightHand: {fileID: 56745632, guid: 55e83fd42960be248a3e117078f3da8b,
+  OverrideAllRightHand: {fileID: 1434103586239978, guid: 9605adbfdd2d2d04fbdf0b2084efa195,
     type: 2}
   OverrideAllRightHandPhysicalColliders: {fileID: 56746656, guid: 7c3b57f429838f14a8a2c2c179e9e9e9,
     type: 2}
