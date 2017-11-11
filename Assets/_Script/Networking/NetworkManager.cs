@@ -34,7 +34,7 @@ public class NetworkManager : Photon.PunBehaviour
 
     public void OnPhotonRandomJoinFailed()
     {
-        Debug.Log("Fail To Connect To Room");
+        Debug.Log("No Room Found");
         PhotonNetwork.CreateRoom(null);
         _roomCreator = true;
         Debug.Log("Room Created");
