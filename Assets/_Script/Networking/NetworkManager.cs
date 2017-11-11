@@ -4,8 +4,9 @@ using NewtonVR;
 public class NetworkManager : Photon.PunBehaviour
 {
     public static NetworkManager Instance;
-
+    
     public string serverIp;
+    public GUIStyle skin;
 
     bool _roomCreator = false;
 
@@ -33,7 +34,7 @@ public class NetworkManager : Photon.PunBehaviour
 
     public void OnPhotonRandomJoinFailed()
     {
-        Debug.Log("Fail To Connect To Room");
+        Debug.Log("No Room Found");
         PhotonNetwork.CreateRoom(null);
         _roomCreator = true;
         Debug.Log("Room Created");
@@ -54,6 +55,7 @@ public class NetworkManager : Photon.PunBehaviour
 
     public void OnGUI()
     {
+        GUI.skin.label = skin;
         GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
     }
 }
