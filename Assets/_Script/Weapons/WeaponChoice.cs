@@ -17,6 +17,7 @@ public class WeaponChoice : MonoBehaviour
 	{
 		// Check if grab
 		hand = other.GetComponent<NVRHand>();
+		Debug.Log("hand detected");
 	}
 
 	private void OnTriggerStay(Collider other)
@@ -29,6 +30,7 @@ public class WeaponChoice : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
+		Debug.Log("hand exit");
 		if((object) hand != null) hand = null;
 	}
 }

@@ -33,7 +33,7 @@ public class ParadePhase : GamePhase
     public void ReceiveSetReady()
     {
         isEnemyReady = true;
-
+        
         if (CheckIfPhaseComplete())
         {
             GameRefereeManager.Instance.ChangePhase(Phases.Joust);

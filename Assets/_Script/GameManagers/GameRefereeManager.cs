@@ -42,8 +42,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 
 	public void NewGame()
 	{
-		photonView.RPC("ReceiveNewGame", PhotonTargets.Others);
-		ReceiveNewGame();
+		photonView.RPC("ReceiveNewGame", PhotonTargets.All);
 	}
 
 	[PunRPC]
