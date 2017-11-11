@@ -11,6 +11,7 @@ public class WeaponSelectionPhase : GamePhase
 	public List<GameObject> weaponsAvailable;
 
 	public WeaponChoice[] weaponChoiceAnchors;
+	public WeaponChoice[] otherWeaponChoiceAnchors;
 
 	public event Action<string> OnWeaponChosen;
 
@@ -44,10 +45,13 @@ public class WeaponSelectionPhase : GamePhase
 
 	private void PresentWeaponChoice()
 	{
+		WeaponChoice[] anchors =
+			NetworkPlayerManager.Instance.personalID == 0 ? weaponChoiceAnchors : otherWeaponChoiceAnchors;
+		
 		for (int i = 0; i < weaponsAvailable.Count; i++)
 		{
-			weaponChoiceAnchors[i].weaponPresented = fakeWeaponsAvailable[i];
-			weaponChoiceAnchors[i].SetWeaponChoice();
+			anchors[i].weaponPresented = fakeWeaponsAvailable[i];
+			anchors[i].SetWeaponChoice();
 		}
 	}
 
