@@ -14,11 +14,19 @@ public class MountAgent : MonoBehaviour
 	float _timer = 0;
 	Rigidbody _rb;
 
-	//public
+	Vector3[] _deltaBuffer;
+	Vector3 _lastPosition;
+
 
 	void Start () 
 	{
 		_rb = GetComponent<Rigidbody>();
+		_lastPosition = transform.position;
+	}
+	
+	void FixedUpdate()
+	{
+		
 	}
 	
 	void Update () 
