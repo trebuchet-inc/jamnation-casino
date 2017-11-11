@@ -11,7 +11,7 @@ public class MountAgent : MonoBehaviour
 	public float speed;
 	public float velocityThreshold;
 
-	bool _freeze;
+	bool _freeze = true;
 	bool _mountFreeze;
 
 	Rigidbody _rb;
