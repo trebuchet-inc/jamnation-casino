@@ -7,11 +7,14 @@ public class CameraManager : MonoBehaviour {
 	public CameraController[] cameras;
 	public CameraController activeCamera;
 	public Transform cameraTransform;
+	public float rotationIntensity;
 
 	// Use this for initialization
 	void Start () {
 		cameras = FindObjectsOfType<CameraController>();
 		InitializeCameras();
+		CameraSwitch(1);
+		
 		
 	}
 	
@@ -20,10 +23,26 @@ public class CameraManager : MonoBehaviour {
 		int a = CameraSwitchCheck();
 		if (a != 0)
 		{
-			bool foundMatch = false;
+			CameraSwitch(a);			
+		}
+		
+	}
+
+	void InitializeCameras(){
+		foreach(CameraController c in cameras)
+		{
+			c.cameraManager = this;
+			c.Initialize();
+		
+		}
+	}
+
+	void CameraSwitch(int value)
+	{
+		bool foundMatch = false;
 			for (int i = 0; i < cameras.Length; i++)
 			{
-				if (cameras[i].cameraId == a)
+				if (cameras[i].cameraId == value)
 				{
 					if (activeCamera!=null)
 					{
@@ -41,16 +60,6 @@ public class CameraManager : MonoBehaviour {
 			{
 				Debug.Log ("Did not find matching camera");
 			}
-		}
-		
-	}
-
-	void InitializeCameras(){
-		foreach(CameraController c in cameras)
-		{
-			c.Initialize();
-			c.cameraManager = this;
-		}
 	}
 
 

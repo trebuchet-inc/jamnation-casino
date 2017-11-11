@@ -6,52 +6,59 @@ public class CameraController : MonoBehaviour {
 
 	public int cameraId;
 	public bool isActiveCamera;
-	private Quaternion sourceLocalRotation;
-	private Vector3 sourceLocalPosition;
+	
 
 	[HideInInspector]
 	public CameraManager cameraManager;
 
+	private Quaternion _sourceLocalRotation;
+	private Vector3 _sourceLocalPosition;
+	private float _rotationIntensity;
+
 	// Use this for initialization
 	public void Initialize () {
-		
+		_rotationIntensity = cameraManager.rotationIntensity;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (isActiveCamera)
 		{
+		
+		transform.Rotate(Input.GetAxis("Vertical")*_rotationIntensity*Time.deltaTime,
+		Input.GetAxis("Horizontal")*_rotationIntensity*Time.deltaTime,
+		0, Space.Self);				
 			
-			{
-				transform.rotation.eulerAngles = ;				
-			}
 
 		}
 		
 	}
 
-	void LateUpdate()
-	{
-		if (isActiveCamera)
-		{
-			cameraManager.cameraTransform.position = transform.position;
-			cameraManager.cameraTransform.localRotation = transform.localRotation;
-		}		
-	}
+	// void LateUpdate()
+	// {
+	// 	if (isActiveCamera)
+	// 	{
+	// 		cameraManager.cameraTransform.position = transform.position;
+	// 		cameraManager.cameraTransform.localRotation = transform.localRotation;
+	// 	}		
+	// }
 
 	public void CutToThisCamera()
 	{
 		isActiveCamera = true;
-		sourceLocalPosition = transform.localPosition;
-		sourceLocalRotation = transform.localRotation;
-		cameraManager.cameraTransform.position = transform.position;
-		cameraManager.cameraTransform.localRotation = transform.localRotation;
+		_sourceLocalPosition = transform.localPosition;
+		_sourceLocalRotation = transform.localRotation;
+
+		cameraManager.cameraTransform.SetParent(transform);
+		cameraManager.cameraTransform.localPosition = Vector3.zero;
+		cameraManager.cameraTransform.localRotation = Quaternion.identity;
+		
 
 	}
 
 	public void ResetPosition()
 	{
-		transform.localRotation = sourceLocalRotation;
-		transform.localPosition = sourceLocalPosition;
+		transform.localRotation = _sourceLocalRotation;
+		transform.localPosition = _sourceLocalPosition;
 	}
 }
