@@ -42,8 +42,6 @@ public class GameRefereeManager : Photon.MonoBehaviour
 
 	public void NewGame()
 	{
-		if(OnNewGame != null) OnNewGame.Invoke();
-		
 		photonView.RPC("ReceiveNewGame", PhotonTargets.Others);
 		ReceiveNewGame();
 	}
@@ -52,6 +50,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 	public void ReceiveNewGame()
 	{
 		Debug.Log("Starting New Game");
+		if(OnNewGame != null) OnNewGame.Invoke();
 		ChangePhase(Phases.WeaponSelection);
 	}
 	
@@ -60,14 +59,21 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		Debug.Log("Changing phase to " + phase.ToString());
 		
 		// END CURRENT PHASE
-		if(currentPhaseScript != null) currentPhaseScript.EndPhase();
+		if(currentPhaseScript != null)
+		{ 
+			currentPhaseScript.EndPhase();
+		}
 		
 		// SEND EVENTS TO OTHERS WHO NEED TO DO SHIT
 		
 		currentPhase = phase;
-		if(OnPhaseChanged != null) OnPhaseChanged.Invoke(phase);
-		
-		switch (phase)  //DO GENERAL SHIT
+
+		if(OnPhaseChanged != null)
+		{
+			OnPhaseChanged.Invoke(phase);
+		} 
+
+		switch (currentPhase) 
 		{
 			case Phases.WeaponSelection:
 				currentPhaseScript = weaponSelectionPhase;
