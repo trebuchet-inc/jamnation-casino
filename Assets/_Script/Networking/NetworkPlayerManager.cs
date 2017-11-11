@@ -34,6 +34,7 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
 
 	public int personalID;
 	public GameObject playerPrefab;
+	public GameObject mountPrefab;
 	public List<NetworkPlayerComponent> players;
 	public Transform[] startingPos;
 
@@ -47,26 +48,13 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
 		if(!PhotonNetwork.connected) return;
 
 		NetworkPlayerData data = new NetworkPlayerData(
-			new Vector3[]{NVRPlayer.Instance.Head.transform.position, NVRPlayer.Instance.RightHand.transform.position, NVRPlayer.Instance.LeftHand.transform.position},
-			new Quaternion[]{NVRPlayer.Instance.Head.transform.rotation, NVRPlayer.Instance.RightHand.transform.rotation, NVRPlayer.Instance.LeftHand.transform.rotation});
+			new Vector3[]{NVRPlayer.Instance.transform.position,NVRPlayer.Instance.Head.transform.localPosition, NVRPlayer.Instance.RightHand.transform.localPosition, NVRPlayer.Instance.LeftHand.transform.localPosition},
+			new Quaternion[]{NVRPlayer.Instance.transform.rotation,NVRPlayer.Instance.Head.transform.localRotation, NVRPlayer.Instance.RightHand.transform.localRotation, NVRPlayer.Instance.LeftHand.transform.localRotation});
 	
 		BinaryFormatter formatter = new BinaryFormatter();
 		byte[] serializedData = SerializationToolkit.ObjectToByteArray(data); 
 
 		photonView.RPC("UpdateNetworkPlayer", PhotonTargets.Others, serializedData, personalID);
-	}
-
-	public GameObject GetNetworkPlayerHand(int id, bool rightHand)
-	{
-		foreach(NetworkPlayerComponent p in players)
-		{
-			if(p.id == id)
-			{
-				if(rightHand) return p.playerParts[1];
-				else return p.playerParts[2];
-			}
-		}
-		return null;
 	}
 
 	public void SetLocalPlayer()
@@ -91,9 +79,10 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
 	[PunRPC]
     void SpawnNetworkPlayer(Vector3 pos, Quaternion rot, int id)
     {
-        GameObject _newPlayer = Instantiate(playerPrefab, startingPos[id].position, startingPos[id].rotation) ;
+        GameObject _newPlayer = Instantiate(playerPrefab, startingPos[id].position, startingPos[id].rotation);
         NetworkPlayerComponent _networkPlayer = _newPlayer.GetComponent<NetworkPlayerComponent>();
 
+		_networkPlayer.mountModel = Instantiate(mountPrefab, startingPos[id].position, startingPos[id].rotation);
 		_networkPlayer.id = id;
 		players.Add(_networkPlayer);
     }

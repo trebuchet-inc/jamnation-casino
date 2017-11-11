@@ -6,41 +6,89 @@ using NewtonVR;
 
 public class MountAgent : MonoBehaviour 
 {
+	public GameObject mountModel;
 	public NVRHand ridingHand;
 	public float speed;
 	public float velocityThreshold;
-	public float delay;
 
-	float _timer = 0;
+	bool _freeze;
+
 	Rigidbody _rb;
 
 	Vector3[] _deltaBuffer;
+	int _index = 0;
 	Vector3 _lastPosition;
 
+	Vector3 velocity 
+	{
+		get
+		{
+			Vector3 value = Vector3.zero;
+			for(int i = 0; i < _deltaBuffer.Length; i++)
+			{
+				value += _deltaBuffer[i];
+			}
+			return value;
+		}
+	}
 
 	void Start () 
 	{
 		_rb = GetComponent<Rigidbody>();
-		_lastPosition = transform.position;
+		_lastPosition = ridingHand.transform.position;
+		_deltaBuffer = new Vector3[10];
+
+		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangeHandler;
 	}
 	
 	void FixedUpdate()
 	{
-		
+		_deltaBuffer[_index] = ridingHand.transform.position - _lastPosition;
+		_index =(_index + 1) % _deltaBuffer.Length;
+		_lastPosition = ridingHand.transform.position;
 	}
 	
 	void Update () 
 	{
-		if(ridingHand.Rigidbody == null)return;
+		if(_freeze) return;
 
-		_timer += Time.deltaTime;
-		
-		if(_timer >= delay && ridingHand.Rigidbody.velocity.y >= velocityThreshold)
+		mountModel.transform.position = transform.position;
+		mountModel.transform.rotation = transform.rotation;
+
+		if(Mathf.Abs(velocity.y) >= velocityThreshold)
 		{
 			_rb.AddForce(transform.forward * speed, ForceMode.Impulse);
-			_timer = 0;
 		}
 	}
 
-	
+	void OnPhaseChangeHandler (Phases phase)
+	{
+		switch (phase) 
+		{
+			case Phases.WeaponSelection:
+				_freeze = true;
+			break;
+				
+			case Phases.Parade:
+				_freeze = false;
+			break;
+				
+			case Phases.Joust:
+				_freeze = false;
+			break;	
+				
+			case Phases.Intermission:
+				_freeze = true;
+			break;
+				
+			case Phases.End:
+				_freeze = true;
+			break;
+		}
+	}
+
+	public void OnParadeReadyHandler()
+	{
+		_freeze = true;
+	}
 }

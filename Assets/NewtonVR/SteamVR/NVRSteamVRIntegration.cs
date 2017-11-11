@@ -37,7 +37,7 @@ namespace NewtonVR
 
 
             SteamVR_Camera steamVrCamera = Player.Head.gameObject.AddComponent<SteamVR_Camera>();
-            Player.Head.gameObject.AddComponent<SteamVR_Ears>();
+            //Player.Head.gameObject.AddComponent<SteamVR_Ears>();
             NVRHelpers.SetField(steamVrCamera, "_head", Player.Head.transform, false);
             NVRHelpers.SetField(steamVrCamera, "_ears", Player.Head.transform, false);
 

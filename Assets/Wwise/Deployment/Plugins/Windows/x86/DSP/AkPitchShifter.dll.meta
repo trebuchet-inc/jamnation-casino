@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 666c90f7980821042a3582c672b8288d
-timeCreated: 1510416548
+timeCreated: 1510424051
 licenseType: Pro
 PluginImporter:
   externalObjects: {}
@@ -32,11 +32,11 @@ PluginImporter:
   - first:
       Editor: Editor
     second:
-      enabled: 0
+      enabled: 1
       settings:
-        CPU: AnyCPU
+        CPU: X86
         DefaultValueInitialized: true
-        OS: AnyOS
+        OS: Windows
   - first:
       Facebook: Win
     second:

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d6ee3549c53a19a45953659d1952dd88
-timeCreated: 1510416548
+timeCreated: 1510424051
 licenseType: Pro
 PluginImporter:
   externalObjects: {}
@@ -88,7 +88,7 @@ PluginImporter:
   - first:
       Standalone: Win
     second:
-      enabled: 1
+      enabled: 0
       settings:
         CPU: AnyCPU
   - first:
