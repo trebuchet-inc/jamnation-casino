@@ -5,6 +5,8 @@ public class NetworkManager : Photon.PunBehaviour
 {
     public static NetworkManager Instance;
 
+    public string serverIp;
+
     bool _roomCreator = false;
 
     void Awake()
@@ -14,8 +16,7 @@ public class NetworkManager : Photon.PunBehaviour
 
     void Start()
     {
-        PhotonNetwork.ConnectToMaster("192.168.1.100", 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
-        //PhotonNetwork.ConnectToMaster("127.0.0.1", 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
+        PhotonNetwork.ConnectToMaster(serverIp, 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
     }
 
     public override void OnJoinedLobby()
