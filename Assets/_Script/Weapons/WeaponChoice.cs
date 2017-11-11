@@ -16,7 +16,7 @@ public class WeaponChoice : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		// Check if grab
-		hand = other.GetComponent<NVRHand>();
+		hand = other.attachedRigidbody.GetComponent<NVRHand>();
 		Debug.Log("hand detected");
 	}
 
