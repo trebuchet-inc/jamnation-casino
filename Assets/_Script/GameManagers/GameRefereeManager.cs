@@ -13,12 +13,15 @@ public enum Phases
 public class GameRefereeManager : Photon.MonoBehaviour
 {
 	public static GameRefereeManager Instance;
-
+	
+	// GAME PHASES //
+	public Phases currentPhase;
 	private GamePhase currentPhaseScript;
+	
 	public WeaponSelectionPhase weaponSelectionPhase;
 	public ParadePhase paradePhase;
+	public JoustPhase joustPhase;
 	
-	public Phases currentPhase;
 
 	public event Action OnNewGame;
 	
@@ -35,6 +38,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 	{
 		weaponSelectionPhase = GetComponent<WeaponSelectionPhase>();
 		paradePhase = GetComponent<ParadePhase>();
+		joustPhase = GetComponent<JoustPhase>();
 	}
 
 	public void NewGame()
@@ -82,7 +86,8 @@ public class GameRefereeManager : Photon.MonoBehaviour
 			break;
 				
 			case Phases.Joust:
-				
+				currentPhaseScript = joustPhase;
+				joustPhase.StartPhase();
 			break;	
 				
 			case Phases.Intermission:

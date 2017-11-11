@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using NewtonVR;
@@ -44,8 +45,9 @@ public class MountAgent : MonoBehaviour
 
 		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangeHandler;
 		GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
+		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
 	}
-	
+
 	void FixedUpdate()
 	{
 		_deltaBuffer[_index] = ridingHand.transform.position - _lastPosition;
@@ -81,11 +83,6 @@ public class MountAgent : MonoBehaviour
 			case Phases.Parade:
 				_freeze = false;
 				actualSpeed = paradeSpeed;
-			break;
-				
-			case Phases.Joust:
-				_freeze = false;
-				actualSpeed = joustSpeed;
 			break;	
 				
 			case Phases.Intermission:
@@ -98,8 +95,14 @@ public class MountAgent : MonoBehaviour
 		}
 	}
 
-	public void OnParadeReadyHandler()
+	private void OnParadeReadyHandler()
 	{
 		_freeze = true;
+	}
+
+	private void OnJoustGOHandler()
+	{
+		_freeze = false;
+		actualSpeed = joustSpeed;
 	}
 }
