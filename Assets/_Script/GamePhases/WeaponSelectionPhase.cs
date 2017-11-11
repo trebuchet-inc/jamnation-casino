@@ -78,6 +78,8 @@ public class WeaponSelectionPhase : GamePhase
 	public void ChooseWeapon(GameObject weapon)
 	{
 		RemoveAvailableWeapon(weapon.name);
+		
+		Debug.Log("Chose " + weapon.name);
 
 		currentWeapon = weapon;
 		isWeaponChosen = true;

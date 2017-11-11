@@ -49,4 +49,5 @@ MonoBehaviour:
   - UpdateNetworkPlayer
   - ReceiveWeaponChosen
   - ReceiveNewGame
+  - ReceiveSetReady
   DisableAutoOpenWizard: 1
