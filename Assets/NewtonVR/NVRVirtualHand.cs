@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace NewtonVR
 {
+    public enum Handedness
+    {
+        Left,
+        Right
+    }
+    
     public class NVRVirtualHand : NVRHand
     {
-		public enum Handedness
-		{
-			Left,
-			Right
-		}
-
 		public Handedness Hand;
 		
 		public float radius = 0.5f;

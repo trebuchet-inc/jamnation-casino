@@ -10,10 +10,10 @@ public class NetworkPlayerComponent : MonoBehaviour
 	[HideInInspector] public GameObject mountModel;
 	bool _mounFreeze = false;
 
-	GameObject[] _playerParts;
+	[HideInInspector] public GameObject[] playerParts;
 	List<NetworkPlayerData> _dataBuffer;
 	NetworkPlayerData _lastData;
-	NVRVirtualHand[] _hands;
+	[HideInInspector] public NVRVirtualHand[] _hands;
 
 	int lerpSpeed = 20;
 
@@ -28,7 +28,7 @@ public class NetworkPlayerComponent : MonoBehaviour
 	void Initialize()
 	{
 		_initialized = true;
-		_playerParts = new GameObject[3];
+		playerParts = new GameObject[3];
 		_hands = new NVRVirtualHand[2];
 		_dataBuffer = new List<NetworkPlayerData>();
 		setPlayerPart();
@@ -54,12 +54,12 @@ public class NetworkPlayerComponent : MonoBehaviour
 		transform.position = Vector3.Lerp(transform.position, _lastData.positions[0].Deserialize(), Time.deltaTime * lerpSpeed);
 		transform.rotation = Quaternion.Lerp(transform.rotation,  _lastData.rotations[0].Deserialize(), Time.deltaTime * lerpSpeed);
 
-		for(int i = 0; i < _playerParts.Length; i++)
+		for(int i = 0; i < playerParts.Length; i++)
 		{
-			if(_playerParts[i] != null)
+			if(playerParts[i] != null)
 			{
-				_playerParts[i].transform.localPosition = Vector3.Lerp(_playerParts[i].transform.localPosition, _lastData.positions[i + 1].Deserialize(), Time.deltaTime * lerpSpeed);
-				_playerParts[i].transform.localRotation = Quaternion.Lerp(_playerParts[i].transform.localRotation, _lastData.rotations[i + 1].Deserialize(), Time.deltaTime * lerpSpeed);
+				playerParts[i].transform.localPosition = Vector3.Lerp(playerParts[i].transform.localPosition, _lastData.positions[i + 1].Deserialize(), Time.deltaTime * lerpSpeed);
+				playerParts[i].transform.localRotation = Quaternion.Lerp(playerParts[i].transform.localRotation, _lastData.rotations[i + 1].Deserialize(), Time.deltaTime * lerpSpeed);
 			}
 			else
 			{
@@ -88,17 +88,17 @@ public class NetworkPlayerComponent : MonoBehaviour
 			switch(transform.GetChild(i).name)
 			{
 				case "head" :
-				_playerParts[0] = transform.GetChild(i).gameObject;
+				playerParts[0] = transform.GetChild(i).gameObject;
 				break;
 
 				case "rightHand" :
-				_playerParts[1] = transform.GetChild(i).gameObject;
-				_hands[1] = _playerParts[1].GetComponent<NVRVirtualHand>();
+				playerParts[1] = transform.GetChild(i).gameObject;
+				_hands[1] = playerParts[1].GetComponent<NVRVirtualHand>();
 				break;
 
 				case "leftHand" :
-				_playerParts[2] = transform.GetChild(i).gameObject;
-				_hands[0] = _playerParts[2].GetComponent<NVRVirtualHand>();
+				playerParts[2] = transform.GetChild(i).gameObject;
+				_hands[0] = playerParts[2].GetComponent<NVRVirtualHand>();
 				break;
 			}
 		}

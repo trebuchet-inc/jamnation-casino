@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114587958213924488}
   - component: {fileID: 114728677021273508}
   - component: {fileID: 114603950807123796}
+  - component: {fileID: 114379541795905742}
   m_Layer: 0
   m_Name: GameRefereeManager
   m_TagString: Untagged
@@ -42,6 +43,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114379541795905742
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1198966640547310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b032d3d529649e148a2b29d9549ee7e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isReady: 0
+  isEnemyReady: 0
+  paradeTargets:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114587958213924488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,13 +97,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fakeWeaponsPool:
-  - {fileID: 1948157478241122, guid: 053be41f4b7073349be10ed0af6479d5, type: 2}
-  - {fileID: 1305307412271338, guid: 227ad26decf8f204aa66aa74c687b47e, type: 2}
-  - {fileID: 1498106507905710, guid: 800cd92c558dbd84fb80e86d6636443c, type: 2}
+  - {fileID: 100000, guid: 5d75465d9829ad74f92abd414e6d043e, type: 3}
+  - {fileID: 100000, guid: b9fca902e91445d48b8a7c039f68b8dc, type: 3}
+  - {fileID: 100002, guid: 821ffb7b7d6223245934c042f5efba3e, type: 3}
   weaponsPool:
-  - {fileID: 1948157478241122, guid: 053be41f4b7073349be10ed0af6479d5, type: 2}
-  - {fileID: 1498106507905710, guid: 800cd92c558dbd84fb80e86d6636443c, type: 2}
-  - {fileID: 1305307412271338, guid: 227ad26decf8f204aa66aa74c687b47e, type: 2}
+  - {fileID: 1772092793813160, guid: aaa488e14562c1a40aba1e9d414655f4, type: 2}
+  - {fileID: 1898581012071596, guid: b38e642f9d2a1f94db74777b72a837b5, type: 2}
+  - {fileID: 1121701504105628, guid: 9a2ec3f9b9561b640a32ccf04fedd47d, type: 2}
   fakeWeaponsAvailable: []
   weaponsAvailable: []
   weaponChoiceAnchors:

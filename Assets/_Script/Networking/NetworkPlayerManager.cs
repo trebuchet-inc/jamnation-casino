@@ -63,6 +63,19 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
 		NVRPlayer.Instance.transform.rotation = startingPos[personalID].rotation;
 	}
 
+	public NVRHand GetNetworkPlayerHand(int id, Handedness hand)
+	{
+		foreach(NetworkPlayerComponent p in players)
+		{
+			if(p.id == id)
+			{
+				if(p._hands[0].Hand == hand) return p._hands[0];
+				else return p._hands[1];
+			}
+		}
+		return null;
+	}
+
 	[PunRPC]
     void UpdateNetworkPlayer(byte[] data, int id)
     {

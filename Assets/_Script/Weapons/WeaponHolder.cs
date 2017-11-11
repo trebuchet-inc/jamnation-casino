@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NewtonVR;
 
 public class WeaponHolder : MonoBehaviour
 {
@@ -15,8 +16,8 @@ public class WeaponHolder : MonoBehaviour
 
 	private void OnDisable()
 	{
-		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangedHandler;
-		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
+		GameRefereeManager.Instance.OnPhaseChanged -= OnPhaseChangedHandler;
+		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen  -= OnWeaponChosenHandler;
 	}
 
 	private void OnPhaseChangedHandler(Phases phases)
@@ -50,7 +51,9 @@ public class WeaponHolder : MonoBehaviour
 
 	private void SetupWeapon()
 	{
-		GameObject weapon = Instantiate(currentWeapon, transform.position, Quaternion.identity, transform);
+		NVRHand hand = NVRPlayer.Instance.RightHand;
+		Weapon _weapon = Instantiate(currentWeapon, hand.transform.position, hand.transform.rotation).GetComponent<Weapon>();
+		_weapon.Initialize(hand);
 	}
 
 	public void RemoveWeapon()

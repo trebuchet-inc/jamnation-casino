@@ -17,10 +17,7 @@ public class WeaponChoice : MonoBehaviour
 
 	private void OnWeaponChosenHandler(string s)
 	{
-		if (weaponPresented != null && s != weaponPresented.name)
-		{
-			dummy.SetActive(false);
-		}
+		dummy.SetActive(false);
 	}
 
 	public void SetWeaponChoice()
