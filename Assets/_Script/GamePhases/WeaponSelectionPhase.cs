@@ -18,11 +18,6 @@ public class WeaponSelectionPhase : GamePhase
 	public bool isWeaponChosen;
 	public bool isEnemyWeaponChosen;
 	
-	private void Start()
-	{
-		GameRefereeManager.Instance.OnNewGame += OnNewGameHandler;
-	}
-
 	protected override void OnNewGameHandler()
 	{
 		ResetWeaponsAvailable();
@@ -91,7 +86,10 @@ public class WeaponSelectionPhase : GamePhase
 		
 		photonView.RPC("ReceiveWeaponChosen", PhotonTargets.Others, weapon.name);
 		
-		CheckIfPhaseComplete();
+		if (CheckIfPhaseComplete())
+		{
+			GameRefereeManager.Instance.ChangePhase(Phases.Parade);
+		}
 	}
 
 	[PunRPC]

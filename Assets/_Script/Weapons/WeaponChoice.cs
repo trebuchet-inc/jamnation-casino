@@ -22,7 +22,7 @@ public class WeaponChoice : MonoBehaviour
 	{
 		if ((object) hand != null && hand.HoldButtonDown)
 		{
-			GameRefereeManager.Instance.weaponSelection.ChooseWeapon(weaponPresented);
+			GameRefereeManager.Instance.weaponSelectionPhase.ChooseWeapon(weaponPresented);
 		}
 	}
 
