@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class WeaponSelectionPhase : GamePhase
 {
+	public GameObject[] fakeWeaponsPool;
 	public GameObject[] weaponsPool;
+	public List<GameObject> fakeWeaponsAvailable;
 	public List<GameObject> weaponsAvailable;
 
 	public WeaponChoice[] weaponChoiceAnchors;
@@ -14,7 +16,7 @@ public class WeaponSelectionPhase : GamePhase
 
 	public GameObject currentWeapon;
 	public GameObject enemyCurrentWeapon;
-
+	
 	public bool isWeaponChosen;
 	public bool isEnemyWeaponChosen;
 	
@@ -30,7 +32,10 @@ public class WeaponSelectionPhase : GamePhase
 
 	public override void EndPhase()
 	{
-		
+		foreach (var weaponChoice in weaponChoiceAnchors)
+		{
+			weaponChoice.Deactivate();
+		}
 	}
 	
 	//
@@ -41,52 +46,22 @@ public class WeaponSelectionPhase : GamePhase
 	{
 		for (int i = 0; i < weaponsAvailable.Count; i++)
 		{
-			weaponChoiceAnchors[i].weaponPresented = weaponsAvailable[i];
+			weaponChoiceAnchors[i].weaponPresented = fakeWeaponsAvailable[i];
 			weaponChoiceAnchors[i].SetWeaponChoice();
 		}
 	}
 
-	private void ResetWeaponsAvailable()
+	public void ChooseWeapon(string weaponName)
 	{
-		weaponsAvailable.Clear();
-		weaponsAvailable = weaponsPool.ToList();
-	}
-
-	private void RemoveAvailableWeapon(string weaponName)
-	{
-		foreach (var w in GetWeaponsAvailable())
-		{
-			if (w.name == weaponName)
-			{
-				weaponsAvailable.Remove(w);
-			}
-		}
-	}
-
-	private List<GameObject> GetWeaponsAvailable()
-	{
-		List<GameObject> copy = new List<GameObject>(weaponsAvailable.Count);
-
-		foreach (var weapon in weaponsAvailable)
-		{
-			copy.Add(weapon);
-		}
-
-		return copy;
-	}
-
-	public void ChooseWeapon(GameObject weapon)
-	{
-		RemoveAvailableWeapon(weapon.name);
+		RemoveAvailableWeapon(weaponName);
 		
-		Debug.Log("Chose " + weapon.name);
+		Debug.Log("Chose " + weaponName);
 
-		currentWeapon = weapon;
 		isWeaponChosen = true;
 		
-		if(OnWeaponChosen != null) OnWeaponChosen.Invoke(weapon.name);
+		if(OnWeaponChosen != null) OnWeaponChosen.Invoke(weaponName);
 		
-		photonView.RPC("ReceiveWeaponChosen", PhotonTargets.Others, weapon.name);
+		photonView.RPC("ReceiveWeaponChosen", PhotonTargets.Others, weaponName);
 		
 		if (CheckIfPhaseComplete())
 		{
@@ -120,5 +95,47 @@ public class WeaponSelectionPhase : GamePhase
 	protected override bool CheckIfPhaseComplete()
 	{
 		return isWeaponChosen && isEnemyWeaponChosen;
+	}
+	
+	private void ResetWeaponsAvailable()
+	{
+		weaponsAvailable.Clear();
+		weaponsAvailable = weaponsPool.ToList();
+		fakeWeaponsAvailable = fakeWeaponsPool.ToList();
+	}
+
+	private void RemoveAvailableWeapon(string weaponName)
+	{
+		foreach (var w in GetWeaponsAvailable())
+		{
+			if (w.name == weaponName)
+			{
+				weaponsAvailable.Remove(w);
+			}
+		}
+	}
+
+	public GameObject GetWeaponFromName(string name)
+	{
+		for (int i = 0; i < weaponsPool.Length; i++)
+		{
+			if (name == weaponsPool[i].name)
+			{
+				return weaponsPool[i];
+			}
+		}
+		return null;
+	}
+
+	private List<GameObject> GetWeaponsAvailable()
+	{
+		List<GameObject> copy = new List<GameObject>(weaponsAvailable.Count);
+
+		foreach (var weapon in weaponsAvailable)
+		{
+			copy.Add(weapon);
+		}
+
+		return copy;
 	}
 }

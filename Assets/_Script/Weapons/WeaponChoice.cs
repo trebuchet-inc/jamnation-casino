@@ -1,28 +1,43 @@
-﻿using NewtonVR;
+﻿using System;
+using NewtonVR;
 using UnityEngine;
 
 public class WeaponChoice : MonoBehaviour
 {
 	public GameObject weaponPresented;
 
+	public GameObject dummy;
+
 	private NVRHand hand;
+
+	private void Start()
+	{
+		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
+	}
+
+	private void OnWeaponChosenHandler(string s)
+	{
+		if (s != weaponPresented.name)
+		{
+			dummy.SetActive(false);
+		}
+	}
 
 	public void SetWeaponChoice()
 	{
 		print("spawnWeapon");
-		Instantiate(weaponPresented, transform.position, Quaternion.identity);
+		dummy = Instantiate(weaponPresented, transform.position, Quaternion.identity);
 	}
 
 	private void OnTriggerEnter(Collider other)
 	{
 		// Check if grab
 		hand = other.attachedRigidbody.GetComponent<NVRHand>();
-		Debug.Log("hand detected");
 	}
 
 	private void OnTriggerStay(Collider other)
 	{
-		if ((object) hand != null && hand.HoldButtonDown)
+		if ((object) hand != null && !GameRefereeManager.Instance.weaponSelectionPhase.isWeaponChosen && hand.HoldButtonDown)
 		{
 			GameRefereeManager.Instance.weaponSelectionPhase.ChooseWeapon(weaponPresented);
 		}
@@ -30,7 +45,11 @@ public class WeaponChoice : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
-		Debug.Log("hand exit");
 		if((object) hand != null) hand = null;
+	}
+
+	public void Deactivate()
+	{
+		gameObject.SetActive(false);
 	}
 }

@@ -8,9 +8,16 @@ public class ParadePhase : GamePhase
     public bool isReady;
     public bool isEnemyReady;
 
-    public event Action OnReady;
+    public ParadeTarget target;
+
+    public event Action OnParadeReady;
     
     public override void StartPhase()
+    {
+        
+    } 
+    
+    public override void EndPhase()
     {
         
     }
@@ -19,7 +26,7 @@ public class ParadePhase : GamePhase
     {
         isReady = true;
         
-        if(OnReady != null) OnReady.Invoke();
+        if(OnParadeReady != null) OnParadeReady.Invoke();
         
         photonView.RPC("ReceiveSetReady", PhotonTargets.Others);
 
