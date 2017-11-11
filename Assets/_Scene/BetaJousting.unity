@@ -181,6 +181,16 @@ Prefab:
       propertyPath: otherWeaponChoiceAnchors.Array.data[2]
       value: 
       objectReference: {fileID: 2136181721}
+    - target: {fileID: 114913177891519508, guid: 4a613e622bd66c54aa53977ca2fd41a8,
+        type: 2}
+      propertyPath: paradeTargets.Array.data[0]
+      value: 
+      objectReference: {fileID: 877923584}
+    - target: {fileID: 114913177891519508, guid: 4a613e622bd66c54aa53977ca2fd41a8,
+        type: 2}
+      propertyPath: paradeTargets.Array.data[1]
+      value: 
+      objectReference: {fileID: 727585049}
     - target: {fileID: 114587958213924488, guid: 4a613e622bd66c54aa53977ca2fd41a8,
         type: 2}
       propertyPath: viewIdField
@@ -191,8 +201,7 @@ Prefab:
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114379541795905742, guid: 4a613e622bd66c54aa53977ca2fd41a8, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a613e622bd66c54aa53977ca2fd41a8, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &18316970 stripped
@@ -372,6 +381,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cbf2fb37c9d2f947a1b3102ff873f8b, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &212172086 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4379864392672792, guid: 7cbf2fb37c9d2f947a1b3102ff873f8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 212172085}
 --- !u!1001 &317760133
 Prefab:
   m_ObjectHideFlags: 0
@@ -926,38 +940,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f3ff41d7ff4a934a9485a27f146229e, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1446228938 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1198966640547310, guid: 4a613e622bd66c54aa53977ca2fd41a8,
-    type: 2}
-  m_PrefabInternal: {fileID: 18316969}
---- !u!114 &1446228939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1446228938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b032d3d529649e148a2b29d9549ee7e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isReady: 0
-  isEnemyReady: 0
-  paradeTargets:
-  - {fileID: 877923584}
-  - {fileID: 727585049}
---- !u!114 &1446228940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1446228938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 804ea602527059145a965b7d82e407a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1481234714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,7 +1123,7 @@ Prefab:
         type: 2}
       propertyPath: UITarget
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 212172086}
     - target: {fileID: 114952365752500476, guid: d08c3f0f7957f3140b9dcdbeaa0869f7,
         type: 2}
       propertyPath: m_FontData.m_Font
