@@ -191,7 +191,8 @@ Prefab:
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114379541795905742, guid: 4a613e622bd66c54aa53977ca2fd41a8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 4a613e622bd66c54aa53977ca2fd41a8, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &18316970 stripped
@@ -784,11 +785,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 134323977}
   m_Script: {fileID: 11500000, guid: 33058469dfd9d984abef31cfad9e7363, type: 3}
---- !u!4 &971207118 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4627363541054736, guid: 7cbf2fb37c9d2f947a1b3102ff873f8b,
-    type: 2}
-  m_PrefabInternal: {fileID: 212172085}
 --- !u!1 &1125790176
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +947,17 @@ MonoBehaviour:
   paradeTargets:
   - {fileID: 877923584}
   - {fileID: 727585049}
+--- !u!114 &1446228940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1446228938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 804ea602527059145a965b7d82e407a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1481234714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1141,13 @@ Prefab:
         type: 2}
       propertyPath: UITarget
       value: 
-      objectReference: {fileID: 1901098702}
+      objectReference: {fileID: 0}
+    - target: {fileID: 114952365752500476, guid: d08c3f0f7957f3140b9dcdbeaa0869f7,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 35c1193eb3ddc154cb514c21d8d6cc9d,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d08c3f0f7957f3140b9dcdbeaa0869f7, type: 2}
   m_IsPrefabParent: 0
@@ -1143,34 +1156,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1431068673357208, guid: 3b695249def6f9540a07d3ed668ba296,
     type: 2}
   m_PrefabInternal: {fileID: 757876636}
---- !u!1 &1901098701
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1901098702}
-  m_Layer: 0
-  m_Name: UITarget
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1901098702
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1901098701}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 971207118}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2136181721 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114129646037296924, guid: a53d843097aa3d243b0002edf8003858,
