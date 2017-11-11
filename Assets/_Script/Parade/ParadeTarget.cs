@@ -4,11 +4,12 @@ public class ParadeTarget : MonoBehaviour
 {
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.CompareTag("Mount"))
+		if (other.CompareTag("Player"))
 		{
 			if (!GameRefereeManager.Instance.paradePhase.isReady)
 			{
 				GameRefereeManager.Instance.paradePhase.SetReady();
+				Debug.Log("Setting ready");
 			}
 		}
 	}
