@@ -79,15 +79,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8850d2f3a7ec4d34e90fccff406b3eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fakeWeaponsPool: []
+  fakeWeaponsPool:
+  - {fileID: 1948157478241122, guid: 053be41f4b7073349be10ed0af6479d5, type: 2}
+  - {fileID: 1305307412271338, guid: 227ad26decf8f204aa66aa74c687b47e, type: 2}
+  - {fileID: 1498106507905710, guid: 800cd92c558dbd84fb80e86d6636443c, type: 2}
   weaponsPool:
   - {fileID: 1948157478241122, guid: 053be41f4b7073349be10ed0af6479d5, type: 2}
   - {fileID: 1498106507905710, guid: 800cd92c558dbd84fb80e86d6636443c, type: 2}
   - {fileID: 1305307412271338, guid: 227ad26decf8f204aa66aa74c687b47e, type: 2}
-  fakeWeaponsAvailable:
-  - {fileID: 1948157478241122, guid: 053be41f4b7073349be10ed0af6479d5, type: 2}
-  - {fileID: 1305307412271338, guid: 227ad26decf8f204aa66aa74c687b47e, type: 2}
-  - {fileID: 1498106507905710, guid: 800cd92c558dbd84fb80e86d6636443c, type: 2}
+  fakeWeaponsAvailable: []
   weaponsAvailable: []
   weaponChoiceAnchors:
   - {fileID: 0}
