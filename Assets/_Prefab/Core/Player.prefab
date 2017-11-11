@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SteamVREnabled: 1
   OculusSDKEnabled: 1
-  InteractionStyle: 0
+  InteractionStyle: 2
   PhysicalHands: 0
   MakeControllerInvisibleOnInteraction: 0
   AutomaticallySetControllerTransparency: 0

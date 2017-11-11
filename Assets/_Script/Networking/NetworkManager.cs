@@ -42,7 +42,7 @@ public class NetworkManager : Photon.PunBehaviour
 
     public override void OnJoinedRoom()
     {
-        int id = PhotonNetwork.AllocateViewID();
+        int id = _roomCreator ? 0 : 1;
         NetworkPlayerManager.Instance.personalID = id;
         NetworkPlayerManager.Instance.photonView.RPC("SpawnNetworkPlayer", PhotonTargets.OthersBuffered, Vector3.zero, Quaternion.identity, id);
     }
