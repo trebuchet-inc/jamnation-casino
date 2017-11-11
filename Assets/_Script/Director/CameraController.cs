@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public enum CameraControllerType
 {
 	Tripod,
 	AimLocked,
-	ToggleState,
-	AnimationRoutine
+	// ToggleState,
+	AnimationTargetedRoutine,
+	AnimationFreeAimRoutine
 }
 
 public class CameraController : MonoBehaviour {
@@ -20,6 +22,18 @@ public class CameraController : MonoBehaviour {
 
 	[HideInInspector]
 	public CameraManager cameraManager;
+	[HideInInspector]
+	public CameraThrottler throttleGuider;
+	[HideInInspector]
+	public float apertureIntense;
+	[HideInInspector]
+	public Transform cameraParent;
+
+
+	// private PostProcessProfile _postFxs;
+	// private DepthOfField _DoF;
+	// private float _apertureDefault;
+	// private float _focusDistanceDefault;
 
 	private Quaternion _sourceLocalRotation;
 	private Vector3 _sourceLocalPosition;
@@ -31,6 +45,7 @@ public class CameraController : MonoBehaviour {
 	private Transform[] _mainTargets;
 	private int _currentTarget;
 
+	//Camera Routine Target
 
 
 
@@ -39,31 +54,39 @@ public class CameraController : MonoBehaviour {
 	public void Initialize () {
 		_rotationIntensity = cameraManager.rotationIntensity;
 		_translateIntensity = cameraManager.translationIntensity;
+		cameraParent = transform.GetChild(0);
+		// apertureIntense = cameraManager.apertureIntense;
+		throttleGuider = transform.GetComponentInChildren<CameraThrottler>();
+		throttleGuider.translationIntensity = _translateIntensity;
+		throttleGuider.cameraBrother = this;
+		throttleGuider.Initialize();
+		
 		switch (cameraType)
-			{
-				case CameraControllerType.Tripod:
-				break;
+		{
+			case CameraControllerType.Tripod:
+			break;
 
-				case CameraControllerType.AimLocked:
-				foreach(AimCameraSpeadsheet a in cameraManager.aimCameraTargets)
-				{
-					if (a.cameraId == cameraId)
-					{
-						_mainTargets = a.targets;
-					}
-				}
-				_currentTarget = 0;
-				
-				break;
+			case CameraControllerType.AimLocked:
+			InitializeTargets();
+			break;
 
-				case CameraControllerType.ToggleState:
-				break;
+			case CameraControllerType.AnimationTargetedRoutine:
+			InitializeTargets();
+			throttleGuider.activated=true;
+			break;
+			case CameraControllerType.AnimationFreeAimRoutine:
+			throttleGuider.activated=true;
+			break;
+			default:
+			break;
+		}
+		
+		// _postFxs  = FindObjectOfType<PostProcessVolume>().profile;
+		// _DoF =;
+		// _postFxs.
+		// _focusDistanceDefault = _DoF.focusDistance;
+		// _apertureDefault = _DoF.aperture;
 
-				// case 
-				
-				default:
-				break;
-			}
 
 	}
 	
@@ -74,50 +97,78 @@ public class CameraController : MonoBehaviour {
 			switch (cameraType)
 			{
 				case CameraControllerType.Tripod:
-					transform.Rotate(-Input.GetAxis("Vertical")*_rotationIntensity*Time.deltaTime,
+					cameraParent.Rotate(
+					-Input.GetAxis("Vertical")*_rotationIntensity*Time.deltaTime,
 					Input.GetAxis("Horizontal")*_rotationIntensity*Time.deltaTime,
-					0, Space.Self);	
+					-Input.GetAxis("Yaw")*_rotationIntensity*Time.deltaTime,
+					Space.Self);	
 				break;
 
 				case CameraControllerType.AimLocked:
-					transform.Translate(Input.GetAxis("Horizontal")*_translateIntensity*Time.deltaTime,
-					Input.GetAxis("Vertical")*_translateIntensity*Time.deltaTime,
-					0);
+					cameraParent.Translate(Input.GetAxis("Horizontal")*_translateIntensity*Time.deltaTime,
+					Input.GetAxis("Yaw")*_translateIntensity*Time.deltaTime,
+					Input.GetAxis("Vertical")*_translateIntensity*Time.deltaTime
+					);
 					if (Input.GetKeyDown(KeyCode.RightControl))
 					{
 						_currentTarget = (_currentTarget+1)%_mainTargets.Length;
 					}
-
 				break;
 
-				case CameraControllerType.ToggleState:
-				break;
-				
 				default:
 				break;
 			}
-		
-				
-			
-
 		}
-		
+
+		switch (cameraType)
+		{
+			case CameraControllerType.AnimationTargetedRoutine:
+			cameraParent.position = Vector3.Lerp(cameraParent.position, throttleGuider.transform.position,1*Time.deltaTime/2);
+			if (isActiveCamera)
+			{
+				if (Input.GetKeyDown(KeyCode.RightControl))
+				{
+					_currentTarget = (_currentTarget+1)%_mainTargets.Length;
+				}
+			}		
+			break;
+
+			case CameraControllerType.AnimationFreeAimRoutine:
+			cameraParent.position = Vector3.Lerp(cameraParent.position, throttleGuider.transform.position,1*Time.deltaTime/2);
+			break;
+			
+			default:
+			break;
+		}		
 	}
 
 	void LateUpdate()
 	{
+
 		switch (cameraType)
 			{
 				case CameraControllerType.Tripod:
 				break;
 
 				case CameraControllerType.AimLocked:
-				Quaternion aim = Quaternion.LookRotation(_mainTargets[_currentTarget].position-transform.position);
-				transform.rotation = Quaternion.Lerp(transform.rotation,aim,3*Time.deltaTime);
-
+				if (isActiveCamera)
+				{
+					AimAdjustment(_mainTargets[_currentTarget].position);
+					// _DoF.focusDistance.value = (_mainTargets[_currentTarget].position-transform.position).magnitude;
+				}
+				
 				break;
 
-				case CameraControllerType.ToggleState:
+				case CameraControllerType.AnimationTargetedRoutine:
+				if (isActiveCamera)
+				{
+					AimAdjustment(_mainTargets[_currentTarget].position);
+					// _DoF.focusDistance.value = (_mainTargets[_currentTarget].position-transform.position).magnitude;
+				}
+				break;
+
+				case CameraControllerType.AnimationFreeAimRoutine:
+				AimAdjustment(throttleGuider.transform.position,0.3f);
 				break;
 				
 				default:
@@ -129,6 +180,9 @@ public class CameraController : MonoBehaviour {
 	{
 		isActiveCamera = true;
 		Input.ResetInputAxes();
+		// _DoF.aperture.value = _apertureDefault;
+		// _DoF.focusDistance.value = _focusDistanceDefault;
+		
 
 		switch (cameraType)
 			{
@@ -136,28 +190,59 @@ public class CameraController : MonoBehaviour {
 				break;
 
 				case CameraControllerType.AimLocked:
-				transform.rotation = Quaternion.LookRotation(_mainTargets[_currentTarget].position-transform.position);
+				cameraParent.rotation = Quaternion.LookRotation(_mainTargets[_currentTarget].position-cameraParent.position);
+				// _DoF.aperture.value = apertureIntense;
 				break;
 
-				case CameraControllerType.ToggleState:
+				case CameraControllerType.AnimationTargetedRoutine:
+			cameraParent.rotation = Quaternion.LookRotation(_mainTargets[_currentTarget].position-cameraParent.position);
+				// _DoF.aperture.value = apertureIntense;
+				break;
+
+				case CameraControllerType.AnimationFreeAimRoutine:
 				break;
 				
 				default:
 				break;
 			}	
-		_sourceLocalRotation = transform.localRotation;
-		_sourceLocalPosition = transform.localPosition;
+		SourcePositionAndAimOverride();
 
-		cameraManager.cameraTransform.SetParent(transform);
+		cameraManager.cameraTransform.SetParent(cameraParent);
 		cameraManager.cameraTransform.localPosition = Vector3.zero;
 		cameraManager.cameraTransform.localRotation = Quaternion.identity;
 		
 
 	}
 
-	public void ResetPosition()
+	public void ResetPositionAndAim()
 	{
-		transform.localRotation = _sourceLocalRotation;
-		transform.localPosition = _sourceLocalPosition;
+		cameraParent.localRotation = _sourceLocalRotation;
+		cameraParent.localPosition = _sourceLocalPosition;
+	}
+
+	
+
+	public void SourcePositionAndAimOverride()
+	{
+		_sourceLocalRotation = cameraParent.localRotation;
+		_sourceLocalPosition = cameraParent.localPosition;
+	}
+
+	private void AimAdjustment(Vector3 target, float multiplier = 1)
+	{
+		Quaternion aim = Quaternion.LookRotation(target-cameraParent.position);
+		cameraParent.rotation = Quaternion.Lerp(cameraParent.rotation,aim,2*Time.deltaTime*multiplier);
+	}
+
+	private void InitializeTargets()
+	{
+		foreach(AimCameraSpeadsheet a in cameraManager.aimCameraTargets)
+				{
+					if (a.cameraId == cameraId)
+					{
+						_mainTargets = a.targets;
+					}
+				}
+				_currentTarget = 0;
 	}
 }
