@@ -12,6 +12,7 @@ public class MountAgent : MonoBehaviour
 	public float velocityThreshold;
 
 	bool _freeze;
+	bool _mountFreeze;
 
 	Rigidbody _rb;
 
@@ -50,14 +51,18 @@ public class MountAgent : MonoBehaviour
 	
 	void Update () 
 	{
-		if(_freeze) return;
-
-		mountModel.transform.position = transform.position;
-		mountModel.transform.rotation = transform.rotation;
-
-		if(Mathf.Abs(velocity.y) >= velocityThreshold)
+		if(!_mountFreeze) 
 		{
-			_rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+			mountModel.transform.position = transform.position;
+			mountModel.transform.rotation = transform.rotation;
+		}
+
+		if(!_freeze)
+		{
+			if(Mathf.Abs(velocity.y) >= velocityThreshold)
+			{
+				_rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+			}
 		}
 	}
 
