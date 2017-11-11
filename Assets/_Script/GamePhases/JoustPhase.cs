@@ -24,5 +24,4 @@ public class JoustPhase : GamePhase
 		
 		if(OnJoustGO != null) OnJoustGO.Invoke();
 	}
-	
 }

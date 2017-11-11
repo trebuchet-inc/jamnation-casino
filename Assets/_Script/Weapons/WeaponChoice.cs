@@ -10,16 +10,6 @@ public class WeaponChoice : MonoBehaviour
 
 	private NVRHand hand;
 
-	private void Start()
-	{
-		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
-	}
-
-	private void OnWeaponChosenHandler(string s)
-	{
-		dummy.SetActive(false);
-	}
-
 	public void SetWeaponChoice()
 	{
 		print("spawnWeapon");
@@ -37,6 +27,7 @@ public class WeaponChoice : MonoBehaviour
 		if ((object) hand != null && !GameRefereeManager.Instance.weaponSelectionPhase.isWeaponChosen && hand.HoldButtonDown)
 		{
 			GameRefereeManager.Instance.weaponSelectionPhase.ChooseWeapon(weaponPresented.name);
+			dummy.SetActive(false);
 		}
 	}
 
