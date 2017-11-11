@@ -8,7 +8,7 @@ public class ParadePhase : GamePhase
     public bool isReady;
     public bool isEnemyReady;
 
-    public ParadeTarget target;
+    public ParadeTarget[] paradeTargets;
 
     public event Action OnParadeReady;
     
@@ -19,7 +19,10 @@ public class ParadePhase : GamePhase
     
     public override void EndPhase()
     {
-        
+        foreach (var target in paradeTargets)
+        {
+            target.gameObject.SetActive(false);
+        }
     }
 
     public void SetReady()

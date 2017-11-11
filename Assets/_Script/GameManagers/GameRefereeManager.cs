@@ -34,6 +34,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 	private void GetReferences()
 	{
 		weaponSelectionPhase = GetComponent<WeaponSelectionPhase>();
+		paradePhase = GetComponent<ParadePhase>();
 	}
 
 	public void NewGame()
