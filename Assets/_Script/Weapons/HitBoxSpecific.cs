@@ -8,7 +8,7 @@ public class HitBoxSpecific : MonoBehaviour
 	
 	void OnTriggerEnter(Collider other)
     {
-        GameRefereeManager.Instance.joustPhase.callHit(other.name, weaponTarget.gameObject.name);
+        GameRefereeManager.Instance.joustPhase.callHit(other.name, weaponTarget.gameObject.name, other.transform.position);
         SoundManager.Instance.PlayHit(weaponTarget.gameObject.name);
     }
 }

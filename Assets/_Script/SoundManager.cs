@@ -32,6 +32,7 @@ public class SoundManager : MonoBehaviour
 		}
 
 		AkSoundEngine.PostEvent("Play_Crowd_Surprise", gameObject);
+		CrowdManager.Instance.SetHype(3);
 		AkSoundEngine.PostEvent("Stop_BattleMusic", gameObject);
 	}
 
@@ -52,29 +53,35 @@ public class SoundManager : MonoBehaviour
 	public void HypeCrowd()
 	{
 		AkSoundEngine.PostEvent("Play_Crowd_GetHyped", gameObject);
+		CrowdManager.Instance.SetHype(4);
 		AkSoundEngine.PostEvent("Play_Jingle_Start", gameObject);
+		CrowdManager.Instance.SetHype(2);
 	}
 
 	public void CasualCrowd()
 	{
 		AkSoundEngine.PostEvent("Play_BattleMusic", gameObject);
 		AkSoundEngine.PostEvent("Play_Crowd_Extatic", gameObject);
+		CrowdManager.Instance.SetHype(5);
 	}
 
 	public void DeceptionCrowd()
 	{
 		AkSoundEngine.PostEvent("Play_Crowd_Deception", gameObject);
+		CrowdManager.Instance.SetHype(1);
 		AkSoundEngine.PostEvent("Stop_BattleMusic", gameObject);
 	}
 
 	public void WinJingle()
 	{
 		AkSoundEngine.PostEvent("Play_Jingle_Success", gameObject);
+		CrowdManager.Instance.SetHype(5);
 	}
 
 	public void LoseJingle()
 	{
 		AkSoundEngine.PostEvent("Play_Jingle_AllMiss", gameObject);
+		CrowdManager.Instance.SetHype(1);
 	}
 
 	public void WeaponSelected()
