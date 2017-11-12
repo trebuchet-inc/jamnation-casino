@@ -31,7 +31,7 @@ public class WeaponSelectionPhase : GamePhase
 	{
 		NetworkPlayerManager.Instance.SetLocalPlayer();
 		
-		if(!GameRefereeManager.Instance.isFirstGame) ResetWeaponHolders();
+		if(GameRefereeManager.Instance.roundIndex >= 1) ResetWeaponHolders();
 		
 		PresentWeaponChoice();
 	}
