@@ -616,7 +616,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772092793813160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.471062, y: 0, z: 0.6824455}
+  m_LocalPosition: {x: -51.90967, y: 38.027767, z: 2.397871}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4702971295886678}
@@ -802,6 +802,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   lerpSpeed: 10
+  JoinedObjects:
+  - {fileID: 1697671351231116}
+  - {fileID: 1821282325356142}
+  - {fileID: 1175242274559386}
+  - {fileID: 1402167447229688}
 --- !u!137 &137195088609906862
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
