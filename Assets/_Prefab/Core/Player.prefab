@@ -126,8 +126,8 @@ Transform:
   m_Children:
   - {fileID: 4627363541054736}
   - {fileID: 4810751635966660}
-  - {fileID: 4837229491384658}
   - {fileID: 4979299911669244}
+  - {fileID: 4837229491384658}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -182,7 +182,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4024871868913698}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4979299911669244
 Transform:
@@ -195,7 +195,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4024871868913698}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20257248470610674
 Camera:
@@ -279,9 +279,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mountModel: {fileID: 0}
   ridingHand: {fileID: 114990343425754572}
-  joustSpeed: 1
+  joustSpeed: 0.8
   paradeSpeed: 0.2
-  velocityThreshold: 0.5
+  velocityThreshold: 0.3
 --- !u!114 &114389810755839030
 MonoBehaviour:
   m_ObjectHideFlags: 1
