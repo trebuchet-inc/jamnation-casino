@@ -26,4 +26,9 @@ public class Weapon : MonoBehaviour
         target.localPosition = Vector3.Lerp(transform.localPosition, weaponHand.transform.localPosition, Time.deltaTime * lerpSpeed);
         target.localRotation = Quaternion.Lerp(transform.localRotation, weaponHand.transform.localRotation, Time.deltaTime * lerpSpeed);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        GameRefereeManager.Instance.joustPhase.callHit(other.name);
+    }
 }
