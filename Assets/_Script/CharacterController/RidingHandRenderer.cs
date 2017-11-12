@@ -33,7 +33,7 @@ public class RidingHandRenderer : MonoBehaviour {
 		for(int i = 0; i < lineRenderers.Length; i++)
 		{
 			lineRenderers[i].SetPosition(0, lineRenderers[i].transform.position);
-			lineRenderers[i].SetPosition(1, _mountHead.position - (_mountHead.right * 0.1f) + (_mountHead.right * 0.2f * i));
+			lineRenderers[i].SetPosition(1, _mountHead.position - (_mountHead.right * 0.05f) + (_mountHead.right * 0.1f * i));
 		}
 	}
 }

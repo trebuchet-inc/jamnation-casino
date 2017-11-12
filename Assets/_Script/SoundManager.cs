@@ -37,9 +37,9 @@ public class SoundManager : MonoBehaviour
 
 	uint _play_Ambiance;
 	public void PlayAmbiance () {
-		print("lol");
-		 _play_Ambiance = AkSoundEngine.GetIDFromString("Play_Ambiance");
-		 AkSoundEngine.PostEvent("Play_Ambiance", gameObject);
+		AkSoundEngine.PostEvent("Play_Intro_Annonceurs", gameObject);
+		_play_Ambiance = AkSoundEngine.GetIDFromString("Play_Ambiance");
+		AkSoundEngine.PostEvent("Play_Ambiance", gameObject);
 	}
 
 	uint _stop_Ambiance;
