@@ -15,6 +15,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 {
 	public static GameRefereeManager Instance;
 
+	public bool isFirstGame = true;
 	public int roundIndex;
 	public int TotalRounds;
 	
@@ -59,7 +60,12 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		Debug.Log("Starting New Game");
 		
 		NetworkPlayerManager.Instance.SetLocalPlayer();
-		NetworkPlayerManager.Instance.ResetWeapons(NetworkPlayerManager.Instance.personalID);
+
+		if (isFirstGame)
+		{
+			isFirstGame = false;
+			NetworkPlayerManager.Instance.ResetWeapons(NetworkPlayerManager.Instance.personalID);
+		}
 
 		if(OnNewGame != null) OnNewGame.Invoke();
 		ChangePhase(Phases.WeaponSelection);
