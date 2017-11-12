@@ -116,7 +116,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4292991023071632}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_joints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 54246800839277882}
   - component: {fileID: 144262233730095590}
   - component: {fileID: 65371609891402492}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_knee_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 54187828568156378}
   - component: {fileID: 144481235140386482}
   - component: {fileID: 65227374927665502}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_torso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 4829172551591670}
   - component: {fileID: 54123651107548032}
   - component: {fileID: 65958036604499056}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 144688395494650636}
   - component: {fileID: 136984584921964614}
   - component: {fileID: 114007003121391688}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4614693266585714}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_visiere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 54973544189492420}
   - component: {fileID: 144814493361981908}
   - component: {fileID: 65701166062611942}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_foot_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 54591205074606584}
   - component: {fileID: 144357079462119376}
   - component: {fileID: 65333545316215322}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_foot_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 54121161509190316}
   - component: {fileID: 144414673221522108}
   - component: {fileID: 65738567954569566}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_knee_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
