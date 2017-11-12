@@ -1124,12 +1124,6 @@ Prefab:
       propertyPath: UITarget
       value: 
       objectReference: {fileID: 212172086}
-    - target: {fileID: 114952365752500476, guid: d08c3f0f7957f3140b9dcdbeaa0869f7,
-        type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 35c1193eb3ddc154cb514c21d8d6cc9d,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d08c3f0f7957f3140b9dcdbeaa0869f7, type: 2}
   m_IsPrefabParent: 0
