@@ -129,7 +129,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4284975160853148, guid: a53d843097aa3d243b0002edf8003858, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 3.9
+      value: 3.004
       objectReference: {fileID: 0}
     - target: {fileID: 4284975160853148, guid: a53d843097aa3d243b0002edf8003858, type: 2}
       propertyPath: m_LocalRotation.x
@@ -169,11 +169,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 837622959}
     m_Modifications:
-    - target: {fileID: 114603950807123796, guid: 4a613e622bd66c54aa53977ca2fd41a8,
-        type: 2}
-      propertyPath: weaponChoiceAnchors.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4696136805477298, guid: 4a613e622bd66c54aa53977ca2fd41a8, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -206,6 +201,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114913177891519508, guid: 4a613e622bd66c54aa53977ca2fd41a8,
+        type: 2}
+      propertyPath: paradeTargets.Array.data[0]
+      value: 
+      objectReference: {fileID: 877923584}
+    - target: {fileID: 114913177891519508, guid: 4a613e622bd66c54aa53977ca2fd41a8,
+        type: 2}
+      propertyPath: paradeTargets.Array.data[1]
+      value: 
+      objectReference: {fileID: 727585049}
     - target: {fileID: 114603950807123796, guid: 4a613e622bd66c54aa53977ca2fd41a8,
         type: 2}
       propertyPath: weaponChoiceAnchors.Array.data[0]
@@ -236,16 +241,6 @@ Prefab:
       propertyPath: otherWeaponChoiceAnchors.Array.data[2]
       value: 
       objectReference: {fileID: 2136181721}
-    - target: {fileID: 114913177891519508, guid: 4a613e622bd66c54aa53977ca2fd41a8,
-        type: 2}
-      propertyPath: paradeTargets.Array.data[0]
-      value: 
-      objectReference: {fileID: 877923584}
-    - target: {fileID: 114913177891519508, guid: 4a613e622bd66c54aa53977ca2fd41a8,
-        type: 2}
-      propertyPath: paradeTargets.Array.data[1]
-      value: 
-      objectReference: {fileID: 727585049}
     - target: {fileID: 114587958213924488, guid: 4a613e622bd66c54aa53977ca2fd41a8,
         type: 2}
       propertyPath: viewIdField
@@ -256,21 +251,6 @@ Prefab:
       propertyPath: instantiationId
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114603950807123796, guid: 4a613e622bd66c54aa53977ca2fd41a8,
-        type: 2}
-      propertyPath: weaponChoiceAnchors.Array.data[3]
-      value: 
-      objectReference: {fileID: 1589503305}
-    - target: {fileID: 114603950807123796, guid: 4a613e622bd66c54aa53977ca2fd41a8,
-        type: 2}
-      propertyPath: weaponChoiceAnchors.Array.data[4]
-      value: 
-      objectReference: {fileID: 946690303}
-    - target: {fileID: 114603950807123796, guid: 4a613e622bd66c54aa53977ca2fd41a8,
-        type: 2}
-      propertyPath: weaponChoiceAnchors.Array.data[5]
-      value: 
-      objectReference: {fileID: 1687422769}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a613e622bd66c54aa53977ca2fd41a8, type: 2}
   m_IsPrefabParent: 0
@@ -279,35 +259,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4696136805477298, guid: 4a613e622bd66c54aa53977ca2fd41a8,
     type: 2}
   m_PrefabInternal: {fileID: 18316969}
---- !u!1 &18316971 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1198966640547310, guid: 4a613e622bd66c54aa53977ca2fd41a8,
-    type: 2}
-  m_PrefabInternal: {fileID: 18316969}
---- !u!114 &18316972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 18316971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 455fbb6fc6b4b2f4dbc425d50b6843d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  endDuration: 10
---- !u!114 &18316973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 18316971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fff79b6fa1d31c43a39097bd7c09604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intermissionDuration: 8
 --- !u!1 &29216236
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,7 +608,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4284975160853148, guid: a53d843097aa3d243b0002edf8003858, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.723
+      value: -1.098
       objectReference: {fileID: 0}
     - target: {fileID: 4284975160853148, guid: a53d843097aa3d243b0002edf8003858, type: 2}
       propertyPath: m_LocalRotation.x
