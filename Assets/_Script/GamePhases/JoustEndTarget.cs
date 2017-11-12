@@ -30,6 +30,7 @@ public class JoustEndTarget: MonoBehaviour
 			Debug.Log("Entered joustEnd target");
 
 			other.attachedRigidbody.GetComponent<MountAgent>()._freeze = true;
+			other.attachedRigidbody.velocity = Vector3.zero;
 			
 			if (!hasHit)
 			{
