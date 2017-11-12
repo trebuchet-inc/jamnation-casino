@@ -63,10 +63,11 @@ public class GameRefereeManager : Photon.MonoBehaviour
 
 		if (isFirstGame)
 		{
-			isFirstGame = false;
-			NetworkPlayerManager.Instance.ResetWeapons(NetworkPlayerManager.Instance.personalID);
+			weaponSelectionPhase.ResetWeaponHolders();
 		}
 
+		isFirstGame = false;
+		
 		if(OnNewGame != null) OnNewGame.Invoke();
 		ChangePhase(Phases.WeaponSelection);
 	}

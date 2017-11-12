@@ -107,7 +107,7 @@ public class WeaponSelectionPhase : GamePhase
 		_weapon.Initialize(hand);
 	}
 
-	private void ResetWeaponHolders()
+	public void ResetWeaponHolders()
 	{
 		foreach (var player in NetworkPlayerManager.Instance.players)
 		{
