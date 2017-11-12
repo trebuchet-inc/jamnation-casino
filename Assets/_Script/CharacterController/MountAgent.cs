@@ -81,6 +81,8 @@ public class MountAgent : MonoBehaviour
 	
 	void Update () 
 	{
+		Debug.Log(voiceIntensity);
+
 		if(!_mountFreeze) 
 		{
 			mountModel.transform.position = transform.position;
