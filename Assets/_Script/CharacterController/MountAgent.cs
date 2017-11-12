@@ -19,7 +19,7 @@ public class MountAgent : MonoBehaviour
 
 	float actualSpeed;
 
-	bool _freeze = true;
+	public bool _freeze = true;
 	bool _mountFreeze;
 
 	Rigidbody _rb;
@@ -81,6 +81,8 @@ public class MountAgent : MonoBehaviour
 	
 	void Update () 
 	{
+		//Debug.Log(voiceIntensity);
+
 		if(!_mountFreeze) 
 		{
 			mountModel.transform.position = transform.position;

@@ -25,12 +25,14 @@ namespace AK
         static const AkUniqueID PLAY_FLAIL_MISS = 1092160905U;
         static const AkUniqueID PLAY_HELM_DOWN = 1605983305U;
         static const AkUniqueID PLAY_HORSE_ROCKING = 84185841U;
+        static const AkUniqueID PLAY_INTRO_ANNONCEURS = 593020281U;
         static const AkUniqueID PLAY_JINGLE_ALLMISS = 3223684645U;
         static const AkUniqueID PLAY_JINGLE_START = 2606865948U;
         static const AkUniqueID PLAY_JINGLE_SUCCESS = 2513009785U;
         static const AkUniqueID PLAY_LANCE_HIT = 3574353209U;
         static const AkUniqueID PLAY_LANCE_MISS = 2977442550U;
         static const AkUniqueID PLAY_PLAYERKILLEDTOOSOON = 2030803885U;
+        static const AkUniqueID PLAY_PLAYERS_WIN = 1585422495U;
         static const AkUniqueID PLAY_WEAPON_SELECTED = 1234332190U;
         static const AkUniqueID STOP_AMBIANCE = 2839405212U;
         static const AkUniqueID STOP_BATTLEMUSIC = 3329728603U;
