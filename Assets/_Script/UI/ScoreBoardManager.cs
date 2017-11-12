@@ -18,7 +18,7 @@ public class ScoreBoardManager : MonoBehaviour
 			
 	}
 
-	private void OnJoustHitHandler()
+	private void OnJoustHitHandler(Hitinfo edfasijulghbvd)
 	{
 		
 	}
