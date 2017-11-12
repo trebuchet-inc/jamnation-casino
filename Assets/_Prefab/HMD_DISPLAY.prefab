@@ -67,7 +67,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 15000
+  m_DynamicPixelsPerUnit: 5000
 --- !u!114 &114522377332480408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UITarget: {fileID: 0}
   canvas: {fileID: 1911496824234912}
-  LerpSpeed: 2.5
+  LerpSpeed: 10
 --- !u!114 &114705962231562828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.47794116, g: 0.46388406, b: 0.46388406, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:

@@ -68,6 +68,8 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		
 		if(OnNewGame != null) OnNewGame.Invoke();
 		ChangePhase(Phases.WeaponSelection);
+		SoundManager.Instance.StopAmbiance();
+		SoundManager.Instance.PlayAmbiance();
 	}
 	
 	public void ChangePhase(Phases phase)

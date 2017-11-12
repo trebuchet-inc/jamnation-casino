@@ -18,35 +18,41 @@ public class JoustPhase : GamePhase
 
 	bool localHited;
 	bool _active;
+
+	Hitinfo info = Hitinfo.none;
 	
 	public override void StartPhase()
 	{
 		StartCoroutine(WaitForGo());
 		_active = true;
+		info = Hitinfo.none;
+
+		SoundManager.Instance.CasualCrowd();
 	} 
     
 	public override void TerminatePhase()
 	{
         _active = false;
+		HMDisplayUIManager.Instance.ShowResult(info);
 	}
 
-	public void EndJoust()
+	public void EndJoust(bool hit)
 	{
-		photonView.RPC("ReceiveEndJoust", PhotonTargets.All);
+		photonView.RPC("ReceiveEndJoust", PhotonTargets.All, hit);
 	}
 
 	[PunRPC]
-	public void ReceiveEndJoust()
+	public void ReceiveEndJoust(bool hit)
 	{
+		if(!hit) SoundManager.Instance.DeceptionCrowd();
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 	}
 
-	public void callHit(string objname)
+	public void callHit(string objname, string weapon)
 	{
 		if(localHited || !_active) return;
 
 		localHited = true;
-		Hitinfo info = Hitinfo.none;
 
 		if(objname.Contains("root") || objname.Contains("torso"))
 		{
@@ -69,16 +75,19 @@ public class JoustPhase : GamePhase
 
 		print("hitSend");
 
-		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, (int)info);
+		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, (int)info, weapon);
 		if(OnJoustHit != null) OnJoustHit.Invoke(info);
 	}
 
 	[PunRPC]
-	public void ReceiveRegisterHit(int hit)
+	public void ReceiveRegisterHit(int hit, string weapon)
 	{
 		print("hitReceived");
 		if(OnJoustHit != null) OnJoustHit.Invoke((Hitinfo)hit);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
+
+		SoundManager.Instance.PlayHit(weapon);
+
 		Fade.Instance.StartFade(0.2f,0.1f);
 		StartCoroutine(UnFade());
 	}

@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 54828167242126214}
   - component: {fileID: 144393093899268700}
   - component: {fileID: 65881223914650062}
+  - component: {fileID: 114548666279391118}
   m_Layer: 10
   m_Name: jnt_fleau_masse
   m_TagString: Untagged
@@ -616,7 +617,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772092793813160}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.338993, y: 0, z: 1.3191414}
+  m_LocalPosition: {x: -105.69903, y: 251.39096, z: 93.44115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4702971295886678}
@@ -789,6 +790,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3, z: 0.3}
   m_Center: {x: 0, y: 0, z: -0.15}
+--- !u!114 &114548666279391118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402167447229688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d10a64745c9bf74db5b27831f99d9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponTarget: {fileID: 114851819738830868}
 --- !u!114 &114851819738830868
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -28,6 +28,7 @@ public class WeaponChoice : MonoBehaviour
 		if ((object) hand != null && !GameRefereeManager.Instance.weaponSelectionPhase.isWeaponChosen && hand.HoldButtonDown)
 		{
 			GameRefereeManager.Instance.weaponSelectionPhase.ChooseWeapon(realWeaponPrefab.name);
+			SoundManager.Instance.WeaponSelected();
 		}
 	}
 

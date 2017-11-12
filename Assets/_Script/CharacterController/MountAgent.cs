@@ -70,6 +70,7 @@ public class MountAgent : MonoBehaviour
 			if(Mathf.Abs(velocity.y) >= velocityThreshold)
 			{
 				_rb.AddForce(transform.forward * actualSpeed, ForceMode.Impulse);
+				AkSoundEngine.PostEvent("Play_Horse_Rocking", gameObject);
 			}
 		}
 	}

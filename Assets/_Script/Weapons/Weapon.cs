@@ -35,7 +35,8 @@ public class Weapon : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        GameRefereeManager.Instance.joustPhase.callHit(other.name);
+        GameRefereeManager.Instance.joustPhase.callHit(other.name,gameObject.name);
+        SoundManager.Instance.PlayHit(gameObject.name);
     }
 
     void OnDestroy()

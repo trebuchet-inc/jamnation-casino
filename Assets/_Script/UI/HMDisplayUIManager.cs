@@ -6,14 +6,58 @@ using UnityEngine.UI;
 
 public class HMDisplayUIManager : MonoBehaviour
 {
+	public static HMDisplayUIManager Instance;
+
 	public Transform UITarget;
 
 	public GameObject canvas;
 	private Text canvasText;
 
-	private bool isActive;
-
 	public float LerpSpeed;
+
+	void Awake()
+	{
+		Instance = this;
+	}
+
+	public void ShowResult(Hitinfo info)
+	{
+		string text= "";
+		bool sucess = false;
+
+		switch(info)
+		{
+			case Hitinfo.head :
+			text = "Wow you hit the head";
+			sucess = true;
+			break;
+
+			case Hitinfo.leg :
+			text = "You hit the knee : no more adventure for him";
+			sucess = true;
+			break;
+
+			case Hitinfo.torso :
+			text = "You hit the torso, it must be painful";
+			sucess = true;
+			break;
+
+			case Hitinfo.none :
+			text = "You hit nothing you cheap fuck, sobaka";
+			break;
+		}
+		StartCoroutine(DelayBeforeResult(text, sucess));
+	}
+
+	IEnumerator DelayBeforeResult(string text, bool sucess)
+	{
+		yield return new WaitForSeconds(2f);
+		canvasText.text = text;
+		if(sucess) SoundManager.Instance.WinJingle();
+		else SoundManager.Instance.LoseJingle();
+		yield return new WaitForSeconds(4f);
+		canvasText.text = "";
+	}
 
 	private void Start()
 	{
@@ -58,7 +102,6 @@ public class HMDisplayUIManager : MonoBehaviour
 	public void Activate(string textToDisplay)
 	{
 		 canvasText.text = textToDisplay;
-		 isActive = true;
 	}
 
 	public void Activate(Queue<string> textsToDisplay, float interval)
@@ -73,7 +116,7 @@ public class HMDisplayUIManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (!isActive || canvasText.text == "") return;
+		if (canvasText.text == "") return;
 
 		canvas.transform.position = Vector3.Lerp(canvas.transform.position, UITarget.position, Time.deltaTime * LerpSpeed);
 		canvas.transform.rotation = Quaternion.Lerp(canvas.transform.rotation, UITarget.rotation, Time.deltaTime * LerpSpeed);
