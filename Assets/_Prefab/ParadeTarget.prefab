@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4655251184513892}
   - component: {fileID: 114936936581318596}
   - component: {fileID: 65931516427939186}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ParadeTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}

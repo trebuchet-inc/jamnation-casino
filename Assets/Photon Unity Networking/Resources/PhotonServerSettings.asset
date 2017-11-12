@@ -50,4 +50,6 @@ MonoBehaviour:
   - ReceiveWeaponChosen
   - ReceiveNewGame
   - ReceiveSetReady
+  - ReceiveEndIntermission
+  - ReceiveRegisterHit
   DisableAutoOpenWizard: 1

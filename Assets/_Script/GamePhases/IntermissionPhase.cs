@@ -33,6 +33,6 @@ public class IntermissionPhase : GamePhase
 	{
 		return GameRefereeManager.Instance.roundIndex >= GameRefereeManager.Instance.TotalRounds
 			? Phases.End
-			: Phases.Intermission;
+			: Phases.WeaponSelection;
 	}
 }

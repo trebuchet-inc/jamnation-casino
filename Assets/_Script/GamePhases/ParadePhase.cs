@@ -14,7 +14,8 @@ public class ParadePhase : GamePhase
     
     public override void StartPhase()
     {
-        
+        isReady = false;
+        isEnemyReady = false;
     } 
     
     public override void TerminatePhase()
