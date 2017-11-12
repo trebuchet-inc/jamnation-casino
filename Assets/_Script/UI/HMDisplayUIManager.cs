@@ -53,8 +53,16 @@ public class HMDisplayUIManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(2f);
 		canvasText.text = text;
-		if(sucess) SoundManager.Instance.WinJingle();
-		else SoundManager.Instance.LoseJingle();
+
+		if (sucess)
+		{
+			SoundManager.Instance.WinJingle();
+		}
+		else
+		{
+			SoundManager.Instance.LoseJingle();
+		}
+		
 		yield return new WaitForSeconds(4f);
 		canvasText.text = "";
 	}

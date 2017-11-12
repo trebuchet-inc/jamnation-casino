@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public enum Hitinfo
 {
@@ -76,6 +77,8 @@ public class JoustPhase : GamePhase
 		print("hitSend");
 
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, (int)info, weapon);
+		ScoreBoardManager.Instance.DisplayUpdateOnScreen(ScoreBoardManager.Instance.displayLeft, "HIT!");
+		ScoreBoardManager.Instance.AddScoreBlue();
 		if(OnJoustHit != null) OnJoustHit.Invoke(info);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 	}
@@ -84,6 +87,10 @@ public class JoustPhase : GamePhase
 	public void ReceiveRegisterHit(int hit, string weapon)
 	{
 		print("hitReceived");
+		
+		ScoreBoardManager.Instance.DisplayUpdateOnScreen(ScoreBoardManager.Instance.displayRight, "HIT!");
+		ScoreBoardManager.Instance.AddScoreRed();
+		
 		if(OnJoustHit != null) OnJoustHit.Invoke((Hitinfo)hit);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 
