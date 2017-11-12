@@ -21,6 +21,7 @@ public class JoustEndTarget: MonoBehaviour
 	{
 		if (other.CompareTag("Player"))
 		{
+			Debug.Log("Entered joustEnd target");
 			if(!hasHit) GameRefereeManager.Instance.joustPhase.EndJoust();
 		}
 	}
