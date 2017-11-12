@@ -1,25 +1,15 @@
 fileFormatVersion: 2
-guid: b4771e7d208954b48839b45323ee5a15
-timeCreated: 1510448553
+guid: 2c24413e1cc957c4a829b2991cbd60b8
+timeCreated: 1510455607
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Attache
-    100004: Drap
     400000: //RootNode
-    400002: Attache
-    400004: Drap
     2300000: //RootNode
-    2300002: Attache
-    2300004: Drap
     3300000: //RootNode
-    3300002: Attache
-    3300004: Drap
-    4300000: Etendard
-    4300002: Drap
-    4300004: Attache
+    4300000: pPlane1
     9500000: //RootNode
   externalObjects:
   - first:
@@ -27,11 +17,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: lambert1
     second: {fileID: 2100000, guid: d810f6757d5965740bffee1667aecf30, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert6
-    second: {fileID: 2100000, guid: ad356392593d8674baa1b0016817c3f4, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -61,7 +46,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 2.5
+    globalScale: 1.3
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

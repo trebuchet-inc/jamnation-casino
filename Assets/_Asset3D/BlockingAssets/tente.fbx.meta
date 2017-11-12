@@ -1,25 +1,24 @@
 fileFormatVersion: 2
-guid: b4771e7d208954b48839b45323ee5a15
-timeCreated: 1510448553
+guid: c81bbf13e81b4324abd4fd26a5b1c5cc
+timeCreated: 1510460327
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Attache
-    100004: Drap
+    100002: tente
+    100004: tente_angle
+    100006: tente_tissus
     400000: //RootNode
-    400002: Attache
-    400004: Drap
-    2300000: //RootNode
-    2300002: Attache
-    2300004: Drap
-    3300000: //RootNode
-    3300002: Attache
-    3300004: Drap
-    4300000: Etendard
-    4300002: Drap
-    4300004: Attache
+    400002: tente
+    400004: tente_angle
+    400006: tente_tissus
+    2300000: tente_angle
+    2300002: tente_tissus
+    3300000: tente_angle
+    3300002: tente_tissus
+    4300000: tente_tissus
+    4300002: tente_angle
     9500000: //RootNode
   externalObjects:
   - first:
@@ -30,8 +29,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert6
-    second: {fileID: 2100000, guid: ad356392593d8674baa1b0016817c3f4, type: 2}
+      name: tente_mat_blanc
+    second: {fileID: 2100000, guid: 2ca186ffe0bd0b342b13a74f3c7818d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tente_mat_jaune
+    second: {fileID: 2100000, guid: 6c488f35fc8dcbb4c8afc2b8c716ded7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
