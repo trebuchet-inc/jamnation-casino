@@ -10,6 +10,7 @@ public class MountAgent : MonoBehaviour
 	public GameObject mountModel;
 	public NVRHand ridingHand;
 	public float joustSpeed;
+	public float voiceSpeed;
 	public float paradeSpeed;
 	public float velocityThreshold;
 	public float voiceThreshold;
@@ -99,7 +100,7 @@ public class MountAgent : MonoBehaviour
 
 			if(voiceIntensity > voiceDurationThreshold)
 			{
-				_rb.AddForce(transform.forward * actualSpeed, ForceMode.Impulse);
+				_rb.AddForce(transform.forward * voiceSpeed, ForceMode.Impulse);
 			}
 		}
 	}
