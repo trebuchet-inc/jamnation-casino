@@ -41,9 +41,9 @@ public class AkMonitoringCallbackInfo : IDisposable {
     }
   }
 
-  public akErrorCode errorCode {
+  public ErrorCode errorCode {
     get {
-      akErrorCode ret = (akErrorCode)AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_errorCode_get(swigCPtr);
+      ErrorCode ret = (ErrorCode)AkSoundEnginePINVOKE.CSharp_AkMonitoringCallbackInfo_errorCode_get(swigCPtr);
 
       return ret;
     } 
