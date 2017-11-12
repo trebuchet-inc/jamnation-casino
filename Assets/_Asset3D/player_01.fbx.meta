@@ -51,12 +51,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert1
-    second: {fileID: 2100000, guid: 4c0ac5d7c9c7ff840b9a8e01f0c5da11, type: 2}
+    second: {fileID: 2100000, guid: f2526aa9c5330ba4ab14726d06ae7820, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: player_head_tex
-    second: {fileID: 2100000, guid: efaf80645199c064a96e8c8b1eb92466, type: 2}
+    second: {fileID: 2100000, guid: 2952b61712c6bf648a97407ea4f8646f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -86,7 +86,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 10
+    globalScale: 7
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

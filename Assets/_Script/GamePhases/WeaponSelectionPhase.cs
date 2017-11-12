@@ -99,7 +99,7 @@ public class WeaponSelectionPhase : GamePhase
 		}
 
 		NVRHand hand = (NVRHand)NetworkPlayerManager.Instance.GetNetworkPlayerHand(id, Handedness.Right);
-		Weapon _weapon = Instantiate(enemyCurrentWeapon, hand.transform.position, hand.transform.rotation).GetComponent<Weapon>();
+		Weapon _weapon = Instantiate(enemyCurrentWeapon, hand.transform.parent.position, hand.transform.parent.rotation).GetComponent<Weapon>();
 		_weapon.Initialize(hand);
 	}
 

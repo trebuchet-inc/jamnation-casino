@@ -17,6 +17,8 @@ public class Weapon : MonoBehaviour
         if(target == null) target = transform;
         weaponHand = hand;
         transform.parent = hand.transform.parent;
+        target.localPosition = weaponHand.transform.localPosition;
+        target.localRotation = weaponHand.transform.localRotation;
     }
 
     void Update()

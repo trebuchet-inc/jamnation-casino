@@ -52,7 +52,7 @@ public class WeaponHolder : MonoBehaviour
 	private void SetupWeapon()
 	{
 		NVRHand hand = NVRPlayer.Instance.RightHand;
-		Weapon _weapon = Instantiate(currentWeapon, hand.transform.position, hand.transform.rotation).GetComponent<Weapon>();
+		Weapon _weapon = Instantiate(currentWeapon, NVRPlayer.Instance.transform.position, NVRPlayer.Instance.transform.rotation).GetComponent<Weapon>();
 		_weapon.Initialize(hand);
 	}
 

@@ -46,6 +46,8 @@ public class MountAgent : MonoBehaviour
 		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangeHandler;
 		GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
 		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
+		
+		mountModel = Instantiate(NetworkPlayerManager.Instance.mountPrefab, transform.position, transform.rotation);
 	}
 
 	void FixedUpdate()

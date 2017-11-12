@@ -2,11 +2,18 @@
 using System.Collections;
 using UnityEngine;
 
+public enum Hitinfo
+{
+	head,
+	neck,
+	torso
+}
+
 public class JoustPhase : GamePhase
 {
 	public event Action OnJoustGO;
 	
-	public event Action OnJoustHit;
+	public event Action<Hitinfo	> OnJoustHit;
 	
 	public override void StartPhase()
 	{
@@ -23,10 +30,15 @@ public class JoustPhase : GamePhase
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.All);
 	}
 
-	[PunRPC]
-	public void ReceiveRegisterHit()
+	public void callHit(string objname)
 	{
-		if(OnJoustHit != null) OnJoustHit.Invoke();
+
+	}
+
+	[PunRPC]
+	public void ReceiveRegisterHit(int hit)
+	{
+		if(OnJoustHit != null) OnJoustHit.Invoke((Hitinfo)hit);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 	}
 
