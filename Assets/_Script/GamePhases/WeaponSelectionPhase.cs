@@ -29,6 +29,9 @@ public class WeaponSelectionPhase : GamePhase
 
 	public override void StartPhase()
 	{
+		isWeaponChosen = false;
+		isEnemyWeaponChosen = false;
+		
 		NetworkPlayerManager.Instance.SetLocalPlayer();
 		
 		if(GameRefereeManager.Instance.roundIndex >= 1) ResetWeaponHolders();
