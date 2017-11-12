@@ -30,7 +30,8 @@ public class WeaponSelectionPhase : GamePhase
 	public override void StartPhase()
 	{
 		NetworkPlayerManager.Instance.SetLocalPlayer();
-		NetworkPlayerManager.Instance.ResetWeapons(NetworkPlayerManager.Instance.personalID);
+		
+		ResetWeaponHolders();
 		
 		PresentWeaponChoice();
 	}
@@ -104,6 +105,14 @@ public class WeaponSelectionPhase : GamePhase
 		NVRHand hand = (NVRHand)NetworkPlayerManager.Instance.GetNetworkPlayerHand(id, Handedness.Right);
 		Weapon _weapon = Instantiate(enemyCurrentWeapon, hand.transform.parent.position, hand.transform.parent.rotation).GetComponent<Weapon>();
 		_weapon.Initialize(hand);
+	}
+
+	private void ResetWeaponHolders()
+	{
+		foreach (var player in NetworkPlayerManager.Instance.players)
+		{
+			player.GetComponent<WeaponHolder>().RemoveWeapon();
+		}
 	}
 
 	private void EndWeaponChoice(string chosenWeapon)
