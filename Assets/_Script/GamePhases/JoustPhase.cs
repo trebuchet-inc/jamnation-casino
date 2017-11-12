@@ -59,6 +59,8 @@ public class JoustPhase : GamePhase
 			return;
 		}
 
+		print("hitSend");
+
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, (int)info);
 		if(OnJoustHit != null) OnJoustHit.Invoke(info);
 	}
