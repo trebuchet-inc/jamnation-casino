@@ -81,7 +81,7 @@ public class MountAgent : MonoBehaviour
 	
 	void Update () 
 	{
-		Debug.Log(voiceIntensity);
+		//Debug.Log(voiceIntensity);
 
 		if(!_mountFreeze) 
 		{
