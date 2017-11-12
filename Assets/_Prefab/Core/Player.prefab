@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 124680348035647068}
   - component: {fileID: 114591616894092962}
   - component: {fileID: 114467913496780116}
+  - component: {fileID: 114058382191795086}
   m_Layer: 0
   m_Name: Head
   m_TagString: MainCamera
@@ -266,6 +267,20 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1828517695126936}
   m_Enabled: 1
+--- !u!114 &114058382191795086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828517695126936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 990aa9c812d91e94c980ad7985d82f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fade: 1
+  color: {r: 1, g: 0, b: 0, a: 1}
+  isFading: 0
 --- !u!114 &114066076922853732
 MonoBehaviour:
   m_ObjectHideFlags: 1
