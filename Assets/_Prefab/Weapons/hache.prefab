@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 114858314266089906}
   - component: {fileID: 54187025521725704}
   m_Layer: 10
-  m_Name: hache
+  m_Name: Hache
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,3 +184,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   lerpSpeed: 10
+  JoinedObjects: []
