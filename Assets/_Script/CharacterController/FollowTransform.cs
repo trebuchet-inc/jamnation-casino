@@ -17,7 +17,7 @@ public class FollowTransform : MonoBehaviour
 	void Update () 
 	{
 		Vector3 dir = target.position - transform.position;
-		Quaternion rotationDelta = target.rotation * transform.rotation;
+		Quaternion rotationDelta = target.rotation * Quaternion.Inverse(transform.rotation);
 		float angle;
         Vector3 axis;
 

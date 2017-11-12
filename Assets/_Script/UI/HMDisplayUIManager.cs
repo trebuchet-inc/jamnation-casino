@@ -70,12 +70,11 @@ public class HMDisplayUIManager : MonoBehaviour
 	public void Deactivate()
 	{
 		canvasText.text = "";
-		isActive = false;
 	}
 
 	private void Update()
 	{
-		if (!isActive) return;
+		if (!isActive || canvasText.text == "") return;
 
 		canvas.transform.position = Vector3.Lerp(canvas.transform.position, UITarget.position, Time.deltaTime * LerpSpeed);
 		canvas.transform.rotation = Quaternion.Lerp(canvas.transform.rotation, UITarget.rotation, Time.deltaTime * LerpSpeed);

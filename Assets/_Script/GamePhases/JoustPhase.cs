@@ -73,7 +73,7 @@ public class JoustPhase : GamePhase
 		print("hitReceived");
 		if(OnJoustHit != null) OnJoustHit.Invoke((Hitinfo)hit);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
-		Fade.Instance.StartFade(0.7f,0.1f);
+		Fade.Instance.StartFade(0.2f,0.1f);
 		StartCoroutine(UnFade());
 	}
 
