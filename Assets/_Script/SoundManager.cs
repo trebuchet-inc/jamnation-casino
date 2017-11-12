@@ -13,7 +13,6 @@ public class SoundManager : MonoBehaviour
 
 	void Start()
 	{
-	
 	}
 	
 	public void PlayHit (string weapon) {
