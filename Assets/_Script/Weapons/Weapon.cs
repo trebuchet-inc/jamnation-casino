@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
 {
     public Transform target;
     public float lerpSpeed = 20;
+    public GameObject[] JoinedObjects;
 
     NVRHand weaponHand;
     bool _initialized;
@@ -19,6 +20,11 @@ public class Weapon : MonoBehaviour
         transform.parent = hand.transform.parent;
         target.localPosition = weaponHand.transform.localPosition;
         target.localRotation = weaponHand.transform.localRotation;
+
+        foreach(GameObject obj in JoinedObjects)
+        {
+            obj.transform.parent = null;
+        }
     }
 
     void Update()
@@ -30,5 +36,13 @@ public class Weapon : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         GameRefereeManager.Instance.joustPhase.callHit(other.name);
+    }
+
+    void OnDestroy()
+    {
+        foreach(GameObject obj in JoinedObjects)
+        {
+            Destroy(obj);
+        }
     }
 }
