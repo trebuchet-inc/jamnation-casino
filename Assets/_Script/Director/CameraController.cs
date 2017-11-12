@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.PostProcessing;
 
 public enum CameraControllerType
 {
@@ -30,10 +30,10 @@ public class CameraController : MonoBehaviour {
 	public Transform cameraParent;
 
 
-	// private PostProcessProfile _postFxs;
-	// private DepthOfField _DoF;
-	// private float _apertureDefault;
-	// private float _focusDistanceDefault;
+	 private PostProcessingProfile _postFxs;
+	private DepthOfFieldModel _DoF;
+	 private float _apertureDefault;
+	 private float _focusDistanceDefault;
 
 	private Quaternion _sourceLocalRotation;
 	private Vector3 _sourceLocalPosition;
@@ -55,7 +55,7 @@ public class CameraController : MonoBehaviour {
 		_rotationIntensity = cameraManager.rotationIntensity;
 		_translateIntensity = cameraManager.translationIntensity;
 		cameraParent = transform.GetChild(0);
-		// apertureIntense = cameraManager.apertureIntense;
+		apertureIntense = cameraManager.apertureIntense;
 		throttleGuider = transform.GetComponentInChildren<CameraThrottler>();
 		throttleGuider.translationIntensity = _translateIntensity;
 		throttleGuider.cameraBrother = this;
@@ -81,11 +81,10 @@ public class CameraController : MonoBehaviour {
 			break;
 		}
 		
-		// _postFxs  = FindObjectOfType<PostProcessVolume>().profile;
-		// _DoF =;
-		// _postFxs.
-		// _focusDistanceDefault = _DoF.focusDistance;
-		// _apertureDefault = _DoF.aperture;
+		 _postFxs  = FindObjectOfType<PostProcessingBehaviour>().profile;
+		_DoF = _postFxs.depthOfField;
+		_focusDistanceDefault = _postFxs.depthOfField.settings.focusDistance;
+		_apertureDefault = _postFxs.depthOfField.settings.aperture;
 
 
 	}
@@ -154,7 +153,7 @@ public class CameraController : MonoBehaviour {
 				if (isActiveCamera)
 				{
 					AimAdjustment(_mainTargets[_currentTarget].position);
-					// _DoF.focusDistance.value = (_mainTargets[_currentTarget].position-transform.position).magnitude;
+					SetFocus((_mainTargets[_currentTarget].position - cameraParent.position).magnitude);
 				}
 				
 				break;
@@ -163,17 +162,21 @@ public class CameraController : MonoBehaviour {
 				if (isActiveCamera)
 				{
 					AimAdjustment(_mainTargets[_currentTarget].position);
-					// _DoF.focusDistance.value = (_mainTargets[_currentTarget].position-transform.position).magnitude;
+					SetFocus((_mainTargets[_currentTarget].position-cameraParent.position).magnitude);
 				}
 				break;
 
 				case CameraControllerType.AnimationFreeAimRoutine:
 				AimAdjustment(throttleGuider.transform.position,0.3f);
+					
 				break;
 				
 				default:
 				break;
-			}	
+			}
+
+		float clampY = Mathf.Clamp(cameraParent.transform.position.y,1.1f,800f);
+		cameraParent.transform.position = new Vector3(cameraParent.transform.position.x, clampY, cameraParent.transform.position.z);
 	}
 
 	public void CutToThisCamera()
@@ -187,19 +190,27 @@ public class CameraController : MonoBehaviour {
 		switch (cameraType)
 			{
 				case CameraControllerType.Tripod:
+					SetFocus(_focusDistanceDefault);
+					SetAperture(_apertureDefault);
+					
 				break;
 
 				case CameraControllerType.AimLocked:
-				cameraParent.rotation = Quaternion.LookRotation(_mainTargets[_currentTarget].position-cameraParent.position);
+					cameraParent.rotation = Quaternion.LookRotation(_mainTargets[_currentTarget].position-cameraParent.position);
+					SetFocus(_focusDistanceDefault);
+					SetAperture(_apertureDefault);
 				// _DoF.aperture.value = apertureIntense;
 				break;
 
 				case CameraControllerType.AnimationTargetedRoutine:
-			cameraParent.rotation = Quaternion.LookRotation(_mainTargets[_currentTarget].position-cameraParent.position);
+					cameraParent.rotation = Quaternion.LookRotation(_mainTargets[_currentTarget].position-cameraParent.position);
+					SetAperture(_apertureDefault);
 				// _DoF.aperture.value = apertureIntense;
 				break;
 
 				case CameraControllerType.AnimationFreeAimRoutine:
+					SetFocus(_focusDistanceDefault);
+					SetAperture(_apertureDefault);
 				break;
 				
 				default:
@@ -218,6 +229,21 @@ public class CameraController : MonoBehaviour {
 	{
 		cameraParent.localRotation = _sourceLocalRotation;
 		cameraParent.localPosition = _sourceLocalPosition;
+	}
+
+	public void SetFocus(float distance)
+	{
+		DepthOfFieldModel.Settings sets = _postFxs.depthOfField.settings;
+		sets.focusDistance = distance;
+		_postFxs.depthOfField.settings = sets;
+	}
+
+	public void SetAperture(float aperture)
+	{
+		DepthOfFieldModel.Settings sets = _postFxs.depthOfField.settings;
+		sets.aperture = aperture;
+		_postFxs.depthOfField.settings = sets;
+		
 	}
 
 	

@@ -17,7 +17,7 @@ public class CameraManager : MonoBehaviour {
 	public Transform cameraTransform;
 	public float rotationIntensity;
 	public float translationIntensity;
-	// public float apertureIntense;
+	public float apertureIntense;
 	public AimCameraSpeadsheet[] aimCameraTargets;
 
 	// Use this for initialization
