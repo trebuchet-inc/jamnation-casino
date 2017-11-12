@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 4712333203883326}
   - component: {fileID: 114851819738830868}
   m_Layer: 10
-  m_Name: Fleau
+  m_Name: fleau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
