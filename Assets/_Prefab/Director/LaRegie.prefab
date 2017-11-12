@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4473709368756754}
-  - component: {fileID: 20328821260009572}
   - component: {fileID: 114924116517977194}
   - component: {fileID: 114277007543226394}
   m_Layer: 0
@@ -82,7 +81,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4809754705565032}
-  - component: {fileID: 20554777935468466}
   - component: {fileID: 114379107960259586}
   - component: {fileID: 114262527253376860}
   m_Layer: 0
@@ -348,7 +346,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1576305188114616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.3000001, y: 0.10999999, z: 0.16999975}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4809754705565032}
@@ -373,8 +371,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1136910865772738}
-  m_LocalRotation: {x: -0.2578125, y: 0.0894522, z: -0.023979269, w: -0.9617464}
-  m_LocalPosition: {x: -14.19, y: 7.24, z: 14.22}
+  m_LocalRotation: {x: -0.22765988, y: 0.08124104, z: -0.025038783, w: -0.9700227}
+  m_LocalPosition: {x: -14.233668, y: 7.1793127, z: 14.320928}
   m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000002}
   m_Children:
   - {fileID: 4267967111614390}
@@ -393,7 +391,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1147232581472342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.2999831, y: 0.10998802, z: 0.16999292}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4809754705565032}
@@ -470,8 +468,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1291874274673712}
-  m_LocalRotation: {x: -0.2578125, y: 0.0894522, z: -0.023979269, w: -0.9617464}
-  m_LocalPosition: {x: -14.19, y: 7.24, z: 14.22}
+  m_LocalRotation: {x: -0.25977388, y: 0.08129668, z: -0.021600613, w: -0.9619989}
+  m_LocalPosition: {x: -14.1255865, y: 7.1696715, z: 13.724386}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4508617982532618}
@@ -490,7 +488,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1378367197080246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.3, y: 0.10999999, z: 0.1699997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4473709368756754}
@@ -512,76 +510,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &20328821260009572
-Camera:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1136910865772738}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 0
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_ForceIntoRT: 1
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!20 &20554777935468466
-Camera:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1291874274673712}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 0
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_ForceIntoRT: 1
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
 --- !u!114 &114062242748346634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -593,9 +521,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a35d511055fef40bea400eed0910ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationIntensity: 0
-  cameraBrother: {fileID: 0}
-  activated: 0
+  translationIntensity: 5
+  cameraBrother: {fileID: 114379107960259586}
+  activated: 1
 --- !u!114 &114206516367146436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -607,8 +535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47a35d511055fef40bea400eed0910ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  translationIntensity: 0
-  cameraBrother: {fileID: 0}
+  translationIntensity: 5
+  cameraBrother: {fileID: 114924116517977194}
   activated: 0
 --- !u!114 &114262527253376860
 MonoBehaviour:
@@ -666,10 +594,10 @@ MonoBehaviour:
   cameraType: 2
   cameraId: 6
   isActiveCamera: 0
-  cameraManager: {fileID: 0}
-  throttleGuider: {fileID: 0}
+  cameraManager: {fileID: 114612517186129992}
+  throttleGuider: {fileID: 114062242748346634}
   apertureIntense: 0
-  cameraParent: {fileID: 0}
+  cameraParent: {fileID: 4508617982532618}
 --- !u!114 &114612517186129992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -681,7 +609,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe7b929b9fc7cf478542725a4551593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameras: []
+  cameras:
+  - {fileID: 114379107960259586}
+  - {fileID: 114924116517977194}
   activeCamera: {fileID: 0}
   cameraTransform: {fileID: 0}
   rotationIntensity: 25
@@ -744,7 +674,7 @@ MonoBehaviour:
   cameraType: 1
   cameraId: 5
   isActiveCamera: 0
-  cameraManager: {fileID: 0}
-  throttleGuider: {fileID: 0}
+  cameraManager: {fileID: 114612517186129992}
+  throttleGuider: {fileID: 114206516367146436}
   apertureIntense: 0
-  cameraParent: {fileID: 0}
+  cameraParent: {fileID: 4267967111614390}

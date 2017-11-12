@@ -1,37 +1,44 @@
 fileFormatVersion: 2
-guid: b4771e7d208954b48839b45323ee5a15
-timeCreated: 1510448553
+guid: 14991d1663ade9c4a87e61a05bbb4e21
+timeCreated: 1510459761
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Attache
-    100004: Drap
+    100002: Corde
+    100004: Poteau
+    100006: Poteau1
     400000: //RootNode
-    400002: Attache
-    400004: Drap
-    2300000: //RootNode
-    2300002: Attache
-    2300004: Drap
-    3300000: //RootNode
-    3300002: Attache
-    3300004: Drap
-    4300000: Etendard
-    4300002: Drap
-    4300004: Attache
+    400002: Corde
+    400004: Poteau
+    400006: Poteau1
+    2300000: Corde
+    2300002: Poteau
+    2300004: Poteau1
+    3300000: Corde
+    3300002: Poteau
+    3300004: Poteau1
+    4300000: Poteau
+    4300002: Poteau1
+    4300004: Corde
     9500000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: d810f6757d5965740bffee1667aecf30, type: 2}
+      name: blinn1
+    second: {fileID: 2100000, guid: 0f6d0790fdbd70d45938751d0ec0952e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: lambert6
-    second: {fileID: 2100000, guid: ad356392593d8674baa1b0016817c3f4, type: 2}
+      name: blinn2
+    second: {fileID: 2100000, guid: fb958f5174d82984a8df579584904204, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blinn3
+    second: {fileID: 2100000, guid: 36343136afc435744a6e5934b19ad6c0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
