@@ -73,7 +73,7 @@ public class JoustPhase : GamePhase
 
 	private IEnumerator WaitForGo()
 	{
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(2.5f);
 		
 		if(OnJoustGO != null) OnJoustGO.Invoke();
 	}

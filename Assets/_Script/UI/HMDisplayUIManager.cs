@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,11 +21,16 @@ public class HMDisplayUIManager : MonoBehaviour
 		canvasText.text = "";
 		
 		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangedHandler;
+		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosen;
+	}
+
+	private void OnWeaponChosen(string s)
+	{
+		Deactivate();
 	}
 
 	private void OnPhaseChangedHandler(Phases phases)
 	{
-	
 		switch (phases) 
 		{
 			case Phases.WeaponSelection:
@@ -75,11 +81,15 @@ public class HMDisplayUIManager : MonoBehaviour
 
 	private IEnumerator DisplayTexts(Queue<string> texts, float interval)
 	{
-		for (int i = 0; i < texts.Count; i++)
+		int count = texts.Count;
+		
+		for (int i = 0; i < count; i++)
 		{
 			canvasText.text = texts.Dequeue();
 			
 			yield return new WaitForSeconds(interval);
 		}
+		
+		Deactivate();
 	}
 }
