@@ -13,6 +13,8 @@ public class MountAgent : MonoBehaviour
 	public float paradeSpeed;
 	public float velocityThreshold;
 
+	AudioClip voice;
+
 	float actualSpeed;
 
 	bool _freeze = true;
@@ -48,6 +50,10 @@ public class MountAgent : MonoBehaviour
 		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
 		
 		mountModel = Instantiate(NetworkPlayerManager.Instance.mountPrefab, transform.position, transform.rotation);
+
+		voice = Microphone.Start(Microphone.devices[0], true, 1, 44100);
+		print(Microphone.devices[0]);
+		
 	}
 
 	void FixedUpdate()
