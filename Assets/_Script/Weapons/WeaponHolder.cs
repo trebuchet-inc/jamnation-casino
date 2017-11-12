@@ -10,36 +10,12 @@ public class WeaponHolder : MonoBehaviour
 
 	private void Start()
 	{
-		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangedHandler;
 		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
 	}
 
 	private void OnDisable()
 	{
-		GameRefereeManager.Instance.OnPhaseChanged -= OnPhaseChangedHandler;
-		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen  -= OnWeaponChosenHandler;
-	}
-
-	private void OnPhaseChangedHandler(Phases phases)
-	{
-		switch (phases)
-		{
-			case Phases.Parade:
-				
-				break;
-				
-			case Phases.Joust:
-				
-				break;	
-				
-			case Phases.Intermission:
-				
-				break;
-				
-			case Phases.End:
-				
-				break;
-		}
+		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen -= OnWeaponChosenHandler;
 	}
 
 	private void OnWeaponChosenHandler(string s)
@@ -58,6 +34,6 @@ public class WeaponHolder : MonoBehaviour
 
 	public void RemoveWeapon()
 	{
-		Destroy(currentWeapon);
+		if(currentWeapon != null) Destroy(currentWeapon);
 	}
 }
