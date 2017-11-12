@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 54157345497587286}
   - component: {fileID: 114406418270998420}
   - component: {fileID: 114066076922853732}
+  - component: {fileID: 114389810755839030}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -281,6 +282,18 @@ MonoBehaviour:
   joustSpeed: 1
   paradeSpeed: 0.2
   velocityThreshold: 0.5
+--- !u!114 &114389810755839030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1367763556675730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445503b6f10d0194f9e87122de838539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeapon: {fileID: 0}
 --- !u!114 &114406418270998420
 MonoBehaviour:
   m_ObjectHideFlags: 1
