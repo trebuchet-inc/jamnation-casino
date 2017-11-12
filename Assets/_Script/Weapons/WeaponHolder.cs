@@ -16,6 +16,7 @@ public class WeaponHolder : MonoBehaviour
 
 	private void OnResetHandler()
 	{
+		print("RESET");
 		RemoveWeapon();
 	}
 
