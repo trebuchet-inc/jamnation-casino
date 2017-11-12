@@ -31,7 +31,7 @@ public class WeaponSelectionPhase : GamePhase
 	{
 		isWeaponChosen = false;
 		isEnemyWeaponChosen = false;
-		
+
 		NetworkPlayerManager.Instance.SetLocalPlayer();
 		
 		if(GameRefereeManager.Instance.roundIndex >= 1) ResetWeaponHolders();
@@ -43,7 +43,7 @@ public class WeaponSelectionPhase : GamePhase
 	{
 		foreach (var weaponChoice in weaponChoiceAnchors)
 		{
-			weaponChoice.Deactivate();
+			//weaponChoice.Deactivate();
 		}
 	}
 	
@@ -124,14 +124,14 @@ public class WeaponSelectionPhase : GamePhase
 		{
 			if (weaponChoice.dummyWeaponPrefab != null && weaponChoice.dummyWeaponPrefab.name != chosenWeapon)
 			{
-				weaponChoice.dummy.SetActive(false);
+				Destroy(weaponChoice.dummy);
 			}
 		}
 		foreach (var weaponChoice in otherWeaponChoiceAnchors)
 		{
 			if (weaponChoice.dummyWeaponPrefab != null && weaponChoice.dummyWeaponPrefab.name != chosenWeapon)
 			{
-				weaponChoice.dummy.SetActive(false);
+				Destroy(weaponChoice.dummy);
 			}
 		}
 	}
