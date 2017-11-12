@@ -52,4 +52,5 @@ MonoBehaviour:
   - ReceiveSetReady
   - ReceiveEndIntermission
   - ReceiveRegisterHit
+  - ReceiveRestartGame
   DisableAutoOpenWizard: 1
