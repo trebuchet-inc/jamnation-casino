@@ -54,4 +54,5 @@ MonoBehaviour:
   - ReceiveRegisterHit
   - ReceiveRestartGame
   - ReceiveResetWeapons
+  - ReceiveEndJoust
   DisableAutoOpenWizard: 1

@@ -14,7 +14,7 @@ public class JoustPhase : GamePhase
 {
 	public event Action OnJoustGO;
 	
-	public event Action<Hitinfo	> OnJoustHit;
+	public event Action<Hitinfo> OnJoustHit;
 
 	bool localHited;
 	bool _active;
@@ -30,9 +30,15 @@ public class JoustPhase : GamePhase
         _active = false;
 	}
 
-	public void RegisterHit()
+	public void EndJoust()
 	{
-		photonView.RPC("ReceiveRegisterHit", PhotonTargets.All);
+		photonView.RPC("ReceiveEndJoust", PhotonTargets.All);
+	}
+
+	[PunRPC]
+	public void ReceiveEndJoust()
+	{
+		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 	}
 
 	public void callHit(string objname)

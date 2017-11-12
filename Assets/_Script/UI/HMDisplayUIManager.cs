@@ -53,7 +53,6 @@ public class HMDisplayUIManager : MonoBehaviour
 				Activate(msg, 1);
 				break;
 		}
-		
 	}
 
 	public void Activate(string textToDisplay)
