@@ -1073,19 +1073,19 @@ namespace ExitGames.Client.Photon.Chat
 
                 switch (operationResponse.ReturnCode)
                 {
-                    case ErrorCode.InvalidAuthentication:
+                    case PhotonErrorCode.InvalidAuthentication:
                         this.DisconnectedCause = ChatDisconnectCause.InvalidAuthentication;
                         break;
-                    case ErrorCode.CustomAuthenticationFailed:
+                    case PhotonErrorCode.CustomAuthenticationFailed:
                         this.DisconnectedCause = ChatDisconnectCause.CustomAuthenticationFailed;
                         break;
-                    case ErrorCode.InvalidRegion:
+                    case PhotonErrorCode.InvalidRegion:
                         this.DisconnectedCause = ChatDisconnectCause.InvalidRegion;
                         break;
-                    case ErrorCode.MaxCcuReached:
+                    case PhotonErrorCode.MaxCcuReached:
                         this.DisconnectedCause = ChatDisconnectCause.MaxCcuReached;
                         break;
-                    case ErrorCode.OperationNotAllowedInCurrentState:
+                    case PhotonErrorCode.OperationNotAllowedInCurrentState:
                         this.DisconnectedCause = ChatDisconnectCause.OperationNotAllowedInCurrentState;
                         break;
                 }

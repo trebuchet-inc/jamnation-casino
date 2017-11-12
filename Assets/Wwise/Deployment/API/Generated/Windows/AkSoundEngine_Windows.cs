@@ -1891,7 +1891,7 @@ public partial class AkSoundEngine {
     return ret;
   }
 
-  public static AKRESULT PostCode(akErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID, uint in_audioNodeID, bool in_bIsBus) {
+  public static AKRESULT PostCode(ErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID, uint in_audioNodeID, bool in_bIsBus) {
 
 	var in_gameObjID_id = AkSoundEngine.GetAkGameObjectID(in_gameObjID);
 	AkSoundEngine.PreGameObjectAPICall(in_gameObjID, in_gameObjID_id);
@@ -1903,7 +1903,7 @@ public partial class AkSoundEngine {
     }
   }
 
-  public static AKRESULT PostCode(akErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID, uint in_audioNodeID) {
+  public static AKRESULT PostCode(ErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID, uint in_audioNodeID) {
 
 	var in_gameObjID_id = AkSoundEngine.GetAkGameObjectID(in_gameObjID);
 	AkSoundEngine.PreGameObjectAPICall(in_gameObjID, in_gameObjID_id);
@@ -1915,7 +1915,7 @@ public partial class AkSoundEngine {
     }
   }
 
-  public static AKRESULT PostCode(akErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID) {
+  public static AKRESULT PostCode(ErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID, UnityEngine.GameObject in_gameObjID) {
 
 	var in_gameObjID_id = AkSoundEngine.GetAkGameObjectID(in_gameObjID);
 	AkSoundEngine.PreGameObjectAPICall(in_gameObjID, in_gameObjID_id);
@@ -1927,13 +1927,13 @@ public partial class AkSoundEngine {
     }
   }
 
-  public static AKRESULT PostCode(akErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID) {
+  public static AKRESULT PostCode(ErrorCode in_eError, ErrorLevel in_eErrorLevel, uint in_playingID) {
     AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostCode__SWIG_3((int)in_eError, (int)in_eErrorLevel, in_playingID);
 
     return ret;
   }
 
-  public static AKRESULT PostCode(akErrorCode in_eError, ErrorLevel in_eErrorLevel) {
+  public static AKRESULT PostCode(ErrorCode in_eError, ErrorLevel in_eErrorLevel) {
     AKRESULT ret = (AKRESULT)AkSoundEnginePINVOKE.CSharp_PostCode__SWIG_4((int)in_eError, (int)in_eErrorLevel);
 
     return ret;

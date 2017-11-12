@@ -147,13 +147,13 @@ public enum DisconnectCause
     Exception = StatusCode.Exception,
 
     /// <summary>(32767) The Photon Cloud rejected the sent AppId. Check your Dashboard and make sure the AppId you use is complete and correct.</summary>
-    InvalidAuthentication = ErrorCode.InvalidAuthentication,
+    InvalidAuthentication = PhotonErrorCode.InvalidAuthentication,
 
     /// <summary>(32757) Authorization on the Photon Cloud failed because the concurrent users (CCU) limit of the app's subscription is reached.</summary>
-    MaxCcuReached = ErrorCode.MaxCcuReached,
+    MaxCcuReached = PhotonErrorCode.MaxCcuReached,
 
     /// <summary>(32756) Authorization on the Photon Cloud failed because the app's subscription does not allow to use a particular region's server.</summary>
-    InvalidRegion = ErrorCode.InvalidRegion,
+    InvalidRegion = PhotonErrorCode.InvalidRegion,
 
     /// <summary>The security settings for client or server don't allow a connection (see remarks).</summary>
     /// <remarks>
@@ -1232,7 +1232,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
                     if (PhotonNetwork.logLevel >= PhotonLogLevel.Informational)
                     {
                         Debug.Log("Join failed on GameServer. Changing back to MasterServer. Msg: " + operationResponse.DebugMessage);
-                        if (operationResponse.ReturnCode == ErrorCode.GameDoesNotExist)
+                        if (operationResponse.ReturnCode == PhotonErrorCode.GameDoesNotExist)
                         {
                             Debug.Log("Most likely the game became empty during the switch to GameServer.");
                         }
@@ -1243,7 +1243,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
                     if (PhotonNetwork.logLevel >= PhotonLogLevel.Informational)
                     {
                         Debug.Log("Join failed on GameServer. Changing back to MasterServer. Msg: " + operationResponse.DebugMessage);
-                        if (operationResponse.ReturnCode == ErrorCode.GameDoesNotExist)
+                        if (operationResponse.ReturnCode == PhotonErrorCode.GameDoesNotExist)
                         {
                             Debug.Log("Most likely the game became empty during the switch to GameServer.");
                         }
@@ -1615,15 +1615,15 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
         }
         else
         {
-            if (operationResponse.ReturnCode == ErrorCode.OperationNotAllowedInCurrentState)
+            if (operationResponse.ReturnCode == PhotonErrorCode.OperationNotAllowedInCurrentState)
             {
                 Debug.LogError("Operation " + operationResponse.OperationCode + " could not be executed (yet). Wait for state JoinedLobby or ConnectedToMaster and their callbacks before calling operations. WebRPCs need a server-side configuration. Enum OperationCode helps identify the operation.");
             }
-            else if (operationResponse.ReturnCode == ErrorCode.PluginReportedError)
+            else if (operationResponse.ReturnCode == PhotonErrorCode.PluginReportedError)
             {
                 Debug.LogError("Operation " + operationResponse.OperationCode + " failed in a server-side plugin. Check the configuration in the Dashboard. Message from server-plugin: " + operationResponse.DebugMessage);
             }
-            else if (operationResponse.ReturnCode == ErrorCode.NoRandomMatchFound)
+            else if (operationResponse.ReturnCode == PhotonErrorCode.NoRandomMatchFound)
             {
                 Debug.LogWarning("Operation failed: " + operationResponse.ToStringFull());
             }
@@ -1655,16 +1655,16 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
 
                 if (operationResponse.ReturnCode != 0)
                 {
-                    if (operationResponse.ReturnCode == ErrorCode.InvalidOperation)
+                    if (operationResponse.ReturnCode == PhotonErrorCode.InvalidOperation)
                     {
                         Debug.LogError(string.Format("If you host Photon yourself, make sure to start the 'Instance LoadBalancing' "+ this.ServerAddress));
                     }
-                    else if (operationResponse.ReturnCode == ErrorCode.InvalidAuthentication)
+                    else if (operationResponse.ReturnCode == PhotonErrorCode.InvalidAuthentication)
                     {
                         Debug.LogError(string.Format("The appId this client sent is unknown on the server (Cloud). Check settings. If using the Cloud, check account."));
                         SendMonoMessage(PhotonNetworkingMessage.OnFailedToConnectToPhoton, DisconnectCause.InvalidAuthentication);
                     }
-                    else if (operationResponse.ReturnCode == ErrorCode.CustomAuthenticationFailed)
+                    else if (operationResponse.ReturnCode == PhotonErrorCode.CustomAuthenticationFailed)
                     {
                         Debug.LogError(string.Format("Custom Authentication failed (either due to user-input or configuration or AuthParameter string format). Calling: OnCustomAuthenticationFailed()"));
                         SendMonoMessage(PhotonNetworkingMessage.OnCustomAuthenticationFailed, operationResponse.DebugMessage);
@@ -1677,20 +1677,20 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
                     this.State = ClientState.Disconnecting;
                     this.Disconnect();
 
-                    if (operationResponse.ReturnCode == ErrorCode.MaxCcuReached)
+                    if (operationResponse.ReturnCode == PhotonErrorCode.MaxCcuReached)
                     {
                         if (PhotonNetwork.logLevel >= PhotonLogLevel.Informational)
                             Debug.LogWarning(string.Format("Currently, the limit of users is reached for this title. Try again later. Disconnecting"));
                         SendMonoMessage(PhotonNetworkingMessage.OnPhotonMaxCccuReached);
                         SendMonoMessage(PhotonNetworkingMessage.OnConnectionFail, DisconnectCause.MaxCcuReached);
                     }
-                    else if (operationResponse.ReturnCode == ErrorCode.InvalidRegion)
+                    else if (operationResponse.ReturnCode == PhotonErrorCode.InvalidRegion)
                     {
                         if (PhotonNetwork.logLevel >= PhotonLogLevel.Informational)
                             Debug.LogError(string.Format("The used master server address is not available with the subscription currently used. Got to Photon Cloud Dashboard or change URL. Disconnecting."));
                         SendMonoMessage(PhotonNetworkingMessage.OnConnectionFail, DisconnectCause.InvalidRegion);
                     }
-                    else if (operationResponse.ReturnCode == ErrorCode.AuthenticationTicketExpired)
+                    else if (operationResponse.ReturnCode == PhotonErrorCode.AuthenticationTicketExpired)
                     {
                         if (PhotonNetwork.logLevel >= PhotonLogLevel.Informational)
                             Debug.LogError(string.Format("The authentication ticket expired. You need to connect (and authenticate) again. Disconnecting."));
@@ -1793,7 +1793,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
             case OperationCode.GetRegions:
                 // Debug.Log("GetRegions returned: " + operationResponse.ToStringFull());
 
-                if (operationResponse.ReturnCode == ErrorCode.InvalidAuthentication)
+                if (operationResponse.ReturnCode == PhotonErrorCode.InvalidAuthentication)
                 {
                     Debug.LogError(string.Format("The appId this client sent is unknown on the server (Cloud). Check settings. If using the Cloud, check account."));
                     SendMonoMessage(PhotonNetworkingMessage.OnFailedToConnectToPhoton, DisconnectCause.InvalidAuthentication);
@@ -1802,7 +1802,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
                     this.Disconnect();
                     break;
                 }
-                if (operationResponse.ReturnCode != ErrorCode.Ok)
+                if (operationResponse.ReturnCode != PhotonErrorCode.Ok)
                 {
                     Debug.LogError("GetRegions failed. Can't provide regions list. Error: " + operationResponse.ReturnCode + ": " + operationResponse.DebugMessage);
                     break;
@@ -1914,7 +1914,7 @@ internal class NetworkingPeer : LoadBalancingPeer, IPhotonPeerListener
                 // the operation OpJoinRandom either fails (with returncode 8) or returns game-to-join information
                 if (operationResponse.ReturnCode != 0)
                 {
-                    if (operationResponse.ReturnCode == ErrorCode.NoRandomMatchFound)
+                    if (operationResponse.ReturnCode == PhotonErrorCode.NoRandomMatchFound)
                     {
                         if (PhotonNetwork.logLevel >= PhotonLogLevel.Full)
                             Debug.Log("JoinRandom failed: No open game. Calling: OnPhotonRandomJoinFailed() and staying on master server.");
