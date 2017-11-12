@@ -801,6 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  lerpSpeed: 10
 --- !u!137 &137195088609906862
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

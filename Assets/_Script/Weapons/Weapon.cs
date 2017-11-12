@@ -6,10 +6,9 @@ using NewtonVR;
 public class Weapon : MonoBehaviour
 {
     public Transform target;
+    public float lerpSpeed = 20;
 
     NVRHand weaponHand;
-    int lerpSpeed = 20;
-
     bool _initialized;
 
     public void Initialize(NVRHand hand)
@@ -22,7 +21,7 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        target.localPosition = Vector3.Lerp(transform.localPosition, weaponHand.transform.localPosition, Time.deltaTime * 2);
-        target.localRotation = Quaternion.Lerp(transform.localRotation, weaponHand.transform.localRotation, Time.deltaTime * 2);
+        target.localPosition = Vector3.Lerp(transform.localPosition, weaponHand.transform.localPosition, Time.deltaTime * lerpSpeed);
+        target.localRotation = Quaternion.Lerp(transform.localRotation, weaponHand.transform.localRotation, Time.deltaTime * lerpSpeed);
     }
 }
