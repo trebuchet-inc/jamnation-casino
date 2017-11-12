@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using NewtonVR;
 
 public class WeaponHolder : MonoBehaviour
@@ -11,13 +8,22 @@ public class WeaponHolder : MonoBehaviour
 	private void Start()
 	{
 		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
+		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangedHandler;
+	}
+
+	private void OnPhaseChangedHandler(Phases phases)
+	{
+		if (GameRefereeManager.Instance.currentPhase == Phases.WeaponSelection && GameRefereeManager.Instance.roundIndex >= 1)
+		{
+			RemoveWeapon();
+		}
 	}
 
 	private void OnDisable()
 	{
 		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen -= OnWeaponChosenHandler;
 	}
-
+	
 	private void OnWeaponChosenHandler(string s)
 	{
 		currentWeapon = GameRefereeManager.Instance.weaponSelectionPhase.GetWeaponFromName(s);
@@ -34,6 +40,6 @@ public class WeaponHolder : MonoBehaviour
 
 	public void RemoveWeapon()
 	{
-		if(currentWeapon != null) Destroy(currentWeapon);
+		if(currentWeapon != null) DestroyImmediate(currentWeapon, true);
 	}
 }
