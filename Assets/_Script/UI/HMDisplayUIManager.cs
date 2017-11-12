@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -79,7 +77,7 @@ public class HMDisplayUIManager : MonoBehaviour
 	{
 		for (int i = 0; i < texts.Count; i++)
 		{
-			Activate(texts.Dequeue());
+			canvasText.text = texts.Dequeue();
 			
 			yield return new WaitForSeconds(interval);
 		}

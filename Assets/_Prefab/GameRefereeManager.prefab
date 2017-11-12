@@ -66,8 +66,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114603901733259528
@@ -129,6 +129,7 @@ MonoBehaviour:
   weaponSelectionPhase: {fileID: 0}
   paradePhase: {fileID: 0}
   joustPhase: {fileID: 0}
+  intermissionPhase: {fileID: 0}
 --- !u!114 &114913177891519508
 MonoBehaviour:
   m_ObjectHideFlags: 1

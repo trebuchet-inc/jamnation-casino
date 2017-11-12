@@ -17,7 +17,7 @@ public class ParadePhase : GamePhase
         
     } 
     
-    public override void EndPhase()
+    public override void TerminatePhase()
     {
         foreach (var target in paradeTargets)
         {

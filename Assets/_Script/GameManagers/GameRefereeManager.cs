@@ -13,6 +13,9 @@ public enum Phases
 public class GameRefereeManager : Photon.MonoBehaviour
 {
 	public static GameRefereeManager Instance;
+
+	public int roundIndex;
+	public int TotalRounds;
 	
 	// GAME PHASES //
 	public Phases currentPhase;
@@ -21,7 +24,8 @@ public class GameRefereeManager : Photon.MonoBehaviour
 	public WeaponSelectionPhase weaponSelectionPhase;
 	public ParadePhase paradePhase;
 	public JoustPhase joustPhase;
-	
+	public IntermissionPhase intermissionPhase;
+	public EndPhase endPhaseScript;
 
 	public event Action OnNewGame;
 	
@@ -39,6 +43,8 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		weaponSelectionPhase = GetComponent<WeaponSelectionPhase>();
 		paradePhase = GetComponent<ParadePhase>();
 		joustPhase = GetComponent<JoustPhase>();
+		intermissionPhase = GetComponent<IntermissionPhase>();
+		endPhaseScript = GetComponent<EndPhase>();
 	}
 
 	public void NewGame()
@@ -61,7 +67,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		// END CURRENT PHASE
 		if(currentPhaseScript != null)
 		{ 
-			currentPhaseScript.EndPhase();
+			currentPhaseScript.TerminatePhase();
 		}
 		
 		// SEND EVENTS TO OTHERS WHO NEED TO DO SHIT
@@ -91,11 +97,14 @@ public class GameRefereeManager : Photon.MonoBehaviour
 			break;	
 				
 			case Phases.Intermission:
-				
+				roundIndex++;
+				currentPhaseScript = intermissionPhase;
+				intermissionPhase.StartPhase();
 			break;
 				
 			case Phases.End:
-				
+				currentPhaseScript = endPhaseScript;
+				endPhaseScript.StartPhase();
 			break;
 		}
 	}

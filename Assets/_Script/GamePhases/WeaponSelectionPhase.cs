@@ -32,7 +32,7 @@ public class WeaponSelectionPhase : GamePhase
 		PresentWeaponChoice();
 	}
 
-	public override void EndPhase()
+	public override void TerminatePhase()
 	{
 		foreach (var weaponChoice in weaponChoiceAnchors)
 		{

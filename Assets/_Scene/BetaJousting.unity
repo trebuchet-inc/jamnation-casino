@@ -378,6 +378,10 @@ Prefab:
       propertyPath: mountModel
       value: 
       objectReference: {fileID: 1836402539}
+    - target: {fileID: 4379864392672792, guid: 7cbf2fb37c9d2f947a1b3102ff873f8b, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7cbf2fb37c9d2f947a1b3102ff873f8b, type: 2}
   m_IsPrefabParent: 0

@@ -13,9 +13,21 @@ public class JoustPhase : GamePhase
 		StartCoroutine(WaitForGo());
 	} 
     
-	public override void EndPhase()
+	public override void TerminatePhase()
 	{
         
+	}
+
+	public void RegisterHit()
+	{
+		photonView.RPC("ReceiveRegisterHit", PhotonTargets.All);
+	}
+
+	[PunRPC]
+	public void ReceiveRegisterHit()
+	{
+		if(OnJoustHit != null) OnJoustHit.Invoke();
+		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 	}
 
 	private IEnumerator WaitForGo()

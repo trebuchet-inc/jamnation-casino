@@ -17,7 +17,7 @@ public class GamePhase : Photon.MonoBehaviour
 		
 	}
 
-	public virtual void EndPhase()
+	public virtual void TerminatePhase()
 	{
 		
 	}
