@@ -22,6 +22,12 @@ public class HMDisplayUIManager : MonoBehaviour
 		
 		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangedHandler;
 		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosen;
+		GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
+	}
+
+	private void OnParadeReadyHandler()
+	{
+		Deactivate();
 	}
 
 	private void OnWeaponChosen(string s)
