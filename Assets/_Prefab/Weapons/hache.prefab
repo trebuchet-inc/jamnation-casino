@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4875583630469132}
   - component: {fileID: 114858314266089906}
   - component: {fileID: 54187025521725704}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: hache
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4790196621286548}
   - component: {fileID: 33331368611479104}
   - component: {fileID: 23299922406520770}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: hache_lancer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

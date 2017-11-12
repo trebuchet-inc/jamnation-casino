@@ -17,15 +17,17 @@ public class JoustPhase : GamePhase
 	public event Action<Hitinfo	> OnJoustHit;
 
 	bool localHited;
+	bool _active;
 	
 	public override void StartPhase()
 	{
 		StartCoroutine(WaitForGo());
+		_active = true;
 	} 
     
 	public override void TerminatePhase()
 	{
-        
+        _active = false;
 	}
 
 	public void RegisterHit()
@@ -35,7 +37,7 @@ public class JoustPhase : GamePhase
 
 	public void callHit(string objname)
 	{
-		if(localHited) return;
+		if(localHited || !_active) return;
 
 		localHited = true;
 		Hitinfo info = Hitinfo.none;

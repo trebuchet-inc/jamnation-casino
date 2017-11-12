@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4646623340945638}
   - component: {fileID: 114299366926613154}
   - component: {fileID: 54715085116542228}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 4486971972755926}
   - component: {fileID: 33075374406343568}
   - component: {fileID: 23543582221904476}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: lance
   m_TagString: Untagged
   m_Icon: {fileID: 0}

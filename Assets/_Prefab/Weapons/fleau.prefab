@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4480745475940558}
   - component: {fileID: 137443608740730586}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4325792544126888}
   - component: {fileID: 137195088609906862}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4702971295886678}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_geometries
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4180064184144916}
   - component: {fileID: 137893442469625392}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 4124350575487572}
   - component: {fileID: 54697725515541732}
   - component: {fileID: 144727656223587760}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_fleau_maillons_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4541033946106652}
   - component: {fileID: 137836923680520838}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4852316440996534}
   - component: {fileID: 137285305378762672}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4685892715483840}
   - component: {fileID: 137900033515129022}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4440593014696630}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4624901432483892}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: grp_joints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4783727466531456}
   - component: {fileID: 54447609025460238}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_fleau_manche
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4435146633016402}
   - component: {fileID: 137547351706729414}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_masse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4696823694255458}
   - component: {fileID: 137919285316246854}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4838989611882446}
   - component: {fileID: 137474084679231866}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4619124115108512}
   - component: {fileID: 137845831938847986}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 4921028939049512}
   - component: {fileID: 54177568852921880}
   - component: {fileID: 144493337244003296}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_fleau_maillons_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4477706157153020}
   - component: {fileID: 137691161572321858}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4712333203883326}
   - component: {fileID: 114851819738830868}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4487065489006874}
   - component: {fileID: 137828838053095590}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_manche
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 4747837831710810}
   - component: {fileID: 54065754037254854}
   - component: {fileID: 144168111670597080}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_fleau_maillons_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4278723643322532}
   - component: {fileID: 137304181425837250}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4345072938927466}
   - component: {fileID: 137200558520796460}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fleau_maillon_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
