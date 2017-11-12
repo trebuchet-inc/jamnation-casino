@@ -77,6 +77,7 @@ public class JoustPhase : GamePhase
 
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, (int)info, weapon);
 		if(OnJoustHit != null) OnJoustHit.Invoke(info);
+		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 	}
 
 	[PunRPC]

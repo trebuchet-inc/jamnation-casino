@@ -6,5 +6,5 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scene/BetaJoustingGuillaume.unity
-    guid: c8da04b72c9951b478c12f0fff993ed7
+    path: Assets/_Scene/BetaJousting.unity
+    guid: 9ffd5c6acec24d04cbffec5cca793fbb

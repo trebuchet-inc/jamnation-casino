@@ -8,7 +8,7 @@
  * ----------------------------------------------------------------------------- */
 
 
-public enum akErrorCode {
+public enum ErrorCode {
   ErrorCode_NoError = 0,
   ErrorCode_FileNotFound,
   ErrorCode_CannotOpenFile,

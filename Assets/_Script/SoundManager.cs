@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,6 @@ public class SoundManager : MonoBehaviour
 
 	void Start()
 	{
-		//GameRefereeManager.Instance.paradePhase.On
 	}
 	
 	public void PlayHit (string weapon) {
@@ -38,8 +37,9 @@ public class SoundManager : MonoBehaviour
 
 	uint _play_Ambiance;
 	public void PlayAmbiance () {
+		print("lol");
 		 _play_Ambiance = AkSoundEngine.GetIDFromString("Play_Ambiance");
-		 AkSoundEngine.PostEvent(_play_Ambiance, gameObject);
+		 AkSoundEngine.PostEvent("Play_Ambiance", gameObject);
 	}
 
 	uint _stop_Ambiance;

@@ -2752,6 +2752,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   rotationIntensity: 25
   translationIntensity: 5
+  apertureIntense: 0.5
   aimCameraTargets:
   - cameraId: 1
     targets: []

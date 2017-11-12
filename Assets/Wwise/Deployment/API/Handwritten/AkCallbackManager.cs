@@ -22,7 +22,7 @@ using UnityEditor;
 static public class AkCallbackManager
 {
 	public delegate void EventCallback(object in_cookie, AkCallbackType in_type, AkCallbackInfo in_info);
-	public delegate void MonitoringCallback(akErrorCode in_errorCode, ErrorLevel in_errorLevel, uint in_playingID, ulong in_gameObjID, string in_msg);
+	public delegate void MonitoringCallback(ErrorCode in_errorCode, ErrorLevel in_errorLevel, uint in_playingID, ulong in_gameObjID, string in_msg);
 	public delegate void BankCallback(uint in_bankID, IntPtr in_InMemoryBankPtr, AKRESULT in_eLoadResult, uint in_memPoolId, object in_Cookie);
 
 	public class EventCallbackPackage
