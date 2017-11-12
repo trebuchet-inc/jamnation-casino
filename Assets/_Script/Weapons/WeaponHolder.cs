@@ -5,6 +5,8 @@ public class WeaponHolder : MonoBehaviour
 {
 	public GameObject currentWeapon;
 
+	public Weapon activeWeapon;
+
 	private void Start()
 	{
 		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
@@ -34,12 +36,12 @@ public class WeaponHolder : MonoBehaviour
 	private void SetupWeapon()
 	{
 		NVRHand hand = NVRPlayer.Instance.RightHand;
-		Weapon _weapon = Instantiate(currentWeapon, NVRPlayer.Instance.transform.position, NVRPlayer.Instance.transform.rotation).GetComponent<Weapon>();
-		_weapon.Initialize(hand);
+		activeWeapon = Instantiate(currentWeapon, NVRPlayer.Instance.transform.position, NVRPlayer.Instance.transform.rotation).GetComponent<Weapon>();
+		activeWeapon.Initialize(hand);
 	}
 
 	public void RemoveWeapon()
 	{
-		if(currentWeapon != null) DestroyImmediate(currentWeapon, true);
+		if(currentWeapon != null) Destroy(activeWeapon.gameObject);
 	}
 }
