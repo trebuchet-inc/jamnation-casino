@@ -61,7 +61,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		
 		NetworkPlayerManager.Instance.SetLocalPlayer();
 
-		if (isFirstGame)
+		if (!isFirstGame)
 		{
 			weaponSelectionPhase.ResetWeaponHolders();
 		}
