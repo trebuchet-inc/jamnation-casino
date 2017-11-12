@@ -17,11 +17,12 @@ public class Weapon : MonoBehaviour
         _initialized = true;
         if(target == null) target = transform;
         weaponHand = hand;
+        transform.parent = hand.transform.parent;
     }
 
     void Update()
     {
-        target.position = Vector3.Lerp(transform.position, weaponHand.transform.position, Time.deltaTime * 2);
-        target.rotation = Quaternion.Lerp(transform.rotation, weaponHand.transform.rotation, Time.deltaTime * 2);
+        target.localPosition = Vector3.Lerp(transform.localPosition, weaponHand.transform.localPosition, Time.deltaTime * 2);
+        target.localRotation = Quaternion.Lerp(transform.localRotation, weaponHand.transform.localRotation, Time.deltaTime * 2);
     }
 }
