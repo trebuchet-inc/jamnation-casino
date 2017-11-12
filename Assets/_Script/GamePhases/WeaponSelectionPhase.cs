@@ -34,8 +34,6 @@ public class WeaponSelectionPhase : GamePhase
 
 		NetworkPlayerManager.Instance.SetLocalPlayer();
 		
-//		if(GameRefereeManager.Instance.roundIndex >= 1) ResetWeaponHolders();
-		
 		PresentWeaponChoice();
 	}
 
@@ -112,11 +110,6 @@ public class WeaponSelectionPhase : GamePhase
 		NVRHand hand = (NVRHand)NetworkPlayerManager.Instance.GetNetworkPlayerHand(id, Handedness.Right);
 		Weapon _weapon = Instantiate(enemyCurrentWeapon, hand.transform.parent.position, hand.transform.parent.rotation).GetComponent<Weapon>();
 		_weapon.Initialize(hand);
-	}
-
-	public void ResetWeaponHolders()
-	{
-		
 	}
 
 	private void EndWeaponChoice(string chosenWeapon)

@@ -60,11 +60,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		Debug.Log("Starting New Game");
 		
 		NetworkPlayerManager.Instance.SetLocalPlayer();
-
-		if (!isFirstGame)
-		{
-			weaponSelectionPhase.ResetWeaponHolders();
-		}
+		roundIndex = 0;
 		
 		if(OnNewGame != null) OnNewGame.Invoke();
 		ChangePhase(Phases.WeaponSelection);

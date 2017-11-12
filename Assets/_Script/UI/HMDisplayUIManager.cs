@@ -28,22 +28,22 @@ public class HMDisplayUIManager : MonoBehaviour
 		switch(info)
 		{
 			case Hitinfo.head :
-			text = "Wow you hit the head";
+			text = "Wow! HIT THAT HEAD!";
 			sucess = true;
 			break;
 
 			case Hitinfo.leg :
-			text = "You hit the knee : no more adventure for him";
+			text = "You hit the knee : No more adventures for him!";
 			sucess = true;
 			break;
 
 			case Hitinfo.torso :
-			text = "You hit the torso, it must be painful";
+			text = "You hit the torso, it must be painful!";
 			sucess = true;
 			break;
 
 			case Hitinfo.none :
-			text = "You hit nothing you cheap fuck, sobaka";
+			text = "Missed !";
 			break;
 		}
 		StartCoroutine(DelayBeforeResult(text, sucess));

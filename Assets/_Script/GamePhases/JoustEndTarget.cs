@@ -28,7 +28,13 @@ public class JoustEndTarget: MonoBehaviour
 		if (other.CompareTag("Player"))
 		{
 			Debug.Log("Entered joustEnd target");
-			if(!hasHit) GameRefereeManager.Instance.joustPhase.EndJoust(false);
+
+			other.attachedRigidbody.GetComponent<MountAgent>()._freeze = true;
+			
+			if (!hasHit)
+			{
+				GameRefereeManager.Instance.joustPhase.EndJoust(false);
+			}
 		}
 	}
 }
