@@ -41,10 +41,7 @@ public class WeaponSelectionPhase : GamePhase
 
 	public override void TerminatePhase()
 	{
-		foreach (var weaponChoice in weaponChoiceAnchors)
-		{
-			//weaponChoice.Deactivate();
-		}
+		
 	}
 	
 	//
@@ -112,10 +109,7 @@ public class WeaponSelectionPhase : GamePhase
 
 	public void ResetWeaponHolders()
 	{
-		foreach (var player in NetworkPlayerManager.Instance.players)
-		{
-			//Destroy(player.GetComponentInChildren<Weapon>().gameObject);
-		}
+		
 	}
 
 	private void EndWeaponChoice(string chosenWeapon)
@@ -155,6 +149,7 @@ public class WeaponSelectionPhase : GamePhase
 			if (w.name == weaponName)
 			{
 				weaponsAvailable.Remove(w);
+				fakeWeaponsAvailable.Remove(w);
 			}
 		}
 	}
