@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 124870718384058904}
   - component: {fileID: 81972865820859964}
   - component: {fileID: 114563052346067038}
+  - component: {fileID: 114629647591286208}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -93,15 +94,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1854007172757126}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.409293, y: -35.334064, z: -54.517925}
+  m_LocalRotation: {x: -0, y: 0.9864008, z: -0, w: 0.16435774}
+  m_LocalPosition: {x: -4.8, y: 3.3, z: 13.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4639402170924584}
   - {fileID: 4205820213927798}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 161.08, z: 0}
 --- !u!20 &20228780870879594
 Camera:
   m_ObjectHideFlags: 1
@@ -215,6 +216,19 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &114629647591286208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1635061672806944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eed1d9cbe64423499f1fefc0ce50417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Resolution: 1
+  DefaultSpotCookie: {fileID: 0}
 --- !u!124 &124870718384058904
 Behaviour:
   m_ObjectHideFlags: 1
