@@ -51,6 +51,8 @@ public class JoustPhase : GamePhase
 
 	public void callHit(string objname, string weapon)
 	{
+		float multiplier = 1;
+		
 		if(localHited || !_active) return;
 
 		localHited = true;
@@ -62,10 +64,12 @@ public class JoustPhase : GamePhase
 		else if(objname.Contains("knee") || objname.Contains("foot"))
 		{
 			info = Hitinfo.leg;
+			multiplier = 2;
 		}
 		else if(objname.Contains("neck"))
 		{
 			info = Hitinfo.head;
+			multiplier = 3;
 		}
 		
 		if(info == Hitinfo.none)
@@ -78,7 +82,7 @@ public class JoustPhase : GamePhase
 
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, (int)info, weapon);
 		ScoreBoardManager.Instance.DisplayUpdateOnScreen(ScoreBoardManager.Instance.displayLeft, "HIT!");
-		ScoreBoardManager.Instance.AddScoreBlue();
+		ScoreBoardManager.Instance.AddScoreBlue(multiplier);
 		if(OnJoustHit != null) OnJoustHit.Invoke(info);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 	}
@@ -89,7 +93,25 @@ public class JoustPhase : GamePhase
 		print("hitReceived");
 		
 		ScoreBoardManager.Instance.DisplayUpdateOnScreen(ScoreBoardManager.Instance.displayRight, "HIT!");
-		ScoreBoardManager.Instance.AddScoreRed();
+
+		float multiplier = 1;
+
+		switch (hit)
+		{
+			case 1:
+				multiplier = 3;
+				break;
+			
+			case 3:
+				multiplier = 2;
+				break;
+				
+			default:
+			multiplier = 1;
+			break;
+		}
+		
+		ScoreBoardManager.Instance.AddScoreRed(multiplier);
 		
 		if(OnJoustHit != null) OnJoustHit.Invoke((Hitinfo)hit);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);

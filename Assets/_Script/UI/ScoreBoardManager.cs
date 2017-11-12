@@ -26,14 +26,14 @@ public class ScoreBoardManager : Photon.MonoBehaviour
 		DisplayScores();
 	}
 
-	public void AddScoreBlue()
+	public void AddScoreBlue(float multiplier)
 	{
-		scoreBlue += 100;
+		scoreBlue += (int)(100 * multiplier);
 	}
 
-	public void AddScoreRed()
+	public void AddScoreRed(float multiplier)
 	{
-		scoreRed += 100;
+		scoreRed += (int)(100 * multiplier);
 	}
 	
 	public void ResetScore()
@@ -52,7 +52,7 @@ public class ScoreBoardManager : Photon.MonoBehaviour
 				msg = "CHOOSING WEAPONS";
 				break;
 			case Phases.Parade:
-				msg = "PREPARING";
+				msg = "READY";
 				break;
 				
 			case Phases.Joust:
