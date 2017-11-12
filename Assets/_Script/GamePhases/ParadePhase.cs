@@ -20,10 +20,7 @@ public class ParadePhase : GamePhase
     
     public override void TerminatePhase()
     {
-        foreach (var target in paradeTargets)
-        {
-            target.gameObject.SetActive(false);
-        }
+        
     }
 
     public void SetReady()
