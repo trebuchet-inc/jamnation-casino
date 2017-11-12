@@ -29,6 +29,9 @@ public class WeaponSelectionPhase : GamePhase
 
 	public override void StartPhase()
 	{
+		NetworkPlayerManager.Instance.SetLocalPlayer();
+		NetworkPlayerManager.Instance.ResetWeapons(NetworkPlayerManager.Instance.personalID);
+		
 		PresentWeaponChoice();
 	}
 
