@@ -55,9 +55,15 @@ public class WeaponSelectionPhase : GamePhase
 		
 		for (int i = 0; i < weaponsAvailable.Count; i++)
 		{
-			anchors[i].dummyWeaponPrefab = fakeWeaponsAvailable[i];
-			anchors[i].realWeaponPrefab = weaponsAvailable[i];
-			anchors[i].SetWeaponChoice();
+			for(int j = 0; i < weaponsPool.Length; j++)
+			{
+				if(weaponsAvailable[i].name ==  weaponsPool[j].name)
+				{
+					anchors[i].dummyWeaponPrefab = fakeWeaponsPool[j];
+					anchors[i].realWeaponPrefab = weaponsPool[j];
+					anchors[i].SetWeaponChoice();
+				}
+			}
 		}
 	}
 

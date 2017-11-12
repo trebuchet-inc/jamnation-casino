@@ -22,7 +22,7 @@ public class WeaponHolder : MonoBehaviour
 
 	private void OnDisable()
 	{
-		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen -= OnWeaponChosenHandler;
+		//GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen -= OnWeaponChosenHandler;
 	}
 	
 	private void OnWeaponChosenHandler(string s)
