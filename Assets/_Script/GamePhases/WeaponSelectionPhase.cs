@@ -55,7 +55,7 @@ public class WeaponSelectionPhase : GamePhase
 		
 		for (int i = 0; i < weaponsAvailable.Count; i++)
 		{
-			for(int j = 0; i < weaponsPool.Length; j++)
+			for(int j = 0; j < weaponsPool.Length; j++)
 			{
 				if(weaponsAvailable[i].name ==  weaponsPool[j].name)
 				{
