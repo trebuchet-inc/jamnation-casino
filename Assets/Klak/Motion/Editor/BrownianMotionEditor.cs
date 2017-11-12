@@ -64,33 +64,34 @@ namespace Klak.Motion
 
         public override void OnInspectorGUI()
         {
-            serializedObject.Update();
+            base.OnInspectorGUI();
+            // serializedObject.Update();
 
-            EditorGUILayout.PropertyField(_enablePositionNoise, _textPositionNoise);
+            // EditorGUILayout.PropertyField(_enablePositionNoise, _textPositionNoise);
 
-            if (_enablePositionNoise.hasMultipleDifferentValues || _enablePositionNoise.boolValue)
-            {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(_positionFrequency, _textFrequency);
-                EditorGUILayout.PropertyField(_positionAmplitude, _textAmplitude);
-                EditorGUILayout.PropertyField(_positionScale, _textScale);
-                EditorGUILayout.PropertyField(_positionFractalLevel, _textFractal);
-                EditorGUI.indentLevel--;
-            }
+            // if (_enablePositionNoise.hasMultipleDifferentValues || _enablePositionNoise.boolValue)
+            // {
+            //     EditorGUI.indentLevel++;
+            //     EditorGUILayout.PropertyField(_positionFrequency, _textFrequency);
+            //     EditorGUILayout.PropertyField(_positionAmplitude, _textAmplitude);
+            //     EditorGUILayout.PropertyField(_positionScale, _textScale);
+            //     EditorGUILayout.PropertyField(_positionFractalLevel, _textFractal);
+            //     EditorGUI.indentLevel--;
+            // }
 
-            EditorGUILayout.PropertyField(_enableRotationNoise, _textRotationNoise);
+            // EditorGUILayout.PropertyField(_enableRotationNoise, _textRotationNoise);
 
-            if (_enableRotationNoise.hasMultipleDifferentValues || _enableRotationNoise.boolValue)
-            {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(_rotationFrequency, _textFrequency);
-                EditorGUILayout.PropertyField(_rotationAmplitude, _textAmplitude);
-                EditorGUILayout.PropertyField(_rotationScale, _textScale);
-                EditorGUILayout.PropertyField(_rotationFractalLevel, _textFractal);
-                EditorGUI.indentLevel--;
-            }
+            // if (_enableRotationNoise.hasMultipleDifferentValues || _enableRotationNoise.boolValue)
+            // {
+            //     EditorGUI.indentLevel++;
+            //     EditorGUILayout.PropertyField(_rotationFrequency, _textFrequency);
+            //     EditorGUILayout.PropertyField(_rotationAmplitude, _textAmplitude);
+            //     EditorGUILayout.PropertyField(_rotationScale, _textScale);
+            //     EditorGUILayout.PropertyField(_rotationFractalLevel, _textFractal);
+            //     EditorGUI.indentLevel--;
+            // }
 
-            serializedObject.ApplyModifiedProperties();
+            // serializedObject.ApplyModifiedProperties();
         }
     }
 }
