@@ -111,7 +111,7 @@ public class WeaponSelectionPhase : GamePhase
 	{
 		foreach (var player in NetworkPlayerManager.Instance.players)
 		{
-			Destroy(player.GetComponentInChildren<Weapon>().gameObject);
+			//Destroy(player.GetComponentInChildren<Weapon>().gameObject);
 		}
 	}
 
