@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using NewtonVR;
+using System;
 
 public class WeaponHolder : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class WeaponHolder : MonoBehaviour
 	private void Start()
 	{
 		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
-		GameRefereeManager.Instance.endPhaseScript.OnReset += OnResetHandler;
+		GameRefereeManager.Instance.intermissionPhase.OnReset += OnResetHandler;
 	}
 
 	private void OnResetHandler()

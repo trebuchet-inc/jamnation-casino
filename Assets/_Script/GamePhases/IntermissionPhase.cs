@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class IntermissionPhase : GamePhase
 {
 	public int intermissionDuration;
+
+	public event Action OnReset;
 	
 	public override void StartPhase()
 	{
@@ -13,7 +16,7 @@ public class IntermissionPhase : GamePhase
     
 	public override void TerminatePhase()
 	{
-        
+        if(OnReset != null) OnReset.Invoke();
 	}
 
 	public IEnumerator IntermissionTimer()
