@@ -107,14 +107,14 @@ public class WeaponSelectionPhase : GamePhase
 	{
 		foreach (var weaponChoice in weaponChoiceAnchors)
 		{
-			if (weaponChoice.dummyWeaponPrefab.name != chosenWeapon)
+			if (weaponChoice.dummyWeaponPrefab != null && weaponChoice.dummyWeaponPrefab.name != chosenWeapon)
 			{
 				weaponChoice.dummy.SetActive(false);
 			}
 		}
 		foreach (var weaponChoice in otherWeaponChoiceAnchors)
 		{
-			if (weaponChoice.dummyWeaponPrefab.name != chosenWeapon)
+			if (weaponChoice.dummyWeaponPrefab != null && weaponChoice.dummyWeaponPrefab.name != chosenWeapon)
 			{
 				weaponChoice.dummy.SetActive(false);
 			}
