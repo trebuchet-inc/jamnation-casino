@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class ScoreBoardManager : MonoBehaviour
@@ -26,5 +27,10 @@ public class ScoreBoardManager : MonoBehaviour
 	private void OnJoustGoHandler()
 	{
 		
+	}
+
+	private IEnumerator DisplayAnnounce()
+	{
+		yield return 0;
 	}
 }

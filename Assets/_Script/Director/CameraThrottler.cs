@@ -32,7 +32,7 @@ public class CameraThrottler : MonoBehaviour {
 	void Update () {
 		if(activated)
 		{
-			if ((transform.position-_mainNodes[_currentNode].position).magnitude > .5f)
+			if ((transform.position-_mainNodes[_currentNode].position).magnitude > 0.5f)
 			{
 				transform.Translate((_mainNodes[_currentNode].position-transform.position).normalized*translationIntensity*Time.deltaTime,Space.World);
 			} 
