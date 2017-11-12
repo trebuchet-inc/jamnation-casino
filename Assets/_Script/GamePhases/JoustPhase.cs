@@ -82,19 +82,20 @@ public class JoustPhase : GamePhase
 
 		print("hitSend");
 
-		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, (int)info, weapon, new SerializableVector3(pos));
+		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, (int)info, weapon, SerializationToolkit.ObjectToByteArray(new SerializableVector3(pos)));
 		ScoreBoardManager.Instance.DisplayUpdateOnScreen(ScoreBoardManager.Instance.displayLeft, "HIT!");
 		ScoreBoardManager.Instance.AddScoreBlue(multiplier);
 		if(OnJoustHit != null) OnJoustHit.Invoke(info);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
+
 		Instantiate(blood, pos, Quaternion.identity);
 	}
 
 	[PunRPC]
-	public void ReceiveRegisterHit(int hit, string weapon, SerializableVector3 pos)
+	public void ReceiveRegisterHit(int hit, string weapon, byte[] pos)
 	{
 		print("hitReceived");
-		
+		SerializableVector3 a = (SerializableVector3)SerializationToolkit.ByteArrayToObject(pos);
 		ScoreBoardManager.Instance.DisplayUpdateOnScreen(ScoreBoardManager.Instance.displayRight, "HIT!");
 
 		float multiplier = 1;
@@ -123,7 +124,8 @@ public class JoustPhase : GamePhase
 
 		Fade.Instance.StartFade(0.2f,0.1f);
 		StartCoroutine(UnFade());
-		Instantiate(blood, pos.Deserialize(), Quaternion.identity);
+
+		Instantiate(blood, a.Deserialize(), Quaternion.identity);
 	}
 
 	private IEnumerator UnFade()
