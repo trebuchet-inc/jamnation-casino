@@ -38,6 +38,6 @@ public class WeaponChoice : MonoBehaviour
 
 	public void Deactivate()
 	{
-		gameObject.SetActive(false);
+		Destroy(dummy);
 	}
 }
