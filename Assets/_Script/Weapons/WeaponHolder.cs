@@ -10,15 +10,12 @@ public class WeaponHolder : MonoBehaviour
 	private void Start()
 	{
 		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
-		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangedHandler;
+		GameRefereeManager.Instance.endPhaseScript.OnReset += OnResetHandler;
 	}
 
-	private void OnPhaseChangedHandler(Phases phases)
+	private void OnResetHandler()
 	{
-		if (GameRefereeManager.Instance.currentPhase == Phases.WeaponSelection && GameRefereeManager.Instance.roundIndex >= 1)
-		{
-			RemoveWeapon();
-		}
+		RemoveWeapon();
 	}
 
 	private void OnDisable()
