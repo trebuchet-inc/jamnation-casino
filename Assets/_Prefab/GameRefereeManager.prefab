@@ -92,8 +92,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114603901733259528
@@ -151,8 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16c0e9ccf873374ab358d872d6345d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFirstGame: 1
   roundIndex: 0
-  TotalRounds: 0
+  TotalRounds: 3
   currentPhase: 0
   weaponSelectionPhase: {fileID: 0}
   paradePhase: {fileID: 0}
