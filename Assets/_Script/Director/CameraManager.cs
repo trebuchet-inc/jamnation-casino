@@ -17,6 +17,7 @@ public class CameraManager : MonoBehaviour {
 	public Transform cameraTransform;
 	public float rotationIntensity;
 	public float translationIntensity;
+	// public float apertureIntense;
 	public AimCameraSpeadsheet[] aimCameraTargets;
 
 	// Use this for initialization
@@ -26,7 +27,7 @@ public class CameraManager : MonoBehaviour {
 		cameras = FindObjectsOfType<CameraController>();
 		foreach(CameraController c in cameras)
 		{
-			Destroy(c.transform.parent.GetComponent<Camera>());
+			Destroy(c.transform.GetComponent<Camera>());
 		}
 		
 	}
@@ -68,7 +69,11 @@ public class CameraManager : MonoBehaviour {
 					if (activeCamera!=null)
 					{
 						activeCamera.isActiveCamera = false;
-						activeCamera.ResetPosition();
+						if (activeCamera.cameraType == CameraControllerType.AnimationTargetedRoutine || activeCamera.cameraType == CameraControllerType.AnimationFreeAimRoutine)
+						{
+							activeCamera.SourcePositionAndAimOverride();
+						}
+						activeCamera.ResetPositionAndAim();
 					}
 					activeCamera = cameras[i];
 					activeCamera.CutToThisCamera();

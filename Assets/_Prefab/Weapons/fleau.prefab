@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 54828167242126214}
   - component: {fileID: 144393093899268700}
   - component: {fileID: 65881223914650062}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: jnt_fleau_masse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -741,7 +741,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -800,7 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d790a9188cb6b3d498ead804fa7586b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 4783727466531456}
+  target: {fileID: 0}
 --- !u!137 &137195088609906862
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
