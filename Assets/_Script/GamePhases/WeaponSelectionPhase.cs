@@ -51,7 +51,8 @@ public class WeaponSelectionPhase : GamePhase
 		
 		for (int i = 0; i < weaponsAvailable.Count; i++)
 		{
-			anchors[i].weaponPresented = fakeWeaponsAvailable[i];
+			anchors[i].dummyWeaponPrefab = fakeWeaponsAvailable[i];
+			anchors[i].realWeaponPrefab = weaponsAvailable[i];
 			anchors[i].SetWeaponChoice();
 		}
 	}
@@ -63,6 +64,7 @@ public class WeaponSelectionPhase : GamePhase
 		Debug.Log("Chose " + weaponName);
 
 		isWeaponChosen = true;
+		EndWeaponChoice(weaponName);
 		
 		if(OnWeaponChosen != null) OnWeaponChosen.Invoke(weaponName);
 		
@@ -99,6 +101,18 @@ public class WeaponSelectionPhase : GamePhase
 		NVRHand hand = (NVRHand)NetworkPlayerManager.Instance.GetNetworkPlayerHand(id, Handedness.Right);
 		Weapon _weapon = Instantiate(enemyCurrentWeapon, hand.transform.position, hand.transform.rotation).GetComponent<Weapon>();
 		_weapon.Initialize(hand);
+	}
+
+	private void EndWeaponChoice(string chosenWeapon)
+	{
+		foreach (var weaponChoice in weaponChoiceAnchors)
+		{
+			if (weaponChoice.dummyWeaponPrefab.name != chosenWeapon)
+			{
+				weaponChoice.dummy.SetActive(false);
+				weaponChoice.Deactivate();
+			}
+		}
 	}
 	
 	protected override bool CheckIfPhaseComplete()

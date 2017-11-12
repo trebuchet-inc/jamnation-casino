@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class WeaponChoice : MonoBehaviour
 {
-	public GameObject weaponPresented;
-
+	public GameObject dummyWeaponPrefab;
+	public GameObject realWeaponPrefab;
+	
 	public GameObject dummy;
 
 	private NVRHand hand;
@@ -13,7 +14,7 @@ public class WeaponChoice : MonoBehaviour
 	public void SetWeaponChoice()
 	{
 		print("spawnWeapon");
-		dummy = Instantiate(weaponPresented, transform.position, Quaternion.identity);
+		dummy = Instantiate(dummyWeaponPrefab, transform.position, Quaternion.identity);
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -26,8 +27,7 @@ public class WeaponChoice : MonoBehaviour
 	{
 		if ((object) hand != null && !GameRefereeManager.Instance.weaponSelectionPhase.isWeaponChosen && hand.HoldButtonDown)
 		{
-			GameRefereeManager.Instance.weaponSelectionPhase.ChooseWeapon(weaponPresented.name);
-			dummy.SetActive(false);
+			GameRefereeManager.Instance.weaponSelectionPhase.ChooseWeapon(realWeaponPrefab.name);
 		}
 	}
 
