@@ -12,6 +12,8 @@ public class MountAgent : MonoBehaviour
 	public float joustSpeed;
 	public float paradeSpeed;
 	public float velocityThreshold;
+	public float voiceThreshold;
+	public int voiceDurationThreshold;
 
 	AudioClip voice;
 
@@ -39,6 +41,21 @@ public class MountAgent : MonoBehaviour
 		}
 	}
 
+	int voiceIntensity 
+	{
+		get
+		{
+			int toretun = 0;
+			float[] value = new float[voice.samples * voice.channels];
+			voice.GetData(value, 0);
+			for(int i = 0; i < value.Length; i++)
+			{
+				if(value[i] > voiceThreshold) toretun++;
+			}
+			return toretun;
+		}
+	}
+
 	void Start () 
 	{
 		_rb = GetComponent<Rigidbody>();
@@ -53,7 +70,6 @@ public class MountAgent : MonoBehaviour
 
 		voice = Microphone.Start(Microphone.devices[0], true, 1, 44100);
 		print(Microphone.devices[0]);
-		
 	}
 
 	void FixedUpdate()
@@ -77,6 +93,11 @@ public class MountAgent : MonoBehaviour
 			{
 				_rb.AddForce(transform.forward * actualSpeed, ForceMode.Impulse);
 				AkSoundEngine.PostEvent("Play_Horse_Rocking", gameObject);
+			}
+
+			if(voiceIntensity > voiceDurationThreshold)
+			{
+				_rb.AddForce(transform.forward * actualSpeed, ForceMode.Impulse);
 			}
 		}
 	}
