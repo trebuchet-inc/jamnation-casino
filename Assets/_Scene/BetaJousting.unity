@@ -1294,15 +1294,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: b625586076efd984f882915b2a708c15, type: 2}
-  isGlobal: 1
-  blendDistance: 1000000
-  weight: 1
-  priority: 0
-  m_PreviousLayer: 8
-  m_PreviousPriority: 0
-  m_TempColliders: []
-  m_InternalProfile: {fileID: 0}
 --- !u!1001 &1771258917
 Prefab:
   m_ObjectHideFlags: 0
