@@ -74,7 +74,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 	{
 		Debug.Log("Changing phase to " + phase.ToString());
 
-		if(phase == currentPhase) return;
+		if(phase == currentPhase && roundIndex > 0) return;
 		
 		// END CURRENT PHASE
 		if(currentPhaseScript != null)
