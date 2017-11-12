@@ -320,6 +320,8 @@ GameObject:
   - component: {fileID: 114591616894092962}
   - component: {fileID: 114467913496780116}
   - component: {fileID: 114058382191795086}
+  - component: {fileID: 114887098543456776}
+  - component: {fileID: 114418391384905668}
   m_Layer: 0
   m_Name: Head
   m_TagString: MainCamera
@@ -928,7 +930,7 @@ MonoBehaviour:
   joustSpeed: 0.2
   paradeSpeed: 0.1
   velocityThreshold: 0.4
-  voiceThreshold: 2
+  voiceThreshold: 0.2
   voiceDurationThreshold: 100
   _freeze: 1
 --- !u!114 &114389810755839030
@@ -1007,6 +1009,19 @@ MonoBehaviour:
   DEBUGSleepPerFrame: 13
   AutoSetFixedDeltaTime: 1
   NotifyOnVersionUpdate: 1
+--- !u!114 &114418391384905668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828517695126936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 699a1b5e35323df4d8954572a21fb4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDefaultListener: 1
+  listenerId: 0
 --- !u!114 &114467913496780116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1051,6 +1066,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dd93dbead6c28e42b0408c298a10966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114887098543456776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828517695126936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a82f46a5b534a7c4facf1c88e3111f24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_positionOffsetData:
+    positionOffset: {x: 0, y: 0, z: 0}
+    KeepMe: 0
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_listeners:
+    initialListenerList: []
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!114 &114967221717827704
 MonoBehaviour:
   m_ObjectHideFlags: 1
