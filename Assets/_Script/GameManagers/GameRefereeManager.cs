@@ -65,8 +65,6 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		{
 			weaponSelectionPhase.ResetWeaponHolders();
 		}
-
-		isFirstGame = false;
 		
 		if(OnNewGame != null) OnNewGame.Invoke();
 		ChangePhase(Phases.WeaponSelection);

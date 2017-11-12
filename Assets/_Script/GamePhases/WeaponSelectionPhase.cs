@@ -31,7 +31,7 @@ public class WeaponSelectionPhase : GamePhase
 	{
 		NetworkPlayerManager.Instance.SetLocalPlayer();
 		
-		ResetWeaponHolders();
+		if(!GameRefereeManager.Instance.isFirstGame) ResetWeaponHolders();
 		
 		PresentWeaponChoice();
 	}
@@ -111,7 +111,7 @@ public class WeaponSelectionPhase : GamePhase
 	{
 		foreach (var player in NetworkPlayerManager.Instance.players)
 		{
-			player.GetComponent<WeaponHolder>().RemoveWeapon();
+			Destroy(player.GetComponentInChildren<Weapon>().gameObject);
 		}
 	}
 
