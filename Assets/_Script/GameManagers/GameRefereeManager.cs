@@ -1,4 +1,5 @@
 ﻿using System;
+using NewtonVR;
 using UnityEngine;
 
 public enum Phases
@@ -56,6 +57,10 @@ public class GameRefereeManager : Photon.MonoBehaviour
 	public void ReceiveNewGame()
 	{
 		Debug.Log("Starting New Game");
+		
+		NetworkPlayerManager.Instance.SetLocalPlayer();
+		NetworkPlayerManager.Instance.ResetWeapons(NetworkPlayerManager.Instance.personalID);
+
 		if(OnNewGame != null) OnNewGame.Invoke();
 		ChangePhase(Phases.WeaponSelection);
 	}

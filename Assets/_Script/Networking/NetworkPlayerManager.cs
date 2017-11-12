@@ -76,6 +76,23 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
 		return null;
 	}
 
+	public void ResetWeapons(int id)
+	{
+		photonView.RPC("ReceiveResetWeapons", PhotonTargets.Others, id);
+	}
+	
+	[PunRPC]
+	void ReceiveResetWeapons(int id)
+	{
+		foreach (NetworkPlayerComponent player in players)
+		{
+			if (player.id == id)
+			{
+				player.GetComponent<WeaponHolder>().RemoveWeapon();
+			}
+		}
+	}
+
 	[PunRPC]
     void UpdateNetworkPlayer(byte[] data, int id)
     {
