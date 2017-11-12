@@ -64,6 +64,7 @@ public class WeaponSelectionPhase : GamePhase
 	public void ChooseWeapon(string weaponName)
 	{
 		RemoveAvailableWeapon(weaponName);
+		RemoveFakeAvailableWeapon("dummy" + weaponName);
 		
 		Debug.Log("Chose " + weaponName);
 
@@ -149,6 +150,16 @@ public class WeaponSelectionPhase : GamePhase
 			if (w.name == weaponName)
 			{
 				weaponsAvailable.Remove(w);
+			}
+		}
+	}
+
+	private void RemoveFakeAvailableWeapon(string weaponName)
+	{
+		foreach (var w in GetWeaponsAvailable())
+		{
+			if (w.name == weaponName)
+			{
 				fakeWeaponsAvailable.Remove(w);
 			}
 		}
