@@ -20,6 +20,8 @@ public class CameraManager : MonoBehaviour {
 	public float apertureIntense;
 	public AimCameraSpeadsheet[] aimCameraTargets;
 
+	Camera cam;
+
 	// Use this for initialization
 
 	void Awake()
@@ -29,6 +31,8 @@ public class CameraManager : MonoBehaviour {
 		{
 			Destroy(c.transform.GetComponent<Camera>());
 		}
+
+		cam = cameraTransform.GetComponentInChildren<Camera>();
 		
 	}
 
@@ -47,7 +51,11 @@ public class CameraManager : MonoBehaviour {
 		{
 			CameraSwitch(a);			
 		}
-		
+
+		if(Input.GetKeyDown(KeyCode.P))
+		{
+			cam.depth *= -1;
+		}
 	}
 
 	void InitializeCameras(){
