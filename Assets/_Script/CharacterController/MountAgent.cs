@@ -25,7 +25,7 @@ public class MountAgent : MonoBehaviour
 
 	Rigidbody _rb;
 
-	Vector3[] _deltaBuffer;
+	Vector3[] _deltaBuffer = new Vector3[100];
 	int _index = 0;
 	Vector3 _lastPosition;
 

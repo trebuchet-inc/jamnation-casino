@@ -303,8 +303,6 @@ GameObject:
   - component: {fileID: 20257248470610674}
   - component: {fileID: 92175120230818314}
   - component: {fileID: 124680348035647068}
-  - component: {fileID: 114591616894092962}
-  - component: {fileID: 114467913496780116}
   - component: {fileID: 114058382191795086}
   - component: {fileID: 114887098543456776}
   - component: {fileID: 114418391384905668}
@@ -932,9 +930,10 @@ MonoBehaviour:
   mountModel: {fileID: 0}
   ridingHand: {fileID: 114990343425754572}
   joustSpeed: 0.2
+  voiceSpeed: 0.1
   paradeSpeed: 0.1
   velocityThreshold: 0.4
-  voiceThreshold: 0.2
+  voiceThreshold: 0.3
   voiceDurationThreshold: 100
   _freeze: 1
 --- !u!114 &114389810755839030
@@ -1022,39 +1021,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 699a1b5e35323df4d8954572a21fb4a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDefaultListener: 1
-  listenerId: 0
---- !u!114 &114467913496780116
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1828517695126936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56df2cfa52b1364b88dc0284e6b1d2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_positionOffsetData:
-    positionOffset: {x: 0, y: 0, z: 0}
-    KeepMe: 0
-  isEnvironmentAware: 0
-  isStaticObject: 0
-  m_listeners:
-    initialListenerList: []
-  m_posOffsetData: {fileID: 0}
-  listenerMask: 1
---- !u!114 &114591616894092962
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1828517695126936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1a1a4af14a09e4abe35f4ae14e71bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isDefaultListener: 1

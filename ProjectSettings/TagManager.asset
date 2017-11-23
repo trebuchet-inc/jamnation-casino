@@ -17,8 +17,8 @@ TagManager:
   - MainPostProcessing
   - Logic
   - HitBox
-  - LocalSkin
-  - 
+  - LocalInvisible
+  - NetworkInvisible
   - 
   - 
   - 
