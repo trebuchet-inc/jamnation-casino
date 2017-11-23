@@ -1,0 +1,146 @@
+fileFormatVersion: 2
+guid: f5316c74d99aa2340b31616f46aa3769
+timeCreated: 1511466588
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: grp_geo_player_01
+    100004: player_arm_right
+    100006: player_armor
+    100008: player_arms_left
+    100010: player_head
+    100012: player_helmet_v02
+    100014: player_helmetVisor_v02
+    400000: //RootNode
+    400002: grp_geo_player_01
+    400004: player_arm_right
+    400006: player_armor
+    400008: player_arms_left
+    400010: player_head
+    400012: player_helmet_v02
+    400014: player_helmetVisor_v02
+    2300000: player_arm_right
+    2300002: player_armor
+    2300004: player_arms_left
+    2300006: player_head
+    2300008: player_helmet_v02
+    2300010: player_helmetVisor_v02
+    3300000: player_arm_right
+    3300002: player_armor
+    3300004: player_arms_left
+    3300006: player_head
+    3300008: player_helmet_v02
+    3300010: player_helmetVisor_v02
+    4300000: player_arm_right
+    4300002: player_arms_left
+    4300004: player_head
+    4300006: player_armor
+    4300008: player_helmetVisor_v02
+    4300010: player_helmet_v02
+    7400000: Take 001
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bleu_mat
+    second: {fileID: 2100000, guid: 487e7e95909a6ae46bbd8cb4d38f247a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 4c0ac5d7c9c7ff840b9a8e01f0c5da11, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal_clair_mat
+    second: {fileID: 2100000, guid: 7561f02341c6cd543ba0de253d2d140c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal_neutre_mat
+    second: {fileID: 2100000, guid: f732f6d94fdc14f4aa017a61f89f5207, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: player_head_tex
+    second: {fileID: 2100000, guid: 2952b61712c6bf648a97407ea4f8646f, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
