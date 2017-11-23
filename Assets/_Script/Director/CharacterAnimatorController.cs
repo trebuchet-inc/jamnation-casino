@@ -14,8 +14,8 @@ public class CharacterAnimatorController : MonoBehaviour {
 	// Use this for initialization
 	public void Initialize () {
 		RollModelAndGetAnimator();
-		hypeLevel = Random.Range(1,5);
-		delay = 5f;
+		hypeLevel = Random.Range(1,6);
+		delay = Random.Range(3f,6f);
 		chanim.SetTrigger(hypeLevel.ToString());
 		
 		
@@ -39,7 +39,7 @@ public class CharacterAnimatorController : MonoBehaviour {
 			delay = 5f;
 		}
 
-		delay =- Time.deltaTime;
+		delay -= Time.deltaTime;
 
 		
 	}
@@ -53,7 +53,7 @@ public class CharacterAnimatorController : MonoBehaviour {
 
 	private void SetHypeLevel(int whatIsTheHype)
 	{
-		delay = 5f;
+		delay = Random.Range(4f,6f);
 		hypeLevel = whatIsTheHype + Random.Range(-1,2);
 		hypeLevel = Mathf.Clamp(hypeLevel,1,5);
 		chanim.SetTrigger(hypeLevel.ToString());
