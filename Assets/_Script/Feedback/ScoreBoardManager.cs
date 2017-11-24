@@ -7,8 +7,9 @@ public class ScoreBoardManager : FeedbackManager
 {
 	public Text displayLeft, displayRight;
 	
-	private void Start()
+	protected override void Start()
 	{
+		base.Start();
 		DisplayScores();
 	}
 	

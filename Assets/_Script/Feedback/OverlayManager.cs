@@ -11,8 +11,9 @@ public class OverlayManager : FeedbackManager
         Instance = this;
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         DisplayScores();
     }
     

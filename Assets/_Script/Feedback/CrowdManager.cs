@@ -13,7 +13,10 @@ public class CrowdManager : FeedbackManager
 		characters = FindObjectsOfType<CharacterAnimatorController>();		
 	}
 
-	void Start () {
+	protected override void Start() 
+	{
+		base.Start();
+		
 		foreach(CharacterAnimatorController c in characters)
 		{
 			c.Initialize();

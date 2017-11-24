@@ -1,7 +1,7 @@
 ﻿
 public class FeedbackManager : Photon.MonoBehaviour 
 {
-    private void Start()
+    protected virtual void Start()
     {
         SubscribeEvents();
     }

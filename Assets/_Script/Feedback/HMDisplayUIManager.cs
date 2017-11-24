@@ -19,8 +19,9 @@ public class HMDisplayUIManager : FeedbackManager
 		Instance = this;
 	}
 	
-	private void Start()
+	protected override void Start()
 	{
+		base.Start();
 		canvasText = canvas.GetComponentInChildren<Text>();
 		canvasText.text = "";
 	}
