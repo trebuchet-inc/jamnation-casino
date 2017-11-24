@@ -83,8 +83,10 @@ public class JoustPhase : GamePhase
 		print("hitSend");
 
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, (int)info, weapon, SerializationToolkit.ObjectToByteArray(new SerializableVector3(pos)));
+
 		ScoreBoardManager.Instance.DisplayUpdateOnScreen(ScoreBoardManager.Instance.displayLeft, "HIT!");
 		ScoreBoardManager.Instance.AddScoreBlue(multiplier);
+		
 		if(OnJoustHit != null) OnJoustHit.Invoke(info);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 

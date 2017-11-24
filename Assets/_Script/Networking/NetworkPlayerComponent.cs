@@ -8,27 +8,24 @@ public class NetworkPlayerComponent : MonoBehaviour
 	public int id;
 
 	[HideInInspector] public GameObject mountModel;
-	bool _mounFreeze = false;
+	bool _mountFreeze = false;
 
 	[HideInInspector] public GameObject[] playerParts;
 	List<NetworkPlayerData> _dataBuffer;
 	NetworkPlayerData _lastData;
 	[HideInInspector] public NVRVirtualHand[] _hands;
 
-	int lerpSpeed = 20;
-
 	bool _initialized;
 
 	void Start()
 	{
-		Initialize();
-		
+		if(!_initialized) Initialize();
 	}
 
 	void Initialize()
 	{
 		_initialized = true;
-		playerParts = new GameObject[3];
+		playerParts = new GameObject[4];
 		_hands = new NVRVirtualHand[2];
 		_dataBuffer = new List<NetworkPlayerData>();
 		setPlayerPart();
@@ -38,7 +35,7 @@ public class NetworkPlayerComponent : MonoBehaviour
 	{
 		readData();
 
-		if(!_mounFreeze)
+		if(!_mountFreeze)
 		{
 			mountModel.transform.position = transform.position;
 			mountModel.transform.rotation = transform.rotation;
@@ -51,15 +48,15 @@ public class NetworkPlayerComponent : MonoBehaviour
 
 		//Gestion du dernier package
 
-		transform.position = Vector3.Lerp(transform.position, _lastData.positions[0].Deserialize(), Time.deltaTime * lerpSpeed);
-		transform.rotation = Quaternion.Lerp(transform.rotation,  _lastData.rotations[0].Deserialize(), Time.deltaTime * lerpSpeed);
+		transform.position = _lastData.positions[0].Deserialize();
+		transform.rotation = _lastData.rotations[0].Deserialize();
 
 		for(int i = 0; i < playerParts.Length; i++)
 		{
 			if(playerParts[i] != null)
 			{
-				playerParts[i].transform.localPosition = Vector3.Lerp(playerParts[i].transform.localPosition, _lastData.positions[i + 1].Deserialize(), Time.deltaTime * lerpSpeed);
-				playerParts[i].transform.localRotation = Quaternion.Lerp(playerParts[i].transform.localRotation, _lastData.rotations[i + 1].Deserialize(), Time.deltaTime * lerpSpeed);
+				playerParts[i].transform.localPosition = _lastData.positions[i + 1].Deserialize();
+				playerParts[i].transform.localRotation =_lastData.rotations[i + 1].Deserialize();
 			}
 			else
 			{
@@ -87,18 +84,22 @@ public class NetworkPlayerComponent : MonoBehaviour
 		{
 			switch(transform.GetChild(i).name)
 			{
-				case "head" :
+				case "Head" :
 				playerParts[0] = transform.GetChild(i).gameObject;
 				break;
 
-				case "rightHand" :
+				case "RightHand" :
 				playerParts[1] = transform.GetChild(i).gameObject;
 				_hands[1] = playerParts[1].GetComponent<NVRVirtualHand>();
 				break;
 
-				case "leftHand" :
+				case "LeftHand" :
 				playerParts[2] = transform.GetChild(i).gameObject;
 				_hands[0] = playerParts[2].GetComponent<NVRVirtualHand>();
+				break;
+
+				case "Torso" :
+				playerParts[3] = transform.GetChild(i).gameObject;
 				break;
 			}
 		}

@@ -131,6 +131,7 @@ namespace NewtonVR
         public NVRHead Head;
         public NVRHand LeftHand;
         public NVRHand RightHand;
+        public NVRTorso Torso;
 
         [HideInInspector]
         public NVRHand[] Hands;

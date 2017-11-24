@@ -50,6 +50,12 @@ public class SoundManager : MonoBehaviour
 		_stop_Ambiance = AkSoundEngine.GetIDFromString("Stop_Ambiance");
 		AkSoundEngine.PostEvent(_stop_Ambiance, gameObject);
 	}
+
+	public void ResetAmbiance()
+	{
+		StopAmbiance();
+		PlayAmbiance();
+	}
 	
 	public void HypeCrowd()
 	{
