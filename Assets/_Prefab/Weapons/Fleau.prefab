@@ -308,8 +308,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4712333203883326}
-  - component: {fileID: 114851819738830868}
   - component: {fileID: 54902675152430078}
+  - component: {fileID: 114228102693793684}
+  - component: {fileID: 114851819738830868}
   - component: {fileID: 65232233160181750}
   m_Layer: 0
   m_Name: Fleau
@@ -756,9 +757,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1402167447229688}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 20
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -771,7 +772,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772092793813160}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
@@ -803,6 +804,53 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3, z: 0.3}
   m_Center: {x: 0, y: 0, z: -0.15}
+--- !u!114 &114228102693793684
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1772092793813160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4a39dec1a23a043a14d554ccce8fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  CanAttach: 1
+  AllowTwoHanded: 0
+  DisableKinematicOnAttach: 1
+  EnableKinematicOnDetach: 1
+  DropDistance: 10
+  EnableGravityOnDetach: 0
+  AttachedHands: []
+  OnHovering:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  VelocityMagic: 6000
+  AngularVelocityMagic: 50
+  InteractionPoint: {fileID: 0}
+  OnUseButtonDown:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnUseButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnBeginInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnEndInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114548666279391118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -828,7 +876,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Fleau
   target: {fileID: 0}
-  lerpSpeed: 15
+  positionLerpSpeed: 5000
+  angularLerpSpeed: 50
   JoinedObjects:
   - {fileID: 1697671351231116}
   - {fileID: 1821282325356142}
@@ -1538,7 +1587,7 @@ CharacterJoint:
   m_GameObject: {fileID: 1821282325356142}
   m_ConnectedBody: {fileID: 54177568852921880}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
+  m_Axis: {x: 1, y: 1, z: 1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: -0.3488835}
   serializedVersion: 2
@@ -1582,7 +1631,7 @@ CharacterJoint:
   m_GameObject: {fileID: 1402167447229688}
   m_ConnectedBody: {fileID: 54697725515541732}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
+  m_Axis: {x: 1, y: 1, z: 1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: -0.32428515}
   serializedVersion: 2
@@ -1626,7 +1675,7 @@ CharacterJoint:
   m_GameObject: {fileID: 1697671351231116}
   m_ConnectedBody: {fileID: 54902675152430078}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
+  m_Axis: {x: 1, y: 1, z: 1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: 0.78171587}
   serializedVersion: 2
@@ -1670,7 +1719,7 @@ CharacterJoint:
   m_GameObject: {fileID: 1175242274559386}
   m_ConnectedBody: {fileID: 54065754037254854}
   m_Anchor: {x: 0, y: 0, z: 0}
-  m_Axis: {x: 1, y: 0, z: 0}
+  m_Axis: {x: 1, y: 1, z: 1}
   m_AutoConfigureConnectedAnchor: 1
   m_ConnectedAnchor: {x: 0, y: 0, z: -0.35402858}
   serializedVersion: 2

@@ -47,7 +47,7 @@ public class NetworkManager : Photon.PunBehaviour
         NetworkPlayerManager.Instance.SetLocalPlayer();
         NetworkPlayerManager.Instance.photonView.RPC("SpawnNetworkPlayer", PhotonTargets.OthersBuffered, Vector3.zero, Quaternion.identity, id);
 
-        if (id >= 1)
+        if (id >= 0 /*1*/)
         {
             GameRefereeManager.Instance.NewGame();
         }

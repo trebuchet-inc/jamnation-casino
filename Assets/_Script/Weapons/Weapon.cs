@@ -7,17 +7,27 @@ public class Weapon : MonoBehaviour
 {
     public string ID;
     public Transform target;
-    public float lerpSpeed = 20;
+    public float positionLerpSpeed = 20;
+    public float angularLerpSpeed = 20;
     public GameObject[] JoinedObjects;
 
     NVRHand _weaponHand;
     NVRHand _hand;
+    NVRInteractableItem _item;
     bool _initialized;
+
+    void Start()
+    {
+        if(target == null) target = transform;
+        _item = GetComponent<NVRInteractableItem>();
+        _item.VelocityMagic = positionLerpSpeed;
+        _item.AngularVelocityMagic = angularLerpSpeed;
+    }
 
     public void Initialize(NVRHand hand)
     {
         _initialized = true;
-        if(target == null) target = transform;
+
         _weaponHand = hand;
         transform.parent = hand.transform.parent;
         target.localPosition = _weaponHand.transform.localPosition;
@@ -28,6 +38,7 @@ public class Weapon : MonoBehaviour
             obj.transform.parent = null;
         }
 
+        _item.BeginInteraction(_weaponHand);
         GameRefereeManager.Instance.intermissionPhase.OnRoundReset += DestroyWeapon;
     }
 
@@ -35,8 +46,8 @@ public class Weapon : MonoBehaviour
     {
         if(!_initialized) return;
 
-        target.localPosition = Vector3.Lerp(transform.localPosition, _weaponHand.transform.localPosition, Time.deltaTime * lerpSpeed);
-        target.localRotation = Quaternion.Lerp(transform.localRotation, _weaponHand.transform.localRotation, Time.deltaTime * lerpSpeed);
+        //target.localPosition = Vector3.Lerp(transform.localPosition, _weaponHand.transform.localPosition, Time.deltaTime * lerpSpeed);
+        //target.localRotation = Quaternion.Lerp(transform.localRotation, _weaponHand.transform.localRotation, Time.deltaTime * lerpSpeed);
     }
 
 	private void OnTriggerEnter(Collider other)
@@ -68,6 +79,8 @@ public class Weapon : MonoBehaviour
     void DestroyWeapon()
     {
         _initialized = false;
+
+        _item.EndInteraction(_weaponHand);
         GameRefereeManager.Instance.intermissionPhase.OnRoundReset -= DestroyWeapon;
 
         foreach(GameObject obj in JoinedObjects)

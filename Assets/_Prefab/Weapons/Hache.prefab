@@ -66,8 +66,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4875583630469132}
-  - component: {fileID: 114858314266089906}
   - component: {fileID: 54187025521725704}
+  - component: {fileID: 114745444218804148}
+  - component: {fileID: 114858314266089906}
   m_Layer: 0
   m_Name: Hache
   m_TagString: Untagged
@@ -214,7 +215,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -242,6 +243,53 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.3, z: 0.55}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114745444218804148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1898581012071596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4a39dec1a23a043a14d554ccce8fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  CanAttach: 1
+  AllowTwoHanded: 0
+  DisableKinematicOnAttach: 1
+  EnableKinematicOnDetach: 1
+  DropDistance: 10
+  EnableGravityOnDetach: 0
+  AttachedHands: []
+  OnHovering:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  VelocityMagic: 500
+  AngularVelocityMagic: 10
+  InteractionPoint: {fileID: 0}
+  OnUseButtonDown:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnUseButtonUp:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnBeginInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnEndInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114858314266089906
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -255,5 +303,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: Hache
   target: {fileID: 0}
-  lerpSpeed: 10
+  positionLerpSpeed: 4000
+  angularLerpSpeed: 40
   JoinedObjects: []
