@@ -56,6 +56,14 @@ public class HMDisplayUIManager : FeedbackManager
 				msg.Enqueue("Ready"); msg.Enqueue("Set"); msg.Enqueue("GO !");
 				Activate(msg, 1);
 				break;
+				
+			case Phases.Intermission:
+				
+				break;
+				
+			case Phases.End:
+				
+				break;
 		}
 	}
 	

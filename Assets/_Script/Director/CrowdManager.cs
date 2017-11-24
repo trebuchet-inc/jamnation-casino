@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
-public class CrowdManager : MonoBehaviour {
-
-	public CharacterAnimatorController[] characters;
+public class CrowdManager : FeedbackManager 
+{
 	public static CrowdManager Instance;
+	
+	public CharacterAnimatorController[] characters;
 	
 	void Awake()
 	{
@@ -17,6 +18,16 @@ public class CrowdManager : MonoBehaviour {
 			c.Initialize();
 		}		
 	}
+	
+	//
+	// Event handlers
+	//
+	
+	
+	
+	//
+	// Feedback functions
+	//
 
 	public void SetHype(int hype)
 	{
