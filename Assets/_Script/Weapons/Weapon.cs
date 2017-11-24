@@ -14,9 +14,17 @@ public class Weapon : MonoBehaviour
     NVRHand _hand;
     NVRInteractableItem _item;
     bool _initialized;
+    bool _nvrinitialized;
 
     void Start()
     {
+        if(!_nvrinitialized) NVRInitialize();
+    }
+
+    public void NVRInitialize()
+    {
+        _nvrinitialized = true;
+
         _item = GetComponent<NVRInteractableItem>();
         _item.VelocityMagic = positionLerpSpeed;
         _item.AngularVelocityMagic = angularLerpSpeed;
@@ -25,6 +33,8 @@ public class Weapon : MonoBehaviour
     public void Initialize(NVRHand hand)
     {
         _initialized = true;
+
+        if(!_nvrinitialized) NVRInitialize();
 
         _weaponHand = hand;
         transform.parent = hand.transform.parent;
