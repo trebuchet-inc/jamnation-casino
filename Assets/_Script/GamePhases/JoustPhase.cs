@@ -66,6 +66,8 @@ public class JoustPhase : GamePhase
 			break;
 		}
 
+		print("hitSend to " + lastHit);
+
 		if(lastHit == LimbType.None) return;
 
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, SerializationToolkit.ObjectToByteArray(info));
@@ -76,8 +78,6 @@ public class JoustPhase : GamePhase
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 
 		Instantiate(blood, info.hitPoint.Deserialize(), Quaternion.identity);
-
-		print("hitSend");
 	}
 
 	[PunRPC]
