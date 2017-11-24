@@ -110,7 +110,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		
 		NetworkPlayerManager.Instance.SetLocalPlayer();
 		roundIndex = 0;
-		ScoreBoardManager.Instance.ResetScore();
+		ScoreManager.Instance.ResetScore();
 		
 		if(OnNewGame != null) OnNewGame.Invoke();
 		ChangePhase(Phases.WeaponSelection);
