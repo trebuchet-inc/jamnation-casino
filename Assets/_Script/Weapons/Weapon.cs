@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour
     NVRInteractableItem _item;
     bool _initialized;
     bool _nvrinitialized;
+    bool _networkWeapon = false;
 
     void Start()
     {
@@ -34,7 +35,11 @@ public class Weapon : MonoBehaviour
     {
         _initialized = true;
 
-        if(!_nvrinitialized) NVRInitialize();
+        if(!_nvrinitialized)
+        {
+            NVRInitialize();
+            _networkWeapon = true;
+        } 
 
         _weaponHand = hand;
         transform.position = _weaponHand.transform.position;
@@ -73,11 +78,11 @@ public class Weapon : MonoBehaviour
 
     public void Hit(Collider other)
     {
-       if(other.transform.tag == "Ennemy")
+       if(!_networkWeapon && other.transform.tag == "Ennemy")
         {
             HitInfo info = new HitInfo(type, other.transform.parent.name, other.transform.position);
             GameRefereeManager.Instance.joustPhase.callHit(info);
-            print(info.limbHited);
+            print("hit");
             SoundManager.Instance.PlayHit(type);
         } 
     }
