@@ -30,7 +30,7 @@ public class IntermissionPhase : GamePhase
 
 	private Phases CheckIfMatchEnded()
 	{
-		return GameRefereeManager.Instance.roundIndex >= GameRefereeManager.Instance.TotalRounds
+		return GameRefereeManager.Instance.roundIndex > GameRefereeManager.Instance.TotalRounds
 			? Phases.End
 			: Phases.WeaponSelection;
 	}
