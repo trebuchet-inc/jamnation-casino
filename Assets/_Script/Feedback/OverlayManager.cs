@@ -33,7 +33,7 @@ public class OverlayManager : FeedbackManager
                 break;
 				
             case Phases.Joust:
-				
+				DisplaySuper("JOUSTING !!!");
                 break;	
 				
             case Phases.Intermission:
