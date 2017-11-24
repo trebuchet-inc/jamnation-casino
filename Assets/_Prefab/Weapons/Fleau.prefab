@@ -874,9 +874,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d790a9188cb6b3d498ead804fa7586b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: Fleau
+  type: 0
   target: {fileID: 0}
-  positionLerpSpeed: 5000
+  positionLerpSpeed: 1000
   angularLerpSpeed: 50
   JoinedObjects:
   - {fileID: 1697671351231116}
