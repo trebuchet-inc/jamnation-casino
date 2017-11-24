@@ -5,17 +5,8 @@ using UnityEngine.UI;
 
 public class ScoreBoardManager : FeedbackManager
 {
-	public static ScoreBoardManager Instance;
+	public Text displayLeft, displayRight;
 	
-	public Text headerLeft, headerRight, displayLeft, displayRight;
-
-	public int scoreBlue, scoreRed;
-
-	private void Awake()
-	{
-		Instance = this;
-	}
-
 	private void Start()
 	{
 		DisplayScores();
@@ -51,13 +42,12 @@ public class ScoreBoardManager : FeedbackManager
 				break;
 		}
 
-		StartCoroutine(DisplayUpdate(displayLeft, msg));
-		StartCoroutine(DisplayUpdate(displayRight, msg));
+		DisplayOnBothScreens(msg);
 	}
 
 	protected override void OnJoustHitHandler(LimbType limbHited)
 	{
-		
+		DisplayOnBothScreens("HIT!");
 	}
 
 	protected override void OnJoustGOHandler()
@@ -70,20 +60,10 @@ public class ScoreBoardManager : FeedbackManager
 	// Feedback Functions
 	//
 
-	public void AddScoreBlue(float multiplier)
+	private void DisplayOnBothScreens(string msg)
 	{
-		scoreBlue += (int)(100 * multiplier);
-	}
-
-	public void AddScoreRed(float multiplier)
-	{
-		scoreRed += (int)(100 * multiplier);
-	}
-	
-	public void ResetScore()
-	{
-		scoreBlue = 0;
-		scoreRed = 0;
+		StartCoroutine(DisplayUpdate(displayLeft, msg));
+		StartCoroutine(DisplayUpdate(displayRight, msg));
 	}
 
 	public void DisplayUpdateOnScreen(Text display, string text)
@@ -93,8 +73,8 @@ public class ScoreBoardManager : FeedbackManager
 
 	private void DisplayScores()
 	{
-		displayLeft.text = scoreBlue.ToString();
-		displayRight.text = scoreRed.ToString();
+		displayLeft.text = ScoreManager.Instance.GetScore(0);
+		displayRight.text = ScoreManager.Instance.GetScore(1);
 	}
 	
 	//

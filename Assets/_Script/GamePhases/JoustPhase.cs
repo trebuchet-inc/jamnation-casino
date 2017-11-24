@@ -70,8 +70,7 @@ public class JoustPhase : GamePhase
 
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, SerializationToolkit.ObjectToByteArray(info));
 
-		ScoreBoardManager.Instance.DisplayUpdateOnScreen(ScoreBoardManager.Instance.displayLeft, "HIT!");
-		ScoreBoardManager.Instance.AddScoreBlue(multiplier);
+		ScoreManager.Instance.AddScoreBlue(multiplier);
 		
 		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHited);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
@@ -88,7 +87,6 @@ public class JoustPhase : GamePhase
 
 		HitInfo info = (HitInfo)SerializationToolkit.ByteArrayToObject(data);
 
-		ScoreBoardManager.Instance.DisplayUpdateOnScreen(ScoreBoardManager.Instance.displayRight, "HIT!");
 
 		float multiplier = 1;
 
@@ -107,7 +105,7 @@ public class JoustPhase : GamePhase
 			break;
 		}
 		
-		ScoreBoardManager.Instance.AddScoreRed(multiplier);
+		ScoreManager.Instance.AddScoreRed(multiplier);
 		
 		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHited);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
