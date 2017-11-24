@@ -36,7 +36,9 @@ public class CrowdManager : FeedbackManager
 				break;
 				
 			case Phases.Parade:
-				
+				SetHype(4);
+				SetHype(2);
+
 				break;
 				
 			case Phases.Joust:

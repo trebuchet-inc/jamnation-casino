@@ -16,7 +16,6 @@ public class ParadePhase : GamePhase
     {
         isReady = false;
         isEnemyReady = false;
-        SoundManager.Instance.HypeCrowd();
     } 
     
     public override void TerminatePhase()

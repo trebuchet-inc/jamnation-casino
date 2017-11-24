@@ -84,9 +84,7 @@ public class SoundManager : FeedbackManager
 	public void HypeCrowd()
 	{
 		AkSoundEngine.PostEvent("Play_Crowd_GetHyped", gameObject);
-		CrowdManager.Instance.SetHype(4);
 		AkSoundEngine.PostEvent("Play_Jingle_Start", gameObject);
-		CrowdManager.Instance.SetHype(2);
 	}
 
 	public void CasualCrowd()
