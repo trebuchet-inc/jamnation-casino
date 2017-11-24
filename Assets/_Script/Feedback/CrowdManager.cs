@@ -44,11 +44,11 @@ public class CrowdManager : FeedbackManager
 				break;
 				
 			case Phases.Intermission:
-				
+				SetHype(4);
 				break;
 				
 			case Phases.End:
-				
+				SetHype(5);
 				break;
 		}
 	}
