@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
-public class ScoreBoardManager : Photon.MonoBehaviour
+public class ScoreBoardManager : FeedbackManager
 {
 	public static ScoreBoardManager Instance;
 	
@@ -18,41 +18,14 @@ public class ScoreBoardManager : Photon.MonoBehaviour
 
 	private void Start()
 	{
-		SubscribeEvents();
 		DisplayScores();
 	}
-
-	private void SubscribeEvents()
-	{
-		GameRefereeManager.Instance.OnPhaseStarted += OnPhaseStartedHandler;
-		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGoHandler;
-		GameRefereeManager.Instance.joustPhase.OnJoustHit += OnJoustHitHandler;
-	}
-
-	private void UnsubscribeEvents()
-	{
-		GameRefereeManager.Instance.OnPhaseStarted -= OnPhaseStartedHandler;
-		GameRefereeManager.Instance.joustPhase.OnJoustGO -= OnJoustGoHandler;
-		GameRefereeManager.Instance.joustPhase.OnJoustHit -= OnJoustHitHandler;
-	}
-
-	public void AddScoreBlue(float multiplier)
-	{
-		scoreBlue += (int)(100 * multiplier);
-	}
-
-	public void AddScoreRed(float multiplier)
-	{
-		scoreRed += (int)(100 * multiplier);
-	}
 	
-	public void ResetScore()
-	{
-		scoreBlue = 0;
-		scoreRed = 0;
-	}
+	//
+	// Event Handlers
+	//
 
-	private void OnPhaseStartedHandler(Phases phases)
+	protected override void OnPhaseStartedHandler(Phases phases)
 	{
 		string msg = "";
 		
@@ -82,15 +55,35 @@ public class ScoreBoardManager : Photon.MonoBehaviour
 		StartCoroutine(DisplayUpdate(displayRight, msg));
 	}
 
-	private void OnJoustHitHandler(Hitinfo edfasijulghbvd)
+	protected override void OnJoustHitHandler(Hitinfo hitInfo)
 	{
 		
 	}
 
-	private void OnJoustGoHandler()
+	protected override void OnJoustGOHandler()
 	{
 		StartCoroutine(DisplayUpdate(displayLeft, "GO !"));
 		StartCoroutine(DisplayUpdate(displayRight, "GO !"));
+	}
+	
+	//
+	// Feedback Functions
+	//
+
+	public void AddScoreBlue(float multiplier)
+	{
+		scoreBlue += (int)(100 * multiplier);
+	}
+
+	public void AddScoreRed(float multiplier)
+	{
+		scoreRed += (int)(100 * multiplier);
+	}
+	
+	public void ResetScore()
+	{
+		scoreBlue = 0;
+		scoreRed = 0;
 	}
 
 	public void DisplayUpdateOnScreen(Text display, string text)
@@ -98,6 +91,16 @@ public class ScoreBoardManager : Photon.MonoBehaviour
 		StartCoroutine(DisplayUpdate(display, text));
 	}
 
+	private void DisplayScores()
+	{
+		displayLeft.text = scoreBlue.ToString();
+		displayRight.text = scoreRed.ToString();
+	}
+	
+	//
+	// Coroutines
+	//
+	
 	IEnumerator DisplayUpdate(Text display, string text)
 	{
 		display.text = text;
@@ -105,15 +108,5 @@ public class ScoreBoardManager : Photon.MonoBehaviour
 		yield return new WaitForSeconds(3f);
 		DisplayScores();
 	}
-
-	public void DisplayScores()
-	{
-		displayLeft.text = scoreBlue.ToString();
-		displayRight.text = scoreRed.ToString();
-	}
-
-	private void OnDisable()
-	{
-		UnsubscribeEvents();
-	}
+	
 }

@@ -1,50 +1,18 @@
-﻿ using System;
- using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class SoundManager : MonoBehaviour 
+public class SoundManager : FeedbackManager 
 {
 	public static SoundManager Instance;
 
-	void Awake()
-	{
-		Instance = this;
-	}
+//
+// Event Handlers
+//
 	
-	private void Start()
-	{
-		SubscribeEvents();
-	}
-
-	private void SubscribeEvents()
-	{
-		GameRefereeManager.Instance.OnPhaseStarted += OnPhaseStartedHandler;
-		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
-		GameRefereeManager.Instance.joustPhase.OnJoustHit += OnJoustHitHandler;
-	}
-
-	private void UnsubscribeEvents()
-	{
-		GameRefereeManager.Instance.OnPhaseStarted -= OnPhaseStartedHandler;
-		GameRefereeManager.Instance.joustPhase.OnJoustGO -= OnJoustGOHandler;
-		GameRefereeManager.Instance.joustPhase.OnJoustHit -= OnJoustHitHandler;
-	}
-
-	private void OnPhaseStartedHandler(Phases phases)
-	{
-		
-	}
-
-	private void OnJoustGOHandler()
-	{
-		
-	}
 	
-	private void OnJoustHitHandler(Hitinfo hitinfo)
-	{
-		
-	}
+
+//
+// Feedback Functions
+//
 	
 	public void PlayHit (string weapon) {
 		switch(weapon)
@@ -126,8 +94,5 @@ public class SoundManager : MonoBehaviour
 		AkSoundEngine.PostEvent("Play_Weapon_Selected", gameObject);
 	}
 
-	private void OnDisable()
-	{
-		UnsubscribeEvents();
-	}
+
 }
