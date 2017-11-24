@@ -50,6 +50,22 @@ public class CharacterAnimatorController : MonoBehaviour {
 		hypeChange = true;
 		nextHypeLevel = whatIsTheHype;
 	}
+	public void IncrementLevel (bool goingUp)
+	{
+		
+		hypeChange = true;
+		if (goingUp)
+		{
+			delay = Random.Range(0.0f,2.0f);
+			nextHypeLevel = hypeLevel+Random.Range(1,3);
+		}
+		else
+		{
+			delay = Random.Range(0.0f,1.0f);
+			nextHypeLevel = hypeLevel-Random.Range(1,3);
+		}
+	}
+
 
 	private void SetHypeLevel(int whatIsTheHype)
 	{
