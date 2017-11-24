@@ -75,7 +75,9 @@ public class Weapon : MonoBehaviour
     {
        if(other.transform.tag == "Ennemy")
         {
-            GameRefereeManager.Instance.joustPhase.callHit(new HitInfo(type, other.transform.parent.name, other.transform.position));
+            HitInfo info = new HitInfo(type, other.transform.parent.name, other.transform.position);
+            GameRefereeManager.Instance.joustPhase.callHit(info);
+            print(info.limbHited);
             SoundManager.Instance.PlayHit(type);
         } 
     }

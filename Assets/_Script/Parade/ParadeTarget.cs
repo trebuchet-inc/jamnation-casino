@@ -9,7 +9,6 @@ public class ParadeTarget : MonoBehaviour
 			if (!GameRefereeManager.Instance.paradePhase.isReady)
 			{
 				GameRefereeManager.Instance.paradePhase.SetReady();
-				Debug.Log("Setting ready");
 			}
 		}
 	}

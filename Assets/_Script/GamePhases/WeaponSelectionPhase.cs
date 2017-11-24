@@ -35,8 +35,6 @@ public class WeaponSelectionPhase : GamePhase
 
 	public void ChooseWeapon(WeaponType weaponType)
 	{
-		Debug.Log("Chose " + weaponType);
-
 		isWeaponChosen = true;
 		
 		if(OnWeaponChosen != null) OnWeaponChosen.Invoke(weaponType);
