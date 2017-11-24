@@ -119,26 +119,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8850d2f3a7ec4d34e90fccff406b3eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fakeWeaponsPool:
-  - {fileID: 1658279920488078, guid: 517aacd700c1a7a4eb66b9bfec64a8cc, type: 2}
-  - {fileID: 1413352853956460, guid: 7c66ae7c0b1265b448434245b8e307a7, type: 2}
-  - {fileID: 1479092965166786, guid: ad196f4b5c5e7684aada3412373c7c83, type: 2}
   weaponsPool:
   - {fileID: 1772092793813160, guid: aaa488e14562c1a40aba1e9d414655f4, type: 2}
   - {fileID: 1898581012071596, guid: b38e642f9d2a1f94db74777b72a837b5, type: 2}
   - {fileID: 1121701504105628, guid: 9a2ec3f9b9561b640a32ccf04fedd47d, type: 2}
-  fakeWeaponsAvailable: []
-  weaponsAvailable: []
-  weaponChoiceAnchors:
+  weaponChoiceAnchorsP1:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  otherWeaponChoiceAnchors:
+  weaponChoiceAnchorsP2:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  currentWeapon: {fileID: 0}
-  enemyCurrentWeapon: {fileID: 0}
   isWeaponChosen: 0
   isEnemyWeaponChosen: 0
 --- !u!114 &114728677021273508

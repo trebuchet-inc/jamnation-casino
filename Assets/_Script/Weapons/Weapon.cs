@@ -5,6 +5,7 @@ using NewtonVR;
 
 public class Weapon : MonoBehaviour
 {
+    public string ID;
     public Transform target;
     public float lerpSpeed = 20;
     public GameObject[] JoinedObjects;
@@ -29,18 +30,42 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
+        if(!_initialized) return;
+
         target.localPosition = Vector3.Lerp(transform.localPosition, weaponHand.transform.localPosition, Time.deltaTime * lerpSpeed);
         target.localRotation = Quaternion.Lerp(transform.localRotation, weaponHand.transform.localRotation, Time.deltaTime * lerpSpeed);
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        GameRefereeManager.Instance.joustPhase.callHit(other.name,gameObject.name, other.transform.position);
-        SoundManager.Instance.PlayHit(gameObject.name);
-    }
+	private void OnTriggerEnter(Collider other)
+	{
+		if(other.transform.tag == "Ennemy")
+        {
+            GameRefereeManager.Instance.joustPhase.callHit(other.transform.parent.name,ID, other.transform.position);
+            SoundManager.Instance.PlayHit(gameObject.name);
+        }
+
+
+		weaponHand = other.attachedRigidbody.GetComponent<NVRHand>();
+	}
+
+	private void OnTriggerStay(Collider other)
+	{
+		if ((object) weaponHand != null && !GameRefereeManager.Instance.weaponSelectionPhase.isWeaponChosen && weaponHand.HoldButtonDown)
+		{
+			GameRefereeManager.Instance.weaponSelectionPhase.ChooseWeapon(ID);
+            Initialize(weaponHand);
+			SoundManager.Instance.WeaponSelected();
+		}
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if((object) weaponHand != null) weaponHand = null;
+	}
 
     void OnDestroy()
     {
+        target = null;
         foreach(GameObject obj in JoinedObjects)
         {
             Destroy(obj);

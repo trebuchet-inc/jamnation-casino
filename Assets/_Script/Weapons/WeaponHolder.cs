@@ -27,9 +27,9 @@ public class WeaponHolder : MonoBehaviour
 	
 	private void OnWeaponChosenHandler(string s)
 	{
-		currentWeapon = GameRefereeManager.Instance.weaponSelectionPhase.GetWeaponFromName(s);
+		//currentWeapon = GameRefereeManager.Instance.weaponSelectionPhase.GetWeaponFromName(s);
 		
-		SetupWeapon();
+		//SetupWeapon();
 	}
 
 	private void SetupWeapon()
