@@ -68,6 +68,7 @@ public class Weapon : MonoBehaviour
     void DestroyWeapon()
     {
         _initialized = false;
+        GameRefereeManager.Instance.intermissionPhase.OnRoundReset -= DestroyWeapon;
 
         foreach(GameObject obj in JoinedObjects)
         {
