@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HMDisplayUIManager : MonoBehaviour
+public class HMDisplayUIManager : FeedbackManager
 {
 	public static HMDisplayUIManager Instance;
 
@@ -20,7 +19,49 @@ public class HMDisplayUIManager : MonoBehaviour
 		Instance = this;
 	}
 	
+	private void Start()
+	{
+		canvasText = canvas.GetComponentInChildren<Text>();
+		canvasText.text = "";
+	}
 	
+	//
+	// Event Handlers
+	//
+
+	protected override void OnParadeReadyHandler()
+	{
+		Deactivate();
+	}
+
+	protected override void OnWeaponChosen(string s)
+	{
+		Deactivate();
+	}
+
+	protected override void OnPhaseStartedHandler(Phases phases)
+	{
+		switch (phases) 
+		{
+			case Phases.WeaponSelection:
+				Activate("Choose your weapon !");
+				break;
+				
+			case Phases.Parade:
+				Activate("Ride your horse to the target");
+				break;
+				
+			case Phases.Joust:
+				Queue<string> msg = new Queue<string>();
+				msg.Enqueue("Ready"); msg.Enqueue("Set"); msg.Enqueue("GO !");
+				Activate(msg, 1);
+				break;
+		}
+	}
+	
+	//
+	// Feedback functions
+	//
 
 	public void ShowResult(Hitinfo info)
 	{
@@ -51,6 +92,47 @@ public class HMDisplayUIManager : MonoBehaviour
 		StartCoroutine(DelayBeforeResult(text, sucess));
 	}
 
+	private void Activate(string textToDisplay)
+	{
+		 canvasText.text = textToDisplay;
+	}
+
+	private void Activate(Queue<string> textsToDisplay, float interval)
+	{
+		StartCoroutine(DisplayTexts(textsToDisplay, interval));
+	}
+
+	private void Deactivate()
+	{
+		canvasText.text = "";
+	}
+
+	private void Update()
+	{
+		if (canvasText.text == "") return;
+
+		canvas.transform.position = Vector3.Lerp(canvas.transform.position, UITarget.position, Time.deltaTime * LerpSpeed);
+		canvas.transform.rotation = Quaternion.Lerp(canvas.transform.rotation, UITarget.rotation, Time.deltaTime * LerpSpeed);
+	}
+	
+	//
+	// Coroutines
+	//
+
+	private IEnumerator DisplayTexts(Queue<string> texts, float interval)
+	{
+		int count = texts.Count;
+		
+		for (int i = 0; i < count; i++)
+		{
+			canvasText.text = texts.Dequeue();
+			
+			yield return new WaitForSeconds(interval);
+		}
+		
+		Deactivate();
+	}
+
 	IEnumerator DelayBeforeResult(string text, bool sucess)
 	{
 		yield return new WaitForSeconds(2f);
@@ -67,86 +149,5 @@ public class HMDisplayUIManager : MonoBehaviour
 		
 		yield return new WaitForSeconds(4f);
 		canvasText.text = "";
-	}
-
-	private void Start()
-	{
-		canvasText = canvas.GetComponentInChildren<Text>();
-		canvasText.text = "";
-		
-		GameRefereeManager.Instance.OnPhaseStarted += OnPhaseStartedHandler;
-		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosen;
-		GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
-	}
-
-	private void OnParadeReadyHandler()
-	{
-		Deactivate();
-	}
-
-	private void OnWeaponChosen(string s)
-	{
-		Deactivate();
-	}
-
-	private void OnPhaseStartedHandler(Phases phases)
-	{
-		switch (phases) 
-		{
-			case Phases.WeaponSelection:
-				Activate("Choose your weapon !");
-				break;
-				
-			case Phases.Parade:
-				Activate("Ride your horse to the target");
-				break;
-				
-			case Phases.Joust:
-				Queue<string> msg = new Queue<string>();
-				msg.Enqueue("Ready"); msg.Enqueue("Set"); msg.Enqueue("GO !");
-				Activate(msg, 1);
-				break;
-		}
-	}
-
-	public void Activate(string textToDisplay)
-	{
-		 canvasText.text = textToDisplay;
-	}
-
-	public void Activate(Queue<string> textsToDisplay, float interval)
-	{
-		StartCoroutine(DisplayTexts(textsToDisplay, interval));
-	}
-
-	public void Deactivate()
-	{
-		canvasText.text = "";
-	}
-
-	private void Update()
-	{
-		if (canvasText.text == "") return;
-
-		canvas.transform.position = Vector3.Lerp(canvas.transform.position, UITarget.position, Time.deltaTime * LerpSpeed);
-		canvas.transform.rotation = Quaternion.Lerp(canvas.transform.rotation, UITarget.rotation, Time.deltaTime * LerpSpeed);
-	}
-	
-	//
-	// COROUTINES
-	//
-
-	private IEnumerator DisplayTexts(Queue<string> texts, float interval)
-	{
-		int count = texts.Count;
-		
-		for (int i = 0; i < count; i++)
-		{
-			canvasText.text = texts.Dequeue();
-			
-			yield return new WaitForSeconds(interval);
-		}
-		
-		Deactivate();
 	}
 }
