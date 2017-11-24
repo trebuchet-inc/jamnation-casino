@@ -21,6 +21,7 @@ public class JoustPhase : GamePhase
 		StartCoroutine(WaitForGo());
 		lastHit = LimbType.None;
 		_active = true;
+		localHited = false;
 
 		SoundManager.Instance.CasualCrowd();
 	} 
@@ -86,7 +87,6 @@ public class JoustPhase : GamePhase
 		print("hitReceived");
 
 		HitInfo info = (HitInfo)SerializationToolkit.ByteArrayToObject(data);
-
 
 		float multiplier = 1;
 
