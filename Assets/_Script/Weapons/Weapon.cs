@@ -37,9 +37,8 @@ public class Weapon : MonoBehaviour
         if(!_nvrinitialized) NVRInitialize();
 
         _weaponHand = hand;
-        transform.parent = hand.transform.parent;
-        transform.localPosition = _weaponHand.transform.localPosition;
-        transform.localRotation = _weaponHand.transform.localRotation;
+        transform.position = _weaponHand.transform.position;
+        transform.rotation = _weaponHand.transform.rotation;
 
         foreach(GameObject obj in JoinedObjects)
         {

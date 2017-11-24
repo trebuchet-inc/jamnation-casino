@@ -875,9 +875,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  target: {fileID: 0}
-  positionLerpSpeed: 1000
-  angularLerpSpeed: 50
+  positionLerpSpeed: 5000
+  angularLerpSpeed: 15
   JoinedObjects:
   - {fileID: 1697671351231116}
   - {fileID: 1821282325356142}
