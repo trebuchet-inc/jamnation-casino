@@ -8,7 +8,31 @@ public class SoundManager : FeedbackManager
 // Event Handlers
 //
 	
-	
+	protected override void OnPhaseStartedHandler(Phases phases)
+	{
+		switch (phases) 
+		{
+			case Phases.WeaponSelection:
+				
+				break;
+				
+			case Phases.Parade:
+				
+				break;
+				
+			case Phases.Joust:
+				
+				break;
+				
+			case Phases.Intermission:
+				
+				break;
+				
+			case Phases.End:
+				
+				break;
+		}
+	}
 
 //
 // Feedback Functions
@@ -31,16 +55,14 @@ public class SoundManager : FeedbackManager
 		}
 
 		AkSoundEngine.PostEvent("Play_Crowd_Surprise", gameObject);
-		CrowdManager.Instance.SetHype(3);
 		AkSoundEngine.PostEvent("Stop_BattleMusic", gameObject);
 	}
 
 	public void PlayAmbiance () 
 	{
 		AkSoundEngine.PostEvent("Play_Intro_Annonceurs", gameObject);
-		CrowdManager.Instance.SetHype(4);
 		uint _play_Ambiance = AkSoundEngine.GetIDFromString("Play_Ambiance");
-		AkSoundEngine.PostEvent("Play_Ambiance", gameObject);
+		AkSoundEngine.PostEvent(_play_Ambiance, gameObject);
 	}
 
 	public void StopAmbiance()

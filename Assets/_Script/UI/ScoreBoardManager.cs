@@ -51,13 +51,12 @@ public class ScoreBoardManager : FeedbackManager
 				break;
 		}
 
-		StartCoroutine(DisplayUpdate(displayLeft, msg));
-		StartCoroutine(DisplayUpdate(displayRight, msg));
+		DisplayOnBothScreens(msg);
 	}
 
 	protected override void OnJoustHitHandler(Hitinfo hitInfo)
 	{
-		
+		DisplayOnBothScreens("HIT!");
 	}
 
 	protected override void OnJoustGOHandler()
@@ -78,12 +77,20 @@ public class ScoreBoardManager : FeedbackManager
 	public void AddScoreRed(float multiplier)
 	{
 		scoreRed += (int)(100 * multiplier);
+		
+		
 	}
 	
 	public void ResetScore()
 	{
 		scoreBlue = 0;
 		scoreRed = 0;
+	}
+
+	private void DisplayOnBothScreens(string msg)
+	{
+		StartCoroutine(DisplayUpdate(displayLeft, msg));
+		StartCoroutine(DisplayUpdate(displayRight, msg));
 	}
 
 	public void DisplayUpdateOnScreen(Text display, string text)

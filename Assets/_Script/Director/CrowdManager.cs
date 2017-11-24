@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CrowdManager : FeedbackManager 
 {
@@ -22,9 +23,38 @@ public class CrowdManager : FeedbackManager
 	//
 	// Event handlers
 	//
+
+	protected override void OnPhaseStartedHandler(Phases phases)
+	{
+		switch (phases) 
+		{
+			case Phases.WeaponSelection:
+				SetHype(4);
+				break;
+				
+			case Phases.Parade:
+				
+				break;
+				
+			case Phases.Joust:
+				
+				break;
+				
+			case Phases.Intermission:
+				
+				break;
+				
+			case Phases.End:
+				
+				break;
+		}
+	}
 	
-	
-	
+	protected override void OnJoustHitHandler(Hitinfo hitinfo)
+	{
+		SetHype(3);
+	}
+
 	//
 	// Feedback functions
 	//
