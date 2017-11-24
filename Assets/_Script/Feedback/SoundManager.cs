@@ -4,6 +4,10 @@ public class SoundManager : FeedbackManager
 {
 	public static SoundManager Instance;
 
+	private void Awake()
+	{
+		Instance = this;
+	}
 //
 // Event Handlers
 //
