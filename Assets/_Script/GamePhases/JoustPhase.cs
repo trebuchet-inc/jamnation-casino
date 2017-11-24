@@ -59,16 +59,16 @@ public class JoustPhase : GamePhase
 
 		localHited = true;
 
-		if(objname.Contains("root") || objname.Contains("torso"))
+		if(objname.Contains("Torso"))
 		{
 			info = Hitinfo.torso;
 		}
-		else if(objname.Contains("knee") || objname.Contains("foot"))
+		else if(objname.Contains("Hand"))
 		{
 			info = Hitinfo.leg;
 			multiplier = 2;
 		}
-		else if(objname.Contains("neck"))
+		else if(objname.Contains("Head"))
 		{
 			info = Hitinfo.head;
 			multiplier = 3;
