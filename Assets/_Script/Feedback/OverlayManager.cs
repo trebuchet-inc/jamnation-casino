@@ -4,7 +4,7 @@ public class OverlayManager : FeedbackManager
 {
     public static OverlayManager Instance;
     
-    public Text SuperText, BlueText, RedText;
+    public Text SuperText, BlueText, RedText, RoundsText;
 
     private void Awake()
     {
@@ -15,6 +15,7 @@ public class OverlayManager : FeedbackManager
     {
         base.Start();
         DisplayScores();
+        DisplayRounds();
     }
     
     //
@@ -23,6 +24,9 @@ public class OverlayManager : FeedbackManager
     
     protected override void OnPhaseStartedHandler(Phases phases)
     {
+        DisplayScores();
+        DisplayRounds();
+        
         switch (phases) 
         {
             case Phases.WeaponSelection:
@@ -55,6 +59,11 @@ public class OverlayManager : FeedbackManager
     // Feedback functions
     //
 
+    private void DisplayRounds()
+    {
+        RoundsText.text = (GameRefereeManager.Instance.roundIndex + 1) + "/" + (GameRefereeManager.Instance.TotalRounds + 1);
+    }
+    
     private void DisplaySuper(string text)
     {
         SuperText.text = text;

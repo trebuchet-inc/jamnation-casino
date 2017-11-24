@@ -14,12 +14,13 @@ public class EndPhase : GamePhase
     
 	public override void TerminatePhase()
 	{
-		if(GameRefereeManager.Instance.isFirstGame) GameRefereeManager.Instance.isFirstGame = false;
 	}
 	
 	public IEnumerator RestartTimer()
 	{
 		yield return new WaitForSeconds(endDuration);
+		
+		if(GameRefereeManager.Instance.isFirstGame) GameRefereeManager.Instance.isFirstGame = false;
 		
 		GameRefereeManager.Instance.NewGame();
 	}
