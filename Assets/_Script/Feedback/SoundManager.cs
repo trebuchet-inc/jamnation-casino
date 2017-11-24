@@ -29,11 +29,11 @@ public class SoundManager : FeedbackManager
 				break;
 				
 			case Phases.Intermission:
-				
+				HypeCrowd();
 				break;
 				
 			case Phases.End:
-				
+				HypeCrowd();
 				break;
 		}
 	}
