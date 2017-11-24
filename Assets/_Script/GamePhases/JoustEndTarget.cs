@@ -15,7 +15,7 @@ public class JoustEndTarget: MonoBehaviour
 		if (phases == Phases.Intermission) hasHit = false;
 	}
 
-	private void OnJoustHitHandler(Hitinfo hitinfo)
+	private void OnJoustHitHandler(LimbType limbHited)
 	{
 		hasHit = true;
 	}

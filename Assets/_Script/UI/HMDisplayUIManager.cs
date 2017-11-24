@@ -34,7 +34,7 @@ public class HMDisplayUIManager : FeedbackManager
 		Deactivate();
 	}
 
-	protected override void OnWeaponChosen(string s)
+	protected override void OnWeaponChosen(WeaponType weaponType)
 	{
 		Deactivate();
 	}
@@ -63,29 +63,29 @@ public class HMDisplayUIManager : FeedbackManager
 	// Feedback functions
 	//
 
-	public void ShowResult(Hitinfo info)
+	public void ShowResult(LimbType limb)
 	{
 		string text= "";
 		bool sucess = false;
 
-		switch(info)
+		switch(limb)
 		{
-			case Hitinfo.head :
+			case LimbType.Head :
 			text = "Wow! HIT THAT HEAD!";
 			sucess = true;
 			break;
 
-			case Hitinfo.leg :
+			case LimbType.Hand :
 			text = "You hit the knee : No more adventures for him!";
 			sucess = true;
 			break;
 
-			case Hitinfo.torso :
+			case LimbType.Torso :
 			text = "You hit the torso, it must be painful!";
 			sucess = true;
 			break;
 
-			case Hitinfo.none :
+			case LimbType.None :
 			text = "Missed !";
 			break;
 		}

@@ -55,7 +55,7 @@ public class ScoreBoardManager : FeedbackManager
 		StartCoroutine(DisplayUpdate(displayRight, msg));
 	}
 
-	protected override void OnJoustHitHandler(Hitinfo hitInfo)
+	protected override void OnJoustHitHandler(LimbType limbHited)
 	{
 		
 	}

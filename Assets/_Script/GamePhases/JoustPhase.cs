@@ -3,32 +3,24 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public enum Hitinfo
-{
-	none = 0,
-	head = 1,
-	torso = 2,
-	leg = 3
-}
-
 public class JoustPhase : GamePhase
 {
 	public event Action OnJoustGO;
 	
-	public event Action<Hitinfo> OnJoustHit;
+	public event Action<LimbType> OnJoustHit;
 
 	public GameObject blood;
 
 	bool localHited;
 	bool _active;
 
-	Hitinfo info = Hitinfo.none;
+	LimbType lastHit;
 	
 	public override void StartPhase()
 	{
 		StartCoroutine(WaitForGo());
+		lastHit = LimbType.None;
 		_active = true;
-		info = Hitinfo.none;
 
 		SoundManager.Instance.CasualCrowd();
 	} 
@@ -36,7 +28,7 @@ public class JoustPhase : GamePhase
 	public override void TerminatePhase()
 	{
         _active = false;
-		HMDisplayUIManager.Instance.ShowResult(info);
+		HMDisplayUIManager.Instance.ShowResult(lastHit);
 	}
 
 	public void EndJoust(bool hit)
@@ -51,83 +43,81 @@ public class JoustPhase : GamePhase
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 	}
 
-	public void callHit(string objname, string weapon, Vector3 pos)
+	public void callHit(HitInfo info)
 	{
-		float multiplier = 1;
-		
 		if(localHited || !_active) return;
 
 		localHited = true;
+		lastHit = (LimbType)info.limbHited; 
+		float multiplier = 1;
 
-		if(objname.Contains("root") || objname.Contains("torso"))
+		switch(lastHit)
 		{
-			info = Hitinfo.torso;
-		}
-		else if(objname.Contains("knee") || objname.Contains("foot"))
-		{
-			info = Hitinfo.leg;
-			multiplier = 2;
-		}
-		else if(objname.Contains("neck"))
-		{
-			info = Hitinfo.head;
+			case LimbType.Head :
 			multiplier = 3;
-		}
-		
-		if(info == Hitinfo.none)
-		{
-			print("noneHit");
-			return;
+			break;
+
+			case LimbType.Hand :
+			multiplier = 1;
+			break;
+			
+			case LimbType.Torso :
+			multiplier = 2;
+			break;
 		}
 
-		print("hitSend");
+		if(lastHit == LimbType.None) return;
 
-		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, (int)info, weapon, SerializationToolkit.ObjectToByteArray(new SerializableVector3(pos)));
+		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, SerializationToolkit.ObjectToByteArray(info));
 
 		ScoreBoardManager.Instance.DisplayUpdateOnScreen(ScoreBoardManager.Instance.displayLeft, "HIT!");
 		ScoreBoardManager.Instance.AddScoreBlue(multiplier);
 		
-		if(OnJoustHit != null) OnJoustHit.Invoke(info);
+		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHited);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 
-		Instantiate(blood, pos, Quaternion.identity);
+		Instantiate(blood, info.hitPoint.Deserialize(), Quaternion.identity);
+
+		print("hitSend");
 	}
 
 	[PunRPC]
-	public void ReceiveRegisterHit(int hit, string weapon, byte[] pos)
+	public void ReceiveRegisterHit(byte[] data)
 	{
 		print("hitReceived");
-		SerializableVector3 a = (SerializableVector3)SerializationToolkit.ByteArrayToObject(pos);
+
+		HitInfo info = (HitInfo)SerializationToolkit.ByteArrayToObject(data);
+
 		ScoreBoardManager.Instance.DisplayUpdateOnScreen(ScoreBoardManager.Instance.displayRight, "HIT!");
 
 		float multiplier = 1;
 
-		switch (hit)
+		switch((LimbType)info.limbHited)
 		{
-			case 1:
-				multiplier = 3;
-				break;
-			
-			case 3:
-				multiplier = 2;
-				break;
-				
-			default:
+			case LimbType.Head :
+			multiplier = 3;
+			break;
+
+			case LimbType.Hand :
 			multiplier = 1;
+			break;
+			
+			case LimbType.Torso :
+			multiplier = 2;
 			break;
 		}
 		
 		ScoreBoardManager.Instance.AddScoreRed(multiplier);
 		
-		if(OnJoustHit != null) OnJoustHit.Invoke((Hitinfo)hit);
+		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHited);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 
-		SoundManager.Instance.PlayHit(weapon); 
+		SoundManager.Instance.PlayHit((WeaponType)info.weaponUsed); 
 
 		Fade.Instance.StartFade(0.2f,0.1f);
 		StartCoroutine(UnFade());
 
-		Instantiate(blood, a.Deserialize(), Quaternion.identity);
+		Instantiate(blood, info.hitPoint.Deserialize(), Quaternion.identity);
 	}
 
 	private IEnumerator UnFade()

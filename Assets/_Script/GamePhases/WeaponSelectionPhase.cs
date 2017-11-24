@@ -10,7 +10,7 @@ public class WeaponSelectionPhase : GamePhase
 	public Transform[] weaponChoiceAnchorsP1;
 	public Transform[] weaponChoiceAnchorsP2;
 
-	public event Action<string> OnWeaponChosen;
+	public event Action<WeaponType> OnWeaponChosen;
 	
 	public bool isWeaponChosen = false;
 	public bool isEnemyWeaponChosen = false;
@@ -33,15 +33,15 @@ public class WeaponSelectionPhase : GamePhase
 		
 	}
 
-	public void ChooseWeapon(string weaponName)
+	public void ChooseWeapon(WeaponType weaponType)
 	{
-		Debug.Log("Chose " + weaponName);
+		Debug.Log("Chose " + weaponType);
 
 		isWeaponChosen = true;
 		
-		if(OnWeaponChosen != null) OnWeaponChosen.Invoke(weaponName);
+		if(OnWeaponChosen != null) OnWeaponChosen.Invoke(weaponType);
 		
-		photonView.RPC("ReceiveWeaponChosen", PhotonTargets.Others, weaponName, NetworkPlayerManager.Instance.personalID);
+		photonView.RPC("ReceiveWeaponChosen", PhotonTargets.Others, weaponType, NetworkPlayerManager.Instance.personalID);
 		
 		if (CheckIfPhaseComplete())
 		{
@@ -49,13 +49,13 @@ public class WeaponSelectionPhase : GamePhase
 		}
 	}
 
-	private void SetEnemyWeapon(string weaponName, int id)
+	private void SetEnemyWeapon(WeaponType weaponType, int id)
 	{
 		GameObject enemyCurrentWeapon = null;
 
 		foreach (GameObject weapon in weaponsPool)
 		{
-			if (weapon.name == weaponName)
+			if (weapon.GetComponent<Weapon>().type == weaponType)
 			{
 				enemyCurrentWeapon = weapon;
 			}
@@ -82,10 +82,10 @@ public class WeaponSelectionPhase : GamePhase
 	}
 
 	[PunRPC]
-	public void ReceiveWeaponChosen(string weaponName, int id)
+	public void ReceiveWeaponChosen(WeaponType weaponType, int id)
 	{
 		isEnemyWeaponChosen = true;
-		SetEnemyWeapon(weaponName, id);
+		SetEnemyWeapon(weaponType, id);
 
 		if (CheckIfPhaseComplete())
 		{

@@ -14,18 +14,18 @@ public class SoundManager : FeedbackManager
 // Feedback Functions
 //
 	
-	public void PlayHit (string weapon) {
+	public void PlayHit (WeaponType weapon) {
 		switch(weapon)
 		{
-			 case "lance" :
+			 case WeaponType.spear :
 			 AkSoundEngine.PostEvent("Play_Lance_hit", gameObject);
 			 break;
 
-			 case "hache" :
+			 case WeaponType.axe :
 			 AkSoundEngine.PostEvent("Play_Axe_hit", gameObject);
 			 break;
 
-			 case "fleau" :
+			 case WeaponType.scourge :
 			 AkSoundEngine.PostEvent("Play_Flail_hit", gameObject);
 			 break;
 		}

@@ -26,13 +26,13 @@ public class FeedbackManager : Photon.MonoBehaviour
     
     protected virtual void OnPhaseStartedHandler(Phases phases){}
 
-    protected virtual void OnWeaponChosen(string s){}
+    protected virtual void OnWeaponChosen(WeaponType weaponType){}
 
     protected virtual void OnParadeReadyHandler(){}
 
     protected virtual void OnJoustGOHandler(){}
 	
-    protected virtual void OnJoustHitHandler(Hitinfo hitinfo){}
+    protected virtual void OnJoustHitHandler(LimbType limbHited){}
     
     private void OnDisable()
     {

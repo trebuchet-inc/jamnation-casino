@@ -5,7 +5,7 @@ using NewtonVR;
 
 public class Weapon : MonoBehaviour
 {
-    public string ID;
+    public WeaponType type;
     public Transform target;
     public float positionLerpSpeed = 20;
     public float angularLerpSpeed = 20;
@@ -42,21 +42,9 @@ public class Weapon : MonoBehaviour
         GameRefereeManager.Instance.intermissionPhase.OnRoundReset += DestroyWeapon;
     }
 
-    void Update()
-    {
-        if(!_initialized) return;
-
-        //target.localPosition = Vector3.Lerp(transform.localPosition, _weaponHand.transform.localPosition, Time.deltaTime * lerpSpeed);
-        //target.localRotation = Quaternion.Lerp(transform.localRotation, _weaponHand.transform.localRotation, Time.deltaTime * lerpSpeed);
-    }
-
 	private void OnTriggerEnter(Collider other)
 	{
-		if(other.transform.tag == "Ennemy")
-        {
-            GameRefereeManager.Instance.joustPhase.callHit(other.transform.parent.name,ID, other.transform.position);
-            SoundManager.Instance.PlayHit(gameObject.name);
-        }
+		Hit(other);
 
         if(!_initialized && other.transform.tag == "Hand") _hand = other.attachedRigidbody.GetComponent<NVRHand>();
 	}
@@ -65,7 +53,7 @@ public class Weapon : MonoBehaviour
 	{
 		if ((object) _hand != null && !GameRefereeManager.Instance.weaponSelectionPhase.isWeaponChosen && _hand.HoldButtonDown)
 		{
-			GameRefereeManager.Instance.weaponSelectionPhase.ChooseWeapon(ID);
+			GameRefereeManager.Instance.weaponSelectionPhase.ChooseWeapon(type);
             Initialize(_hand);
 			SoundManager.Instance.WeaponSelected();
 		}
@@ -75,6 +63,15 @@ public class Weapon : MonoBehaviour
 	{
 		if(!_initialized && other.transform.tag == "Hand" && (object) _hand != null) _hand = null;
 	}
+
+    public void Hit(Collider other)
+    {
+       if(other.transform.tag == "Ennemy")
+        {
+            GameRefereeManager.Instance.joustPhase.callHit(new HitInfo(type, other.transform.parent.name, other.transform.position));
+            SoundManager.Instance.PlayHit(type);
+        } 
+    }
 
     void DestroyWeapon()
     {
