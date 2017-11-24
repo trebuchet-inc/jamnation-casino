@@ -6,7 +6,6 @@ using NewtonVR;
 public class Weapon : MonoBehaviour
 {
     public WeaponType type;
-    public Transform target;
     public float positionLerpSpeed = 20;
     public float angularLerpSpeed = 20;
     public GameObject[] JoinedObjects;
@@ -18,7 +17,6 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
-        if(target == null) target = transform;
         _item = GetComponent<NVRInteractableItem>();
         _item.VelocityMagic = positionLerpSpeed;
         _item.AngularVelocityMagic = angularLerpSpeed;
@@ -30,8 +28,8 @@ public class Weapon : MonoBehaviour
 
         _weaponHand = hand;
         transform.parent = hand.transform.parent;
-        target.localPosition = _weaponHand.transform.localPosition;
-        target.localRotation = _weaponHand.transform.localRotation;
+        transform.localPosition = _weaponHand.transform.localPosition;
+        transform.localRotation = _weaponHand.transform.localRotation;
 
         foreach(GameObject obj in JoinedObjects)
         {
