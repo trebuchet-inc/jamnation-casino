@@ -1,14 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
+﻿using UnityEngine;
 
 public class CrowdManager : MonoBehaviour {
 
 	public CharacterAnimatorController[] characters;
 	public static CrowdManager Instance;
-
 	
 	void Awake()
 	{
@@ -16,17 +11,11 @@ public class CrowdManager : MonoBehaviour {
 		characters = FindObjectsOfType<CharacterAnimatorController>();		
 	}
 
-	// Use this for initialization
 	void Start () {
 		foreach(CharacterAnimatorController c in characters)
 		{
 			c.Initialize();
 		}		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	public void SetHype(int hype)
@@ -36,6 +25,4 @@ public class CrowdManager : MonoBehaviour {
 			c.SetNextLevel(hype);
 		}
 	}
-
-
 }

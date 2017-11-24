@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using NewtonVR;
 
-
 public class MountAgent : MonoBehaviour 
 {
 	public GameObject mountModel;

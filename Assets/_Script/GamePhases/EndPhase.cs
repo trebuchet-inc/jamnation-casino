@@ -21,12 +21,6 @@ public class EndPhase : GamePhase
 	{
 		yield return new WaitForSeconds(endDuration);
 		
-		photonView.RPC("ReceiveRestartGame", PhotonTargets.All);
-	}
-
-	[PunRPC]
-	public void ReceiveRestartGame()
-	{
 		GameRefereeManager.Instance.NewGame();
 	}
 }

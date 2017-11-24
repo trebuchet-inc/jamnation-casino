@@ -19,20 +19,14 @@ public class IntermissionPhase : GamePhase
         if(OnReset != null) OnReset.Invoke();
 	}
 
-	public IEnumerator IntermissionTimer()
+	private IEnumerator IntermissionTimer()
 	{
 		yield return new WaitForSeconds(intermissionDuration);
 		
-		photonView.RPC("ReceiveEndIntermission", PhotonTargets.All);
-	}
-
-	[PunRPC]
-	public void ReceiveEndIntermission()
-	{
 		GameRefereeManager.Instance.ChangePhase(CheckIfMatchEnded());
 	}
 
-	public Phases CheckIfMatchEnded()
+	private Phases CheckIfMatchEnded()
 	{
 		return GameRefereeManager.Instance.roundIndex >= GameRefereeManager.Instance.TotalRounds
 			? Phases.End

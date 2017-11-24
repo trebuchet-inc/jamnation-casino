@@ -41,7 +41,6 @@ public class WeaponHolder : MonoBehaviour
 
 	public void RemoveWeapon()
 	{
-		//if(activeWeapon != null) Destroy(activeWeapon.gameObject);
 		Weapon[] sada = FindObjectsOfType<Weapon>();
 		foreach(Weapon lol in sada)
 		{
