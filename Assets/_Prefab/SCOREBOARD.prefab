@@ -143,12 +143,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228991cd8de5033479e96f3b3f30bb24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  headerLeft: {fileID: 114451436483037972}
-  headerRight: {fileID: 114572697126776240}
   displayLeft: {fileID: 114761972551436682}
   displayRight: {fileID: 114067981166587160}
-  scoreBlue: 0
-  scoreRed: 0
 --- !u!114 &114221326605319774
 MonoBehaviour:
   m_ObjectHideFlags: 1
