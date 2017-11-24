@@ -59,16 +59,16 @@ public class JoustPhase : GamePhase
 
 		localHited = true;
 
-		if(objname.Contains("Torso"))
+		if(objname.Contains("root") || objname.Contains("torso"))
 		{
 			info = Hitinfo.torso;
 		}
-		else if(objname.Contains("Hand"))
+		else if(objname.Contains("knee") || objname.Contains("foot"))
 		{
 			info = Hitinfo.leg;
 			multiplier = 2;
 		}
-		else if(objname.Contains("Head"))
+		else if(objname.Contains("neck"))
 		{
 			info = Hitinfo.head;
 			multiplier = 3;
@@ -122,7 +122,7 @@ public class JoustPhase : GamePhase
 		if(OnJoustHit != null) OnJoustHit.Invoke((Hitinfo)hit);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 
-		SoundManager.Instance.PlayHit(weapon);
+		SoundManager.Instance.PlayHit(weapon); 
 
 		Fade.Instance.StartFade(0.2f,0.1f);
 		StartCoroutine(UnFade());
