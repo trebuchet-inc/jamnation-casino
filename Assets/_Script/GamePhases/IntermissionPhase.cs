@@ -7,16 +7,18 @@ public class IntermissionPhase : GamePhase
 {
 	public int intermissionDuration;
 
-	public event Action OnReset;
+	public event Action OnRoundReset;
 	
 	public override void StartPhase()
 	{
+		GameRefereeManager.Instance.roundIndex++;
+
 		StartCoroutine(IntermissionTimer());
 	} 
     
 	public override void TerminatePhase()
 	{
-        if(OnReset != null) OnReset.Invoke();
+        if(OnRoundReset != null) OnRoundReset.Invoke();
 	}
 
 	private IEnumerator IntermissionTimer()

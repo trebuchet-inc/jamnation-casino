@@ -7,10 +7,10 @@ public class JoustEndTarget: MonoBehaviour
 	private void Start()
 	{
 		GameRefereeManager.Instance.joustPhase.OnJoustHit += OnJoustHitHandler;
-		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangedHandler;
+		GameRefereeManager.Instance.OnPhaseStarted += OnPhaseStartedHandler;
 	}
 
-	private void OnPhaseChangedHandler(Phases phases)
+	private void OnPhaseStartedHandler(Phases phases)
 	{
 		if (phases == Phases.Intermission) hasHit = false;
 	}

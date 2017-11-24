@@ -1,4 +1,5 @@
-﻿ using System.Collections;
+﻿ using System;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,9 +11,39 @@ public class SoundManager : MonoBehaviour
 	{
 		Instance = this;
 	}
-
-	void Start()
+	
+	private void Start()
 	{
+		SubscribeEvents();
+	}
+
+	private void SubscribeEvents()
+	{
+		GameRefereeManager.Instance.OnPhaseStarted += OnPhaseStartedHandler;
+		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
+		GameRefereeManager.Instance.joustPhase.OnJoustHit += OnJoustHitHandler;
+	}
+
+	private void UnsubscribeEvents()
+	{
+		GameRefereeManager.Instance.OnPhaseStarted -= OnPhaseStartedHandler;
+		GameRefereeManager.Instance.joustPhase.OnJoustGO -= OnJoustGOHandler;
+		GameRefereeManager.Instance.joustPhase.OnJoustHit -= OnJoustHitHandler;
+	}
+
+	private void OnPhaseStartedHandler(Phases phases)
+	{
+		
+	}
+
+	private void OnJoustGOHandler()
+	{
+		
+	}
+	
+	private void OnJoustHitHandler(Hitinfo hitinfo)
+	{
+		
 	}
 	
 	public void PlayHit (string weapon) {
@@ -36,18 +67,17 @@ public class SoundManager : MonoBehaviour
 		AkSoundEngine.PostEvent("Stop_BattleMusic", gameObject);
 	}
 
-	uint _play_Ambiance;
-	public void PlayAmbiance () {
+	public void PlayAmbiance () 
+	{
 		AkSoundEngine.PostEvent("Play_Intro_Annonceurs", gameObject);
 		CrowdManager.Instance.SetHype(4);
-		_play_Ambiance = AkSoundEngine.GetIDFromString("Play_Ambiance");
+		uint _play_Ambiance = AkSoundEngine.GetIDFromString("Play_Ambiance");
 		AkSoundEngine.PostEvent("Play_Ambiance", gameObject);
 	}
 
-	uint _stop_Ambiance;
 	public void StopAmbiance()
 	{
-		_stop_Ambiance = AkSoundEngine.GetIDFromString("Stop_Ambiance");
+		uint _stop_Ambiance = AkSoundEngine.GetIDFromString("Stop_Ambiance");
 		AkSoundEngine.PostEvent(_stop_Ambiance, gameObject);
 	}
 
@@ -94,5 +124,10 @@ public class SoundManager : MonoBehaviour
 	public void WeaponSelected()
 	{
 		AkSoundEngine.PostEvent("Play_Weapon_Selected", gameObject);
+	}
+
+	private void OnDisable()
+	{
+		UnsubscribeEvents();
 	}
 }

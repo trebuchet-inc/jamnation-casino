@@ -62,7 +62,7 @@ public class MountAgent : MonoBehaviour
 		_lastPosition = ridingHand.transform.position;
 		_deltaBuffer = new Vector3[10];
 
-		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangeHandler;
+		GameRefereeManager.Instance.OnPhaseStarted += OnPhaseChangeHandler;
 		GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
 		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
 		

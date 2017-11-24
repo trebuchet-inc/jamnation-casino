@@ -19,6 +19,8 @@ public class HMDisplayUIManager : MonoBehaviour
 	{
 		Instance = this;
 	}
+	
+	
 
 	public void ShowResult(Hitinfo info)
 	{
@@ -72,7 +74,7 @@ public class HMDisplayUIManager : MonoBehaviour
 		canvasText = canvas.GetComponentInChildren<Text>();
 		canvasText.text = "";
 		
-		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangedHandler;
+		GameRefereeManager.Instance.OnPhaseStarted += OnPhaseStartedHandler;
 		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosen;
 		GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
 	}
@@ -87,7 +89,7 @@ public class HMDisplayUIManager : MonoBehaviour
 		Deactivate();
 	}
 
-	private void OnPhaseChangedHandler(Phases phases)
+	private void OnPhaseStartedHandler(Phases phases)
 	{
 		switch (phases) 
 		{

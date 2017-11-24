@@ -32,7 +32,8 @@ public class GameRefereeManager : Photon.MonoBehaviour
 
 	public event Action OnNewGame;
 	
-	public event Action<Phases> OnPhaseChanged; 
+	public event Action<Phases> OnPhaseStarted; 
+	public event Action<Phases> OnPhaseEnded; 
 	
 
 	private void Awake()
@@ -55,6 +56,53 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		photonView.RPC("ReceiveNewGame", PhotonTargets.All);
 	}
 
+
+	public void ChangePhase(Phases phase)
+	{
+		Debug.Log("Changing phase to " + phase.ToString());
+
+		if(phase == currentPhase && roundIndex > 0) return;
+		
+		// END CURRENT PHASE
+		if((object)currentPhaseScript != null) currentPhaseScript.TerminatePhase();
+		if(OnPhaseEnded != null && currentPhase != null) OnPhaseEnded.Invoke(currentPhase);
+		
+		// SEND EVENTS TO OTHERS WHO NEED TO DO SHIT
+		
+		currentPhase = phase;
+
+		if(OnPhaseStarted != null) OnPhaseStarted.Invoke(currentPhase);
+
+		switch (currentPhase) 
+		{
+			case Phases.WeaponSelection:
+				currentPhaseScript = weaponSelectionPhase;
+			break;
+				
+			case Phases.Parade:
+				currentPhaseScript = paradePhase;
+			break;
+				
+			case Phases.Joust:
+				currentPhaseScript = joustPhase;
+			break;	
+				
+			case Phases.Intermission:
+				currentPhaseScript = intermissionPhase;
+			break;
+				
+			case Phases.End:
+				currentPhaseScript = endPhaseScript;
+			break;
+		}
+		
+		if((object)currentPhaseScript != null) currentPhaseScript.StartPhase();
+	}
+	
+	//
+	// RPC FUNCTIONS
+	//
+	
 	[PunRPC]
 	public void ReceiveNewGame()
 	{
@@ -68,53 +116,5 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		ChangePhase(Phases.WeaponSelection);
 
 		SoundManager.Instance.ResetAmbiance();
-	}
-
-	public void ChangePhase(Phases phase)
-	{
-		Debug.Log("Changing phase to " + phase.ToString());
-
-		if(phase == currentPhase && roundIndex > 0) return;
-		
-		// END CURRENT PHASE
-		if(currentPhaseScript != null)
-		{ 
-			currentPhaseScript.TerminatePhase();
-		}
-		
-		// SEND EVENTS TO OTHERS WHO NEED TO DO SHIT
-		
-		currentPhase = phase;
-
-		if(OnPhaseChanged != null) OnPhaseChanged.Invoke(currentPhase);
-
-		switch (currentPhase) 
-		{
-			case Phases.WeaponSelection:
-				currentPhaseScript = weaponSelectionPhase;
-				weaponSelectionPhase.StartPhase();
-			break;
-				
-			case Phases.Parade:
-				currentPhaseScript = paradePhase;
-				paradePhase.StartPhase();
-			break;
-				
-			case Phases.Joust:
-				currentPhaseScript = joustPhase;
-				joustPhase.StartPhase();
-			break;	
-				
-			case Phases.Intermission:
-				roundIndex++;
-				currentPhaseScript = intermissionPhase;
-				intermissionPhase.StartPhase();
-			break;
-				
-			case Phases.End:
-				currentPhaseScript = endPhaseScript;
-				endPhaseScript.StartPhase();
-			break;
-		}
 	}
 }

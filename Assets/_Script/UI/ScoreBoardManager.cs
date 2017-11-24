@@ -18,12 +18,22 @@ public class ScoreBoardManager : Photon.MonoBehaviour
 
 	private void Start()
 	{
-		GameRefereeManager.Instance.OnPhaseChanged += OnPhaseChangedHandler;
-		
+		SubscribeEvents();
+		DisplayScores();
+	}
+
+	private void SubscribeEvents()
+	{
+		GameRefereeManager.Instance.OnPhaseStarted += OnPhaseStartedHandler;
 		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGoHandler;
 		GameRefereeManager.Instance.joustPhase.OnJoustHit += OnJoustHitHandler;
-		
-		DisplayScores();
+	}
+
+	private void UnsubscribeEvents()
+	{
+		GameRefereeManager.Instance.OnPhaseStarted -= OnPhaseStartedHandler;
+		GameRefereeManager.Instance.joustPhase.OnJoustGO -= OnJoustGoHandler;
+		GameRefereeManager.Instance.joustPhase.OnJoustHit -= OnJoustHitHandler;
 	}
 
 	public void AddScoreBlue(float multiplier)
@@ -42,7 +52,7 @@ public class ScoreBoardManager : Photon.MonoBehaviour
 		scoreRed = 0;
 	}
 
-	private void OnPhaseChangedHandler(Phases phases)
+	private void OnPhaseStartedHandler(Phases phases)
 	{
 		string msg = "";
 		
@@ -100,5 +110,10 @@ public class ScoreBoardManager : Photon.MonoBehaviour
 	{
 		displayLeft.text = scoreBlue.ToString();
 		displayRight.text = scoreRed.ToString();
+	}
+
+	private void OnDisable()
+	{
+		UnsubscribeEvents();
 	}
 }

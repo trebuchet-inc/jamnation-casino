@@ -11,10 +11,10 @@ public class WeaponHolder : MonoBehaviour
 	private void Start()
 	{
 		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
-		GameRefereeManager.Instance.intermissionPhase.OnReset += OnResetHandler;
+		GameRefereeManager.Instance.intermissionPhase.OnRoundReset += OnRoundResetHandler;
 	}
 
-	private void OnResetHandler()
+	private void OnRoundResetHandler()
 	{
 		print("RESET");
 		RemoveWeapon();
