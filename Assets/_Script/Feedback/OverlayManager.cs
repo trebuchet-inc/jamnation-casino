@@ -45,7 +45,7 @@ public class OverlayManager : FeedbackManager
         }
     }
     
-    protected override void OnJoustHitHandler(Hitinfo hitInfo)
+    protected override void OnJoustHitHandler(LimbType hitInfo)
     {
         DisplayScores();
     }

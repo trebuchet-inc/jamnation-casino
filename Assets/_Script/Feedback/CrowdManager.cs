@@ -50,7 +50,7 @@ public class CrowdManager : FeedbackManager
 		}
 	}
 	
-	protected override void OnJoustHitHandler(Hitinfo hitinfo)
+	protected override void OnJoustHitHandler(LimbType hitinfo)
 	{
 		SetHype(3);
 	}
