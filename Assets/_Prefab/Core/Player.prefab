@@ -1092,7 +1092,7 @@ MonoBehaviour:
   PhysicalHands: 0
   MakeControllerInvisibleOnInteraction: 0
   AutomaticallySetControllerTransparency: 0
-  VibrateOnHover: 1
+  VibrateOnHover: 0
   VelocityHistorySteps: 3
   OnInitialized:
     m_PersistentCalls:
