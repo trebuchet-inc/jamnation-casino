@@ -1058,7 +1058,7 @@ MonoBehaviour:
   voiceSpeed: 0.1
   paradeSpeed: 0.1
   velocityThreshold: 0.3
-  voiceThreshold: 0.1
+  voiceThreshold: 0.25
   voiceDurationThreshold: 100
   _freeze: 1
 --- !u!114 &114116509059290792

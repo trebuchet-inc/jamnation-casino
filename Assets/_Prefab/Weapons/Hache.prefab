@@ -268,7 +268,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   VelocityMagic: 6000
-  AngularVelocityMagic: 10
+  AngularVelocityMagic: 50
   InteractionPoint: {fileID: 0}
   OnUseButtonDown:
     m_PersistentCalls:
@@ -301,8 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d790a9188cb6b3d498ead804fa7586b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  target: {fileID: 0}
-  positionLerpSpeed: 500
-  angularLerpSpeed: 10
+  type: 1
+  positionLerpSpeed: 5000
+  angularLerpSpeed: 8
   JoinedObjects: []

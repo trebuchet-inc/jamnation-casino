@@ -10,8 +10,8 @@ namespace NewtonVR
     {
         protected const float MaxVelocityChange = 10f;
         protected const float MaxAngularVelocityChange = 20f;
-        public float VelocityMagic = 6000f;
-        public float AngularVelocityMagic = 50f;
+        [HideInInspector] public float VelocityMagic = 6000f;
+        [HideInInspector] public float AngularVelocityMagic = 50f;
 
         [Tooltip("If you have a specific point you'd like the object held at, create a transform there and set it to this variable")]
         public Transform InteractionPoint;
