@@ -621,7 +621,7 @@ MonoBehaviour:
   BlueText: {fileID: 114349750531153558}
   RedText: {fileID: 114926566969633156}
   RoundsText: {fileID: 114392002224442308}
-  usedWeapon: {r: 0.41911763, g: 0.41911763, b: 0.41911763, a: 0}
+  usedWeapon: {r: 0.41911763, g: 0.41911763, b: 0.41911763, a: 1}
   blueWeapons:
   - {fileID: 114325780226482380}
   - {fileID: 114258879885213752}
