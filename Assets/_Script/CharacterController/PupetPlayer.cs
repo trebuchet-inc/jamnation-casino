@@ -50,7 +50,7 @@ public class PupetPlayer : MonoBehaviour
 		_killed = true;
 		foreach(PupetPart part in _pupetParts)
 		{
-			part.Kill(transform.forward * dyingPartSpeed);
+			part.Kill(transform.forward * dyingPartSpeed * -1.0f);
 		}
 	}
 
