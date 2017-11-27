@@ -31,7 +31,7 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
 {
 	public static NetworkPlayerManager Instance;
 
-	public int personalID;
+	public int playerID;
 	public GameObject playerPrefab;
 	public GameObject mountPrefab;
 	public GameObject pupetPlayer;
@@ -57,13 +57,13 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
 	
 		byte[] serializedData = SerializationToolkit.ObjectToByteArray(data); 
 
-		photonView.RPC("UpdateNetworkPlayer", PhotonTargets.Others, serializedData, personalID);
+		photonView.RPC("UpdateNetworkPlayer", PhotonTargets.Others, serializedData, playerID);
 	}
 
 	public void SetLocalPlayer()
 	{
-		NVRPlayer.Instance.transform.position = startingPos[personalID].position;
-		NVRPlayer.Instance.transform.rotation = startingPos[personalID].rotation;
+		NVRPlayer.Instance.transform.position = startingPos[playerID].position;
+		NVRPlayer.Instance.transform.rotation = startingPos[playerID].rotation;
 	}
 
 	public NVRHand GetNetworkPlayerHand(int id, Handedness hand)

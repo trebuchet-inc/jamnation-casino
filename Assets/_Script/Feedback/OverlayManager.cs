@@ -67,7 +67,7 @@ public class OverlayManager : FeedbackManager
 
     protected override void OnWeaponChosen(WeaponType weaponType)
     {
-        photonView.RPC("DisplayWeapons", PhotonTargets.All, NetworkPlayerManager.Instance.personalID, (int)weaponType);
+        photonView.RPC("DisplayWeapons", PhotonTargets.All, NetworkPlayerManager.Instance.playerID, (int)weaponType);
     }
     
     protected override void OnJoustHitHandler(LimbType hitInfo)

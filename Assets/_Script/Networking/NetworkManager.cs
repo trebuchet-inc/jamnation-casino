@@ -44,7 +44,7 @@ public class NetworkManager : Photon.PunBehaviour
     public override void OnJoinedRoom()
     {
         int id = _roomCreator ? 0 : 1;
-        NetworkPlayerManager.Instance.personalID = id;
+        NetworkPlayerManager.Instance.playerID = id;
         NetworkPlayerManager.Instance.SetLocalPlayer();
         NetworkPlayerManager.Instance.photonView.RPC("SpawnNetworkPlayer", PhotonTargets.OthersBuffered, Vector3.zero, Quaternion.identity, id);
 
@@ -56,7 +56,7 @@ public class NetworkManager : Photon.PunBehaviour
     
     public override void OnLeftRoom()
     {
-        NetworkPlayerManager.Instance.photonView.RPC("DestroyNetworkPlayer", PhotonTargets.Others, NetworkPlayerManager.Instance.personalID);
+        NetworkPlayerManager.Instance.photonView.RPC("DestroyNetworkPlayer", PhotonTargets.Others, NetworkPlayerManager.Instance.playerID);
         print("DestroyNetworkPlayer");
     }
 

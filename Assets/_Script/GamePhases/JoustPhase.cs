@@ -70,8 +70,8 @@ public class JoustPhase : GamePhase
 		print("hitSend to " + lastHit);
 
 		if(lastHit == LimbType.None) return;
-
-		photonView.RPC("CalculateScore", PhotonTargets.All, multiplier);
+		
+		photonView.RPC("CalculateScore", PhotonTargets.All, NetworkPlayerManager.Instance.playerID, multiplier);
 		
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, SerializationToolkit.ObjectToByteArray(info));
 		
@@ -119,9 +119,9 @@ public class JoustPhase : GamePhase
 	}
 	
 	[PunRPC]
-	private void CalculateScore(float multiplier)
+	private void CalculateScore(int playerID, float multiplier)
 	{
-		ScoreManager.Instance.AddScore(NetworkPlayerManager.Instance.personalID, multiplier);
+		ScoreManager.Instance.AddScore(playerID, multiplier);
 	}
 
 	private IEnumerator UnFade()

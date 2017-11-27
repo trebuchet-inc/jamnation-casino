@@ -18,7 +18,7 @@ public class NetworkObjectManager : Photon.MonoBehaviour
 	public void SendBeginInterraction(NVRInteractable item, NVRHand hand)
 	{
 		SerializableTransform t = new SerializableTransform(item.transform.position - hand.transform.position, item.transform.rotation);
-		photonView.RPC("ReceiveBeginInteraction", PhotonTargets.Others, SerializationToolkit.ObjectToByteArray(t), hand.IsRight, GetObjectID(item), NetworkPlayerManager.Instance.personalID);
+		photonView.RPC("ReceiveBeginInteraction", PhotonTargets.Others, SerializationToolkit.ObjectToByteArray(t), hand.IsRight, GetObjectID(item), NetworkPlayerManager.Instance.playerID);
 	}
 
 	public void SendEndInterraction(NVRInteractable item)

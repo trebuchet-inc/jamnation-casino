@@ -39,7 +39,7 @@ public class WeaponSelectionPhase : GamePhase
 		
 		if(OnWeaponChosen != null) OnWeaponChosen.Invoke(weaponType);
 		
-		photonView.RPC("ReceiveWeaponChosen", PhotonTargets.Others, weaponType, NetworkPlayerManager.Instance.personalID);
+		photonView.RPC("ReceiveWeaponChosen", PhotonTargets.Others, weaponType, NetworkPlayerManager.Instance.playerID);
 		
 		if (CheckIfPhaseComplete())
 		{
@@ -71,7 +71,7 @@ public class WeaponSelectionPhase : GamePhase
 	
 	private void ResetWeaponsSelection()
 	{
-		Transform[] weaponChoiceAnchors = NetworkPlayerManager.Instance.personalID == 0 ? weaponChoiceAnchorsP1 : weaponChoiceAnchorsP2;
+		Transform[] weaponChoiceAnchors = NetworkPlayerManager.Instance.playerID == 0 ? weaponChoiceAnchorsP1 : weaponChoiceAnchorsP2;
 		
 		for(int i = 0; i < weaponChoiceAnchors.Length; i++)
 		{

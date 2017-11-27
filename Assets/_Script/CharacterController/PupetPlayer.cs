@@ -72,19 +72,19 @@ public class PupetPlayer : MonoBehaviour
 				if(renderer.transform.parent.name == "Head" && renderer.transform.name == "modelHelmet")
 				{
 					temp = renderer.materials;
-					temp[0] = playerColors[NetworkPlayerManager.Instance.personalID];
+					temp[0] = playerColors[NetworkPlayerManager.Instance.playerID];
 					renderer.materials = temp;
 				}
 				else if (renderer.transform.parent.name.In("LeftHand","Torso"))
 				{
 					temp = renderer.materials;
-					temp[1] = playerColors[NetworkPlayerManager.Instance.personalID];
+					temp[1] = playerColors[NetworkPlayerManager.Instance.playerID];
 					renderer.materials = temp;
 				}
 				else if (renderer.transform.parent.name.In("RightHand"))
 				{
 					temp = renderer.materials;
-					temp[2] = playerColors[NetworkPlayerManager.Instance.personalID];
+					temp[2] = playerColors[NetworkPlayerManager.Instance.playerID];
 					renderer.materials = temp;
 				}
 			}
