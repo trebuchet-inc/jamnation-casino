@@ -6,11 +6,13 @@ using UnityEngine.SocialPlatforms.Impl;
 public class JoustPhase : GamePhase
 {
 	public event Action OnJoustGO;
-	
 	public event Action<LimbType> OnJoustHit;
 
 	public GameObject blood;
+	public float crossingTimer = 3.0f;
 
+	Transform opponentTransform;
+	float timer;
 	bool localHited;
 	bool _active;
 
@@ -19,6 +21,8 @@ public class JoustPhase : GamePhase
 	public override void StartPhase()
 	{
 		StartCoroutine(WaitForGo());
+		opponentTransform = NetworkPlayerManager.Instance.players[0].transform;
+		timer = crossingTimer;
 		lastHit = LimbType.None;
 		_active = true;
 		localHited = false;
@@ -34,14 +38,22 @@ public class JoustPhase : GamePhase
 
 	public void EndJoust(bool hit)
 	{
-		photonView.RPC("ReceiveEndJoust", PhotonTargets.All, hit);
-	}
-
-	[PunRPC]
-	public void ReceiveEndJoust(bool hit)
-	{
 		if(!hit) SoundManager.Instance.DeceptionCrowd();
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
+	}
+
+	void Update()
+	{
+		if(!_active) return;
+
+		if(timer > 0 && transform.InverseTransformPoint(opponentTransform.position).z <= 0)
+		{
+			timer -= Time.deltaTime;
+		}
+		else if(timer <= 0)
+		{
+			EndJoust(localHited);
+		}
 	}
 
 	public void callHit(HitInfo info)
@@ -67,17 +79,12 @@ public class JoustPhase : GamePhase
 			break;
 		}
 
-		print("hitSend to " + lastHit);
-
 		if(lastHit == LimbType.None) return;
 		
 		photonView.RPC("CalculateScore", PhotonTargets.All, NetworkPlayerManager.Instance.playerID, multiplier);
-		
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, SerializationToolkit.ObjectToByteArray(info));
 		
-		
 		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHit);
-		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 
 		Instantiate(blood, info.hitPoint.Deserialize(), Quaternion.identity);
 	}
@@ -85,30 +92,9 @@ public class JoustPhase : GamePhase
 	[PunRPC]
 	public void ReceiveRegisterHit(byte[] data)
 	{
-		print("hitReceived");
-
 		HitInfo info = (HitInfo)SerializationToolkit.ByteArrayToObject(data);
-
-		float multiplier = 1;
-
-		switch((LimbType)info.limbHit)
-		{
-			case LimbType.Head :
-			multiplier = 3;
-			break;
-
-			case LimbType.Hand :
-			multiplier = 1;
-			break;
-			
-			case LimbType.Torso :
-			multiplier = 2;
-			break;
-		}
 		
 		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHit);
-		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
-		
 
 		SoundManager.Instance.PlayHit((WeaponType)info.weaponUsed); 
 
