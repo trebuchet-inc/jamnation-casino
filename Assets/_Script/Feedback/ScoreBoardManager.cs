@@ -53,8 +53,7 @@ public class ScoreBoardManager : FeedbackManager
 
 	protected override void OnJoustGOHandler()
 	{
-		StartCoroutine(DisplayUpdate(displayLeft, "GO !"));
-		StartCoroutine(DisplayUpdate(displayRight, "GO !"));
+		DisplayOnBothScreens("GO !");
 	}
 	
 	//
