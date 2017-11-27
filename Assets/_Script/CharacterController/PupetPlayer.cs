@@ -47,13 +47,13 @@ public class PupetPlayer : MonoBehaviour
 				if(renderer.transform.parent.name == "Head" && renderer.transform.name == "modelHelmet")
 				{
 					temp = renderer.materials;
-					temp[0] = playerColors[pupetId];
+					Tools.ReplaceMaterial(ref temp, "bleu_mat", playerColors[pupetId]);
 					renderer.materials = temp;
 				}
 				else if (renderer.transform.parent.name.In("LeftHand","Torso","RightHand"))
 				{
 					temp = renderer.materials;
-					temp[1] = playerColors[pupetId];
+					Tools.ReplaceMaterial(ref temp, "bleu_mat", playerColors[pupetId]);
 					renderer.materials = temp;
 				}
 			}
@@ -73,13 +73,13 @@ public class PupetPlayer : MonoBehaviour
 				if(renderer.transform.parent.name == "Head" && renderer.transform.name == "modelHelmet")
 				{
 					temp = renderer.materials;
-					temp[0] = playerColors[pupetId];
+					Tools.ReplaceMaterial(ref temp, "bleu_mat", playerColors[pupetId]);
 					renderer.materials = temp;
 				}
 				else if (renderer.transform.parent.name.In("LeftHand","Torso","RightHand"))
 				{
 					temp = renderer.materials;
-					temp[1] = playerColors[pupetId];
+					Tools.ReplaceMaterial(ref temp, "bleu_mat", playerColors[pupetId]);
 					renderer.materials = temp;
 				}
 			}

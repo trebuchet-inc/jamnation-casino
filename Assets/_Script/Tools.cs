@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine;
 
 static class Tools 
 {
@@ -9,4 +10,12 @@ static class Tools
         if (null == source) throw new ArgumentNullException("source");
         return list.Contains(source, StringComparer.OrdinalIgnoreCase);
     }
+
+    public static void ReplaceMaterial(ref Material[] materials, string materialName, Material newMaterial)
+	{
+		for(int i = 0; i <  materials.Length; i++)
+		{
+			if(materials[i].name == materialName) materials[i] = newMaterial;
+		}
+	}
 }
