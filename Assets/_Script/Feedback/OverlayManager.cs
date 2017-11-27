@@ -1,10 +1,18 @@
-﻿using UnityEngine.UI;
+﻿using System;
+using NewtonVR;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class OverlayManager : FeedbackManager
 {
     public static OverlayManager Instance;
     
     public Text SuperText, BlueText, RedText, RoundsText;
+
+    public Color usedWeapon;
+    
+    public Image[] blueWeapons;
+    public Image[] redWeapons;
 
     private void Awake()
     {
@@ -21,6 +29,13 @@ public class OverlayManager : FeedbackManager
     //
     // Event handlers
     //
+
+    protected override void OnNewGame()
+    {
+        DisplayScores();
+        DisplayRounds();
+        ResetWeapons();
+    }
     
     protected override void OnPhaseStartedHandler(Phases phases)
     {
@@ -49,6 +64,18 @@ public class OverlayManager : FeedbackManager
                 break;
         }
     }
+
+    protected override void OnWeaponChosen(WeaponType weaponType)
+    {
+        if (NetworkPlayerManager.Instance.personalID == 0)
+        {
+            blueWeapons[(int) weaponType].color = usedWeapon;
+        }
+        else
+        {
+            redWeapons[(int) weaponType].color = usedWeapon;
+        }
+    }
     
     protected override void OnJoustHitHandler(LimbType hitInfo)
     {
@@ -73,5 +100,18 @@ public class OverlayManager : FeedbackManager
     {
         BlueText.text = ScoreManager.Instance.GetScore(0);
         RedText.text = ScoreManager.Instance.GetScore(1);
+    }
+
+    private void ResetWeapons()
+    {
+        foreach (var weapon in blueWeapons)
+        {
+            weapon.color = Color.white;
+        }
+        
+        foreach (var weapon in redWeapons)
+        {
+            weapon.color = Color.white;
+        }
     }
 }

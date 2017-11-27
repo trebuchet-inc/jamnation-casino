@@ -17,6 +17,11 @@ public class ScoreBoardManager : FeedbackManager
 	// Event Handlers
 	//
 
+	protected override void OnNewGame()
+	{
+		DisplayOnBothScreens("WELCOME");
+	}
+
 	protected override void OnPhaseStartedHandler(Phases phases)
 	{
 		string msg = "";

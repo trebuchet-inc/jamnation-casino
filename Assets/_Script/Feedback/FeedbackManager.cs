@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 public class FeedbackManager : Photon.MonoBehaviour 
 {
     protected virtual void Start()
@@ -8,6 +10,7 @@ public class FeedbackManager : Photon.MonoBehaviour
 
     private void SubscribeEvents()
     {
+        GameRefereeManager.Instance.OnNewGame += OnNewGame;
         GameRefereeManager.Instance.OnPhaseStarted += OnPhaseStartedHandler;
         GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosen;
         GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
@@ -17,12 +20,15 @@ public class FeedbackManager : Photon.MonoBehaviour
 
     private void UnsubscribeEvents()
     {
+        GameRefereeManager.Instance.OnNewGame -= OnNewGame;
         GameRefereeManager.Instance.OnPhaseStarted -= OnPhaseStartedHandler;
         GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen -= OnWeaponChosen;
         GameRefereeManager.Instance.paradePhase.OnParadeReady -= OnParadeReadyHandler;
         GameRefereeManager.Instance.joustPhase.OnJoustGO -= OnJoustGOHandler;
         GameRefereeManager.Instance.joustPhase.OnJoustHit -= OnJoustHitHandler;
     }
+
+    protected virtual void OnNewGame(){}
     
     protected virtual void OnPhaseStartedHandler(Phases phases){}
 

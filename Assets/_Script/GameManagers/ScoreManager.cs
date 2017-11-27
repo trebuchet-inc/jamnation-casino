@@ -18,14 +18,18 @@ public class ScoreManager : MonoBehaviour
 		return playerID == 0 ? scoreBlue.ToString() : scoreRed.ToString();
 	}
 	
-	public void AddScoreBlue(float multiplier)
+	public void AddScore(int playerID, float multiplier)
 	{
-		scoreBlue += (int)(100 * multiplier);
-	}
+		int score = (int) (multiplier * 100);
 
-	public void AddScoreRed(float multiplier)
-	{
-		scoreRed += (int)(100 * multiplier);
+		if (playerID == 0)
+		{
+			scoreBlue += score;
+		}
+		else
+		{
+			scoreRed += score;
+		}
 	}
 	
 	public void ResetScore()

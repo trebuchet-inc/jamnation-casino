@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 public enum WeaponType
 {
-	scourge = 0,
-	axe = 1,
-	spear = 2
+	Flail = 0,
+	Axe = 1,
+	Spear = 2
 }
 
 public enum LimbType
@@ -22,7 +20,7 @@ public enum LimbType
 public class HitInfo 
 {
 	public int weaponUsed;
-	public int limbHited;
+	public int limbHit;
 	public SerializableVector3 hitPoint;
 
 	public HitInfo (WeaponType weaponType, string limb, Vector3 hitPos)
@@ -31,19 +29,19 @@ public class HitInfo
 
 		if(limb.Contains("Torso"))
 		{
-			limbHited = (int)LimbType.Torso;
+			limbHit = (int)LimbType.Torso;
 		}
 		else if(limb.Contains("Hand"))
 		{
-			limbHited = (int)LimbType.Hand;
+			limbHit = (int)LimbType.Hand;
 		}
 		else if(limb.Contains("Head"))
 		{
-			limbHited = (int)LimbType.Head;
+			limbHit = (int)LimbType.Head;
 		}
 		else
 		{
-			limbHited = (int)LimbType.None;
+			limbHit = (int)LimbType.None;
 		}
 
 		hitPoint = new SerializableVector3(hitPos);
