@@ -1,10 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class PupetPlayer : MonoBehaviour
 {
+	public bool isLocalPupet;
 	public int lerpSpeed = 20;
+	public Material[] playerColors;
 
 	Transform[] _pupetParts;
 	Transform[] _playerParts;
@@ -14,6 +16,7 @@ public class PupetPlayer : MonoBehaviour
 		_pupetParts = new Transform[4];
 		_playerParts = new Transform[4];
 		setParts();
+		if(isLocalPupet) GameRefereeManager.Instance.OnNewGame += setColor;
 	}
 	
 	void Update ()
@@ -28,6 +31,70 @@ public class PupetPlayer : MonoBehaviour
 	{
 		_pupetParts[id].position = Vector3.Lerp(_playerParts[id].position, _pupetParts[id].position, lerpSpeed * Time.deltaTime);
 		_pupetParts[id].rotation = Quaternion.Lerp(_playerParts[id].rotation, _pupetParts[id].rotation, lerpSpeed * Time.deltaTime);
+	}
+
+	public void setColor(int id)
+	{
+		MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+		Material[] temp;
+
+		foreach(MeshRenderer renderer in renderers)
+		{
+			if(renderer.transform.name.Contains("model"))
+			{
+				print(renderer.transform.name);
+				if(renderer.transform.parent.name == "Head" && renderer.transform.name == "modelHelmet")
+				{
+					temp = renderer.materials;
+					temp[0] = playerColors[id];
+					renderer.materials = temp;
+				}
+				else if (renderer.transform.parent.name.In("LeftHand","Torso"))
+				{
+					temp = renderer.materials;
+					temp[1] = playerColors[id];
+					renderer.materials = temp;
+				}
+				else if (renderer.transform.parent.name.In("RightHand"))
+				{
+					temp = renderer.materials;
+					temp[2] = playerColors[id];
+					renderer.materials = temp;
+				}
+			}
+		}
+	}
+
+	public void setColor()
+	{
+		MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+		Material[] temp;
+
+		foreach(MeshRenderer renderer in renderers)
+		{
+			if(renderer.transform.name.Contains("model"))
+			{
+				print(renderer.transform.name);
+				if(renderer.transform.parent.name == "Head" && renderer.transform.name == "modelHelmet")
+				{
+					temp = renderer.materials;
+					temp[0] = playerColors[NetworkPlayerManager.Instance.personalID];
+					renderer.materials = temp;
+				}
+				else if (renderer.transform.parent.name.In("LeftHand","Torso"))
+				{
+					temp = renderer.materials;
+					temp[1] = playerColors[NetworkPlayerManager.Instance.personalID];
+					renderer.materials = temp;
+				}
+				else if (renderer.transform.parent.name.In("RightHand"))
+				{
+					temp = renderer.materials;
+					temp[2] = playerColors[NetworkPlayerManager.Instance.personalID];
+					renderer.materials = temp;
+				}
+			}
+		}
 	}
 
 	void setParts()

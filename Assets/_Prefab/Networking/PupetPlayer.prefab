@@ -1015,6 +1015,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpSpeed: 20
+  playerColors:
+  - {fileID: 2100000, guid: 7a22fa263af8119419d71b1833c6bfd3, type: 2}
+  - {fileID: 2100000, guid: 73df6bc65dc92b84caf7503e57e9b6b0, type: 2}
 --- !u!120 &120647104541324088
 LineRenderer:
   m_ObjectHideFlags: 1

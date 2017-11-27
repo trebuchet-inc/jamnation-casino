@@ -21,7 +21,7 @@ public class SoundManager : FeedbackManager
 				break;
 				
 			case Phases.Parade:
-				
+				HypeCrowd();
 				break;
 				
 			case Phases.Joust:
@@ -29,11 +29,11 @@ public class SoundManager : FeedbackManager
 				break;
 				
 			case Phases.Intermission:
-				HypeCrowd();
+				AkSoundEngine.PostEvent("Play_Crowd_GetHyped", gameObject);
 				break;
 				
 			case Phases.End:
-				HypeCrowd();
+				AkSoundEngine.PostEvent("Play_Crowd_GetHyped", gameObject);
 				break;
 		}
 	}

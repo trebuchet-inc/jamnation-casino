@@ -99,7 +99,7 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
         NetworkPlayerComponent _networkPlayer = _newPlayer.GetComponent<NetworkPlayerComponent>();
 
 		_networkPlayer.mountModel = Instantiate(mountPrefab, startingPos[id].position, startingPos[id].rotation);
-		Instantiate(pupetPlayer, _newPlayer.transform.position, _newPlayer.transform.rotation, _newPlayer.transform);
+		Instantiate(pupetPlayer, _newPlayer.transform.position, _newPlayer.transform.rotation, _newPlayer.transform).GetComponent<PupetPlayer>().setColor(id);
 		_networkPlayer.id = id;
 		players.Add(_networkPlayer);
     }
