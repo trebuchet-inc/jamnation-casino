@@ -17,7 +17,7 @@ public class PupetPart : MonoBehaviour
 	{
 		transform.parent = null;
 		_rb.isKinematic = false;
-		_col.isTrigger = false;
+		if(_col != null)_col.isTrigger = false;
 		_rb.AddForce(force, ForceMode.Impulse);
 	}
 
@@ -25,6 +25,6 @@ public class PupetPart : MonoBehaviour
 	{
 		transform.parent = parent;
 		_rb.isKinematic = true;
-		_col.isTrigger = true;
+		if(_col != null) _col.isTrigger = true;
 	}
 }
