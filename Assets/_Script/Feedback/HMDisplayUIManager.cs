@@ -50,7 +50,7 @@ public class HMDisplayUIManager : FeedbackManager
 				break;
 				
 			case Phases.Intermission:
-				Activate("Preparing for next round");
+//				Activate("Preparing for next round");
 				break;
 				
 			case Phases.End:
