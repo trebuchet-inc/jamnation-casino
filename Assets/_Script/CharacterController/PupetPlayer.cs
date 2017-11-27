@@ -42,7 +42,6 @@ public class PupetPlayer : MonoBehaviour
 		{
 			if(renderer.transform.name.Contains("model"))
 			{
-				print(renderer.transform.name);
 				if(renderer.transform.parent.name == "Head" && renderer.transform.name == "modelHelmet")
 				{
 					temp = renderer.materials;
@@ -68,7 +67,6 @@ public class PupetPlayer : MonoBehaviour
 		{
 			if(renderer.transform.name.Contains("model"))
 			{
-				print(renderer.transform.name);
 				if(renderer.transform.parent.name == "Head" && renderer.transform.name == "modelHelmet")
 				{
 					temp = renderer.materials;
