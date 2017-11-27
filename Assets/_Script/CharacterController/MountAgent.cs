@@ -74,6 +74,7 @@ public class MountAgent : MonoBehaviour
 		GameRefereeManager.Instance.OnPhaseStarted += OnPhaseChangeHandler;
 		GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
 		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
+		GameRefereeManager.Instance.joustPhase.OnJoustHit += OnHitHandler;
 		
 		mountModel = Instantiate(NetworkPlayerManager.Instance.mountPrefab, transform.position, transform.rotation);
 		_mountRb = mountModel.GetComponent<Rigidbody>();
