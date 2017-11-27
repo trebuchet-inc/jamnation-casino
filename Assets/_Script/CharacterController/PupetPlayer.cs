@@ -26,6 +26,11 @@ public class PupetPlayer : MonoBehaviour
 		{
 			LerpPart(i);
 		}
+
+		if(Input.GetKeyDown(KeyCode.T))
+		{
+			setColor();
+		}
 	}
 
 	void LerpPart(int id)

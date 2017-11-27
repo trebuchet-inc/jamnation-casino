@@ -58,6 +58,8 @@ public class MountAgent : MonoBehaviour
 
 	void Start () 
 	{
+		NVRPlayer.Instance.Mount = this;
+		
 		_rb = GetComponent<Rigidbody>();
 		_lastPosition = ridingHand.transform.position;
 		_deltaBuffer = new Vector3[10];
@@ -81,8 +83,6 @@ public class MountAgent : MonoBehaviour
 	
 	void Update () 
 	{
-		//Debug.Log(voiceIntensity);
-
 		if(!_mountFreeze) 
 		{
 			mountModel.transform.position = transform.position;
