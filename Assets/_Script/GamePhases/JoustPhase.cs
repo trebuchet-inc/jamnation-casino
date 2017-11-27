@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using NewtonVR;
 
 public class JoustPhase : GamePhase
 {
@@ -45,7 +45,7 @@ public class JoustPhase : GamePhase
 	{
 		if(!_active) return;
 
-		if(timer > 0 && transform.InverseTransformPoint(opponentTransform.position).z <= 0)
+		if(timer > 0 && NVRPlayer.Instance.transform.InverseTransformPoint(opponentTransform.position).z <= 0)
 		{
 			timer -= Time.deltaTime;
 		}
