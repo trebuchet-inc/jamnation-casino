@@ -55,4 +55,6 @@ MonoBehaviour:
   - ReceiveRestartGame
   - ReceiveResetWeapons
   - ReceiveEndJoust
+  - CalculateScore
+  - DisplayWeapons
   DisableAutoOpenWizard: 1
