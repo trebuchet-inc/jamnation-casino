@@ -10,6 +10,7 @@ public class PupetPlayer : MonoBehaviour
 
 	Transform[] _pupetParts;
 	Transform[] _playerParts;
+	int pupetId;
 
 	void Start () 
 	{
@@ -35,6 +36,7 @@ public class PupetPlayer : MonoBehaviour
 
 	public void setColor(int id)
 	{
+		pupetId = id;
 		MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
 		Material[] temp;
 
@@ -45,13 +47,13 @@ public class PupetPlayer : MonoBehaviour
 				if(renderer.transform.parent.name == "Head" && renderer.transform.name == "modelHelmet")
 				{
 					temp = renderer.materials;
-					temp[0] = playerColors[id];
+					temp[0] = playerColors[pupetId];
 					renderer.materials = temp;
 				}
 				else if (renderer.transform.parent.name.In("LeftHand","Torso","RightHand"))
 				{
 					temp = renderer.materials;
-					temp[1] = playerColors[id];
+					temp[1] = playerColors[pupetId];
 					renderer.materials = temp;
 				}
 			}
@@ -60,6 +62,7 @@ public class PupetPlayer : MonoBehaviour
 
 	public void setColor()
 	{
+		pupetId = NetworkPlayerManager.Instance.playerID;
 		MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
 		Material[] temp;
 
@@ -70,13 +73,13 @@ public class PupetPlayer : MonoBehaviour
 				if(renderer.transform.parent.name == "Head" && renderer.transform.name == "modelHelmet")
 				{
 					temp = renderer.materials;
-					temp[0] = playerColors[NetworkPlayerManager.Instance.playerID];
+					temp[0] = playerColors[pupetId];
 					renderer.materials = temp;
 				}
 				else if (renderer.transform.parent.name.In("LeftHand","Torso","RightHand"))
 				{
 					temp = renderer.materials;
-					temp[1] = playerColors[NetworkPlayerManager.Instance.playerID];
+					temp[1] = playerColors[pupetId];
 					renderer.materials = temp;
 				}
 			}
