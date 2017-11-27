@@ -7,7 +7,7 @@ public class JoustPhase : GamePhase
 {
 	public event Action OnJoustGO;
 	
-	public event Action<LimbType> OnJoustHit;
+	public event Action<HitInfo> OnJoustHit;
 
 	public GameObject blood;
 
@@ -29,7 +29,6 @@ public class JoustPhase : GamePhase
 	public override void TerminatePhase()
 	{
         _active = false;
-		HMDisplayUIManager.Instance.ShowResult(lastHit);
 	}
 
 	public void EndJoust(bool hit)
@@ -76,7 +75,7 @@ public class JoustPhase : GamePhase
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, SerializationToolkit.ObjectToByteArray(info));
 		
 		
-		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHit);
+		if(OnJoustHit != null) OnJoustHit.Invoke(info);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 
 		Instantiate(blood, info.hitPoint.Deserialize(), Quaternion.identity);
@@ -106,7 +105,7 @@ public class JoustPhase : GamePhase
 			break;
 		}
 		
-		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHit);
+		if(OnJoustHit != null) OnJoustHit.Invoke(info);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 		
 

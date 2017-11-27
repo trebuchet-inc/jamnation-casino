@@ -30,7 +30,7 @@ public class OverlayManager : FeedbackManager
     // Event handlers
     //
 
-    protected override void OnNewGame()
+    protected override void OnNewGameHandler()
     {
         DisplayScores();
         DisplayRounds();
@@ -65,13 +65,57 @@ public class OverlayManager : FeedbackManager
         }
     }
 
-    protected override void OnWeaponChosen(WeaponType weaponType)
+    protected override void OnWeaponChosenHandler(WeaponType weaponType)
     {
         photonView.RPC("DisplayWeapons", PhotonTargets.All, NetworkPlayerManager.Instance.playerID, (int)weaponType);
     }
     
-    protected override void OnJoustHitHandler(LimbType hitInfo)
+    protected override void OnJoustHitHandler(HitInfo hitInfo)
     {
+        string msg = "";
+        string player = ""; 
+        string limbHit = "";
+        string weapon = "";
+        bool success = false;
+
+        switch((LimbType)hitInfo.limbHit)
+        {
+            case LimbType.Head :
+                limbHit = "head";
+                success = true;
+                break;
+
+            case LimbType.Hand :
+                limbHit = "hand";
+                success = true;
+                break;
+
+            case LimbType.Torso :
+                limbHit = "torso";
+                success = true;
+                break;
+
+            case LimbType.None :
+                success = false;
+                break;
+        }
+
+        switch ((WeaponType)hitInfo.weaponUsed)
+        {
+            case WeaponType.Flail:
+                weapon = "flail";
+                break;
+            case WeaponType.Axe:
+                weapon = "axe";
+                break;
+            case WeaponType.Spear:
+                weapon = "spear";
+                break;
+        }
+
+        player = hitInfo.playerHitting == 0 ? "Red Knight" : "Blue Knight"; 
+        
+        DisplaySuper(player + " was hit in the " + limbHit + " with a " + weapon + "!");
         DisplayScores();
     }
     
@@ -81,7 +125,7 @@ public class OverlayManager : FeedbackManager
 
     private void DisplayRounds()
     {
-        RoundsText.text = (GameRefereeManager.Instance.roundIndex + 1) + "/" + (GameRefereeManager.Instance.TotalRounds + 1);
+        RoundsText.text = (GameRefereeManager.Instance.roundIndex + 1) + "/" + GameRefereeManager.Instance.TotalRounds;
     }
     
     private void DisplaySuper(string text)

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,16 +31,6 @@ public class HMDisplayUIManager : FeedbackManager
 	// Event Handlers
 	//
 
-	protected override void OnParadeReadyHandler()
-	{
-		Deactivate();
-	}
-
-	protected override void OnWeaponChosen(WeaponType weaponType)
-	{
-		Deactivate();
-	}
-
 	protected override void OnPhaseStartedHandler(Phases phases)
 	{
 		switch (phases) 
@@ -59,47 +50,82 @@ public class HMDisplayUIManager : FeedbackManager
 				break;
 				
 			case Phases.Intermission:
-				
+				Activate("Preparing for next round");
 				break;
 				
 			case Phases.End:
-				
+				Activate("End of the Joust");
 				break;
 		}
+	}
+
+	protected override void OnWeaponChosenHandler(WeaponType weaponType)
+	{
+		Deactivate();
+	}
+	
+	protected override void OnParadeReadyHandler()
+	{
+		Deactivate();
+	}
+
+	protected override void OnJoustHitHandler(HitInfo hitInfo)
+	{
+		string msg = "";
+		string limbHit = "";
+		string weapon = "";
+		bool success = false;
+
+		switch((LimbType)hitInfo.limbHit)
+		{
+			case LimbType.Head :
+				limbHit = "head";
+				success = true;
+				break;
+
+			case LimbType.Hand :
+				limbHit = "hand";
+				success = true;
+				break;
+
+			case LimbType.Torso :
+				limbHit = "torso";
+				success = true;
+				break;
+
+			case LimbType.None :
+				success = false;
+				break;
+		}
+
+		switch ((WeaponType)hitInfo.weaponUsed)
+		{
+			case WeaponType.Flail:
+				weapon = "flail";
+			break;
+			case WeaponType.Axe:
+				weapon = "axe";
+			break;
+			case WeaponType.Spear:
+				weapon = "spear";
+			break;
+		}
+
+		if (success)
+		{
+			msg = "You hit in the " + limbHit + " with the " + weapon + "!";
+		}
+		else
+		{
+			msg = "You were hit in the " + limbHit + " with the " + weapon + "!";
+		}
+		
+		StartCoroutine(DelayBeforeResult(msg, success));
 	}
 	
 	//
 	// Feedback functions
 	//
-
-	public void ShowResult(LimbType limb)
-	{
-		string text= "";
-		bool sucess = false;
-
-		switch(limb)
-		{
-			case LimbType.Head :
-			text = "Wow! HIT THAT HEAD!";
-			sucess = true;
-			break;
-
-			case LimbType.Hand :
-			text = "You hit the knee : No more adventures for him!";
-			sucess = true;
-			break;
-
-			case LimbType.Torso :
-			text = "You hit the torso, it must be painful!";
-			sucess = true;
-			break;
-
-			case LimbType.None :
-			text = "Missed !";
-			break;
-		}
-		StartCoroutine(DelayBeforeResult(text, sucess));
-	}
 
 	private void Activate(string textToDisplay)
 	{
@@ -142,18 +168,19 @@ public class HMDisplayUIManager : FeedbackManager
 		Deactivate();
 	}
 
-	IEnumerator DelayBeforeResult(string text, bool sucess)
+	IEnumerator DelayBeforeResult(string text, bool success)
 	{
 		yield return new WaitForSeconds(2f);
-		canvasText.text = text;
 
-		if (sucess)
+		if (success)
 		{
 			SoundManager.Instance.WinJingle();
+			canvasText.text = text;
 		}
 		else
 		{
 			SoundManager.Instance.LoseJingle();
+			canvasText.text = "MISSED!";
 		}
 		
 		yield return new WaitForSeconds(4f);

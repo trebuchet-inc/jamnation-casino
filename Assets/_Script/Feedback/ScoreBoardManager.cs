@@ -17,7 +17,7 @@ public class ScoreBoardManager : FeedbackManager
 	// Event Handlers
 	//
 
-	protected override void OnNewGame()
+	protected override void OnNewGameHandler()
 	{
 		DisplayOnBothScreens("WELCOME");
 	}
@@ -51,7 +51,7 @@ public class ScoreBoardManager : FeedbackManager
 		DisplayOnBothScreens(msg);
 	}
 
-	protected override void OnJoustHitHandler(LimbType limbHited)
+	protected override void OnJoustHitHandler(HitInfo limbHited)
 	{
 		DisplayOnBothScreens("HIT!");
 	}

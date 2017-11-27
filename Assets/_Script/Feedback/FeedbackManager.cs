@@ -10,9 +10,9 @@ public class FeedbackManager : Photon.MonoBehaviour
 
     private void SubscribeEvents()
     {
-        GameRefereeManager.Instance.OnNewGame += OnNewGame;
+        GameRefereeManager.Instance.OnNewGame += OnNewGameHandler;
         GameRefereeManager.Instance.OnPhaseStarted += OnPhaseStartedHandler;
-        GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosen;
+        GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
         GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
         GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
         GameRefereeManager.Instance.joustPhase.OnJoustHit += OnJoustHitHandler;
@@ -20,25 +20,25 @@ public class FeedbackManager : Photon.MonoBehaviour
 
     private void UnsubscribeEvents()
     {
-        GameRefereeManager.Instance.OnNewGame -= OnNewGame;
+        GameRefereeManager.Instance.OnNewGame -= OnNewGameHandler;
         GameRefereeManager.Instance.OnPhaseStarted -= OnPhaseStartedHandler;
-        GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen -= OnWeaponChosen;
+        GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen -= OnWeaponChosenHandler;
         GameRefereeManager.Instance.paradePhase.OnParadeReady -= OnParadeReadyHandler;
         GameRefereeManager.Instance.joustPhase.OnJoustGO -= OnJoustGOHandler;
         GameRefereeManager.Instance.joustPhase.OnJoustHit -= OnJoustHitHandler;
     }
 
-    protected virtual void OnNewGame(){}
+    protected virtual void OnNewGameHandler(){}
     
     protected virtual void OnPhaseStartedHandler(Phases phases){}
 
-    protected virtual void OnWeaponChosen(WeaponType weaponType){}
+    protected virtual void OnWeaponChosenHandler(WeaponType weaponType){}
 
     protected virtual void OnParadeReadyHandler(){}
 
     protected virtual void OnJoustGOHandler(){}
 	
-    protected virtual void OnJoustHitHandler(LimbType limbHited){}
+    protected virtual void OnJoustHitHandler(HitInfo hitInfo){}
     
     private void OnDisable()
     {

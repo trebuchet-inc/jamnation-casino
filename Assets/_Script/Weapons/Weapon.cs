@@ -80,7 +80,7 @@ public class Weapon : MonoBehaviour
     {
        if(!_networkWeapon && other.transform.tag == "Ennemy")
         {
-            HitInfo info = new HitInfo(type, other.transform.parent.name, other.transform.position);
+            HitInfo info = new HitInfo(type, other.transform.parent.name, other.transform.position, NetworkPlayerManager.Instance.playerID);
             GameRefereeManager.Instance.joustPhase.callHit(info);
             print("hit");
             SoundManager.Instance.PlayHit(type);

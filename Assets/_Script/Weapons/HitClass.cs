@@ -17,15 +17,17 @@ public enum LimbType
 }
 
 [Serializable]
-public class HitInfo 
+public class HitInfo
 {
+	public int playerHitting;
 	public int weaponUsed;
 	public int limbHit;
 	public SerializableVector3 hitPoint;
 
-	public HitInfo (WeaponType weaponType, string limb, Vector3 hitPos)
+	public HitInfo (WeaponType weaponType, string limb, Vector3 hitPos, int playerID)
 	{
 		weaponUsed = (int)weaponType;
+		playerHitting = playerID;
 
 		if(limb.Contains("Torso"))
 		{
