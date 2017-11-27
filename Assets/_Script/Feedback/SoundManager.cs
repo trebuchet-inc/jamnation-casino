@@ -45,15 +45,15 @@ public class SoundManager : FeedbackManager
 	public void PlayHit (WeaponType weapon) {
 		switch(weapon)
 		{
-			 case WeaponType.spear :
+			 case WeaponType.Spear :
 			 AkSoundEngine.PostEvent("Play_Lance_hit", gameObject);
 			 break;
 
-			 case WeaponType.axe :
+			 case WeaponType.Axe :
 			 AkSoundEngine.PostEvent("Play_Axe_hit", gameObject);
 			 break;
 
-			 case WeaponType.scourge :
+			 case WeaponType.Flail :
 			 AkSoundEngine.PostEvent("Play_Flail_hit", gameObject);
 			 break;
 		}

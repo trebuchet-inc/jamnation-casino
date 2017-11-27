@@ -48,7 +48,7 @@ public class JoustPhase : GamePhase
 		if(localHited || !_active) return;
 
 		localHited = true;
-		lastHit = (LimbType)info.limbHited; 
+		lastHit = (LimbType)info.limbHit; 
 		float multiplier = 1;
 
 		switch(lastHit)
@@ -70,11 +70,12 @@ public class JoustPhase : GamePhase
 
 		if(lastHit == LimbType.None) return;
 
-		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, SerializationToolkit.ObjectToByteArray(info));
-
-		ScoreManager.Instance.AddScoreBlue(multiplier);
+		CalculateScore(multiplier);
 		
-		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHited);
+		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, SerializationToolkit.ObjectToByteArray(info));
+		
+		
+		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHit);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 
 		Instantiate(blood, info.hitPoint.Deserialize(), Quaternion.identity);
@@ -90,7 +91,7 @@ public class JoustPhase : GamePhase
 
 		float multiplier = 1;
 
-		switch((LimbType)info.limbHited)
+		switch((LimbType)info.limbHit)
 		{
 			case LimbType.Head :
 			multiplier = 3;
@@ -105,10 +106,11 @@ public class JoustPhase : GamePhase
 			break;
 		}
 		
-		ScoreManager.Instance.AddScoreRed(multiplier);
+		CalculateScore(multiplier);
 		
-		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHited);
+		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHit);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
+		
 
 		SoundManager.Instance.PlayHit((WeaponType)info.weaponUsed); 
 
@@ -116,6 +118,11 @@ public class JoustPhase : GamePhase
 		StartCoroutine(UnFade());
 
 		Instantiate(blood, info.hitPoint.Deserialize(), Quaternion.identity);
+	}
+	
+	private void CalculateScore(float multiplier)
+	{
+		ScoreManager.Instance.AddScore(NetworkPlayerManager.Instance.personalID, multiplier);
 	}
 
 	private IEnumerator UnFade()
