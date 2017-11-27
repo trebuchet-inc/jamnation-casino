@@ -3,6 +3,13 @@ using System;
 
 public class FeedbackManager : Photon.MonoBehaviour 
 {
+    #region variables
+
+    // JoustHit infos
+    protected string lastPlayerHitting, lastLimbHit, lastWeapon;
+
+    #endregion
+    
     protected virtual void Start()
     {
         SubscribeEvents();
@@ -37,8 +44,46 @@ public class FeedbackManager : Photon.MonoBehaviour
     protected virtual void OnParadeReadyHandler(){}
 
     protected virtual void OnJoustGOHandler(){}
-	
-    protected virtual void OnJoustHitHandler(HitInfo hitInfo){}
+
+    protected virtual void OnJoustHitHandler(HitInfo hitInfo)
+    {
+        lastPlayerHitting = ""; 
+        lastLimbHit = "";
+        lastWeapon = "";
+
+        switch((LimbType)hitInfo.limbHit)
+        {
+            case LimbType.Head :            
+                lastLimbHit = "head";
+            break;
+
+            case LimbType.Hand :            
+                lastLimbHit = "hand";
+            break;
+
+            case LimbType.Torso :            
+                lastLimbHit = "torso";
+            break;
+
+            case LimbType.None :
+            break;
+       }
+
+        switch ((WeaponType)hitInfo.weaponUsed)
+        {
+            case WeaponType.Flail:
+                lastWeapon = "flail";
+                break;
+            case WeaponType.Axe:
+                lastWeapon = "axe";
+                break;
+            case WeaponType.Spear:
+                lastWeapon = "spear";
+                break;
+        }
+        
+        lastPlayerHitting = hitInfo.playerHitting == 0 ? "Red Knight" : "Blue Knight"; 
+    }
     
     private void OnDisable()
     {

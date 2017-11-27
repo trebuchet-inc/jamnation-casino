@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR;
 
 public class HMDisplayUIManager : FeedbackManager
 {
@@ -71,53 +72,18 @@ public class HMDisplayUIManager : FeedbackManager
 
 	protected override void OnJoustHitHandler(HitInfo hitInfo)
 	{
+		base.OnJoustHitHandler(hitInfo);
+
+		bool success = hitInfo.limbHit != (int)LimbType.None;
 		string msg = "";
-		string limbHit = "";
-		string weapon = "";
-		bool success = false;
-
-		switch((LimbType)hitInfo.limbHit)
-		{
-			case LimbType.Head :
-				limbHit = "head";
-				success = true;
-				break;
-
-			case LimbType.Hand :
-				limbHit = "hand";
-				success = true;
-				break;
-
-			case LimbType.Torso :
-				limbHit = "torso";
-				success = true;
-				break;
-
-			case LimbType.None :
-				success = false;
-				break;
-		}
-
-		switch ((WeaponType)hitInfo.weaponUsed)
-		{
-			case WeaponType.Flail:
-				weapon = "flail";
-			break;
-			case WeaponType.Axe:
-				weapon = "axe";
-			break;
-			case WeaponType.Spear:
-				weapon = "spear";
-			break;
-		}
-
+		
 		if (success)
 		{
-			msg = "You hit in the " + limbHit + " with the " + weapon + "!";
+			msg = "You hit in the " + lastLimbHit + " with the " + lastWeapon + "!";
 		}
 		else
 		{
-			msg = "You were hit in the " + limbHit + " with the " + weapon + "!";
+			msg = "You were hit in the " + lastLimbHit + " with the " + lastWeapon + "!";
 		}
 		
 		StartCoroutine(DelayBeforeResult(msg, success));
@@ -131,10 +97,15 @@ public class HMDisplayUIManager : FeedbackManager
 	{
 		 canvasText.text = textToDisplay;
 	}
+	
+	private void Activate(string textToDisplay, float interval)
+	{
+		StartCoroutine(DisplayText(textToDisplay, interval));
+	}
 
 	private void Activate(Queue<string> textsToDisplay, float interval)
 	{
-		StartCoroutine(DisplayTexts(textsToDisplay, interval));
+		StartCoroutine(DisplayText(textsToDisplay, interval));
 	}
 
 	private void Deactivate()
@@ -154,7 +125,16 @@ public class HMDisplayUIManager : FeedbackManager
 	// Coroutines
 	//
 
-	private IEnumerator DisplayTexts(Queue<string> texts, float interval)
+	private IEnumerator DisplayText(string text, float interval)
+	{
+		canvasText.text = text;
+			
+		yield return new WaitForSeconds(interval);
+		
+		Deactivate();
+	}
+	
+	private IEnumerator DisplayText(Queue<string> texts, float interval)
 	{
 		int count = texts.Count;
 		

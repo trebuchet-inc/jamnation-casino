@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
 
 [Serializable]
@@ -24,29 +22,27 @@ public class CameraManager : MonoBehaviour {
 
 	// Use this for initialization
 
-	void Awake()
+	private void Awake()
 	{
 		cameras = FindObjectsOfType<CameraController>();
+		
 		foreach(CameraController c in cameras)
 		{
 			Destroy(c.transform.GetComponent<Camera>());
 		}
-
 		cam = cameraTransform.GetComponentInChildren<Camera>();
-		
 	}
 
-	void Start () {
-		
+	private void Start () 
+	{
 		InitializeCameras();
 		CameraSwitch(1);
-		
-		
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	private void Update () 
+	{
 		int a = CameraSwitchCheck();
+		
 		if (a != 0)
 		{
 			CameraSwitch(a);			
@@ -58,46 +54,46 @@ public class CameraManager : MonoBehaviour {
 		}
 	}
 
-	void InitializeCameras(){
+	private void InitializeCameras()
+	{
 		foreach(CameraController c in cameras)
 		{
 			c.cameraManager = this;
 			c.Initialize();
-		
 		}
 	}
 
-	void CameraSwitch(int value)
+	private void CameraSwitch(int value)
 	{
 		bool foundMatch = false;
-			for (int i = 0; i < cameras.Length; i++)
+		
+		for (int i = 0; i < cameras.Length; i++)
+		{
+			if (cameras[i].cameraId == value)
 			{
-				if (cameras[i].cameraId == value)
+				if (activeCamera!=null)
 				{
-					if (activeCamera!=null)
+					activeCamera.isActiveCamera = false;
+					if (activeCamera.cameraType == CameraControllerType.AnimationTargetedRoutine || activeCamera.cameraType == CameraControllerType.AnimationFreeAimRoutine)
 					{
-						activeCamera.isActiveCamera = false;
-						if (activeCamera.cameraType == CameraControllerType.AnimationTargetedRoutine || activeCamera.cameraType == CameraControllerType.AnimationFreeAimRoutine)
-						{
-							activeCamera.SourcePositionAndAimOverride();
-						}
-						activeCamera.ResetPositionAndAim();
+						activeCamera.SourcePositionAndAimOverride();
 					}
-					activeCamera = cameras[i];
-					activeCamera.CutToThisCamera();
-					foundMatch = true;
-
+					activeCamera.ResetPositionAndAim();
 				}
-				
+				activeCamera = cameras[i];
+				activeCamera.CutToThisCamera();
+				foundMatch = true;
 			}
-			if (!foundMatch)
-			{
-				Debug.Log ("Did not find matching camera");
-			}
+		}
+	
+		if (!foundMatch)
+		{
+			Debug.Log ("Did not find matching camera");
+		}
 	}
 
 
-	int CameraSwitchCheck()
+	private int CameraSwitchCheck()
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))
 		{

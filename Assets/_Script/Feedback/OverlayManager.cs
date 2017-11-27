@@ -72,50 +72,9 @@ public class OverlayManager : FeedbackManager
     
     protected override void OnJoustHitHandler(HitInfo hitInfo)
     {
-        string msg = "";
-        string player = ""; 
-        string limbHit = "";
-        string weapon = "";
-        bool success = false;
-
-        switch((LimbType)hitInfo.limbHit)
-        {
-            case LimbType.Head :
-                limbHit = "head";
-                success = true;
-                break;
-
-            case LimbType.Hand :
-                limbHit = "hand";
-                success = true;
-                break;
-
-            case LimbType.Torso :
-                limbHit = "torso";
-                success = true;
-                break;
-
-            case LimbType.None :
-                success = false;
-                break;
-        }
-
-        switch ((WeaponType)hitInfo.weaponUsed)
-        {
-            case WeaponType.Flail:
-                weapon = "flail";
-                break;
-            case WeaponType.Axe:
-                weapon = "axe";
-                break;
-            case WeaponType.Spear:
-                weapon = "spear";
-                break;
-        }
-
-        player = hitInfo.playerHitting == 0 ? "Red Knight" : "Blue Knight"; 
+        base.OnJoustHitHandler(hitInfo);
         
-        DisplaySuper(player + " was hit in the " + limbHit + " with a " + weapon + "!");
+        DisplaySuper(lastPlayerHitting + " was hit in the " + lastLimbHit + " with a " + lastWeapon + "!");
         DisplayScores();
     }
     
