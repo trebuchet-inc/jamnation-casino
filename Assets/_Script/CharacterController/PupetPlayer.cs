@@ -75,16 +75,10 @@ public class PupetPlayer : MonoBehaviour
 					temp[0] = playerColors[NetworkPlayerManager.Instance.personalID];
 					renderer.materials = temp;
 				}
-				else if (renderer.transform.parent.name.In("LeftHand","Torso"))
+				else if (renderer.transform.parent.name.In("LeftHand","Torso","RightHand"))
 				{
 					temp = renderer.materials;
 					temp[1] = playerColors[NetworkPlayerManager.Instance.personalID];
-					renderer.materials = temp;
-				}
-				else if (renderer.transform.parent.name.In("RightHand"))
-				{
-					temp = renderer.materials;
-					temp[2] = playerColors[NetworkPlayerManager.Instance.personalID];
 					renderer.materials = temp;
 				}
 			}
