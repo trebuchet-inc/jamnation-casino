@@ -7,22 +7,29 @@ using NewtonVR;
 public class MountAgent : MonoBehaviour 
 {
 	public GameObject mountModel;
+	[Space]
 	public NVRHand ridingHand;
+	public float ridingHandVelocityThreshold;
 	public float joustSpeed;
-	public float voiceSpeed;
 	public float paradeSpeed;
-	public float velocityThreshold;
-	public float voiceThreshold;
+	[Space]
+	public float voiceVolumeThreshold;
 	public int voiceDurationThreshold;
+	public float voiceJoustSpeed;
+	public float voiceParadeSpeed;
+	[Space]
+	public float mountDyingSpeed;
 
 	AudioClip voice;
 
-	float actualSpeed;
+	float actualRidingSpeed;
+	float actualVoiceSpeed;
 
-	public bool _freeze = true;
+	[HideInInspector] public bool _freeze = true;
 	bool _mountFreeze;
 
 	Rigidbody _rb;
+	Rigidbody _mountRb;
 
 	Vector3[] _deltaBuffer = new Vector3[100];
 	int _index = 0;
@@ -50,7 +57,7 @@ public class MountAgent : MonoBehaviour
 			voice.GetData(value, 0);
 			for(int i = 0; i < value.Length; i++)
 			{
-				if(value[i] > voiceThreshold) toretun++;
+				if(value[i] > voiceVolumeThreshold) toretun++;
 			}
 			return toretun;
 		}
@@ -69,6 +76,7 @@ public class MountAgent : MonoBehaviour
 		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
 		
 		mountModel = Instantiate(NetworkPlayerManager.Instance.mountPrefab, transform.position, transform.rotation);
+		_mountRb = mountModel.GetComponent<Rigidbody>();
 
 		voice = Microphone.Start(Microphone.devices[0], true, 1, 44100);
 		print(Microphone.devices[0]);
@@ -91,15 +99,15 @@ public class MountAgent : MonoBehaviour
 
 		if(!_freeze)
 		{
-			if(Mathf.Abs(velocity.y) >= velocityThreshold)
+			if(Mathf.Abs(velocity.y) >= ridingHandVelocityThreshold)
 			{
-				_rb.AddForce(transform.forward * actualSpeed, ForceMode.Impulse);
+				_rb.AddForce(transform.forward * actualRidingSpeed, ForceMode.Impulse);
 				AkSoundEngine.PostEvent("Play_Horse_Rocking", gameObject);
 			}
 
 			if(voiceIntensity > voiceDurationThreshold)
 			{
-				_rb.AddForce(transform.forward * voiceSpeed, ForceMode.Impulse);
+				_rb.AddForce(transform.forward * actualVoiceSpeed, ForceMode.Impulse);
 			}
 		}
 	}
@@ -110,11 +118,14 @@ public class MountAgent : MonoBehaviour
 		{
 			case Phases.WeaponSelection:
 				_freeze = true;
+				_mountRb.isKinematic = true;
+				_mountFreeze = false;
 			break;
 				
 			case Phases.Parade:
 				_freeze = false;
-				actualSpeed = paradeSpeed;
+				actualRidingSpeed = paradeSpeed;
+				actualVoiceSpeed = voiceParadeSpeed;
 			break;	
 				
 			case Phases.Intermission:
@@ -127,6 +138,16 @@ public class MountAgent : MonoBehaviour
 		}
 	}
 
+	void OnHitHandler(HitInfo info)
+	{
+		if(info.playerHitting == NetworkPlayerManager.Instance.playerID) return;
+
+		_mountFreeze = true;
+		_freeze = true;
+		_mountRb.isKinematic = false;
+		_mountRb.AddForce(mountModel.transform.forward * mountDyingSpeed, ForceMode.Impulse);
+	}
+
 	private void OnParadeReadyHandler()
 	{
 		_freeze = true;
@@ -135,6 +156,7 @@ public class MountAgent : MonoBehaviour
 	private void OnJoustGOHandler()
 	{
 		_freeze = false;
-		actualSpeed = joustSpeed;
+		actualRidingSpeed = joustSpeed;
+		actualVoiceSpeed = voiceJoustSpeed;
 	}
 }

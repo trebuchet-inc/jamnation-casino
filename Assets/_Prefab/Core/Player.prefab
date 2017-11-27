@@ -1118,12 +1118,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mountModel: {fileID: 0}
   ridingHand: {fileID: 114990343425754572}
+  ridingHandVelocityThreshold: 0.3
   joustSpeed: 0.2
-  voiceSpeed: 0.1
   paradeSpeed: 0.1
-  velocityThreshold: 0.3
-  voiceThreshold: 0.25
+  voiceVolumeThreshold: 0.3
   voiceDurationThreshold: 100
+  voiceJoustSpeed: 0.1
+  voiceParadeSpeed: 0
+  mountDyingSpeed: 1
   _freeze: 1
 --- !u!114 &114116509059290792
 MonoBehaviour:
@@ -1196,6 +1198,7 @@ MonoBehaviour:
   LeftHand: {fileID: 114990343425754572}
   RightHand: {fileID: 114967221717827704}
   Torso: {fileID: 114451516175775094}
+  Mount: {fileID: 0}
   Hands: []
   CurrentIntegrationType: 0
   DEBUGEnableFallback2D: 0
