@@ -96,7 +96,7 @@ public class CameraManager : FeedbackManager
 	{
 		CameraSwitch(cameraIDs[loopIndex]);
 
-		if (loopIndex == cameraIDs.Length)
+		if (loopIndex == cameraIDs.Length -1)
 		{
 			loopIndex = 0;
 		}
