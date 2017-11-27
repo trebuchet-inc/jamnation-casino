@@ -7,6 +7,8 @@ public class ScoreManager : MonoBehaviour
 	public static ScoreManager Instance;
 
 	public int scoreBlue, scoreRed;
+
+	public int winnerPlayerID;
 	
 	private void Awake()
 	{
@@ -30,11 +32,44 @@ public class ScoreManager : MonoBehaviour
 		{
 			scoreRed += score;
 		}
+
+		winnerPlayerID = CheckWinner();
 	}
 	
 	public void ResetScore()
 	{
 		scoreBlue = 0;
 		scoreRed = 0;
+	}
+
+	private int CheckWinner()
+	{
+		if (scoreBlue > scoreRed)
+		{
+			return 0;
+		}
+		else if (scoreBlue < scoreRed)
+		{
+			return 1;
+		}
+		else
+		{
+			return 2;
+		}
+	}
+
+	public string GetWinnerText()
+	{
+		switch (winnerPlayerID)
+		{
+			case 0:
+				return "Blue Knight wins !";
+			case 1:
+				return "Red Knight wins !";
+			case 2:
+				return "TIE!";
+				default:
+				return "End of the Joust";
+		}
 	}
 }

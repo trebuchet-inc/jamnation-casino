@@ -23,6 +23,7 @@ public class FeedbackManager : Photon.MonoBehaviour
         GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
         GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
         GameRefereeManager.Instance.joustPhase.OnJoustHit += OnJoustHitHandler;
+        GameRefereeManager.Instance.endPhaseScript.OnJoustEnded += OnJoustEndedHandler; 
     }
 
     private void UnsubscribeEvents()
@@ -33,6 +34,7 @@ public class FeedbackManager : Photon.MonoBehaviour
         GameRefereeManager.Instance.paradePhase.OnParadeReady -= OnParadeReadyHandler;
         GameRefereeManager.Instance.joustPhase.OnJoustGO -= OnJoustGOHandler;
         GameRefereeManager.Instance.joustPhase.OnJoustHit -= OnJoustHitHandler;
+        GameRefereeManager.Instance.endPhaseScript.OnJoustEnded -= OnJoustEndedHandler; 
     }
 
     protected virtual void OnNewGameHandler(){}
@@ -84,6 +86,8 @@ public class FeedbackManager : Photon.MonoBehaviour
         
         lastPlayerHitting = hitInfo.playerHitting == 0 ? "Red Knight" : "Blue Knight"; 
     }
+    
+    protected virtual void OnJoustEndedHandler(){}
     
     private void OnDisable()
     {
