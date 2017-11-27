@@ -1477,8 +1477,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1136910865772738}
-  m_LocalRotation: {x: 0.15048291, y: -0.46910736, z: -0.097322986, w: -0.86476666}
-  m_LocalPosition: {x: 9.63, y: 0.24, z: -5.29}
+  m_LocalRotation: {x: 0.067074254, y: -0.47626576, z: -0.0520046, w: -0.87519574}
+  m_LocalPosition: {x: 14.15, y: 1.07, z: -3.62}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000005}
   m_Children:
   - {fileID: 4267967111614390}
@@ -1489,7 +1489,7 @@ Transform:
   - {fileID: 4769590833644122}
   m_Father: {fileID: 4991150784456722}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: -20.584002, y: 416.655, z: 1.6610001}
+  m_LocalEulerAnglesHint: {x: -9.610001, y: 416.976, z: 1.577}
 --- !u!4 &4508617982532618
 Transform:
   m_ObjectHideFlags: 1
@@ -1832,8 +1832,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045146559893624}
-  m_LocalRotation: {x: 0.15926321, y: 0.51704043, z: 0.08217111, w: -0.8369901}
-  m_LocalPosition: {x: -10.53, y: 0.24, z: -1.64}
+  m_LocalRotation: {x: 0.07073746, y: 0.5228026, z: 0.027574534, w: -0.8490662}
+  m_LocalPosition: {x: -13.77, y: 1.41, z: -0.04}
   m_LocalScale: {x: 1, y: 1.0000002, z: 1.0000002}
   m_Children:
   - {fileID: 4422387577383002}
@@ -1844,7 +1844,7 @@ Transform:
   - {fileID: 4210646665557132}
   m_Father: {fileID: 4991150784456722}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -20.584002, y: 296.288, z: 1.6610001}
+  m_LocalEulerAnglesHint: {x: -8.566, y: 296.638, z: 1.5730001}
 --- !u!4 &4814398485050346
 Transform:
   m_ObjectHideFlags: 1
@@ -1943,7 +1943,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1864314234425970}
   m_LocalRotation: {x: -0.18753344, y: 0.019610666, z: -0.010834982, w: -0.9820027}
-  m_LocalPosition: {x: 1.395, y: 8.382, z: -15.622}
+  m_LocalPosition: {x: -0.13, y: 8.382, z: -15.622}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000005}
   m_Children:
   - {fileID: 4469805498329592}
@@ -2568,7 +2568,7 @@ MonoBehaviour:
   _active: 1
   _positionFrequency: 0.1
   _rotationFrequency: 0
-  _positionAmplitude: 1
+  _positionAmplitude: 0.2
   _rotationAmplitude: 5
   _positionScale: {x: 1, y: 1, z: 1}
   _rotationScale: {x: 1, y: 1, z: 0}
@@ -2589,8 +2589,8 @@ MonoBehaviour:
   _active: 1
   _positionFrequency: 0.1
   _rotationFrequency: 0
-  _positionAmplitude: 1
-  _rotationAmplitude: 5
+  _positionAmplitude: 0.2
+  _rotationAmplitude: 2
   _positionScale: {x: 1, y: 1, z: 1}
   _rotationScale: {x: 1, y: 1, z: 0}
   _positionFractalLevel: 3
@@ -2610,8 +2610,8 @@ MonoBehaviour:
   _active: 1
   _positionFrequency: 0.1
   _rotationFrequency: 0
-  _positionAmplitude: 1
-  _rotationAmplitude: 5
+  _positionAmplitude: 0.2
+  _rotationAmplitude: 1
   _positionScale: {x: 1, y: 1, z: 1}
   _rotationScale: {x: 1, y: 1, z: 0}
   _positionFractalLevel: 3
@@ -2662,7 +2662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b38a7af59d4244aa3e2558a1972191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraType: 2
+  cameraType: 0
   cameraId: 6
   isActiveCamera: 0
   cameraManager: {fileID: 114612517186129992}
@@ -2767,32 +2767,32 @@ MonoBehaviour:
   translationIntensity: 5
   apertureIntense: 0.5
   aimCameraTargets:
-  - cameraId: 1
+  - cameraId: 0
     targets: []
-  - cameraId: 2
+  - cameraId: 1
     targets:
     - {fileID: 4060385605528704}
     - {fileID: 4402146354842896}
-  - cameraId: 3
+  - cameraId: 2
     targets: []
+  - cameraId: 3
+    targets:
+    - {fileID: 4402146354842896}
+    - {fileID: 4060385605528704}
+    - {fileID: 4870837815433588}
   - cameraId: 4
     targets:
-    - {fileID: 4402146354842896}
-    - {fileID: 4060385605528704}
     - {fileID: 4870837815433588}
   - cameraId: 5
     targets:
-    - {fileID: 4870837815433588}
-  - cameraId: 6
-    targets:
     - {fileID: 4574599728779650}
-  - cameraId: 7
+  - cameraId: 6
     targets: []
-  - cameraId: 8
+  - cameraId: 7
     targets:
     - {fileID: 4402146354842896}
     - {fileID: 4060385605528704}
-  - cameraId: 9
+  - cameraId: 8
     targets: []
 --- !u!114 &114640929156580672
 MonoBehaviour:
@@ -2880,8 +2880,8 @@ MonoBehaviour:
   _active: 1
   _positionFrequency: 0.1
   _rotationFrequency: 0
-  _positionAmplitude: 1
-  _rotationAmplitude: 5
+  _positionAmplitude: 0.2
+  _rotationAmplitude: 2
   _positionScale: {x: 1, y: 1, z: 1}
   _rotationScale: {x: 1, y: 1, z: 0}
   _positionFractalLevel: 3

@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 
 [Serializable]
 public class AimCameraSpeadsheet
 {
-	public int cameraId;
+	public string cameraId;
 	public Transform[] targets;
 }
 
-public class CameraManager : MonoBehaviour {
+public class CameraManager : FeedbackManager 
+{
 	[HideInInspector]
 	public CameraController[] cameras;
 	public CameraController activeCamera;
@@ -18,9 +20,9 @@ public class CameraManager : MonoBehaviour {
 	public float apertureIntense;
 	public AimCameraSpeadsheet[] aimCameraTargets;
 
-	Camera cam;
+	private int loopIndex = 0;
 
-	// Use this for initialization
+	Camera cam;
 
 	private void Awake()
 	{
@@ -33,10 +35,11 @@ public class CameraManager : MonoBehaviour {
 		cam = cameraTransform.GetComponentInChildren<Camera>();
 	}
 
-	private void Start () 
+	protected override void Start () 
 	{
+		base.Start();
 		InitializeCameras();
-		CameraSwitch(1);
+		CameraSwitch("1");
 	}
 	
 	private void Update () 
@@ -45,13 +48,66 @@ public class CameraManager : MonoBehaviour {
 		
 		if (a != 0)
 		{
-			CameraSwitch(a);			
+			CameraSwitch(a.ToString());			
 		}
 
 		if(Input.GetKeyDown(KeyCode.P))
 		{
-			cam.depth *= -1;
+			SwitchToFirstPerson();
 		}
+	}
+	
+	//
+	// Event handlers
+	//
+	
+	protected override void OnPhaseStartedHandler(Phases phases)
+	{
+		StopCoroutine("CameraLoop");
+		
+		switch (phases) 
+		{
+			case Phases.WeaponSelection:
+				StartCoroutine(CameraLoop(new string[] {"3", "7"}, 5));
+				break;
+				
+			case Phases.Parade:
+				CameraSwitch("4");
+				break;
+				
+			case Phases.Joust:
+				CameraSwitch("4");
+				break;	
+				
+			case Phases.Intermission:
+				break;
+				
+			case Phases.End:
+				CameraSwitch("4");
+				break;
+		}
+	}
+	
+	//
+	// Camera functions
+	//
+
+	private IEnumerator CameraLoop(string[] cameraIDs, float interval)
+	{
+		CameraSwitch(cameraIDs[loopIndex]);
+
+		if (loopIndex >= cameraIDs.Length)
+		{
+			loopIndex = 0;
+		}
+		else
+		{
+			loopIndex++;
+		}
+		
+		yield return new WaitForSeconds(interval);
+
+		StartCoroutine(CameraLoop(cameraIDs, interval));
 	}
 
 	private void InitializeCameras()
@@ -63,13 +119,18 @@ public class CameraManager : MonoBehaviour {
 		}
 	}
 
-	private void CameraSwitch(int value)
+	private void SwitchToFirstPerson()
+	{
+		cam.depth *= -1;
+	}
+
+	private void CameraSwitch(string id)
 	{
 		bool foundMatch = false;
 		
 		for (int i = 0; i < cameras.Length; i++)
 		{
-			if (cameras[i].cameraId == value)
+			if (cameras[i].cameraId == id)
 			{
 				if (activeCamera!=null)
 				{
@@ -91,7 +152,6 @@ public class CameraManager : MonoBehaviour {
 			Debug.Log ("Did not find matching camera");
 		}
 	}
-
 
 	private int CameraSwitchCheck()
 	{
