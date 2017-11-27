@@ -88,7 +88,20 @@ public class HMDisplayUIManager : FeedbackManager
 		
 		StartCoroutine(DelayBeforeResult(msg, success));
 	}
-	
+
+	protected override void OnJoustEndedHandler()
+	{
+		Queue<string> msg = new Queue<string>();
+
+		string winnerText = ScoreManager.Instance.GetWinnerText();
+		
+		msg.Enqueue("End of the Joust");
+
+		msg.Enqueue(winnerText);
+		
+		Activate(msg, 2);
+	}
+
 	//
 	// Feedback functions
 	//

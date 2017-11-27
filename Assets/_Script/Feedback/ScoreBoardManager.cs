@@ -19,7 +19,7 @@ public class ScoreBoardManager : FeedbackManager
 
 	protected override void OnNewGameHandler()
 	{
-		DisplayOnBothScreens("WELCOME");
+		DisplayOnBothScreens("Welcome");
 	}
 
 	protected override void OnPhaseStartedHandler(Phases phases)
@@ -29,26 +29,26 @@ public class ScoreBoardManager : FeedbackManager
 		switch (phases) 
 		{
 			case Phases.WeaponSelection:
-				msg = "CHOOSING WEAPONS";
+				msg = "Choosing Weapons";
 				break;
 			case Phases.Parade:
-				msg = "READY";
+				msg = "Ready!";
 				break;
 				
 			case Phases.Joust:
-				
+				DisplayScores();
 				break;	
 				
 			case Phases.Intermission:
-				
+				DisplayScores();
 				break;
 				
 			case Phases.End:
-				
+				msg = ScoreManager.Instance.GetWinnerText();
 				break;
 		}
 
-		DisplayOnBothScreens(msg);
+		if(msg != "") DisplayOnBothScreens(msg);
 	}
 
 	protected override void OnJoustHitHandler(HitInfo limbHited)

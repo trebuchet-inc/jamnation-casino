@@ -60,7 +60,7 @@ public class OverlayManager : FeedbackManager
                 break;
 				
             case Phases.End:
-                DisplaySuper("This is the end for this joust ! Awesome !");
+                DisplaySuper(ScoreManager.Instance.GetWinnerText());
                 break;
         }
     }

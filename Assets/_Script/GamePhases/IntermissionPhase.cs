@@ -11,7 +11,7 @@ public class IntermissionPhase : GamePhase
 	
 	public override void StartPhase()
 	{
-		GameRefereeManager.Instance.roundIndex++;
+		if(GameRefereeManager.Instance.roundIndex < GameRefereeManager.Instance.TotalRounds) GameRefereeManager.Instance.roundIndex++;
 
 		StartCoroutine(IntermissionTimer());
 	} 

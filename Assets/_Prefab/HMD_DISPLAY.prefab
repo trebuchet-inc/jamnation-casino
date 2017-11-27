@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114264038936627718}
   - component: {fileID: 114705962231562828}
   - component: {fileID: 114522377332480408}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HMD_DISPLAY
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 224064018532262384}
   - component: {fileID: 222043197155775900}
   - component: {fileID: 114952365752500476}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 5000
+  m_DynamicPixelsPerUnit: 7000
 --- !u!114 &114522377332480408
 MonoBehaviour:
   m_ObjectHideFlags: 1

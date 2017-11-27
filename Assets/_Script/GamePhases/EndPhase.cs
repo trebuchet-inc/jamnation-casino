@@ -6,6 +6,8 @@ using System;
 public class EndPhase : GamePhase
 {
 	public int endDuration;
+
+	public event Action OnJoustEnded;
 	
 	public override void StartPhase()
 	{
