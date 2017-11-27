@@ -67,14 +67,7 @@ public class OverlayManager : FeedbackManager
 
     protected override void OnWeaponChosen(WeaponType weaponType)
     {
-        if (NetworkPlayerManager.Instance.personalID == 0)
-        {
-            blueWeapons[(int) weaponType].color = usedWeapon;
-        }
-        else
-        {
-            redWeapons[(int) weaponType].color = usedWeapon;
-        }
+        photonView.RPC("DisplayWeapons", PhotonTargets.All, NetworkPlayerManager.Instance.personalID, (int)weaponType);
     }
     
     protected override void OnJoustHitHandler(LimbType hitInfo)
@@ -102,6 +95,7 @@ public class OverlayManager : FeedbackManager
         RedText.text = ScoreManager.Instance.GetScore(1);
     }
 
+
     private void ResetWeapons()
     {
         foreach (var weapon in blueWeapons)
@@ -114,4 +108,22 @@ public class OverlayManager : FeedbackManager
             weapon.color = Color.white;
         }
     }
+    
+    //
+    // PunRPC
+    //
+    
+    [PunRPC]
+    public void DisplayWeapons(int playerID, int weaponType)
+    {
+        if (playerID == 0)
+        {
+            blueWeapons[weaponType].color = usedWeapon;
+        }
+        else
+        {
+            redWeapons[weaponType].color = usedWeapon;
+        }
+    }
+    
 }

@@ -71,7 +71,7 @@ public class JoustPhase : GamePhase
 
 		if(lastHit == LimbType.None) return;
 
-		CalculateScore(multiplier);
+		photonView.RPC("CalculateScore", PhotonTargets.All, multiplier);
 		
 		photonView.RPC("ReceiveRegisterHit", PhotonTargets.Others, SerializationToolkit.ObjectToByteArray(info));
 		
@@ -106,8 +106,6 @@ public class JoustPhase : GamePhase
 			break;
 		}
 		
-		CalculateScore(multiplier);
-		
 		if(OnJoustHit != null) OnJoustHit.Invoke((LimbType)info.limbHit);
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 		
@@ -120,6 +118,7 @@ public class JoustPhase : GamePhase
 		Instantiate(blood, info.hitPoint.Deserialize(), Quaternion.identity);
 	}
 	
+	[PunRPC]
 	private void CalculateScore(float multiplier)
 	{
 		ScoreManager.Instance.AddScore(NetworkPlayerManager.Instance.personalID, multiplier);
