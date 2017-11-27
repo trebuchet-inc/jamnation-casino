@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour {
 
 
 	public CameraControllerType cameraType;
-	public int cameraId;
+	public string cameraId;
 	public bool isActiveCamera;
 	
 
