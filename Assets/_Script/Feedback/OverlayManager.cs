@@ -14,6 +14,10 @@ public class OverlayManager : FeedbackManager
     public Image[] blueWeapons;
     public Image[] redWeapons;
 
+    public Animator[] scorePoints;
+    public Animator scoreBoardBG;
+    public Animator mainTransition;
+
     private void Awake()
     {
         Instance = this;
@@ -45,6 +49,8 @@ public class OverlayManager : FeedbackManager
         switch (phases) 
         {
             case Phases.WeaponSelection:
+                PlayGoAnim(mainTransition);
+                PlayGoAnim(scoreBoardBG);
                 DisplaySuper("Jousters choosing their weapons !");
                 break;
             case Phases.Parade:
@@ -60,6 +66,7 @@ public class OverlayManager : FeedbackManager
                 break;
 				
             case Phases.End:
+                PlayOffAnim(scoreBoardBG);
                 DisplaySuper(ScoreManager.Instance.GetWinnerText());
                 break;
         }
@@ -76,6 +83,8 @@ public class OverlayManager : FeedbackManager
         
         DisplaySuper(lastPlayerHitting + " was hit in the " + lastLimbHit + " with a " + lastWeapon + "!");
         DisplayScores();
+        
+        PlayGoAnim(scorePoints[hitInfo.playerHitting]);
     }
     
     //
@@ -98,7 +107,6 @@ public class OverlayManager : FeedbackManager
         RedText.text = ScoreManager.Instance.GetScore(1);
     }
 
-
     private void ResetWeapons()
     {
         foreach (var weapon in blueWeapons)
@@ -110,6 +118,16 @@ public class OverlayManager : FeedbackManager
         {
             weapon.color = Color.white;
         }
+    }
+
+    private void PlayGoAnim(Animator animator)
+    {
+        animator.SetTrigger("go");
+    }
+
+    private void PlayOffAnim(Animator animator)
+    {
+        animator.SetTrigger("off");
     }
     
     //
