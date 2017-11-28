@@ -93,7 +93,6 @@ public class MountAgent : MonoBehaviour
 	
 	void Update () 
 	{
-		print("Voice Intensity : " + voiceIntensity);
 		//_freeze = false;
 
 		if(!_mountFreeze) 

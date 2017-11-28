@@ -6,11 +6,13 @@ public class NetworkManager : Photon.PunBehaviour
     public static NetworkManager Instance;
     
     public bool LAN;
-    public string serverIp;
+    public string defaultLanIP = "192.168.1.102";
     [Space]
-    public bool debug;
+    public bool debuging;
     public GUIStyle debugSkin;
 
+    string _debug;
+    string _ipOverride;
     bool _roomCreator = false;
 
     void Awake()
@@ -20,8 +22,69 @@ public class NetworkManager : Photon.PunBehaviour
 
     void Start()
     {
-        if(LAN) PhotonNetwork.ConnectToMaster(serverIp, 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
-        else PhotonNetwork.ConnectUsingSettings("0.1");
+        _debug = "Enter IP (default " + (LAN ? "LAN : " + defaultLanIP : "Online") + ")";
+    }
+    
+    void Update()
+    {
+        if(!PhotonNetwork.connected) ManageSetting();
+        ManageConection();
+        ManageDebugVisibility();
+    }
+
+    void ManageDebugVisibility()
+    {
+        if(Input.GetKeyDown(KeyCode.D))
+        {
+            debuging = !debuging;
+        } 
+    }
+
+    void ManageSetting()
+    {
+        string input = Tools.GetNumberInput();
+        if(input != "")
+        {
+            _ipOverride += input;
+        }
+        if(Input.GetKeyDown(KeyCode.Backspace))
+        {
+            _ipOverride = "";
+        }
+
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            LAN = !LAN;
+            _debug = "Enter IP (default " + (LAN ? "LAN : " + defaultLanIP : "Online") + ")";
+        } 
+    }
+
+    void ManageConection()
+    {  
+        if(!PhotonNetwork.connected && Input.GetKeyDown(KeyCode.Return))
+        {
+            if(_ipOverride == "")
+            {
+                if(LAN)
+                {
+                    PhotonNetwork.ConnectToMaster(defaultLanIP, 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
+                    _ipOverride = defaultLanIP;
+                } 
+                else
+                {
+                    PhotonNetwork.ConnectUsingSettings("0.1");
+                    _ipOverride = "Online";
+                } 
+            }
+            else
+            {
+                PhotonNetwork.ConnectToMaster(_ipOverride, 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
+            }
+        }
+        else if(PhotonNetwork.connected)
+        {
+            _debug = PhotonNetwork.connectionStateDetailed.ToString();
+        }
     }
 
     public override void OnJoinedLobby()
@@ -38,7 +101,6 @@ public class NetworkManager : Photon.PunBehaviour
 
     public void OnPhotonRandomJoinFailed()
     {
-        Debug.Log("No Room Found");
         PhotonNetwork.CreateRoom(null);
         _roomCreator = true;
         Debug.Log("Room Created");
@@ -65,9 +127,9 @@ public class NetworkManager : Photon.PunBehaviour
 
     public void OnGUI()
     {
-        if(!debug) return;
+        if(!debuging) return;
 
         GUI.skin.label = debugSkin;
-        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
+        GUILayout.Label(_debug + " - " + _ipOverride);
     }
 }
