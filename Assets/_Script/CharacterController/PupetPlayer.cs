@@ -45,7 +45,8 @@ public class PupetPlayer : MonoBehaviour
 
 	void OnHitHandler(HitInfo info)
 	{
-		if(info.playerHitting == NetworkPlayerManager.Instance.playerID) return;
+		if((isLocalPupet && info.playerHitting == NetworkPlayerManager.Instance.playerID) ||
+		  (!isLocalPupet && info.playerHitting != NetworkPlayerManager.Instance.playerID))  return;
 
 		_killed = true;
 		foreach(PupetPart part in _pupetParts)

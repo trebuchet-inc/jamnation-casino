@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ public class PupetPart : MonoBehaviour
 {
 	Rigidbody _rb;
 	BoxCollider _col;
+
+	public event Action OnKilled;
+	public event Action OnRevived; 
 
 	void Start()
 	{
@@ -20,6 +24,7 @@ public class PupetPart : MonoBehaviour
 		_rb.useGravity = true;
 		if(_col != null)_col.isTrigger = false;
 		_rb.AddForce(force, ForceMode.Impulse);
+		if(OnKilled != null) OnKilled.Invoke();
 	}
 
 	public void Revive(Transform parent)
@@ -28,5 +33,6 @@ public class PupetPart : MonoBehaviour
 		_rb.isKinematic = true;
 		_rb.useGravity = false;
 		if(_col != null) _col.isTrigger = true;
+		if(OnRevived != null) OnRevived.Invoke();
 	}
 }
