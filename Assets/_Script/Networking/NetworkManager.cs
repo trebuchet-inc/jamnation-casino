@@ -17,8 +17,8 @@ public class NetworkManager : Photon.PunBehaviour
 
     void Start()
     {
-        PhotonNetwork.ConnectToMaster(serverIp, 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
-        //PhotonNetwork.ConnectUsingSettings("0.1");
+        //PhotonNetwork.ConnectToMaster(serverIp, 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
+        PhotonNetwork.ConnectUsingSettings("0.1");
     }
 
     public override void OnJoinedLobby()

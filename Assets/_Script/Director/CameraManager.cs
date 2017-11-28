@@ -20,8 +20,8 @@ public class CameraManager : FeedbackManager
 	public float apertureIntense;
 	public AimCameraSpeadsheet[] aimCameraTargets;
 
-	private int loopIndex = 0;
-
+	
+	
 	Camera cam;
 
 	private void Awake()
@@ -100,24 +100,6 @@ public class CameraManager : FeedbackManager
 	//
 	// Camera functions
 	//
-
-	private IEnumerator CameraLoop(string[] cameraIDs, float interval)
-	{
-		CameraSwitch(cameraIDs[loopIndex]);
-
-		if (loopIndex == cameraIDs.Length)
-		{
-			loopIndex = 0;
-		}
-		else
-		{
-			loopIndex++;
-		}
-		
-		yield return new WaitForSeconds(interval);
-
-		StartCoroutine(CameraLoop(cameraIDs, interval));
-	}
 
 	private void InitializeCameras()
 	{
