@@ -22,7 +22,7 @@ TagManager:
   - LocalInvisible
   - NetworkInvisible
   - Floor
-  - 
+  - IgnoreHitbox
   - 
   - 
   - 
