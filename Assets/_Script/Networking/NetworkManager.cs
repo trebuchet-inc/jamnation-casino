@@ -12,7 +12,7 @@ public class NetworkManager : Photon.PunBehaviour
     public GUIStyle debugSkin;
 
     string _debug;
-    string _ipOverride;
+    string _ipOverride = "";
     bool _roomCreator = false;
 
     void Awake()
@@ -43,7 +43,7 @@ public class NetworkManager : Photon.PunBehaviour
     void ManageSetting()
     {
         string input = Tools.GetNumberInput();
-        if(input != "")
+        if(input.Length > 0)
         {
             _ipOverride += input;
         }
@@ -63,18 +63,18 @@ public class NetworkManager : Photon.PunBehaviour
     {  
         if(!PhotonNetwork.connected && Input.GetKeyDown(KeyCode.Return))
         {
-            if(_ipOverride == "")
+            if(_ipOverride.Length <= 0)
             {
                 if(LAN)
                 {
-                    PhotonNetwork.ConnectToMaster(defaultLanIP, 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
                     _ipOverride = defaultLanIP;
+                    PhotonNetwork.ConnectToMaster(defaultLanIP, 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
                 } 
                 else
                 {
-                    PhotonNetwork.ConnectUsingSettings("0.1");
                     _ipOverride = "Online";
-                } 
+                    PhotonNetwork.ConnectUsingSettings("0.1");
+                }
             }
             else
             {
