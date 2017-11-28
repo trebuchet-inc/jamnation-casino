@@ -8,6 +8,7 @@ public class Weapon : MonoBehaviour
     public WeaponType type;
     public float positionLerpSpeed = 20;
     public float angularLerpSpeed = 20;
+    public float dyingSpeed = 1;
     public GameObject[] JoinedObjects;
 
     NVRHand _weaponHand;
@@ -52,7 +53,19 @@ public class Weapon : MonoBehaviour
 
         _item.BeginInteraction(_weaponHand);
         GameRefereeManager.Instance.intermissionPhase.OnRoundReset += DestroyWeapon;
+        GameRefereeManager.Instance.joustPhase.OnJoustHit += OnHitHandler;
     }
+
+    void OnHitHandler(HitInfo info)
+	{
+		if((!_networkWeapon && info.playerHitting == NetworkPlayerManager.Instance.playerID) ||
+		  (_networkWeapon && info.playerHitting != NetworkPlayerManager.Instance.playerID))  return;
+
+		_item.EndInteraction(_weaponHand);
+		_item.Rigidbody.isKinematic = false;
+		_item.Rigidbody.useGravity = true;
+		_item.Rigidbody.AddForce(NVRPlayer.Instance.transform.forward * dyingSpeed * -1.0f, ForceMode.Impulse);
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -93,6 +106,8 @@ public class Weapon : MonoBehaviour
 
         _item.EndInteraction(_weaponHand);
         GameRefereeManager.Instance.intermissionPhase.OnRoundReset -= DestroyWeapon;
+        GameRefereeManager.Instance.joustPhase.OnJoustHit -= OnHitHandler;
+		GameRefereeManager.Instance.intermissionPhase.OnRoundReset -= OnRounReset;
 
         foreach(GameObject obj in JoinedObjects)
         {

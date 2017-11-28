@@ -1016,7 +1016,7 @@ MonoBehaviour:
   playerColors:
   - {fileID: 2100000, guid: 7a22fa263af8119419d71b1833c6bfd3, type: 2}
   - {fileID: 2100000, guid: 73df6bc65dc92b84caf7503e57e9b6b0, type: 2}
-  dyingPartSpeed: 3
+  dyingPartSpeed: 1.5
 --- !u!114 &114795336228225598
 MonoBehaviour:
   m_ObjectHideFlags: 1

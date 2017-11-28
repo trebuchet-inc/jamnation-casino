@@ -21,7 +21,7 @@ TagManager:
   - HitBox
   - LocalInvisible
   - NetworkInvisible
-  - Floor
+  - EnvironementCollider
   - IgnoreHitbox
   - Hand
   - 

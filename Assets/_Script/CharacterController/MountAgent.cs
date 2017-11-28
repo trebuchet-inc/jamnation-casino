@@ -75,6 +75,7 @@ public class MountAgent : MonoBehaviour
 		GameRefereeManager.Instance.paradePhase.OnParadeReady += OnParadeReadyHandler;
 		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
 		GameRefereeManager.Instance.joustPhase.OnJoustHit += OnHitHandler;
+		GameRefereeManager.Instance.intermissionPhase.OnRoundReset += OnRounReset;
 		
 		mountModel = Instantiate(NetworkPlayerManager.Instance.mountPrefab, transform.position, transform.rotation);
 		_mountRb = mountModel.GetComponent<Rigidbody>();
@@ -119,8 +120,7 @@ public class MountAgent : MonoBehaviour
 		{
 			case Phases.WeaponSelection:
 				_freeze = true;
-				_mountRb.isKinematic = true;
-				_mountFreeze = false;
+				
 			break;
 				
 			case Phases.Parade:
@@ -147,6 +147,12 @@ public class MountAgent : MonoBehaviour
 		_freeze = true;
 		_mountRb.isKinematic = false;
 		_mountRb.AddForce(mountModel.transform.forward * mountDyingSpeed, ForceMode.Impulse);
+	}
+
+	void OnRounReset()
+	{
+		_mountRb.isKinematic = true;
+		_mountFreeze = false;
 	}
 
 	private void OnParadeReadyHandler()

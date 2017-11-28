@@ -39,8 +39,8 @@ public class PupetPlayer : MonoBehaviour
 
 	void LerpPart(int id)
 	{
-		_pupetParts[id].transform.position = Vector3.Lerp(_playerParts[id].position, _pupetParts[id].transform.position, lerpSpeed * Time.deltaTime);
-		_pupetParts[id].transform.rotation = Quaternion.Lerp(_playerParts[id].rotation, _pupetParts[id].transform.rotation, lerpSpeed * Time.deltaTime);
+		_pupetParts[id].transform.position = Vector3.Lerp(_pupetParts[id].transform.position,_playerParts[id].position, lerpSpeed * Time.deltaTime);
+		_pupetParts[id].transform.rotation = Quaternion.Lerp(_pupetParts[id].transform.rotation, _playerParts[id].rotation, lerpSpeed * Time.deltaTime);
 	}
 
 	void OnHitHandler(HitInfo info)

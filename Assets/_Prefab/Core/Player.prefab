@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 4837229491384658}
   - component: {fileID: 114967221717827704}
   - component: {fileID: 65917433530447526}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: RightHand
   m_TagString: Hand
   m_Icon: {fileID: 0}
@@ -1494,7 +1494,7 @@ MonoBehaviour:
   playerColors:
   - {fileID: 2100000, guid: 7a22fa263af8119419d71b1833c6bfd3, type: 2}
   - {fileID: 2100000, guid: 73df6bc65dc92b84caf7503e57e9b6b0, type: 2}
-  dyingPartSpeed: 3
+  dyingPartSpeed: 1.5
 --- !u!114 &114967221717827704
 MonoBehaviour:
   m_ObjectHideFlags: 1
