@@ -1293,9 +1293,9 @@ MonoBehaviour:
   ridingHandVelocityThreshold: 0.3
   joustSpeed: 0.2
   paradeSpeed: 0.1
-  voiceVolumeThreshold: 0.3
+  voiceVolumeThreshold: 0.1
   voiceDurationThreshold: 100
-  voiceJoustSpeed: 0.1
+  voiceJoustSpeed: 0.2
   voiceParadeSpeed: 0
   mountDyingSpeed: 5
   _freeze: 1

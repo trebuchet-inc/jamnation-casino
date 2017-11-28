@@ -25,7 +25,7 @@ public class MountAgent : MonoBehaviour
 	float actualRidingSpeed;
 	float actualVoiceSpeed;
 
-	[HideInInspector] public bool _freeze = true;
+	[HideInInspector] public bool _freeze;// = true;
 	bool _mountFreeze;
 
 	Rigidbody _rb;
@@ -93,6 +93,9 @@ public class MountAgent : MonoBehaviour
 	
 	void Update () 
 	{
+		print("Voice Intensity : " + voiceIntensity);
+		//_freeze = false;
+
 		if(!_mountFreeze) 
 		{
 			mountModel.transform.position = transform.position;
