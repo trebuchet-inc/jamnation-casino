@@ -68,7 +68,16 @@ public class CameraManager : FeedbackManager
 		switch (phases) 
 		{
 			case Phases.WeaponSelection:
-				StartCoroutine(CameraLoop(new string[] {"3", "7"}, 5));
+//				StartCoroutine(CameraLoop(new string[] {"3", "7"}, 5));
+
+				if (NetworkPlayerManager.Instance.playerID == 0)
+				{
+					CameraSwitch("3");
+				}
+				else
+				{
+					CameraSwitch("7");
+				}
 				break;
 				
 			case Phases.Parade:

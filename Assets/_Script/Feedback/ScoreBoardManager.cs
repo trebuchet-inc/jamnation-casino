@@ -51,7 +51,7 @@ public class ScoreBoardManager : FeedbackManager
 		if(msg != "") DisplayOnBothScreens(msg);
 	}
 
-	protected override void OnJoustHitHandler(HitInfo limbHited)
+	protected override void OnJoustHitHandler(HitInfo hitInfo)
 	{
 		DisplayOnBothScreens("HIT!");
 	}
