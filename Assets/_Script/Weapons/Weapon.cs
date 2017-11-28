@@ -107,7 +107,6 @@ public class Weapon : MonoBehaviour
         _item.EndInteraction(_weaponHand);
         GameRefereeManager.Instance.intermissionPhase.OnRoundReset -= DestroyWeapon;
         GameRefereeManager.Instance.joustPhase.OnJoustHit -= OnHitHandler;
-		GameRefereeManager.Instance.intermissionPhase.OnRoundReset -= OnRounReset;
 
         foreach(GameObject obj in JoinedObjects)
         {
