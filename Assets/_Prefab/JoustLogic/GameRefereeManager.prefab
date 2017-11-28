@@ -93,8 +93,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 2
+  instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114603901733259528
@@ -122,9 +122,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponsPool:
-  - {fileID: 1772092793813160, guid: aaa488e14562c1a40aba1e9d414655f4, type: 2}
-  - {fileID: 1898581012071596, guid: b38e642f9d2a1f94db74777b72a837b5, type: 2}
   - {fileID: 1121701504105628, guid: 9a2ec3f9b9561b640a32ccf04fedd47d, type: 2}
+  - {fileID: 1898581012071596, guid: b38e642f9d2a1f94db74777b72a837b5, type: 2}
+  - {fileID: 1772092793813160, guid: aaa488e14562c1a40aba1e9d414655f4, type: 2}
   weaponChoiceAnchorsP1:
   - {fileID: 0}
   - {fileID: 0}
@@ -184,3 +184,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreBlue: 0
   scoreRed: 0
+  winnerPlayerID: 0
