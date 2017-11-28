@@ -15,7 +15,6 @@ static class Tools
 	{
 		for(int i = 0; i <  materials.Length; i++)
 		{
-            Debug.Log(materials[i].name);
 			if(materials[i].name.In(materialName, materialName + " (Instance)")) materials[i] = newMaterial;
 		}
 	}

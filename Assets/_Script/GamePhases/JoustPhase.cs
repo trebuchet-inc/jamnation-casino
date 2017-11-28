@@ -97,7 +97,7 @@ public class JoustPhase : GamePhase
 
 		SoundManager.Instance.PlayHit((WeaponType)info.weaponUsed); 
 
-		Fade.Instance.StartFade(0.2f,0.1f);
+		Fade.Instance.StartFade(0.4f,0.1f);
 		StartCoroutine(UnFade());
 
 		Instantiate(blood, info.hitPoint.Deserialize(), Quaternion.identity);

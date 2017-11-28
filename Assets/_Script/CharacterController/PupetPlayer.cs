@@ -5,38 +5,66 @@ using UnityEngine;
 public class PupetPlayer : MonoBehaviour
 {
 	public bool isLocalPupet;
+	[Space]
 	public int lerpSpeed = 20;
 	public Material[] playerColors;
+	[Space]
+	public float dyingPartSpeed = 1;
 
-	Transform[] _pupetParts;
+	PupetPart[] _pupetParts;
 	Transform[] _playerParts;
 	int pupetId;
 
+	bool _killed;
+
 	void Start () 
 	{
-		_pupetParts = new Transform[4];
+		_pupetParts = new PupetPart[4];
 		_playerParts = new Transform[4];
 		setParts();
+		GameRefereeManager.Instance.joustPhase.OnJoustHit += OnHitHandler;
+		GameRefereeManager.Instance.intermissionPhase.OnRoundReset += OnRounReset;
 		if(isLocalPupet) GameRefereeManager.Instance.OnNewGame += setColor;
 	}
 	
 	void Update ()
 	{
+		if(_killed) return;
+
 		for(int i = 0; i < _pupetParts.Length; i++)
 		{
 			LerpPart(i);
-		}
-
-		if(Input.GetKeyDown(KeyCode.T))
-		{
-			setColor();
 		}
 	}
 
 	void LerpPart(int id)
 	{
-		_pupetParts[id].position = Vector3.Lerp(_playerParts[id].position, _pupetParts[id].position, lerpSpeed * Time.deltaTime);
-		_pupetParts[id].rotation = Quaternion.Lerp(_playerParts[id].rotation, _pupetParts[id].rotation, lerpSpeed * Time.deltaTime);
+		_pupetParts[id].transform.position = Vector3.Lerp(_pupetParts[id].transform.position,_playerParts[id].position, lerpSpeed * Time.deltaTime);
+		_pupetParts[id].transform.rotation = Quaternion.Lerp(_pupetParts[id].transform.rotation, _playerParts[id].rotation, lerpSpeed * Time.deltaTime);
+	}
+
+	void OnHitHandler(HitInfo info)
+	{
+		if((isLocalPupet && info.playerHitting == NetworkPlayerManager.Instance.playerID) ||
+		  (!isLocalPupet && info.playerHitting != NetworkPlayerManager.Instance.playerID))  return;
+
+		_killed = true;
+		foreach(PupetPart part in _pupetParts)
+		{
+			part.Kill(transform.forward * dyingPartSpeed * -1.0f);
+		}
+	}
+
+	void OnRounReset()
+	{
+		if(!_killed) return;
+
+		_killed = false;
+
+		foreach(PupetPart part in _pupetParts)
+		{
+			part.Revive(transform);
+		}
 	}
 
 	public void setColor(int id)
@@ -89,28 +117,32 @@ public class PupetPlayer : MonoBehaviour
 				}
 			}
 		}
+
+		GameRefereeManager.Instance.OnNewGame -= setColor;
 	}
 
 	void setParts()
 	{
-		for(int i = 0; i < transform.childCount; i++)
+		PupetPart[] temp = GetComponentsInChildren<PupetPart>();
+
+		for(int i = 0; i < temp.Length; i++)
 		{
-			switch(transform.GetChild(i).name)
+			switch(temp[i].transform.name)
 			{
 				case "Head" :
-				_pupetParts[0] = transform.GetChild(i);
+				_pupetParts[0] = temp[i];
 				break;
 
 				case "RightHand" :
-				_pupetParts[1] = transform.GetChild(i);
+				_pupetParts[1] = temp[i];
 				break;
 
 				case "LeftHand" :
-				_pupetParts[2] = transform.GetChild(i);
+				_pupetParts[2] = temp[i];
 				break;
 
 				case "Torso" :
-				_pupetParts[3] = transform.GetChild(i);
+				_pupetParts[3] = temp[i];
 				break;
 			}
 		}

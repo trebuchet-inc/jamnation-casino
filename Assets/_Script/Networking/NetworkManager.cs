@@ -5,8 +5,11 @@ public class NetworkManager : Photon.PunBehaviour
 {
     public static NetworkManager Instance;
     
+    public bool LAN;
     public string serverIp;
-    public GUIStyle skin;
+    [Space]
+    public bool debug;
+    public GUIStyle debugSkin;
 
     bool _roomCreator = false;
 
@@ -17,8 +20,8 @@ public class NetworkManager : Photon.PunBehaviour
 
     void Start()
     {
-        //PhotonNetwork.ConnectToMaster(serverIp, 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
-        PhotonNetwork.ConnectUsingSettings("0.1");
+        if(LAN) PhotonNetwork.ConnectToMaster(serverIp, 5055, "64d0546d-f744-41eb-8817-1db17103b312", "0.1");
+        else PhotonNetwork.ConnectUsingSettings("0.1");
     }
 
     public override void OnJoinedLobby()
@@ -48,7 +51,7 @@ public class NetworkManager : Photon.PunBehaviour
         NetworkPlayerManager.Instance.SetLocalPlayer();
         NetworkPlayerManager.Instance.photonView.RPC("SpawnNetworkPlayer", PhotonTargets.OthersBuffered, Vector3.zero, Quaternion.identity, id);
 
-        if (id >= 1)
+        if (id >= 0/*1*/)
         {
             GameRefereeManager.Instance.NewGame();
         }
@@ -62,7 +65,9 @@ public class NetworkManager : Photon.PunBehaviour
 
     public void OnGUI()
     {
-        GUI.skin.label = skin;
+        if(!debug) return;
+
+        GUI.skin.label = debugSkin;
         GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
     }
 }

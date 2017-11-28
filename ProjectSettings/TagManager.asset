@@ -21,9 +21,9 @@ TagManager:
   - HitBox
   - LocalInvisible
   - NetworkInvisible
-  - 
-  - 
-  - 
+  - EnvironementCollider
+  - IgnoreHitbox
+  - Hand
   - 
   - 
   - 

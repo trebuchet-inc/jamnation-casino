@@ -5,11 +5,31 @@ using UnityEngine;
 public class RidingHandRenderer : MonoBehaviour {
 	public LineRenderer[] lineRenderers;
 
+	PupetPart _part;
 	Transform _mountHead;
 
 	void Start () 
 	{
+		_part = GetComponent<PupetPart>();
 		SetHeadTarget();
+		_part.OnKilled += OnHit;
+		_part.OnRevived += OnReset;
+	}
+
+	void OnHit()
+	{
+		foreach(LineRenderer line in lineRenderers)
+		{
+			line.enabled = false;
+		}
+	}
+
+	void OnReset()
+	{
+		foreach(LineRenderer line in lineRenderers)
+		{
+			line.enabled = true;
+		}
 	}
 
 	void SetHeadTarget()
