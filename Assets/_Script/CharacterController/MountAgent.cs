@@ -23,8 +23,8 @@ public class MountAgent : MonoBehaviour
 
 	AudioClip voice;
 
-	float actualRidingSpeed;
-	float actualVoiceSpeed;
+	float actualRidingSpeed = 0.2f;
+	float actualVoiceSpeed = 0.1f;
 
 	[HideInInspector] public bool _freeze = true;
 	bool _mountFreeze;
@@ -95,6 +95,7 @@ public class MountAgent : MonoBehaviour
 	
 	void Update () 
 	{
+		_freeze = false;
 
 		if(!_mountFreeze) 
 		{

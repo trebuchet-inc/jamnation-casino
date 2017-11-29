@@ -45,7 +45,7 @@ public class NetworkPlayerManager : Photon.MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if(!PhotonNetwork.connected) return;
+		if(!PhotonNetwork.inRoom) return;
 
 		NetworkPlayerData data = new NetworkPlayerData(
 			new Vector3[]{NVRPlayer.Instance.transform.position,NVRPlayer.Instance.Head.transform.localPosition,
