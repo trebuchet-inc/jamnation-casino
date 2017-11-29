@@ -11,12 +11,17 @@ public class OverlayManager : FeedbackManager
 
     public Color usedWeapon;
     
-    public Image[] blueWeapons;
-    public Image[] redWeapons;
+    // ANIMATORS
+    
+    public Animator mainTransition;
+    
+    public OverlayWeaponStatus[] blueWeapons;
+    public OverlayWeaponStatus[] redWeapons;
 
     public Animator[] scorePoints;
     public Animator scoreBoardBG;
-    public Animator mainTransition;
+
+    public Animator super;
 
     private void Awake()
     {
@@ -49,6 +54,7 @@ public class OverlayManager : FeedbackManager
         switch (phases) 
         {
             case Phases.WeaponSelection:
+                PlayGoAnim(super);
                 PlayGoAnim(mainTransition);
                 PlayGoAnim(scoreBoardBG);
                 DisplaySuper("Jousters choosing their weapons !");
@@ -63,9 +69,13 @@ public class OverlayManager : FeedbackManager
 				
             case Phases.Intermission:
                 DisplaySuper("Intermission !");
+                
+                photonView.RPC("OffWeapons", PhotonTargets.All, (int)MatchLogger.Instance.lastWeapons[0], (int)MatchLogger.Instance.lastWeapons[1]);
+               
                 break;
 				
             case Phases.End:
+                PlayOffAnim(super);
                 PlayOffAnim(scoreBoardBG);
                 DisplaySuper(ScoreManager.Instance.GetWinnerText());
                 break;
@@ -111,12 +121,12 @@ public class OverlayManager : FeedbackManager
     {
         foreach (var weapon in blueWeapons)
         {
-            weapon.color = Color.white;
+            weapon.icon.color = Color.white;
         }
         
         foreach (var weapon in redWeapons)
         {
-            weapon.color = Color.white;
+            weapon.icon.color = Color.white;
         }
     }
 
@@ -133,17 +143,26 @@ public class OverlayManager : FeedbackManager
     //
     // PunRPC
     //
+
+    [PunRPC]
+    public void OffWeapons(int blueWeaponType, int redWeaponType)
+    {
+        PlayOffAnim(blueWeapons[blueWeaponType].status);
+        PlayOffAnim(redWeapons[redWeaponType].status);
+    }
     
     [PunRPC]
     public void DisplayWeapons(int playerID, int weaponType)
     {
         if (playerID == 0)
         {
-            blueWeapons[weaponType].color = usedWeapon;
+//            blueWeapons[weaponType].icon.color = usedWeapon;
+            PlayGoAnim(blueWeapons[weaponType].status);
         }
         else
         {
-            redWeapons[weaponType].color = usedWeapon;
+//            redWeapons[weaponType].icon.color = usedWeapon;
+            PlayGoAnim(blueWeapons[weaponType].status);
         }
     }
     
