@@ -19,15 +19,16 @@ public class MatchLogger : MonoBehaviour
 			};
 		}
 	}
-
-	private void OnEnable()
-	{
-		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
-	}
-
+	
 	private void Awake()
 	{
 		Instance = this;
+	}
+
+	private void Start()
+	{
+		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
+
 	}
 
 	private void OnWeaponChosenHandler(WeaponType weaponType)

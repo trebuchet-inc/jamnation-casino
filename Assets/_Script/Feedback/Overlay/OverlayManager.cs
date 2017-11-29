@@ -43,6 +43,7 @@ public class OverlayManager : FeedbackManager
         DisplayScores();
         DisplayRounds();
         ResetWeapons();
+        DisplaySuper("Welcome to Jousting Time!");
     }
     
     protected override void OnPhaseStartedHandler(Phases phases)
