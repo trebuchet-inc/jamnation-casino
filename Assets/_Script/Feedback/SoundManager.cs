@@ -68,6 +68,7 @@ public class SoundManager : FeedbackManager
 
 	public void PlayAmbiance () 
 	{
+		AkSoundEngine.PostEvent("Play_Crowd_Hype", gameObject);
 		AkSoundEngine.PostEvent("Play_Commentateurs", gameObject);
 		uint _play_Ambiance = AkSoundEngine.GetIDFromString("Play_Ambiance");
 		AkSoundEngine.PostEvent(_play_Ambiance, gameObject);
@@ -88,7 +89,6 @@ public class SoundManager : FeedbackManager
 	public void StartJingle()
 	{
 		AkSoundEngine.PostEvent("Play_Jingle_Start", gameObject);
-		AkSoundEngine.PostEvent("Play_JouteStarts", gameObject);
 	}
 
 	public void PlayBattleMusic()
