@@ -68,8 +68,7 @@ public class CameraManager : FeedbackManager
 		switch (phases) 
 		{
 			case Phases.WeaponSelection:
-//				StartCoroutine(CameraLoop(new string[] {"3", "7"}, 5));
-
+					
 				if (NetworkPlayerManager.Instance.playerID == 0)
 				{
 					CameraSwitch("3");
@@ -78,10 +77,14 @@ public class CameraManager : FeedbackManager
 				{
 					CameraSwitch("7");
 				}
+				
+				CameraSwitch("5", 2);
+				
 				break;
 				
 			case Phases.Parade:
 				CameraSwitch("4");
+				CameraSwitch("5", 3);
 				break;
 				
 			case Phases.Joust:
@@ -89,12 +92,19 @@ public class CameraManager : FeedbackManager
 				break;	
 				
 			case Phases.Intermission:
+				
 				break;
 				
 			case Phases.End:
-				CameraSwitch("4");
+				CameraSwitch("2");
 				break;
 		}
+	}
+
+	protected override void OnJoustHitHandler(HitInfo hitInfo)
+	{
+		
+		CameraSwitch("6", 2, 1);
 	}
 	
 	//
@@ -144,6 +154,11 @@ public class CameraManager : FeedbackManager
 		}
 	}
 
+	private void CameraSwitch(string id, float duration, float delay = 0)
+	{
+		StartCoroutine(TempCameraSwitch(id, duration));
+	}
+
 	private int CameraSwitchCheck()
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -177,5 +192,21 @@ public class CameraManager : FeedbackManager
 			return 0;
 		}
 	}
+	
+	//
+	// Coroutines
+	//
 
+	private IEnumerator TempCameraSwitch(string id, float duration, float delay = 0)
+	{
+		string lastID = activeCamera.cameraId;
+		
+		yield return new WaitForSeconds(delay);
+		
+		CameraSwitch(id);
+		
+		yield return new WaitForSeconds(duration);
+		
+		CameraSwitch(lastID);
+	}
 }

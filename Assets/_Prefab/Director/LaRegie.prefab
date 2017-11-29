@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 114323407448898356}
   - component: {fileID: 20435997052618102}
   m_Layer: 0
-  m_Name: Camera3
+  m_Name: BlueStableCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 114118837407666792}
   - component: {fileID: 20227067585358954}
   m_Layer: 0
-  m_Name: Camera5
+  m_Name: EagleViewCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 114277007543226394}
   - component: {fileID: 20429216126767992}
   m_Layer: 0
-  m_Name: Camera7
+  m_Name: RedStableCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 114262527253376860}
   - component: {fileID: 20201738206252474}
   m_Layer: 0
-  m_Name: Camera6
+  m_Name: ScoreBoardCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 114971894810359172}
   - component: {fileID: 20140553681955004}
   m_Layer: 0
-  m_Name: Camera4
+  m_Name: MainCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1063,7 +1063,7 @@ GameObject:
   - component: {fileID: 114335869721940428}
   - component: {fileID: 20706284878810206}
   m_Layer: 0
-  m_Name: Camera2 - to set
+  m_Name: EndPhaseCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1632,8 +1632,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1973380536597662}
-  m_LocalRotation: {x: 0.15926321, y: 0.51704043, z: 0.08217111, w: -0.8369901}
-  m_LocalPosition: {x: -10.53, y: 0.24, z: -1.64}
+  m_LocalRotation: {x: 0.07653941, y: -0.09697997, z: 0.00090097194, w: -0.9923386}
+  m_LocalPosition: {x: -2.12, y: 0.72, z: 6.78}
   m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000005}
   m_Children:
   - {fileID: 4362395777630956}
@@ -1644,7 +1644,7 @@ Transform:
   - {fileID: 4658331720673280}
   m_Father: {fileID: 4991150784456722}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -20.584002, y: 296.288, z: 1.6610001}
+  m_LocalEulerAnglesHint: {x: -8.727, y: 371.237, z: -0.96400005}
 --- !u!4 &4645335563327186
 Transform:
   m_ObjectHideFlags: 1
@@ -2000,8 +2000,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1135178142967496}
-  m_LocalRotation: {x: -0.64908105, y: 0.054727625, z: -0.00834755, w: -0.7587022}
-  m_LocalPosition: {x: -1.64, y: 44.55, z: 1.85}
+  m_LocalRotation: {x: -0.64519554, y: 0.05476957, z: -0.00806778, w: -0.76200914}
+  m_LocalPosition: {x: 2.7, y: 36.7, z: -6.1}
   m_LocalScale: {x: 1.0000001, y: 1, z: 1.0000002}
   m_Children:
   - {fileID: 4865044111630416}
@@ -2012,7 +2012,7 @@ Transform:
   - {fileID: 4675765631538640}
   m_Father: {fileID: 4991150784456722}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 80.344, y: 334.502, z: -20.368}
+  m_LocalEulerAnglesHint: {x: 79.79301, y: 335.652, z: -19.235}
 --- !u!4 &4988205724207990
 Transform:
   m_ObjectHideFlags: 1
@@ -2475,7 +2475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b38a7af59d4244aa3e2558a1972191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraType: 1
+  cameraType: 0
   cameraId: 5
   isActiveCamera: 0
   cameraManager: {fileID: 114612517186129992}
@@ -2570,8 +2570,8 @@ MonoBehaviour:
   _rotationFrequency: 0
   _positionAmplitude: 0.2
   _rotationAmplitude: 5
-  _positionScale: {x: 1, y: 1, z: 1}
-  _rotationScale: {x: 1, y: 1, z: 0}
+  _positionScale: {x: 0.1, y: 0.1, z: 0.1}
+  _rotationScale: {x: 0.1, y: 0.1, z: 0.1}
   _positionFractalLevel: 3
   _rotationFractalLevel: 3
 --- !u!114 &114277007543226394
@@ -2633,8 +2633,8 @@ MonoBehaviour:
   _rotationFrequency: 0
   _positionAmplitude: 1
   _rotationAmplitude: 5
-  _positionScale: {x: 1, y: 1, z: 1}
-  _rotationScale: {x: 1, y: 1, z: 0}
+  _positionScale: {x: 0.1, y: 0.1, z: 0.1}
+  _rotationScale: {x: 0.1, y: 0.1, z: 0.1}
   _positionFractalLevel: 3
   _rotationFractalLevel: 3
 --- !u!114 &114339501334445276
