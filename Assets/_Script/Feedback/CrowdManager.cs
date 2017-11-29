@@ -37,8 +37,6 @@ public class CrowdManager : FeedbackManager
 				
 			case Phases.Parade:
 				SetHype(4);
-				SetHype(2);
-
 				break;
 				
 			case Phases.Joust:
@@ -64,11 +62,12 @@ public class CrowdManager : FeedbackManager
 	// Feedback functions
 	//
 
-	public void SetHype(int hype)
+	public void SetHype(int hype, int sign = 1)
 	{
 		foreach(CharacterAnimatorController c in characters)
 		{
 			c.SetNextLevel(hype);
+			SoundManager.Instance.ChangeCrowdHype(5 * 20 * sign);
 		}
 	}
 }
