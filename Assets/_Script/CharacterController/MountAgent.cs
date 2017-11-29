@@ -119,6 +119,10 @@ public class MountAgent : MonoBehaviour
 				speedLine.Stop();
 			}
 		}
+		else if (speedLine.isPlaying)
+		{
+			speedLine.Stop();
+		}
 	}
 
 	void OnPhaseChangeHandler (Phases phase)
