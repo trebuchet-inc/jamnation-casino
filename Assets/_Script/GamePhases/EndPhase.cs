@@ -12,6 +12,8 @@ public class EndPhase : GamePhase
 	public override void StartPhase()
 	{
 		StartCoroutine(RestartTimer());
+		
+		
 	} 
     
 	public override void TerminatePhase()
@@ -27,4 +29,6 @@ public class EndPhase : GamePhase
 		
 		GameRefereeManager.Instance.NewGame();
 	}
+	
+	
 }
