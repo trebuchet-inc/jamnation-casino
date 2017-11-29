@@ -28,7 +28,16 @@ public class MatchLogger : MonoBehaviour
 	private void Start()
 	{
 		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += OnWeaponChosenHandler;
+		
+		InitStacks();
+	}
 
+	private void InitStacks()
+	{
+		for (int i = 0; i < usedWeaponsStack.Length; i++)
+		{
+			usedWeaponsStack[i] = new Stack<WeaponType>();
+		}
 	}
 
 	private void OnWeaponChosenHandler(WeaponType weaponType)
