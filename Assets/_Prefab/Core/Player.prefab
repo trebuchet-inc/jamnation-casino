@@ -1330,7 +1330,7 @@ MonoBehaviour:
   voiceDurationThreshold: 100
   voiceJoustSpeed: 0.2
   voiceParadeSpeed: 0
-  mountDyingSpeed: 5
+  mountDyingSpeed: 8
   _freeze: 1
 --- !u!114 &114116509059290792
 MonoBehaviour:
