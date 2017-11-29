@@ -1,15 +1,14 @@
-﻿using System;
-using NewtonVR;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class OverlayManager : FeedbackManager
 {
     public static OverlayManager Instance;
     
-    public Text SuperText, BlueText, RedText, RoundsText;
+    public Text SuperText, blueScore, redScore, RoundsText;
 
-    public Color usedWeapon;
+    public Sprite[] weapons;
+    public Sprite[] usedWeapons;
     
     // ANIMATORS
     
@@ -71,7 +70,6 @@ public class OverlayManager : FeedbackManager
                 DisplaySuper("Intermission !");
                 
                 photonView.RPC("OffWeapons", PhotonTargets.All, (int)MatchLogger.Instance.lastWeapons[0], (int)MatchLogger.Instance.lastWeapons[1]);
-               
                 break;
 				
             case Phases.End:
@@ -113,20 +111,19 @@ public class OverlayManager : FeedbackManager
 
     private void DisplayScores()
     {
-        BlueText.text = ScoreManager.Instance.GetScore(0);
-        RedText.text = ScoreManager.Instance.GetScore(1);
+        blueScore.text = ScoreManager.Instance.GetScore(0);
+        redScore.text = ScoreManager.Instance.GetScore(1);
     }
 
     private void ResetWeapons()
     {
-        foreach (var weapon in blueWeapons)
+        for (int i = 0; i < blueWeapons.Length; i++)
         {
-            weapon.icon.color = Color.white;
+            blueWeapons[i].icon.sprite = weapons[i];
         }
-        
-        foreach (var weapon in redWeapons)
+        for (int i = 0; i < redWeapons.Length; i++)
         {
-            weapon.icon.color = Color.white;
+            redWeapons[i].icon.sprite = weapons[i];
         }
     }
 
@@ -148,7 +145,9 @@ public class OverlayManager : FeedbackManager
     public void OffWeapons(int blueWeaponType, int redWeaponType)
     {
         PlayOffAnim(blueWeapons[blueWeaponType].status);
+        blueWeapons[blueWeaponType].icon.sprite = usedWeapons[blueWeaponType];
         PlayOffAnim(redWeapons[redWeaponType].status);
+        redWeapons[redWeaponType].icon.sprite = usedWeapons[redWeaponType];
     }
     
     [PunRPC]
@@ -156,12 +155,10 @@ public class OverlayManager : FeedbackManager
     {
         if (playerID == 0)
         {
-//            blueWeapons[weaponType].icon.color = usedWeapon;
             PlayGoAnim(blueWeapons[weaponType].status);
         }
         else
         {
-//            redWeapons[weaponType].icon.color = usedWeapon;
             PlayGoAnim(blueWeapons[weaponType].status);
         }
     }

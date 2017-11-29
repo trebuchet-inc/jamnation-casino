@@ -16,6 +16,7 @@ public class EndPhase : GamePhase
     
 	public override void TerminatePhase()
 	{
+		
 	}
 	
 	public IEnumerator RestartTimer()
