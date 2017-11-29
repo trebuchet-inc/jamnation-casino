@@ -102,7 +102,7 @@ public class CameraManager : FeedbackManager
 	protected override void OnJoustHitHandler(HitInfo hitInfo)
 	{
 		FocusOnPlayer(hitInfo.playerHitting);
-		CameraSwitch("6", "8", 2);
+		CameraSwitch("8", "6", 5);
 	}
 	
 	//

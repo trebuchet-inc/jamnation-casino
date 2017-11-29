@@ -60,6 +60,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endDuration: 10
+  endPositions:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114395242161372566
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -30,9 +30,11 @@ public class ScoreBoardManager : FeedbackManager
 		{
 			case Phases.WeaponSelection:
 				msg = "Choosing Weapons";
+				DisplayOnBothScreens(msg);
 				break;
 			case Phases.Parade:
 				msg = "Ready!";
+				DisplayOnBothScreens(msg);
 				break;
 				
 			case Phases.Joust:
@@ -45,10 +47,9 @@ public class ScoreBoardManager : FeedbackManager
 				
 			case Phases.End:
 				msg = ScoreManager.Instance.GetWinnerText();
+				DisplayOnBothScreens(msg, false);
 				break;
 		}
-
-		if(msg != "") DisplayOnBothScreens(msg);
 	}
 
 	protected override void OnJoustHitHandler(HitInfo hitInfo)
@@ -65,10 +66,10 @@ public class ScoreBoardManager : FeedbackManager
 	// Feedback Functions
 	//
 
-	private void DisplayOnBothScreens(string msg)
+	private void DisplayOnBothScreens(string msg, bool displayScores = true)
 	{
-		StartCoroutine(DisplayUpdate(displayLeft, msg));
-		StartCoroutine(DisplayUpdate(displayRight, msg));
+		StartCoroutine(DisplayUpdate(displayLeft, msg, displayScores));
+		StartCoroutine(DisplayUpdate(displayRight, msg, displayScores));
 	}
 
 	public void DisplayUpdateOnScreen(Text display, string text)
@@ -85,13 +86,14 @@ public class ScoreBoardManager : FeedbackManager
 	//
 	// Coroutines
 	//
-	
-	IEnumerator DisplayUpdate(Text display, string text)
+
+	IEnumerator DisplayUpdate(Text display, string text, bool displayScores = true)
 	{
 		display.text = text;
 		
 		yield return new WaitForSeconds(3f);
-		DisplayScores();
+		
+		if(displayScores)DisplayScores();
 	}
 	
 }
