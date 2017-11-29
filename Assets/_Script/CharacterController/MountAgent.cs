@@ -7,6 +7,7 @@ using NewtonVR;
 public class MountAgent : MonoBehaviour 
 {
 	public GameObject mountModel;
+	public ParticleSystem speedLine;
 	[Space]
 	public NVRHand ridingHand;
 	public float ridingHandVelocityThreshold;
@@ -25,7 +26,7 @@ public class MountAgent : MonoBehaviour
 	float actualRidingSpeed;
 	float actualVoiceSpeed;
 
-	[HideInInspector] public bool _freeze;// = true;
+	[HideInInspector] public bool _freeze = true;
 	bool _mountFreeze;
 
 	Rigidbody _rb;
@@ -76,6 +77,7 @@ public class MountAgent : MonoBehaviour
 		GameRefereeManager.Instance.joustPhase.OnJoustGO += OnJoustGOHandler;
 		GameRefereeManager.Instance.joustPhase.OnJoustHit += OnHitHandler;
 		GameRefereeManager.Instance.intermissionPhase.OnRoundReset += OnRounReset;
+		DebugConsole.Instance.OnRefresh += OnDebugRefresh;
 		
 		mountModel = Instantiate(NetworkPlayerManager.Instance.mountPrefab, transform.position, transform.rotation);
 		_mountRb = mountModel.GetComponent<Rigidbody>();
@@ -93,7 +95,7 @@ public class MountAgent : MonoBehaviour
 	
 	void Update () 
 	{
-		//_freeze = false;
+		VoiceThresholdTweaking();
 
 		if(!_mountFreeze) 
 		{
@@ -109,11 +111,26 @@ public class MountAgent : MonoBehaviour
 				AkSoundEngine.PostEvent("Play_Horse_Rocking", gameObject);
 			}
 
-			if(voiceIntensity > voiceDurationThreshold)
+			if(voiceIntensity > voiceDurationThreshold && actualVoiceSpeed > 0)
 			{
+				if(!speedLine.isPlaying)speedLine.Play();
 				_rb.AddForce(transform.forward * actualVoiceSpeed, ForceMode.Impulse);
 			}
+			else if (speedLine.isPlaying)
+			{
+				speedLine.Stop();
+			}
 		}
+		else if (speedLine.isPlaying)
+		{
+			speedLine.Stop();
+		}
+	}
+
+	void VoiceThresholdTweaking()
+	{
+		if(Input.GetKeyDown(KeyCode.KeypadPlus)) voiceVolumeThreshold += 0.05f;
+		if(Input.GetKeyDown(KeyCode.KeypadMinus)) voiceVolumeThreshold -= 0.05f;
 	}
 
 	void OnPhaseChangeHandler (Phases phase)
@@ -168,4 +185,9 @@ public class MountAgent : MonoBehaviour
 		actualRidingSpeed = joustSpeed;
 		actualVoiceSpeed = voiceJoustSpeed;
 	}
+
+	void OnDebugRefresh()
+    {
+        DebugConsole.Instance.debug += "Voice Treshold : " + voiceVolumeThreshold + " | " + "Voice Intensity  : " + voiceIntensity + "\n";
+    }
 }

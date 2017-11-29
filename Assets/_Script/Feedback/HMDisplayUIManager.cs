@@ -167,11 +167,13 @@ public class HMDisplayUIManager : FeedbackManager
 
 		if (success)
 		{
+			CrowdManager.Instance.SetHype(4);
 			SoundManager.Instance.WinJingle();
 			canvasText.text = text;
 		}
 		else
 		{
+			CrowdManager.Instance.SetHype(4, -1);
 			SoundManager.Instance.LoseJingle();
 			canvasText.text = "MISSED!";
 		}

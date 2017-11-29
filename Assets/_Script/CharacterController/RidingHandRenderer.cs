@@ -37,14 +37,14 @@ public class RidingHandRenderer : MonoBehaviour {
 		MountAgent agent = transform.parent.parent.GetComponent<MountAgent>();
 		if(agent != null )
 		{
-			_mountHead = agent.mountModel.transform.Find("Head");
+			_mountHead = agent.mountModel.transform.Find("model").Find("Head");
 			return;
 		}
 
 		NetworkPlayerComponent npc = transform.parent.parent.GetComponent<NetworkPlayerComponent>();
 		if(npc != null)
 		{
-			_mountHead = npc.mountModel.transform.Find("Head");
+			_mountHead = npc.mountModel.transform.Find("model").Find("Head");
 			return;
 		}
 	}

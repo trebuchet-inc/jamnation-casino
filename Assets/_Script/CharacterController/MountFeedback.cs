@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MountFeedback : MonoBehaviour {
+public class MountFeedback : MonoBehaviour 
+{
+	Animator anim;
+	Vector3 _lastPosition;
 
-	// Use this for initialization
-	void Start () {
-		
+	Vector3 velocity 
+	{
+		get
+		{
+			return  transform.position - _lastPosition;
+		}
+	}
+
+	void Start () 
+	{
+		anim = GetComponent<Animator>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+	{
+		anim.SetBool("Walking", velocity.magnitude > 0.01f);
+		_lastPosition = transform.position;
 	}
 }

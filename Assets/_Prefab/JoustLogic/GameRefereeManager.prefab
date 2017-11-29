@@ -123,9 +123,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponsPool:
-  - {fileID: 1772092793813160, guid: aaa488e14562c1a40aba1e9d414655f4, type: 2}
-  - {fileID: 1898581012071596, guid: b38e642f9d2a1f94db74777b72a837b5, type: 2}
   - {fileID: 1121701504105628, guid: 9a2ec3f9b9561b640a32ccf04fedd47d, type: 2}
+  - {fileID: 1898581012071596, guid: b38e642f9d2a1f94db74777b72a837b5, type: 2}
+  - {fileID: 1772092793813160, guid: aaa488e14562c1a40aba1e9d414655f4, type: 2}
   weaponChoiceAnchorsP1:
   - {fileID: 0}
   - {fileID: 0}

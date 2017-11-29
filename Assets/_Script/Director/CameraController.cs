@@ -263,12 +263,12 @@ public class CameraController : MonoBehaviour {
 	private void InitializeTargets()
 	{
 		foreach(AimCameraSpeadsheet a in cameraManager.aimCameraTargets)
-				{
-					if (a.cameraId == cameraId)
-					{
-						_mainTargets = a.targets;
-					}
-				}
-				_currentTarget = 0;
+		{
+			if (a.cameraId == cameraId)
+			{
+				_mainTargets = a.targets;
+			}
+		}
+		_currentTarget = 0;
 	}
 }

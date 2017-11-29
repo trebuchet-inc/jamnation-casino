@@ -26,8 +26,6 @@ public class JoustPhase : GamePhase
 		lastHit = LimbType.None;
 		_active = true;
 		localHited = false;
-
-		SoundManager.Instance.CasualCrowd();
 	} 
     
 	public override void TerminatePhase()
@@ -37,7 +35,6 @@ public class JoustPhase : GamePhase
 
 	public void EndJoust(bool hit)
 	{
-		if(!hit) SoundManager.Instance.DeceptionCrowd();
 		GameRefereeManager.Instance.ChangePhase(Phases.Intermission);
 	}
 
@@ -94,8 +91,6 @@ public class JoustPhase : GamePhase
 		HitInfo info = (HitInfo)SerializationToolkit.ByteArrayToObject(data);
 		
 		if(OnJoustHit != null) OnJoustHit.Invoke(info);
-
-		SoundManager.Instance.PlayHit((WeaponType)info.weaponUsed); 
 
 		Fade.Instance.StartFade(0.4f,0.1f);
 		StartCoroutine(UnFade());

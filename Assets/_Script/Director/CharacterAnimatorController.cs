@@ -50,9 +50,9 @@ public class CharacterAnimatorController : MonoBehaviour {
 		hypeChange = true;
 		nextHypeLevel = whatIsTheHype;
 	}
+	
 	public void IncrementLevel (bool goingUp)
 	{
-		
 		hypeChange = true;
 		if (goingUp)
 		{

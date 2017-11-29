@@ -7,9 +7,6 @@ public class NetworkManager : Photon.PunBehaviour
     
     public bool LAN;
     public string defaultLanIP = "192.168.1.102";
-    [Space]
-    public bool debuging;
-    public GUIStyle debugSkin;
 
     string _debug;
     string _ipOverride = "";
@@ -22,6 +19,7 @@ public class NetworkManager : Photon.PunBehaviour
 
     void Start()
     {
+        DebugConsole.Instance.OnRefresh += OnDebugRefresh;
         _debug = "Enter IP (default " + (LAN ? "LAN : " + defaultLanIP : "Online") + ")";
     }
     
@@ -29,15 +27,6 @@ public class NetworkManager : Photon.PunBehaviour
     {
         if(!PhotonNetwork.connected) ManageSetting();
         ManageConection();
-        ManageDebugVisibility();
-    }
-
-    void ManageDebugVisibility()
-    {
-        if(Input.GetKeyDown(KeyCode.D))
-        {
-            debuging = !debuging;
-        } 
     }
 
     void ManageSetting()
@@ -113,7 +102,7 @@ public class NetworkManager : Photon.PunBehaviour
         NetworkPlayerManager.Instance.SetLocalPlayer();
         NetworkPlayerManager.Instance.photonView.RPC("SpawnNetworkPlayer", PhotonTargets.OthersBuffered, Vector3.zero, Quaternion.identity, id);
 
-        if (id >= 1)
+        if (id >= 0)
         {
             GameRefereeManager.Instance.NewGame();
         }
@@ -125,11 +114,8 @@ public class NetworkManager : Photon.PunBehaviour
         print("DestroyNetworkPlayer");
     }
 
-    public void OnGUI()
+    void OnDebugRefresh()
     {
-        if(!debuging) return;
-
-        GUI.skin.label = debugSkin;
-        GUILayout.Label(_debug + " - " + _ipOverride);
+        DebugConsole.Instance.debug += _debug + " - " + _ipOverride + "\n";
     }
 }

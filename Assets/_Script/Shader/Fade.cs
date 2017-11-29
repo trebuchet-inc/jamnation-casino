@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Fade : MonoBehaviour {
 	public static Fade Instance;
-	[Range(0f,1f)] public float fade;
+	[Range(0f,1f)] public float fade = 1;
+	[Range(0f,1f)] public float grayscale = 1;
 	public Color color;
 	public bool isFading;
 
@@ -20,6 +21,12 @@ public class Fade : MonoBehaviour {
 		_material = new Material( Shader.Find("Custom/Fade") );
 		Instance = this;
 		_material.SetColor("_Color", color);
+	}
+
+	void Start()
+	{
+		GameRefereeManager.Instance.joustPhase.OnJoustHit += OnHit;
+		GameRefereeManager.Instance.intermissionPhase.OnRoundReset += OnReset;
 	}
 
 	void Update()
@@ -41,6 +48,18 @@ public class Fade : MonoBehaviour {
 	{
 		fade = value;
 		_material.SetFloat("_Fade", fade);
+	}
+
+	void OnHit(HitInfo info)
+	{
+		grayscale = 0;
+		_material.SetFloat("_Grayscale", grayscale);
+	}
+
+	void OnReset()
+	{
+		grayscale = 1;
+		_material.SetFloat("_Grayscale", grayscale);
 	}
 
 	public void StartFade(float value, float speed)

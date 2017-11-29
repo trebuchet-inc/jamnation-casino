@@ -80,7 +80,6 @@ public class Weapon : MonoBehaviour
 		{
 			GameRefereeManager.Instance.weaponSelectionPhase.ChooseWeapon(type);
             Initialize(_hand);
-			SoundManager.Instance.WeaponSelected();
 		}
 	}
 
@@ -95,8 +94,6 @@ public class Weapon : MonoBehaviour
         {
             HitInfo info = new HitInfo(type, other.transform.parent.name, other.transform.position, NetworkPlayerManager.Instance.playerID);
             GameRefereeManager.Instance.joustPhase.callHit(info);
-            print("hit");
-            SoundManager.Instance.PlayHit(type);
         } 
     }
 

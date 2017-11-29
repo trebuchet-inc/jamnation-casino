@@ -6,6 +6,8 @@ public class CrowdManager : FeedbackManager
 	public static CrowdManager Instance;
 	
 	public CharacterAnimatorController[] characters;
+
+	public float HypeLevel;
 	
 	void Awake()
 	{
@@ -22,6 +24,12 @@ public class CrowdManager : FeedbackManager
 			c.Initialize();
 		}		
 	}
+
+	void Update()
+	{
+		HypeLevel += -100 * Time.deltaTime * Mathf.Sign(HypeLevel) * 0.1f;
+		SoundManager.Instance.ChangeCrowdHype((int)HypeLevel);
+	}
 	
 	//
 	// Event handlers
@@ -32,13 +40,11 @@ public class CrowdManager : FeedbackManager
 		switch (phases) 
 		{
 			case Phases.WeaponSelection:
-				SetHype(4);
+				SetHype(2);
 				break;
 				
 			case Phases.Parade:
 				SetHype(4);
-				SetHype(2);
-
 				break;
 				
 			case Phases.Joust:
@@ -64,10 +70,11 @@ public class CrowdManager : FeedbackManager
 	// Feedback functions
 	//
 
-	public void SetHype(int hype)
+	public void SetHype(int hype, int sign = 1)
 	{
 		foreach(CharacterAnimatorController c in characters)
 		{
+			HypeLevel = hype * 20 * sign;
 			c.SetNextLevel(hype);
 		}
 	}

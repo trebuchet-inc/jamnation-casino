@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class SoundManager : FeedbackManager 
 {
@@ -8,42 +10,50 @@ public class SoundManager : FeedbackManager
 	{
 		Instance = this;
 	}
-//
-// Event Handlers
-//
+
+	protected override void Start()
+	{
+		base.Start();
+		AkSoundEngine.PostEvent("Play_Crowd_Hype", gameObject);
+		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += WeaponSelected;
+		GameRefereeManager.Instance.joustPhase.OnJoustHit += PlayHit;
+	}
+
+	//
+	// Event Handlers
+	//
 	
 	protected override void OnPhaseStartedHandler(Phases phases)
 	{
 		switch (phases) 
 		{
 			case Phases.WeaponSelection:
-				
+				PlayLogoJingle();
 				break;
 				
 			case Phases.Parade:
-				HypeCrowd();
+				StartJingle();
 				break;
 				
 			case Phases.Joust:
-				
+				PlayBattleMusic();
 				break;
 				
 			case Phases.Intermission:
-				AkSoundEngine.PostEvent("Play_Crowd_GetHyped", gameObject);
+				StopBattleMusic();
 				break;
 				
 			case Phases.End:
-				AkSoundEngine.PostEvent("Play_Crowd_GetHyped", gameObject);
 				break;
 		}
 	}
 
-//
-// Feedback Functions
-//
+	//
+	// Feedback Functions
+	//
 	
-	public void PlayHit (WeaponType weapon) {
-		switch(weapon)
+	public void PlayHit (HitInfo info) {
+		switch((WeaponType)info.weaponUsed)
 		{
 			 case WeaponType.Spear :
 			 AkSoundEngine.PostEvent("Play_Lance_hit", gameObject);
@@ -57,16 +67,13 @@ public class SoundManager : FeedbackManager
 			 AkSoundEngine.PostEvent("Play_Flail_hit", gameObject);
 			 break;
 		}
-
-		AkSoundEngine.PostEvent("Play_Crowd_Surprise", gameObject);
-		AkSoundEngine.PostEvent("Stop_BattleMusic", gameObject);
 	}
 
 	public void PlayAmbiance () 
 	{
-		AkSoundEngine.PostEvent("Play_Intro_Annonceurs", gameObject);
 		uint _play_Ambiance = AkSoundEngine.GetIDFromString("Play_Ambiance");
 		AkSoundEngine.PostEvent(_play_Ambiance, gameObject);
+		StartCoroutine(PlayCommentateurDelayed());
 	}
 
 	public void StopAmbiance()
@@ -81,42 +88,49 @@ public class SoundManager : FeedbackManager
 		PlayAmbiance();
 	}
 	
-	public void HypeCrowd()
+	public void StartJingle()
 	{
-		AkSoundEngine.PostEvent("Play_Crowd_GetHyped", gameObject);
 		AkSoundEngine.PostEvent("Play_Jingle_Start", gameObject);
 	}
 
-	public void CasualCrowd()
+	public void PlayBattleMusic()
 	{
 		AkSoundEngine.PostEvent("Play_BattleMusic", gameObject);
-		AkSoundEngine.PostEvent("Play_Crowd_Extatic", gameObject);
-		CrowdManager.Instance.SetHype(5);
 	}
 
-	public void DeceptionCrowd()
+	public void StopBattleMusic()
 	{
-		AkSoundEngine.PostEvent("Play_Crowd_Deception", gameObject);
-		CrowdManager.Instance.SetHype(1);
 		AkSoundEngine.PostEvent("Stop_BattleMusic", gameObject);
 	}
 
 	public void WinJingle()
 	{
 		AkSoundEngine.PostEvent("Play_Jingle_Success", gameObject);
-		CrowdManager.Instance.SetHype(5);
 	}
 
 	public void LoseJingle()
 	{
 		AkSoundEngine.PostEvent("Play_Jingle_AllMiss", gameObject);
-		CrowdManager.Instance.SetHype(1);
 	}
 
-	public void WeaponSelected()
+	public void WeaponSelected(WeaponType type)
 	{
 		AkSoundEngine.PostEvent("Play_Weapon_Selected", gameObject);
 	}
 
+	public void ChangeCrowdHype(int value)
+	{
+		AkSoundEngine.SetRTPCValue("Crowd_Hype", value);
+	}
 
+	public void PlayLogoJingle()
+	{
+		AkSoundEngine.PostEvent("Play_Logo_Jingle", gameObject);
+	}
+
+	IEnumerator PlayCommentateurDelayed()
+	{
+		yield return new WaitForSeconds(4.0f);
+		AkSoundEngine.PostEvent("Play_Commentateurs", gameObject);
+	}
 }
