@@ -33,8 +33,7 @@ public class GameRefereeManager : Photon.MonoBehaviour
 	public event Action OnNewGame;
 	
 	public event Action<Phases> OnPhaseStarted; 
-	public event Action<Phases> OnPhaseEnded; 
-	
+	public event Action<Phases> OnPhaseEnded;
 
 	private void Awake()
 	{
@@ -99,6 +98,8 @@ public class GameRefereeManager : Photon.MonoBehaviour
 		
 		if((object)currentPhaseScript != null) currentPhaseScript.StartPhase();
 	}
+	
+	
 	
 	//
 	// RPC FUNCTIONS

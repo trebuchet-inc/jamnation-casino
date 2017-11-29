@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 114097462001445148}
   - component: {fileID: 114395242161372566}
   - component: {fileID: 114956018338521492}
+  - component: {fileID: 114826655962754280}
   m_Layer: 0
   m_Name: GameRefereeManager
   m_TagString: Untagged
@@ -155,6 +156,18 @@ MonoBehaviour:
   joustPhase: {fileID: 0}
   intermissionPhase: {fileID: 0}
   endPhaseScript: {fileID: 0}
+--- !u!114 &114826655962754280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1198966640547310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d8c8a5374fe564a84563a7088fa2df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastWeapons: 0000000000000000
 --- !u!114 &114913177891519508
 MonoBehaviour:
   m_ObjectHideFlags: 1

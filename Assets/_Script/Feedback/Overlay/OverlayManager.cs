@@ -1,22 +1,26 @@
-﻿using System;
-using NewtonVR;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class OverlayManager : FeedbackManager
 {
     public static OverlayManager Instance;
     
-    public Text SuperText, BlueText, RedText, RoundsText;
+    public Text SuperText, blueScore, redScore, RoundsText;
 
-    public Color usedWeapon;
+    public Sprite[] weapons;
+    public Sprite[] usedWeapons;
     
-    public Image[] blueWeapons;
-    public Image[] redWeapons;
+    // ANIMATORS
+    
+    public Animator mainTransition;
+    
+    public OverlayWeaponStatus[] blueWeapons;
+    public OverlayWeaponStatus[] redWeapons;
 
     public Animator[] scorePoints;
     public Animator scoreBoardBG;
-    public Animator mainTransition;
+
+    public Animator super;
 
     private void Awake()
     {
@@ -49,6 +53,7 @@ public class OverlayManager : FeedbackManager
         switch (phases) 
         {
             case Phases.WeaponSelection:
+                PlayGoAnim(super);
                 PlayGoAnim(mainTransition);
                 PlayGoAnim(scoreBoardBG);
                 DisplaySuper("Jousters choosing their weapons !");
@@ -63,9 +68,12 @@ public class OverlayManager : FeedbackManager
 				
             case Phases.Intermission:
                 DisplaySuper("Intermission !");
+                
+                photonView.RPC("OffWeapons", PhotonTargets.All, (int)MatchLogger.Instance.lastWeapons[0], (int)MatchLogger.Instance.lastWeapons[1]);
                 break;
 				
             case Phases.End:
+                PlayOffAnim(super);
                 PlayOffAnim(scoreBoardBG);
                 DisplaySuper(ScoreManager.Instance.GetWinnerText());
                 break;
@@ -103,20 +111,19 @@ public class OverlayManager : FeedbackManager
 
     private void DisplayScores()
     {
-        BlueText.text = ScoreManager.Instance.GetScore(0);
-        RedText.text = ScoreManager.Instance.GetScore(1);
+        blueScore.text = ScoreManager.Instance.GetScore(0);
+        redScore.text = ScoreManager.Instance.GetScore(1);
     }
 
     private void ResetWeapons()
     {
-        foreach (var weapon in blueWeapons)
+        for (int i = 0; i < blueWeapons.Length; i++)
         {
-            weapon.color = Color.white;
+            blueWeapons[i].icon.sprite = weapons[i];
         }
-        
-        foreach (var weapon in redWeapons)
+        for (int i = 0; i < redWeapons.Length; i++)
         {
-            weapon.color = Color.white;
+            redWeapons[i].icon.sprite = weapons[i];
         }
     }
 
@@ -133,17 +140,26 @@ public class OverlayManager : FeedbackManager
     //
     // PunRPC
     //
+
+    [PunRPC]
+    public void OffWeapons(int blueWeaponType, int redWeaponType)
+    {
+        PlayOffAnim(blueWeapons[blueWeaponType].status);
+        blueWeapons[blueWeaponType].icon.sprite = usedWeapons[blueWeaponType];
+        PlayOffAnim(redWeapons[redWeaponType].status);
+        redWeapons[redWeaponType].icon.sprite = usedWeapons[redWeaponType];
+    }
     
     [PunRPC]
     public void DisplayWeapons(int playerID, int weaponType)
     {
         if (playerID == 0)
         {
-            blueWeapons[weaponType].color = usedWeapon;
+            PlayGoAnim(blueWeapons[weaponType].status);
         }
         else
         {
-            redWeapons[weaponType].color = usedWeapon;
+            PlayGoAnim(blueWeapons[weaponType].status);
         }
     }
     
