@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class MountFeedback : MonoBehaviour 
 {
+	public ParticleSystem particle;
+
 	Animator anim;
 	Vector3 _lastPosition;
+
+	bool playing;
 
 	Vector3 velocity 
 	{
@@ -22,7 +26,12 @@ public class MountFeedback : MonoBehaviour
 	
 	void Update ()
 	{
-		anim.SetBool("Walking", velocity.magnitude > 0.01f);
+		playing = velocity.magnitude > 0.01f;
+		anim.SetBool("Walking", playing);
+
+		if(!particle.isPlaying && playing) particle.Play();
+		if(particle.isPlaying && !playing) particle.Stop();
+
 		_lastPosition = transform.position;
 	}
 }
