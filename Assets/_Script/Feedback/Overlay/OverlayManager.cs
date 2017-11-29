@@ -160,7 +160,7 @@ public class OverlayManager : FeedbackManager
         }
         else
         {
-            PlayGoAnim(blueWeapons[weaponType].status);
+            PlayGoAnim(redWeapons[weaponType].status);  
         }
     }
     
