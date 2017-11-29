@@ -67,6 +67,17 @@ public class Weapon : MonoBehaviour
 		_item.Rigidbody.AddForce(NVRPlayer.Instance.transform.forward * dyingSpeed * -1.0f, ForceMode.Impulse);
 	}
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            _item.EndInteraction(_weaponHand);
+		    _item.Rigidbody.isKinematic = false;
+		    _item.Rigidbody.useGravity = true;
+		    _item.Rigidbody.AddForce(NVRPlayer.Instance.transform.forward * dyingSpeed * -1.0f, ForceMode.Impulse);
+        }
+    }
+
 	private void OnTriggerEnter(Collider other)
 	{
 		Hit(other);

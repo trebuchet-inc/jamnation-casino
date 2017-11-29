@@ -342,7 +342,7 @@ MonoBehaviour:
   type: 2
   positionLerpSpeed: 5000
   angularLerpSpeed: 2
-  dyingSpeed: 40
+  dyingSpeed: 10
   JoinedObjects: []
 --- !u!114 &114522688027710184
 MonoBehaviour:
