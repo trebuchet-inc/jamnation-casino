@@ -20,6 +20,7 @@ namespace AK
         static const AkUniqueID PLAY_CROWD_DECEPTION = 3293666249U;
         static const AkUniqueID PLAY_CROWD_EXTATIC = 2618475426U;
         static const AkUniqueID PLAY_CROWD_GETHYPED = 2757160520U;
+        static const AkUniqueID PLAY_CROWD_HYPE = 2235630056U;
         static const AkUniqueID PLAY_CROWD_SURPRISE = 2846880533U;
         static const AkUniqueID PLAY_FLAIL_HIT = 1413915552U;
         static const AkUniqueID PLAY_FLAIL_MISS = 1092160905U;
@@ -31,6 +32,7 @@ namespace AK
         static const AkUniqueID PLAY_JINGLE_SUCCESS = 2513009785U;
         static const AkUniqueID PLAY_LANCE_HIT = 3574353209U;
         static const AkUniqueID PLAY_LANCE_MISS = 2977442550U;
+        static const AkUniqueID PLAY_LOGO_JINGLE = 354113329U;
         static const AkUniqueID PLAY_PLAYERKILLEDTOOSOON = 2030803885U;
         static const AkUniqueID PLAY_PLAYERS_WIN = 1585422495U;
         static const AkUniqueID PLAY_WEAPON_SELECTED = 1234332190U;
@@ -64,6 +66,11 @@ namespace AK
         } // namespace ENDFIGHT
 
     } // namespace STATES
+
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID CROWD_HYPE = 2658274463U;
+    } // namespace GAME_PARAMETERS
 
     namespace BANKS
     {
