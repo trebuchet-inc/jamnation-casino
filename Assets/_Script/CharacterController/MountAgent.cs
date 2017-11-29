@@ -95,6 +95,8 @@ public class MountAgent : MonoBehaviour
 	
 	void Update () 
 	{
+		VoiceThresholdTweaking();
+
 		if(!_mountFreeze) 
 		{
 			mountModel.transform.position = transform.position;
@@ -123,6 +125,12 @@ public class MountAgent : MonoBehaviour
 		{
 			speedLine.Stop();
 		}
+	}
+
+	void VoiceThresholdTweaking()
+	{
+		if(Input.GetKeyDown(KeyCode.KeypadPlus)) voiceVolumeThreshold += 0.05f;
+		if(Input.GetKeyDown(KeyCode.KeypadMinus)) voiceVolumeThreshold -= 0.05f;
 	}
 
 	void OnPhaseChangeHandler (Phases phase)

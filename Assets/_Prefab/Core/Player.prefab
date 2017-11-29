@@ -424,7 +424,7 @@ GameObject:
   - component: {fileID: 4404920790256566}
   - component: {fileID: 198149292003893146}
   - component: {fileID: 199453550618771452}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SpeedLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -832,7 +832,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 100
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294965247
@@ -1306,6 +1306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fade: 1
+  grayscale: 1
   color: {r: 0.6911765, g: 0, b: 0, a: 1}
   isFading: 0
 --- !u!114 &114066076922853732
@@ -1526,7 +1527,7 @@ MonoBehaviour:
   playerColors:
   - {fileID: 2100000, guid: 7a22fa263af8119419d71b1833c6bfd3, type: 2}
   - {fileID: 2100000, guid: 73df6bc65dc92b84caf7503e57e9b6b0, type: 2}
-  dyingPartSpeed: 2.5
+  dyingPartSpeed: 5
 --- !u!114 &114967221717827704
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1808,7 +1809,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1

@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class SoundManager : FeedbackManager 
 {
@@ -12,6 +14,7 @@ public class SoundManager : FeedbackManager
 	protected override void Start()
 	{
 		base.Start();
+		AkSoundEngine.PostEvent("Play_Crowd_Hype", gameObject);
 		GameRefereeManager.Instance.weaponSelectionPhase.OnWeaponChosen += WeaponSelected;
 		GameRefereeManager.Instance.joustPhase.OnJoustHit += PlayHit;
 	}
@@ -68,10 +71,9 @@ public class SoundManager : FeedbackManager
 
 	public void PlayAmbiance () 
 	{
-		AkSoundEngine.PostEvent("Play_Crowd_Hype", gameObject);
-		AkSoundEngine.PostEvent("Play_Commentateurs", gameObject);
 		uint _play_Ambiance = AkSoundEngine.GetIDFromString("Play_Ambiance");
 		AkSoundEngine.PostEvent(_play_Ambiance, gameObject);
+		StartCoroutine(PlayCommentateurDelayed());
 	}
 
 	public void StopAmbiance()
@@ -124,5 +126,11 @@ public class SoundManager : FeedbackManager
 	public void PlayLogoJingle()
 	{
 		AkSoundEngine.PostEvent("Play_Logo_Jingle", gameObject);
+	}
+
+	IEnumerator PlayCommentateurDelayed()
+	{
+		yield return new WaitForSeconds(4.0f);
+		AkSoundEngine.PostEvent("Play_Commentateurs", gameObject);
 	}
 }
