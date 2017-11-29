@@ -52,6 +52,8 @@ public class Fade : MonoBehaviour {
 
 	void OnHit(HitInfo info)
 	{
+		if(info.playerHitting == NetworkPlayerManager.Instance.playerID) return;
+		
 		grayscale = 0;
 		_material.SetFloat("_Grayscale", grayscale);
 	}
