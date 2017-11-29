@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using NewtonVR;
 
 [Serializable]
 public class AimCameraSpeadsheet
@@ -63,8 +64,6 @@ public class CameraManager : FeedbackManager
 	
 	protected override void OnPhaseStartedHandler(Phases phases)
 	{
-		StopCoroutine("CameraLoop");
-		
 		switch (phases) 
 		{
 			case Phases.WeaponSelection:
@@ -79,7 +78,6 @@ public class CameraManager : FeedbackManager
 				}
 				
 				CameraSwitch("5", 2);
-				
 				break;
 				
 			case Phases.Parade:
@@ -103,7 +101,7 @@ public class CameraManager : FeedbackManager
 
 	protected override void OnJoustHitHandler(HitInfo hitInfo)
 	{
-		
+		FocusOnPlayer(hitInfo.playerHitting);
 		CameraSwitch("6", 2, 1);
 	}
 	
@@ -125,6 +123,23 @@ public class CameraManager : FeedbackManager
 		cam.depth *= -1;
 	}
 
+	private void FocusOnPlayer(int id)
+	{
+		Vector3 pos = Vector3.zero;
+		
+		if (NetworkPlayerManager.Instance.playerID == id)
+		{
+			pos = NetworkPlayerManager.Instance.players[0].transform.position;
+		}
+		else
+		{
+			pos = NVRPlayer.Instance.transform.position;
+		}
+ 		
+		CameraSwitch("8", 5);
+		activeCamera.AimAdjustment(pos);
+	}
+	
 	private void CameraSwitch(string id)
 	{
 		bool foundMatch = false;

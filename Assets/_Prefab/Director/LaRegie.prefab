@@ -1380,9 +1380,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1547477323034384}
-  m_LocalRotation: {x: 0.15926321, y: 0.51704043, z: 0.08217111, w: -0.8369901}
-  m_LocalPosition: {x: -10.53, y: 0.24, z: -1.64}
-  m_LocalScale: {x: 1.0000002, y: 1, z: 1.0000005}
+  m_LocalRotation: {x: -0.000000056308206, y: 0.953717, z: -0.30070576, w: -0.00000017858686}
+  m_LocalPosition: {x: -0.98, y: 6.17, z: 6.68}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4548636967928570}
   - {fileID: 4596726445730846}
@@ -1391,8 +1391,8 @@ Transform:
   - {fileID: 4733802349842410}
   - {fileID: 4899057143174576}
   m_Father: {fileID: 4991150784456722}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: -20.584002, y: 296.288, z: 1.6610001}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 35, y: 180.00002, z: 0}
 --- !u!4 &4422387577383002
 Transform:
   m_ObjectHideFlags: 1
@@ -1805,7 +1805,7 @@ Transform:
   - {fileID: 4380877574500048}
   - {fileID: 4598394698443550}
   m_Father: {fileID: 4991150784456722}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -20.584002, y: 296.288, z: 1.6610001}
 --- !u!4 &4809754705565032
 Transform:
@@ -2044,8 +2044,8 @@ Transform:
   - {fileID: 4988182545634554}
   - {fileID: 4809754705565032}
   - {fileID: 4473709368756754}
-  - {fileID: 4415642922507640}
   - {fileID: 4800740425854114}
+  - {fileID: 4415642922507640}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2347,7 +2347,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 61.6
   orthographic: 0
   orthographic size: 5
   m_Depth: 100
@@ -2464,6 +2464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characters: []
+  HypeLevel: 0
 --- !u!114 &114163574825990530
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2546,7 +2547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b38a7af59d4244aa3e2558a1972191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraType: 1
+  cameraType: 0
   cameraId: 8
   isActiveCamera: 0
   cameraManager: {fileID: 114612517186129992}
@@ -2805,7 +2806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b38a7af59d4244aa3e2558a1972191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraType: 0
+  cameraType: 1
   cameraId: 1
   isActiveCamera: 0
   cameraManager: {fileID: 114612517186129992}

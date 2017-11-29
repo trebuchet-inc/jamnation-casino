@@ -254,7 +254,7 @@ public class CameraController : MonoBehaviour {
 		_sourceLocalPosition = cameraParent.localPosition;
 	}
 
-	private void AimAdjustment(Vector3 target, float multiplier = 1)
+	public void AimAdjustment(Vector3 target, float multiplier = 1)
 	{
 		Quaternion aim = Quaternion.LookRotation(target-cameraParent.position);
 		cameraParent.rotation = Quaternion.Lerp(cameraParent.rotation,aim,2*Time.deltaTime*multiplier);
