@@ -67,22 +67,22 @@ public class CameraManager : FeedbackManager
 		switch (phases) 
 		{
 			case Phases.WeaponSelection:
-					
+
+				string idtemp = "";
 				if (NetworkPlayerManager.Instance.playerID == 0)
 				{
-					CameraSwitch("3");
+					idtemp = "3";
 				}
 				else
 				{
-					CameraSwitch("7");
+					idtemp = "7";
 				}
 				
-				CameraSwitch("5", 4);
+				CameraSwitch("5", idtemp, 4);
 				break;
 				
 			case Phases.Parade:
-				CameraSwitch("4");
-				CameraSwitch("5", 5);
+				CameraSwitch("5", "4", 5);
 				break;
 				
 			case Phases.Joust:
@@ -102,7 +102,7 @@ public class CameraManager : FeedbackManager
 	protected override void OnJoustHitHandler(HitInfo hitInfo)
 	{
 		FocusOnPlayer(hitInfo.playerHitting);
-		CameraSwitch("6", 2);
+		CameraSwitch("6", "8", 2);
 	}
 	
 	//
@@ -173,6 +173,10 @@ public class CameraManager : FeedbackManager
 	{
 		StartCoroutine(TempCameraSwitch(id, duration));
 	}
+	private void CameraSwitch(string id, string nextID, float duration, float delay = 0)
+	{
+		StartCoroutine(TempCameraSwitch(id, nextID, duration));
+	}
 
 	private int CameraSwitchCheck()
 	{
@@ -223,5 +227,15 @@ public class CameraManager : FeedbackManager
 		yield return new WaitForSeconds(duration);
 		
 		CameraSwitch(lastID);
+	}
+	private IEnumerator TempCameraSwitch(string id, string nextID, float duration, float delay = 0)
+	{
+		yield return new WaitForSeconds(delay);
+		
+		CameraSwitch(id);
+		
+		yield return new WaitForSeconds(duration);
+		
+		CameraSwitch(nextID);
 	}
 }

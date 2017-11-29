@@ -2403,6 +2403,7 @@ MonoBehaviour:
   throttleGuider: {fileID: 114506069042367092}
   apertureIntense: 0
   cameraParent: {fileID: 4422387577383002}
+  tripodTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &114062242748346634
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2483,6 +2484,7 @@ MonoBehaviour:
   throttleGuider: {fileID: 114339501334445276}
   apertureIntense: 0
   cameraParent: {fileID: 4865044111630416}
+  tripodTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &114168880370803700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2494,13 +2496,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b38a7af59d4244aa3e2558a1972191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraType: 1
+  cameraType: 0
   cameraId: 2
   isActiveCamera: 0
   cameraManager: {fileID: 114612517186129992}
   throttleGuider: {fileID: 114124213688976236}
   apertureIntense: 0
   cameraParent: {fileID: 4362395777630956}
+  tripodTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &114206516367146436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2554,6 +2557,7 @@ MonoBehaviour:
   throttleGuider: {fileID: 114390782357079864}
   apertureIntense: 0
   cameraParent: {fileID: 4548636967928570}
+  tripodTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &114262527253376860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2670,6 +2674,7 @@ MonoBehaviour:
   throttleGuider: {fileID: 114062242748346634}
   apertureIntense: 0
   cameraParent: {fileID: 4508617982532618}
+  tripodTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &114390782357079864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2716,6 +2721,7 @@ MonoBehaviour:
   throttleGuider: {fileID: 114975997954784940}
   apertureIntense: 0
   cameraParent: {fileID: 4469805498329592}
+  tripodTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &114490866829029920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2734,6 +2740,7 @@ MonoBehaviour:
   throttleGuider: {fileID: 114440932393392308}
   apertureIntense: 0
   cameraParent: {fileID: 4726523120049920}
+  tripodTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &114506069042367092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2806,13 +2813,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b38a7af59d4244aa3e2558a1972191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraType: 1
+  cameraType: 0
   cameraId: 1
   isActiveCamera: 0
   cameraManager: {fileID: 114612517186129992}
   throttleGuider: {fileID: 114889011394321976}
   apertureIntense: 0
   cameraParent: {fileID: 4072845222723552}
+  tripodTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &114756031428892200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2866,6 +2874,7 @@ MonoBehaviour:
   throttleGuider: {fileID: 114206516367146436}
   apertureIntense: 0
   cameraParent: {fileID: 4267967111614390}
+  tripodTarget: {x: 0, y: 0, z: 0}
 --- !u!114 &114971894810359172
 MonoBehaviour:
   m_ObjectHideFlags: 1
