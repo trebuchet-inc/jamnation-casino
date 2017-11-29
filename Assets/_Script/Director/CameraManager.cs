@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using NewtonVR;
 
 [Serializable]
 public class AimCameraSpeadsheet
@@ -63,13 +64,10 @@ public class CameraManager : FeedbackManager
 	
 	protected override void OnPhaseStartedHandler(Phases phases)
 	{
-		StopCoroutine("CameraLoop");
-		
 		switch (phases) 
 		{
 			case Phases.WeaponSelection:
-//				StartCoroutine(CameraLoop(new string[] {"3", "7"}, 5));
-
+					
 				if (NetworkPlayerManager.Instance.playerID == 0)
 				{
 					CameraSwitch("3");
@@ -78,10 +76,13 @@ public class CameraManager : FeedbackManager
 				{
 					CameraSwitch("7");
 				}
+				
+				CameraSwitch("5", 2);
 				break;
 				
 			case Phases.Parade:
 				CameraSwitch("4");
+				CameraSwitch("5", 3);
 				break;
 				
 			case Phases.Joust:
@@ -89,12 +90,19 @@ public class CameraManager : FeedbackManager
 				break;	
 				
 			case Phases.Intermission:
+				
 				break;
 				
 			case Phases.End:
-				CameraSwitch("4");
+				CameraSwitch("2");
 				break;
 		}
+	}
+
+	protected override void OnJoustHitHandler(HitInfo hitInfo)
+	{
+		FocusOnPlayer(hitInfo.playerHitting);
+		CameraSwitch("6", 2, 1);
 	}
 	
 	//
@@ -115,6 +123,23 @@ public class CameraManager : FeedbackManager
 		cam.depth *= -1;
 	}
 
+	private void FocusOnPlayer(int id)
+	{
+		Vector3 pos = Vector3.zero;
+		
+		if (NetworkPlayerManager.Instance.playerID == id)
+		{
+			pos = NetworkPlayerManager.Instance.players[0].transform.position;
+		}
+		else
+		{
+			pos = NVRPlayer.Instance.transform.position;
+		}
+ 		
+		CameraSwitch("8", 5);
+		activeCamera.AimAdjustment(pos);
+	}
+	
 	private void CameraSwitch(string id)
 	{
 		bool foundMatch = false;
@@ -142,6 +167,11 @@ public class CameraManager : FeedbackManager
 		{
 			Debug.Log ("Did not find matching camera");
 		}
+	}
+
+	private void CameraSwitch(string id, float duration, float delay = 0)
+	{
+		StartCoroutine(TempCameraSwitch(id, duration));
 	}
 
 	private int CameraSwitchCheck()
@@ -177,5 +207,21 @@ public class CameraManager : FeedbackManager
 			return 0;
 		}
 	}
+	
+	//
+	// Coroutines
+	//
 
+	private IEnumerator TempCameraSwitch(string id, float duration, float delay = 0)
+	{
+		string lastID = activeCamera.cameraId;
+		
+		yield return new WaitForSeconds(delay);
+		
+		CameraSwitch(id);
+		
+		yield return new WaitForSeconds(duration);
+		
+		CameraSwitch(lastID);
+	}
 }

@@ -45,11 +45,6 @@ public class CameraController : MonoBehaviour {
 	private Transform[] _mainTargets;
 	private int _currentTarget;
 
-	//Camera Routine Target
-
-
-
-
 	// Use this for initialization
 	public void Initialize () {
 		_rotationIntensity = cameraManager.rotationIntensity;
@@ -96,22 +91,22 @@ public class CameraController : MonoBehaviour {
 			switch (cameraType)
 			{
 				case CameraControllerType.Tripod:
-					cameraParent.Rotate(
-					-Input.GetAxis("Vertical")*_rotationIntensity*Time.deltaTime,
-					Input.GetAxis("Horizontal")*_rotationIntensity*Time.deltaTime,
-					-Input.GetAxis("Yaw")*_rotationIntensity*Time.deltaTime,
-					Space.Self);	
+//					cameraParent.Rotate(
+//					-Input.GetAxis("Vertical")*_rotationIntensity*Time.deltaTime,
+//					Input.GetAxis("Horizontal")*_rotationIntensity*Time.deltaTime,
+//					-Input.GetAxis("Yaw")*_rotationIntensity*Time.deltaTime,
+//					Space.Self);	
 				break;
 
 				case CameraControllerType.AimLocked:
-					cameraParent.Translate(Input.GetAxis("Horizontal")*_translateIntensity*Time.deltaTime,
-					Input.GetAxis("Yaw")*_translateIntensity*Time.deltaTime,
-					Input.GetAxis("Vertical")*_translateIntensity*Time.deltaTime
-					);
-					if (Input.GetKeyDown(KeyCode.RightControl))
-					{
-						_currentTarget = (_currentTarget+1)%_mainTargets.Length;
-					}
+//					cameraParent.Translate(Input.GetAxis("Horizontal")*_translateIntensity*Time.deltaTime,
+//					Input.GetAxis("Yaw")*_translateIntensity*Time.deltaTime,
+//					Input.GetAxis("Vertical")*_translateIntensity*Time.deltaTime
+//					);
+//					if (Input.GetKeyDown(KeyCode.RightControl))
+//					{
+//						_currentTarget = (_currentTarget+1)%_mainTargets.Length;
+//					}
 				break;
 
 				default:
@@ -125,10 +120,10 @@ public class CameraController : MonoBehaviour {
 			cameraParent.position = Vector3.Lerp(cameraParent.position, throttleGuider.transform.position,1*Time.deltaTime/2);
 			if (isActiveCamera)
 			{
-				if (Input.GetKeyDown(KeyCode.RightControl))
-				{
-					_currentTarget = (_currentTarget+1)%_mainTargets.Length;
-				}
+//				if (Input.GetKeyDown(KeyCode.RightControl))
+//				{
+//					_currentTarget = (_currentTarget+1)%_mainTargets.Length;
+//				}
 			}		
 			break;
 
@@ -177,6 +172,11 @@ public class CameraController : MonoBehaviour {
 
 		float clampY = Mathf.Clamp(cameraParent.transform.position.y,1.1f,800f);
 		cameraParent.transform.position = new Vector3(cameraParent.transform.position.x, clampY, cameraParent.transform.position.z);
+	}
+
+	private void SwitchTarget()
+	{
+		_currentTarget = (_currentTarget+1)%_mainTargets.Length;
 	}
 
 	public void CutToThisCamera()
@@ -254,7 +254,7 @@ public class CameraController : MonoBehaviour {
 		_sourceLocalPosition = cameraParent.localPosition;
 	}
 
-	private void AimAdjustment(Vector3 target, float multiplier = 1)
+	public void AimAdjustment(Vector3 target, float multiplier = 1)
 	{
 		Quaternion aim = Quaternion.LookRotation(target-cameraParent.position);
 		cameraParent.rotation = Quaternion.Lerp(cameraParent.rotation,aim,2*Time.deltaTime*multiplier);
