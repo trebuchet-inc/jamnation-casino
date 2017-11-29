@@ -1330,7 +1330,7 @@ MonoBehaviour:
   voiceDurationThreshold: 100
   voiceJoustSpeed: 0.2
   voiceParadeSpeed: 0
-  mountDyingSpeed: 8
+  mountDyingSpeed: 6
   _freeze: 1
 --- !u!114 &114116509059290792
 MonoBehaviour:
@@ -1527,7 +1527,7 @@ MonoBehaviour:
   playerColors:
   - {fileID: 2100000, guid: 7a22fa263af8119419d71b1833c6bfd3, type: 2}
   - {fileID: 2100000, guid: 73df6bc65dc92b84caf7503e57e9b6b0, type: 2}
-  dyingPartSpeed: 100
+  dyingPartSpeed: 30
 --- !u!114 &114967221717827704
 MonoBehaviour:
   m_ObjectHideFlags: 1

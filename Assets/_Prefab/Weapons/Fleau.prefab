@@ -906,7 +906,7 @@ MonoBehaviour:
   type: 0
   positionLerpSpeed: 5000
   angularLerpSpeed: 15
-  dyingSpeed: 15
+  dyingSpeed: 40
   JoinedObjects:
   - {fileID: 1697671351231116}
   - {fileID: 1821282325356142}
