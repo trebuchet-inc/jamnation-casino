@@ -9,18 +9,43 @@ public class EndPhase : GamePhase
 	public int endDuration;
 	public Transform[] endPositions; // 0 is winner
 
+	private BannerColor[] banners;
+
 	public event Action OnJoustEnded;
-	
+
+	private void Start()
+	{
+		banners = FindObjectsOfType<BannerColor>();
+	}
+
 	public override void StartPhase()
 	{
 		StartCoroutine(RestartTimer());
 		
 		photonView.RPC("SetPlayerToEndPosition", PhotonTargets.All);
+
+		if (ScoreManager.Instance.winnerPlayerID == 0)
+		{
+			foreach (BannerColor banner in banners)
+			{
+				banner.SetBlue();
+			}
+		}
+		else
+		{
+			foreach (BannerColor banner in banners)
+			{
+				banner.SetRed();
+			}
+		}
 	} 
     
 	public override void TerminatePhase()
 	{
-		
+		foreach (BannerColor banner in banners)
+		{
+			banner.SetInitial();
+		}
 	}
 	
 	public IEnumerator RestartTimer()

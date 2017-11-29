@@ -40,7 +40,7 @@ public class CameraManager : FeedbackManager
 	{
 		base.Start();
 		InitializeCameras();
-		CameraSwitch("1");
+		CameraSwitch("5");
 	}
 	
 	private void Update () 
@@ -102,7 +102,7 @@ public class CameraManager : FeedbackManager
 	protected override void OnJoustHitHandler(HitInfo hitInfo)
 	{
 		FocusOnPlayer(hitInfo.playerHitting);
-		CameraSwitch("8", "6", 5);
+		CameraSwitch(new string[]{ "8", "6", "4" }, 2);
 	}
 	
 	//
@@ -173,6 +173,10 @@ public class CameraManager : FeedbackManager
 	{
 		StartCoroutine(TempCameraSwitch(id, duration));
 	}
+	private void CameraSwitch(string[] id, float duration, float delay = 0)
+	{
+		StartCoroutine(TempCameraSwitch(id, duration));
+	}
 	private void CameraSwitch(string id, string nextID, float duration, float delay = 0)
 	{
 		StartCoroutine(TempCameraSwitch(id, nextID, duration));
@@ -237,5 +241,16 @@ public class CameraManager : FeedbackManager
 		yield return new WaitForSeconds(duration);
 		
 		CameraSwitch(nextID);
+	}
+	private IEnumerator TempCameraSwitch(string[] id, float duration, float delay = 0)
+	{
+		yield return new WaitForSeconds(delay);
+
+		for (int i = 0; i < id.Length; i++)
+		{
+			CameraSwitch(id[i]);
+			
+			yield return new WaitForSeconds(duration);
+		}
 	}
 }
