@@ -77,12 +77,12 @@ public class CameraManager : FeedbackManager
 					CameraSwitch("7");
 				}
 				
-				CameraSwitch("5", 2);
+				CameraSwitch("5", 4);
 				break;
 				
 			case Phases.Parade:
 				CameraSwitch("4");
-				CameraSwitch("5", 3);
+				CameraSwitch("5", 5);
 				break;
 				
 			case Phases.Joust:
@@ -102,7 +102,7 @@ public class CameraManager : FeedbackManager
 	protected override void OnJoustHitHandler(HitInfo hitInfo)
 	{
 		FocusOnPlayer(hitInfo.playerHitting);
-		CameraSwitch("6", 2, 1);
+		CameraSwitch("6", 2);
 	}
 	
 	//
@@ -136,8 +136,8 @@ public class CameraManager : FeedbackManager
 			pos = NVRPlayer.Instance.transform.position;
 		}
  		
-		CameraSwitch("8", 5);
-		activeCamera.AimAdjustment(pos);
+		CameraSwitch("8");
+		activeCamera.tripodTarget = pos;
 	}
 	
 	private void CameraSwitch(string id)

@@ -44,6 +44,7 @@ public class CameraController : MonoBehaviour {
 	//CameraAimLocked && Routine
 	private Transform[] _mainTargets;
 	private int _currentTarget;
+	public Vector3 tripodTarget;
 
 	// Use this for initialization
 	public void Initialize () {
@@ -142,6 +143,7 @@ public class CameraController : MonoBehaviour {
 		switch (cameraType)
 			{
 				case CameraControllerType.Tripod:
+					AimAdjustment(tripodTarget);
 				break;
 
 				case CameraControllerType.AimLocked:
