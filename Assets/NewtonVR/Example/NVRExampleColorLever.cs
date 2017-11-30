@@ -6,8 +6,8 @@ namespace NewtonVR.Example
     public class NVRExampleColorLever
         : MonoBehaviour
     {
-        public Color From;
-        public Color To;
+        public UnityEngine.Color From;
+        public UnityEngine.Color To;
 
         public Renderer Result;
 
@@ -15,7 +15,7 @@ namespace NewtonVR.Example
 
         private void Update()
         {
-            Result.material.color = Color.Lerp(From, To, Lever.CurrentValue);
+            Result.material.color = UnityEngine.Color.Lerp(From, To, Lever.CurrentValue);
         }
     }
 }

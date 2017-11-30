@@ -89,7 +89,7 @@ namespace UnityEditor.PostProcessing
         CurvesSettings m_Curves;
 
         CurveEditor m_CurveEditor;
-        Dictionary<SerializedProperty, Color> m_CurveDict;
+        Dictionary<SerializedProperty, UnityEngine.Color> m_CurveDict;
 
 		// Neutral tonemapping curve helper
         const int k_CurveResolution = 24;
@@ -166,22 +166,22 @@ namespace UnityEditor.PostProcessing
             };
 
             // Prepare the curve editor and extract curve display settings
-            m_CurveDict = new Dictionary<SerializedProperty, Color>();
+            m_CurveDict = new Dictionary<SerializedProperty, UnityEngine.Color>();
 
             var settings = CurveEditor.Settings.defaultSettings;
 
             m_CurveEditor = new CurveEditor(settings);
-            AddCurve(m_Curves.master,   new Color(1f, 1f, 1f), 2, false);
-            AddCurve(m_Curves.red,      new Color(1f, 0f, 0f), 2, false);
-            AddCurve(m_Curves.green,    new Color(0f, 1f, 0f), 2, false);
-            AddCurve(m_Curves.blue,     new Color(0f, 0.5f, 1f), 2, false);
-            AddCurve(m_Curves.hueVShue, new Color(1f, 1f, 1f), 0, true);
-            AddCurve(m_Curves.hueVSsat, new Color(1f, 1f, 1f), 0, true);
-            AddCurve(m_Curves.satVSsat, new Color(1f, 1f, 1f), 0, false);
-            AddCurve(m_Curves.lumVSsat, new Color(1f, 1f, 1f), 0, false);
+            AddCurve(m_Curves.master,   new UnityEngine.Color(1f, 1f, 1f), 2, false);
+            AddCurve(m_Curves.red,      new UnityEngine.Color(1f, 0f, 0f), 2, false);
+            AddCurve(m_Curves.green,    new UnityEngine.Color(0f, 1f, 0f), 2, false);
+            AddCurve(m_Curves.blue,     new UnityEngine.Color(0f, 0.5f, 1f), 2, false);
+            AddCurve(m_Curves.hueVShue, new UnityEngine.Color(1f, 1f, 1f), 0, true);
+            AddCurve(m_Curves.hueVSsat, new UnityEngine.Color(1f, 1f, 1f), 0, true);
+            AddCurve(m_Curves.satVSsat, new UnityEngine.Color(1f, 1f, 1f), 0, false);
+            AddCurve(m_Curves.lumVSsat, new UnityEngine.Color(1f, 1f, 1f), 0, false);
         }
 
-        void AddCurve(SerializedProperty prop, Color color, uint minPointCount, bool loop)
+        void AddCurve(SerializedProperty prop, UnityEngine.Color color, uint minPointCount, bool loop)
         {
             var state = CurveEditor.CurveState.defaultState;
             state.color = color;
@@ -255,8 +255,8 @@ namespace UnityEditor.PostProcessing
 
             Handles.DrawSolidRectangleWithOutline(
                 m_RectVertices,
-                Color.white * 0.1f,
-                Color.white * 0.4f
+                UnityEngine.Color.white * 0.1f,
+                UnityEngine.Color.white * 0.4f
                 );
 
             // Horizontal lines
@@ -322,7 +322,7 @@ namespace UnityEditor.PostProcessing
 
             if (vcount > 1)
             {
-                Handles.color = Color.white * 0.9f;
+                Handles.color = UnityEngine.Color.white * 0.9f;
                 Handles.DrawAAPolyLine(2.0f, vcount, m_CurveVertices);
             }
 	    }
@@ -331,7 +331,7 @@ namespace UnityEditor.PostProcessing
         {
             m_LineVertices[0] = PointInRect(x1, y1);
             m_LineVertices[1] = PointInRect(x2, y2);
-            Handles.color = Color.white * grayscale;
+            Handles.color = UnityEngine.Color.white * grayscale;
             Handles.DrawAAPolyLine(2f, m_LineVertices);
         }
 
@@ -565,7 +565,7 @@ namespace UnityEditor.PostProcessing
                 if (Event.current.type == EventType.Repaint)
                 {
                     // Background
-                    EditorGUI.DrawRect(rect, new Color(0.15f, 0.15f, 0.15f, 1f));
+                    EditorGUI.DrawRect(rect, new UnityEngine.Color(0.15f, 0.15f, 0.15f, 1f));
 
                     if (s_MaterialSpline == null)
                         s_MaterialSpline = new Material(Shader.Find("Hidden/Post FX/UI/Curve Background")) { hideFlags = HideFlags.HideAndDontSave };
@@ -576,11 +576,11 @@ namespace UnityEditor.PostProcessing
                         DrawBackgroundTexture(innerRect, 1);
 
                     // Bounds
-                    Handles.color = Color.white;
-                    Handles.DrawSolidRectangleWithOutline(innerRect, Color.clear, new Color(0.8f, 0.8f, 0.8f, 0.5f));
+                    Handles.color = UnityEngine.Color.white;
+                    Handles.DrawSolidRectangleWithOutline(innerRect, UnityEngine.Color.clear, new UnityEngine.Color(0.8f, 0.8f, 0.8f, 0.5f));
 
                     // Grid setup
-                    Handles.color = new Color(1f, 1f, 1f, 0.05f);
+                    Handles.color = new UnityEngine.Color(1f, 1f, 1f, 0.05f);
                     int hLines = (int)Mathf.Sqrt(innerRect.width);
                     int vLines = (int)(hLines / (innerRect.width / innerRect.height));
 
@@ -617,7 +617,7 @@ namespace UnityEditor.PostProcessing
                 if (Event.current.type == EventType.Repaint)
                 {
                     // Borders
-                    Handles.color = Color.black;
+                    Handles.color = UnityEngine.Color.black;
                     Handles.DrawLine(new Vector2(rect.x, rect.y - 18f), new Vector2(rect.xMax, rect.y - 18f));
                     Handles.DrawLine(new Vector2(rect.x, rect.y - 19f), new Vector2(rect.x, rect.yMax));
                     Handles.DrawLine(new Vector2(rect.x, rect.yMax), new Vector2(rect.xMax, rect.yMax));
