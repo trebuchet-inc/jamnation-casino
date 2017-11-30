@@ -112,14 +112,14 @@ public class MountAgent : MonoBehaviour
 		{
 			if(Mathf.Abs(velocity.y) >= ridingHandVelocityThreshold)
 			{
-				_rb.AddForce(transform.forward * actualRidingSpeed, ForceMode.Impulse);
+				_rb.AddForce(transform.forward * actualRidingSpeed * Time.deltaTime, ForceMode.Impulse);
 				AkSoundEngine.PostEvent("Play_Horse_Rocking", gameObject);
 			}
 
 			if(voiceIntensity > voiceDurationThreshold && actualVoiceSpeed > 0)
 			{
 				if(!speedLine.isPlaying)speedLine.Play();
-				_rb.AddForce(transform.forward * actualVoiceSpeed, ForceMode.Impulse);
+				_rb.AddForce(transform.forward * actualVoiceSpeed * Time.deltaTime, ForceMode.Impulse);
 			}
 			else if (speedLine.isPlaying)
 			{

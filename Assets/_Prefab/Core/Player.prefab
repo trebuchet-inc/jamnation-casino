@@ -1354,11 +1354,11 @@ MonoBehaviour:
   speedLine: {fileID: 198149292003893146}
   ridingHand: {fileID: 114990343425754572}
   ridingHandVelocityThreshold: 0.3
-  joustSpeed: 0.2
-  paradeSpeed: 0.1
+  joustSpeed: 15
+  paradeSpeed: 8
   voiceVolumeThreshold: 0.1
   voiceDurationThreshold: 100
-  voiceJoustSpeed: 0.2
+  voiceJoustSpeed: 10
   voiceParadeSpeed: 0
   mountDyingSpeed: 6
   _freeze: 1
