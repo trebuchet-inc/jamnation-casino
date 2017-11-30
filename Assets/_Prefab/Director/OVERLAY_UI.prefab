@@ -976,7 +976,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c40ca504795f30a47ae989e67a3f3ef8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72ac6c75d5c73124799d82c811e286e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1079,7 +1079,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7bcfce130227b204fbe6c2019f7dac8c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55ed7c7f504d3334f8aeb6b3cc2a0bf6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1139,7 +1139,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c40ca504795f30a47ae989e67a3f3ef8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72ac6c75d5c73124799d82c811e286e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1163,12 +1163,12 @@ MonoBehaviour:
   redScore: {fileID: 114926566969633156}
   RoundsText: {fileID: 114392002224442308}
   weapons:
-  - {fileID: 21300000, guid: c40ca504795f30a47ae989e67a3f3ef8, type: 3}
-  - {fileID: 21300000, guid: 7a8dc2af934f91a488b87eb9de069ded, type: 3}
+  - {fileID: 21300000, guid: 72ac6c75d5c73124799d82c811e286e6, type: 3}
+  - {fileID: 21300000, guid: 55ed7c7f504d3334f8aeb6b3cc2a0bf6, type: 3}
   - {fileID: 21300000, guid: 3167b867c4a5dd3448f4f3dd24e323bb, type: 3}
   usedWeapons:
-  - {fileID: 21300000, guid: cde8c1b18bce1e546b57583296fa16d5, type: 3}
-  - {fileID: 21300000, guid: 7bcfce130227b204fbe6c2019f7dac8c, type: 3}
+  - {fileID: 21300000, guid: 978aa96b12c21364eae797ded20c2e7f, type: 3}
+  - {fileID: 21300000, guid: 06e896de60b78e14dbc42a467bf0ea93, type: 3}
   - {fileID: 21300000, guid: 6096fd2087c1e194691e99d0f35afb0d, type: 3}
   mainTransition: {fileID: 95837539510220800}
   blueWeapons:
@@ -1538,7 +1538,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 7bcfce130227b204fbe6c2019f7dac8c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55ed7c7f504d3334f8aeb6b3cc2a0bf6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1622,8 +1622,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
-  viewIdField: 0
-  instantiationId: -1
+  viewIdField: 3
+  instantiationId: 3
   currentMasterID: -1
   isRuntimeInstantiated: 0
 --- !u!114 &114839888586791396
