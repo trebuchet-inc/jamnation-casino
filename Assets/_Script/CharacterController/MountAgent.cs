@@ -55,6 +55,8 @@ public class MountAgent : MonoBehaviour
 	{
 		get
 		{
+			if(voice == null) return 0;
+
 			int toretun = 0;
 			float[] value = new float[voice.samples * voice.channels];
 			voice.GetData(value, 0);
@@ -191,6 +193,6 @@ public class MountAgent : MonoBehaviour
 
 	void OnDebugRefresh()
     {
-        DebugConsole.Instance.debug += "Voice Treshold : " + voiceVolumeThreshold + " | " + "Voice Intensity  : " + voiceIntensity;
+        DebugConsole.Instance.AddEntry("Voice Treshold : " + voiceVolumeThreshold + " | " + "Voice Intensity  : " + voiceIntensity);
     }
 }

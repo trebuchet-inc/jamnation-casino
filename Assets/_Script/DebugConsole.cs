@@ -14,19 +14,6 @@ public class DebugConsole : MonoBehaviour
 
 	public Action OnRefresh;
 
-	[HideInInspector] public string debug
-	{
-		set
-		{
-			string formatedText  = value + "\n";
-			_debug = formatedText;
-		}
-		get
-		{
-			return _debug;
-		}
-	}
-
 	string _debug;
 
 	bool _visible = true;
@@ -50,6 +37,11 @@ public class DebugConsole : MonoBehaviour
 			canvas.gameObject.SetActive(_visible);
         }
     }
+
+	public void AddEntry(string entry)
+	{
+		_debug += "> " + entry + "\n";
+	}
 
 	void Draw()
     {
