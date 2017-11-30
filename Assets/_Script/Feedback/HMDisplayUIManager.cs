@@ -77,7 +77,7 @@ public class HMDisplayUIManager : FeedbackManager
 		bool success = hitInfo.limbHit != (int)LimbType.None;
 		string msg = "";
 		
-		if (success)
+		if (hitInfo.playerHitting == NetworkPlayerManager.Instance.playerID)
 		{
 			msg = "You hit in the " + lastLimbHit + " with the " + lastWeapon + "!";
 		}
@@ -108,7 +108,8 @@ public class HMDisplayUIManager : FeedbackManager
 
 	private void Activate(string textToDisplay)
 	{
-		 canvasText.text = textToDisplay;
+		canvas.SetActive(true); 
+		canvasText.text = textToDisplay;
 	}
 	
 	private void Activate(string textToDisplay, float interval)
@@ -124,11 +125,12 @@ public class HMDisplayUIManager : FeedbackManager
 	private void Deactivate()
 	{
 		canvasText.text = "";
+		canvas.SetActive(false);
 	}
 
 	private void Update()
 	{
-		if (canvasText.text == "") return;
+//		if (canvasText.text == "") return;
 
 		canvas.transform.position = Vector3.Lerp(canvas.transform.position, UITarget.position, Time.deltaTime * LerpSpeed);
 		canvas.transform.rotation = Quaternion.Lerp(canvas.transform.rotation, UITarget.rotation, Time.deltaTime * LerpSpeed);
@@ -140,7 +142,7 @@ public class HMDisplayUIManager : FeedbackManager
 
 	private IEnumerator DisplayText(string text, float interval)
 	{
-		canvasText.text = text;
+		Activate(text);
 			
 		yield return new WaitForSeconds(interval);
 		
@@ -153,7 +155,7 @@ public class HMDisplayUIManager : FeedbackManager
 		
 		for (int i = 0; i < count; i++)
 		{
-			canvasText.text = texts.Dequeue();
+			Activate(texts.Dequeue());
 			
 			yield return new WaitForSeconds(interval);
 		}
@@ -169,16 +171,17 @@ public class HMDisplayUIManager : FeedbackManager
 		{
 			CrowdManager.Instance.SetHype(4);
 			SoundManager.Instance.WinJingle();
-			canvasText.text = text;
+			Activate(text);
 		}
 		else
 		{
 			CrowdManager.Instance.SetHype(4, -1);
 			SoundManager.Instance.LoseJingle();
-			canvasText.text = "MISSED!";
+			Activate("MISSED!");
 		}
 		
 		yield return new WaitForSeconds(4f);
-		canvasText.text = "";
+		
+		Deactivate();
 	}
 }
