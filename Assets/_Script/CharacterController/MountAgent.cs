@@ -191,6 +191,6 @@ public class MountAgent : MonoBehaviour
 
 	void OnDebugRefresh()
     {
-        DebugConsole.Instance.debug += "Voice Treshold : " + voiceVolumeThreshold + " | " + "Voice Intensity  : " + voiceIntensity + "\n";
+        DebugConsole.Instance.debug += "Voice Treshold : " + voiceVolumeThreshold + " | " + "Voice Intensity  : " + voiceIntensity;
     }
 }

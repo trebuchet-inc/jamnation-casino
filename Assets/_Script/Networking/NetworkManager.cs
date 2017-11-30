@@ -116,6 +116,6 @@ public class NetworkManager : Photon.PunBehaviour
 
     void OnDebugRefresh()
     {
-        DebugConsole.Instance.debug += _debug + " - " + _ipOverride + "\n";
+        DebugConsole.Instance.debug += _debug + " - " + _ipOverride;
     }
 }
