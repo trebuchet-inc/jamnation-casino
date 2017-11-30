@@ -10,11 +10,15 @@ public class HMDisplayUIManager : FeedbackManager
 	public static HMDisplayUIManager Instance;
 
 	public Transform UITarget;
+	public Transform head;
+	public Transform targetPivot;
 
 	public GameObject canvas;
 	private Text canvasText;
 
+	public bool isTrackingHead;
 	public float LerpSpeed;
+	private Quaternion initialRot;
 
 	void Awake()
 	{
@@ -99,7 +103,7 @@ public class HMDisplayUIManager : FeedbackManager
 
 		msg.Enqueue(winnerText);
 		
-		Activate(msg, 2);
+		Activate(msg, 2, true);
 	}
 
 	//
@@ -112,14 +116,14 @@ public class HMDisplayUIManager : FeedbackManager
 		canvasText.text = textToDisplay;
 	}
 	
-	private void Activate(string textToDisplay, float interval)
+	private void Activate(string textToDisplay, float interval, bool trackHead = false)
 	{
-		StartCoroutine(DisplayText(textToDisplay, interval));
+		StartCoroutine(DisplayText(textToDisplay, interval, trackHead));
 	}
 
-	private void Activate(Queue<string> textsToDisplay, float interval)
+	private void Activate(Queue<string> textsToDisplay, float interval, bool trackHead = false)
 	{
-		StartCoroutine(DisplayText(textsToDisplay, interval));
+		StartCoroutine(DisplayText(textsToDisplay, interval, trackHead));
 	}
 
 	private void Deactivate()
@@ -130,9 +134,14 @@ public class HMDisplayUIManager : FeedbackManager
 
 	private void Update()
 	{
-//		if (canvasText.text == "") return;
+		if (isTrackingHead)
+		{
+			Vector3 targetRot = new Vector3(0, head.transform.rotation.eulerAngles.y, 0);
+			targetPivot.transform.rotation = Quaternion.Lerp(targetPivot.transform.rotation,  Quaternion.Euler(targetRot), Time.deltaTime * LerpSpeed);
+		}
 
 		canvas.transform.position = Vector3.Lerp(canvas.transform.position, UITarget.position, Time.deltaTime * LerpSpeed);
+	
 		canvas.transform.rotation = Quaternion.Lerp(canvas.transform.rotation, UITarget.rotation, Time.deltaTime * LerpSpeed);
 	}
 	
@@ -140,18 +149,22 @@ public class HMDisplayUIManager : FeedbackManager
 	// Coroutines
 	//
 
-	private IEnumerator DisplayText(string text, float interval)
+	private IEnumerator DisplayText(string text, float interval, bool trackHead = false)
 	{
+		if(trackHead) TrackHead(true);
 		Activate(text);
 			
 		yield return new WaitForSeconds(interval);
 		
 		Deactivate();
+		if(trackHead) TrackHead(false);
 	}
 	
-	private IEnumerator DisplayText(Queue<string> texts, float interval)
+	private IEnumerator DisplayText(Queue<string> texts, float interval, bool trackHead = false)
 	{
 		int count = texts.Count;
+		
+		if(trackHead) TrackHead(true);
 		
 		for (int i = 0; i < count; i++)
 		{
@@ -160,12 +173,17 @@ public class HMDisplayUIManager : FeedbackManager
 			yield return new WaitForSeconds(interval);
 		}
 		
+		yield return new WaitForSeconds(interval);
+		
 		Deactivate();
+		if(trackHead) TrackHead(false);
 	}
 
 	IEnumerator DelayBeforeResult(string text, bool success)
 	{
 		yield return new WaitForSeconds(2f);
+		
+		TrackHead(true);
 
 		if (success)
 		{
@@ -181,7 +199,23 @@ public class HMDisplayUIManager : FeedbackManager
 		}
 		
 		yield return new WaitForSeconds(4f);
+
+		TrackHead(false);
 		
 		Deactivate();
+	}
+
+	private void TrackHead(bool isTracking)
+	{
+		if (isTracking)
+		{
+			initialRot = targetPivot.rotation;
+			isTrackingHead = true;
+		}
+		else
+		{
+			isTrackingHead = false;
+			targetPivot.rotation = initialRot;
+		}
 	}
 }
