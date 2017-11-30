@@ -194,5 +194,6 @@ public class MountAgent : MonoBehaviour
 	void OnDebugRefresh()
     {
         DebugConsole.Instance.AddEntry("Voice Treshold : " + voiceVolumeThreshold + " | " + "Voice Intensity  : " + voiceIntensity);
+		DebugConsole.Instance.AddEntry(Microphone.devices[0]);
     }
 }

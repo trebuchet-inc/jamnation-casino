@@ -14,7 +14,7 @@ namespace NewtonVR.Example
 
         private void Update()
         {
-            Result.material.color = new Color(SliderRed.CurrentValue, SliderGreen.CurrentValue, SliderBlue.CurrentValue);
+            Result.material.color = new UnityEngine.Color(SliderRed.CurrentValue, SliderGreen.CurrentValue, SliderBlue.CurrentValue);
         }
     }
 }
