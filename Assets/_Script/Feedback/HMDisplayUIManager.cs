@@ -75,6 +75,11 @@ public class HMDisplayUIManager : FeedbackManager
 	{
 		Deactivate();
 	}
+
+	protected override void OnParadeReadyHandler()
+	{
+		Activate("Wait for your opponent");
+	}
 	
 	protected override void OnJoustGOHandler()
 	{
