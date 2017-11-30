@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222953655276316172}
   - component: {fileID: 114679874196822604}
   m_Layer: 12
-  m_Name: Image
+  m_Name: bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UITarget: {fileID: 0}
-  canvas: {fileID: 1911496824234912}
-  LerpSpeed: 10
+  canvas: {fileID: 1564039783578698}
+  LerpSpeed: 15
 --- !u!114 &114679874196822604
 MonoBehaviour:
   m_ObjectHideFlags: 1
