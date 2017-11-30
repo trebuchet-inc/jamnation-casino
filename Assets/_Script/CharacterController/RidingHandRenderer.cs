@@ -11,7 +11,6 @@ public class RidingHandRenderer : MonoBehaviour {
 	void Start () 
 	{
 		_part = GetComponent<PupetPart>();
-		SetHeadTarget();
 		_part.OnKilled += OnHit;
 		_part.OnRevived += OnReset;
 	}
@@ -50,6 +49,8 @@ public class RidingHandRenderer : MonoBehaviour {
 	}
 	
 	void Update () {
+		if(_mountHead == null) SetHeadTarget();
+
 		for(int i = 0; i < lineRenderers.Length; i++)
 		{
 			lineRenderers[i].SetPosition(0, lineRenderers[i].transform.position);

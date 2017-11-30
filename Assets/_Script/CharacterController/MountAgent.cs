@@ -36,6 +36,8 @@ public class MountAgent : MonoBehaviour
 	int _index = 0;
 	Vector3 _lastPosition;
 
+	public Action OnInitialize;
+
 	Vector3 velocity 
 	{
 		get
@@ -83,7 +85,8 @@ public class MountAgent : MonoBehaviour
 		_mountRb = mountModel.GetComponent<Rigidbody>();
 
 		voice = Microphone.Start(Microphone.devices[0], true, 1, 44100);
-		print(Microphone.devices[0]);
+		
+		if(OnInitialize != null) OnInitialize.Invoke();
 	}
 
 	void FixedUpdate()
