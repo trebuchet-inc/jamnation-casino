@@ -19,7 +19,7 @@ public class ScoreBoardManager : FeedbackManager
 
 	protected override void OnNewGameHandler()
 	{
-		DisplayOnBothScreens("Welcome");
+		DisplayOnBothScreens("Welcome!");
 	}
 
 	protected override void OnPhaseStartedHandler(Phases phases)

@@ -46,7 +46,7 @@ public class HMDisplayUIManager : FeedbackManager
 				break;
 				
 			case Phases.Parade:
-				Activate("Ride your horse to the target");
+				Activate("Ride your horse forward !");
 				break;
 				
 			case Phases.Joust:
@@ -60,7 +60,6 @@ public class HMDisplayUIManager : FeedbackManager
 				break;
 				
 			case Phases.End:
-				Activate("End of the Joust");
 				break;
 		}
 	}
