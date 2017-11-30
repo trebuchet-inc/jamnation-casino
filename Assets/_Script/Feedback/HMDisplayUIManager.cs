@@ -41,6 +41,7 @@ public class HMDisplayUIManager : FeedbackManager
 		switch (phases) 
 		{
 			case Phases.WeaponSelection:
+				initialRot = targetPivot.rotation;
 				Activate("Choose your weapon !");
 				break;
 				
@@ -209,7 +210,6 @@ public class HMDisplayUIManager : FeedbackManager
 	{
 		if (isTracking)
 		{
-			initialRot = targetPivot.rotation;
 			isTrackingHead = true;
 		}
 		else

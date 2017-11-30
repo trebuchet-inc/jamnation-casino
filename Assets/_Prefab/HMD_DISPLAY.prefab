@@ -97,7 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UITarget: {fileID: 0}
+  head: {fileID: 0}
+  targetPivot: {fileID: 0}
   canvas: {fileID: 1564039783578698}
+  isTrackingHead: 0
   LerpSpeed: 15
 --- !u!114 &114679874196822604
 MonoBehaviour:

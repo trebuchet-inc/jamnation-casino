@@ -68,13 +68,11 @@ public class OverlayManager : FeedbackManager
                 break;	
 				
             case Phases.Intermission:
-                DisplaySuper("Intermission !");
-                
+              
                 photonView.RPC("OffWeapons", PhotonTargets.All, (int)MatchLogger.Instance.lastWeapons[0], (int)MatchLogger.Instance.lastWeapons[1]);
                 break;
 				
             case Phases.End:
-                PlayOffAnim(super);
                 PlayOffAnim(scoreBoardBG);
                 DisplaySuper(ScoreManager.Instance.GetWinnerText());
                 break;

@@ -64,7 +64,12 @@ public class EndPhase : GamePhase
 	[PunRPC]
 	public void SetPlayerToEndPosition()
 	{
-		if (NetworkPlayerManager.Instance.playerID == ScoreManager.Instance.winnerPlayerID)
+		if (ScoreManager.Instance.winnerPlayerID == 2)
+		{
+			NVRPlayer.Instance.transform.position = endPositions[NetworkPlayerManager.Instance.playerID].position;
+			NVRPlayer.Instance.transform.rotation = endPositions[NetworkPlayerManager.Instance.playerID].rotation;
+		}
+		else if (NetworkPlayerManager.Instance.playerID == ScoreManager.Instance.winnerPlayerID)
 		{
 			NVRPlayer.Instance.transform.position = endPositions[0].position;
 			NVRPlayer.Instance.transform.rotation = endPositions[0].rotation;
