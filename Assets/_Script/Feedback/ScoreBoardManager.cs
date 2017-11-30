@@ -55,11 +55,22 @@ public class ScoreBoardManager : FeedbackManager
 				
 			case Phases.End:
 				msg = ScoreManager.Instance.GetWinnerText();
-				ScreenColor state;
+				ScreenColor state = ScreenColor.Neutral;;
 
-				if(msg.Contains("Blue")) state = ScreenColor.LeftColor;
-				if(msg.Contains("Red")) state = ScreenColor.RightColor;
-				else state = ScreenColor.Neutral;
+				switch (ScoreManager.Instance.winnerPlayerID)
+				{
+					case 0:
+					state = ScreenColor.LeftColor;
+					break;
+
+					case 1:
+					state = ScreenColor.RightColor;
+					break;
+
+					case 2:
+					state = ScreenColor.Neutral;
+					break;
+				}
 
 				DisplayOnBothScreens(msg, false, state);
 				break;
@@ -82,8 +93,8 @@ public class ScoreBoardManager : FeedbackManager
 
 	private void DisplayOnBothScreens(string msg, bool displayScores = true, ScreenColor state = ScreenColor.Neutral)
 	{
-		StartCoroutine(DisplayUpdate(displayLeft, msg, displayScores,state));
-		StartCoroutine(DisplayUpdate(displayRight, msg, displayScores,state));
+		StartCoroutine(DisplayUpdate(displayLeft, msg, displayScores, state));
+		StartCoroutine(DisplayUpdate(displayRight, msg, displayScores, state));
 	}
 
 	public void DisplayUpdateOnScreen(Text display, string text)

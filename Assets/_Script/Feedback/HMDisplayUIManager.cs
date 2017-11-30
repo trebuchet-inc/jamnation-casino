@@ -63,8 +63,6 @@ public class HMDisplayUIManager : FeedbackManager
 				
 			case Phases.Intermission:
 				isLerping = true;
-
-//				Activate("Preparing for next round");
 				StartCoroutine(DelayBeforeResult(resultMsg, success));	
 				break;
 				
@@ -78,7 +76,7 @@ public class HMDisplayUIManager : FeedbackManager
 		Deactivate();
 	}
 	
-	protected override void OnParadeReadyHandler()
+	protected override void OnJoustGOHandler()
 	{
 		Deactivate();
 		isLerping = false;
