@@ -14,6 +14,7 @@ public class JoustPhase : GamePhase
 	Transform opponentTransform;
 	float timer;
 	bool localHited;
+	bool globalHited;
 	bool _active;
 
 	LimbType lastHit;
@@ -26,6 +27,7 @@ public class JoustPhase : GamePhase
 		lastHit = LimbType.None;
 		_active = true;
 		localHited = false;
+		globalHited = false;
 	} 
     
 	public override void TerminatePhase()
@@ -42,7 +44,7 @@ public class JoustPhase : GamePhase
 	{
 		if(!_active) return;
 
-		if(timer > 0 && NVRPlayer.Instance.transform.InverseTransformPoint(opponentTransform.position).z <= 0)
+		if(timer > 0 && (NVRPlayer.Instance.transform.InverseTransformPoint(opponentTransform.position).z <= 0 || globalHited))
 		{
 			timer -= Time.deltaTime;
 		}
@@ -57,6 +59,7 @@ public class JoustPhase : GamePhase
 		if(localHited || !_active) return;
 
 		localHited = true;
+		globalHited = true;
 		lastHit = (LimbType)info.limbHit; 
 		float multiplier = 1;
 
@@ -89,7 +92,8 @@ public class JoustPhase : GamePhase
 	public void ReceiveRegisterHit(byte[] data)
 	{
 		HitInfo info = (HitInfo)SerializationToolkit.ByteArrayToObject(data);
-		
+
+		globalHited = true;
 		if(OnJoustHit != null) OnJoustHit.Invoke(info);
 
 		Fade.Instance.StartFade(0.4f,0.1f);

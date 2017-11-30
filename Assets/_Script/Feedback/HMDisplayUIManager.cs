@@ -21,6 +21,9 @@ public class HMDisplayUIManager : FeedbackManager
 	public float LerpSpeed;
 	private Quaternion initialRot;
 
+	bool success = false;
+	string resultMsg = "";
+
 	void Awake()
 	{
 		Instance = this;
@@ -54,12 +57,15 @@ public class HMDisplayUIManager : FeedbackManager
 				Queue<string> msg = new Queue<string>();
 				msg.Enqueue("Ready"); msg.Enqueue("Set"); msg.Enqueue("GO !");
 				Activate(msg, 1);
+				success = false;
+				resultMsg = "";
 				break;
 				
 			case Phases.Intermission:
 				isLerping = true;
 
 //				Activate("Preparing for next round");
+				StartCoroutine(DelayBeforeResult(resultMsg, success));	
 				break;
 				
 			case Phases.End:
@@ -83,19 +89,16 @@ public class HMDisplayUIManager : FeedbackManager
 		base.OnJoustHitHandler(hitInfo);
 
 
-		bool success = hitInfo.limbHit != (int)LimbType.None;
-		string msg = "";
+		success = hitInfo.limbHit != (int)LimbType.None;
 		
 		if (hitInfo.playerHitting == NetworkPlayerManager.Instance.playerID)
 		{
-			msg = "You hit in the " + lastLimbHit + " with the " + lastWeapon + "!";
+			resultMsg = "You hit in the " + lastLimbHit + " with the " + lastWeapon + "!";
 		}
 		else
 		{
-			msg = "You were hit in the " + lastLimbHit + " with the " + lastWeapon + "!";
+			resultMsg = "You were hit in the " + lastLimbHit + " with the " + lastWeapon + "!";
 		}
-		
-		StartCoroutine(DelayBeforeResult(msg, success));
 	}
 
 	protected override void OnJoustEndedHandler()
@@ -188,7 +191,7 @@ public class HMDisplayUIManager : FeedbackManager
 
 	IEnumerator DelayBeforeResult(string text, bool success)
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(0.5f);
 		
 		TrackHead(true);
 
