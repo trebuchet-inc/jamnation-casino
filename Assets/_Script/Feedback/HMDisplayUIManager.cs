@@ -57,6 +57,8 @@ public class HMDisplayUIManager : FeedbackManager
 				break;
 				
 			case Phases.Intermission:
+				isLerping = true;
+
 //				Activate("Preparing for next round");
 				break;
 				
@@ -80,7 +82,6 @@ public class HMDisplayUIManager : FeedbackManager
 	{
 		base.OnJoustHitHandler(hitInfo);
 
-		isLerping = true;
 
 		bool success = hitInfo.limbHit != (int)LimbType.None;
 		string msg = "";
