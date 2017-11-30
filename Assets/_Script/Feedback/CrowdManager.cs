@@ -54,7 +54,7 @@ public class CrowdManager : FeedbackManager
 				break;
 				
 			case Phases.Intermission:
-				SetHype(4);
+				//SetHype(4);
 				break;
 				
 			case Phases.End:
