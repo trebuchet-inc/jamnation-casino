@@ -2,17 +2,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DebugConsole : MonoBehaviour 
 {
 	public static DebugConsole Instance; 
 
 	public KeyCode visibilityToggle;
-	public GUIStyle debugSkin;
+	public Canvas canvas;
+	public Text txt;
 
 	public Action OnRefresh;
 
-	[HideInInspector] public string debug;
+	[HideInInspector] public string debug
+	{
+		set
+		{
+			string formatedText  = value + "\n";
+			_debug = formatedText;
+		}
+		get
+		{
+			return _debug;
+		}
+	}
+
+	string _debug;
 
 	bool _visible = true;
 
@@ -24,6 +39,7 @@ public class DebugConsole : MonoBehaviour
 	void Update () 
 	{
 		ManageDebugVisibility();
+		Draw();
 	}
 
 	void ManageDebugVisibility()
@@ -31,16 +47,16 @@ public class DebugConsole : MonoBehaviour
         if(Input.GetKeyDown(visibilityToggle))
         {
             _visible = !_visible;
-        } 
+			canvas.gameObject.SetActive(_visible);
+        }
     }
 
-	public void OnGUI()
+	void Draw()
     {
         if(!_visible) return;
 		
-		debug = "";
+		_debug = "";
 		if(OnRefresh != null) OnRefresh.Invoke();
-        GUI.skin.label = debugSkin;
-        GUILayout.Label(debug);
+        txt.text = _debug;
     }
 }
