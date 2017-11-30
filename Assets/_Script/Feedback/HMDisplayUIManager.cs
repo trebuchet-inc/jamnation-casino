@@ -16,6 +16,7 @@ public class HMDisplayUIManager : FeedbackManager
 	public GameObject canvas;
 	private Text canvasText;
 
+	public bool isLerping = true;
 	public bool isTrackingHead;
 	public float LerpSpeed;
 	private Quaternion initialRot;
@@ -72,11 +73,14 @@ public class HMDisplayUIManager : FeedbackManager
 	protected override void OnParadeReadyHandler()
 	{
 		Deactivate();
+		isLerping = false;
 	}
 
 	protected override void OnJoustHitHandler(HitInfo hitInfo)
 	{
 		base.OnJoustHitHandler(hitInfo);
+
+		isLerping = true;
 
 		bool success = hitInfo.limbHit != (int)LimbType.None;
 		string msg = "";
@@ -134,6 +138,8 @@ public class HMDisplayUIManager : FeedbackManager
 
 	private void Update()
 	{
+		if (!isLerping) return;
+		
 		if (isTrackingHead)
 		{
 			Vector3 targetRot = new Vector3(0, head.transform.rotation.eulerAngles.y, 0);

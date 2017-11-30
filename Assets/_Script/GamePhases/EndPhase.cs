@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using NewtonVR;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class EndPhase : GamePhase
 {
@@ -31,7 +32,7 @@ public class EndPhase : GamePhase
 				banner.SetBlue();
 			}
 		}
-		else
+		else if(ScoreManager.Instance.winnerPlayerID == 1)
 		{
 			foreach (BannerColor banner in banners)
 			{
