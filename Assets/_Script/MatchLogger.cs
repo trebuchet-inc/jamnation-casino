@@ -8,6 +8,8 @@ public class MatchLogger : MonoBehaviour
 	public Stack<WeaponType>[] usedWeaponsStack = new Stack<WeaponType>[2];
 	public WeaponType[] lastWeapons = new WeaponType[2];
 
+	public Stack<int> winnerPlayerID;
+
 	public WeaponType[] currentWeapons
 	{
 		get
